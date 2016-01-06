@@ -1,0 +1,8 @@
+reqiure()
+基本概念:require()语句与include()语句类似，都是实现对外部文件的调用
+	注意:当使用require()语句时载入文件时，它会作为PHP文件的一部分被载入
+如果通过require()语句载入一个HTML文件，如"hello.html"，文件内的任何PHP命令都会被处理
+代码实例:
+	include(string filename);
+代码描述:参数filename是指定完整路径的文件名
+	
