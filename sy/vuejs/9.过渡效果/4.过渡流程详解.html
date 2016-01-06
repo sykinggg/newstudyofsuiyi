@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.expand-transition {
+			  transition: all .3s ease;
+			  height: 30px;
+			  padding: 10px;
+			  background-color: #eee;
+			  overflow: hidden;
+			}
+			.expand-enter, .expand-leave {
+			  height: 0;
+			  padding: 0 10px;
+			  opacity: 0;
+			}
+
+		</style>
+	</head>
+	过渡流程详解
+	基本概念:
+		当 show 属性改变时，Vue.js 将相应地插入或删除div元素，按照如下规则改变过渡的 CSS 类名
+			一.如果 show 变为 false，Vue.js 将
+		1.用 beforeLeave 钩子
+		2.添加 v-leave 类名到元素上以触发过渡
+		3.调用 leave 钩子
+		4.等待过渡结束（监听 transitionend 事件）
+		5.从 DOM 中删除元素并删除 v-leave 类名
+		6.调用 afterLeave 钩子
+			二.如果 show 变为 true，Vue.js 将
+		1.调用 beforeEnter 钩子
+		2.添加 v-enter 类名到元素上
+		3.把它插入 DOM
+		4.调用 enter 钩子
+		5.强制一次CSS 布局，让 v-enter 确实生效。然后删除 v-enter 类名，以触发过渡，回到元素的原始状态
+		6.等待过渡结束
+		7.调用afterEnter钩子
+	<script src="../vue.js"></script>
+	<body>
+		<div id="example">
+			<div v-if="show" transition="expand">hello</div>
+			<button v-on:click="show=!show">toggle</button>
+		</div>
+	</body>
+	<script>
+		window.onload=function(){
+			 //在这里面写Vue.js代码
+			 Vue.transition('expand', {
+			  beforeEnter: function (el) {
+			    el.textContent = 'beforeEnter'
+			  },
+			  enter: function (el) {
+			    el.textContent = 'enter'
+			  },
+			  afterEnter: function (el) {
+			    el.textContent = 'afterEnter'
+			  },
+			  enterCancelled: function (el) {
+			    // handle cancellation
+			  },
+			  beforeLeave: function (el) {
+			    el.textContent = 'beforeLeave'
+			  },
+			  leave: function (el) {
+			    el.textContent = 'leave'
+			  },
+			  afterLeave: function (el) {
+			    el.textContent = 'afterLeave'
+			  },
+			  leaveCancelled: function (el) {
+			    // handle cancellation
+			  }
+			})
+			new Vue({
+			  el: '#example',
+			  data:{
+			   show: true
+			  }
+			 
+			})
+			 //----------------
+			}
+
+	</script>
+</html>
