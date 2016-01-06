@@ -1,0 +1,9 @@
+include_once()
+基本概念:include_once()函数是include()函数的延伸，它的作用和include()函数几乎是相同的
+	唯一的区别在include_once()函数会在导入文件前先检测该文件是否在该页面的其它部分被导入过，
+		如果有的话就不会重复导入该文件
+	注意:PHP不允许相同名称的函数被重复声明第二次
+代码实例:
+<?php
+include_once('top.php');
+?>
