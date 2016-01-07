@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	技术选择
+	基本概念:本项目涉及使用到NodeJS、Express框架、socket.io等
+	注意:该项目的主要通讯都是通过socket.io来完成
+		其核心也主要是用socket.io的广播，信息的发送与接收
+		通讯过程中，我们的数据格式为JSON格式
+	代码示例:发送命令中要发送的数据
+		socket.send({cmd:"ok", data:{id:id, message:"接单成功!"}});
+	代码描述:
+		上面代码中cmd为发送信息的标识，data为发送的数据
+		这样在接收端就可以通过收到的发送信息标识，来区分收到的数据了
+	<body>
+	</body>
+</html>
