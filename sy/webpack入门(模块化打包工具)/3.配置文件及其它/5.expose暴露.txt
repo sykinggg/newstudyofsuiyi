@@ -1,0 +1,11 @@
+expose暴露
+我们把需要的jquery打包了，但是现在前台页面想要直接用还是不可以的，需要我们把jquery暴露出来。
+代码示例:
+	1.可能在全局中使用了一个压缩版本的 jquery，为了修复可以安装这个暴露全局加载器
+	npm install expose-loader --save-dev
+	2.然后像下面这样修改entry.js
+	require('expose?$!jquery');
+代码描述:
+	把$作为别名为jquery的变量暴露到全局上下文中
+代码描述:现在我们在页面就可以使用$
+	$("h1").text();

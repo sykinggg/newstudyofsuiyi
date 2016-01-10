@@ -1,0 +1,27 @@
+使用
+	首先有一个静态页面 index.html，已经预置好了。
+<!-- index.html -->
+<html>
+<head>
+	<meta charset = "utf-8">
+</head>
+<body></body>
+<script src="bundle.js"></script>
+</html>
+	现在创建一个 JS 入口文件 entry.js：
+// entry.js
+pico entry.js 
+// 进入编辑器输入
+document.write('It works.');
+// 保存并退出
+	然后编译 entry.js 并打包到 bundle.js，运行命令：
+$ webpack ./entry.js bundle.js]
+	如果成功，打包过程会显示日志：
+Hash: aeec068c58e1e78f0fb6
+Version: webpack 1.12.9
+Time: 70ms
+    Asset     Size  Chunks             Chunk Names
+bundle.js  1.48 kB       0  [emitted]  main
+   [0] ./entry.js 87 bytes {0} [built]
+	在点击访问测试将会打开一个新的窗口。它应该会显示It works.。
+	注意：下面的课程中创建编辑文件都是用pico 文件名。

@@ -1,0 +1,16 @@
+扩展名自动绑定loader
+如果每次 require CSS 文件的时候都要写 loader 前缀，是一件很繁琐的事情
+注意:可以根据模块类型（扩展名）来自动绑定需要的 loader这样写require("./style.css")
+代码示例:修改entry.js
+- require("!style!css!./style.css");
++ require("./style.css");
+	document.write(require("./content.js"));
+注意:-表示这行删掉或者注释掉，+表示新增的内容。
+编译:
+代码示例:
+	webpack ./entry.js bundle.js --module-bind "css=style!css"
+注意:!在shell中有特殊意义，需要转义,这样写才会成功的
+代码示例:
+	webpack ./entry.js bundle.js --module-bind "css=style\!css"
+总结:
+	这两种使用 loader 的方式，效果是一样的

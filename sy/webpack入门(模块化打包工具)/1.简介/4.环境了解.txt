@@ -1,0 +1,15 @@
+环境了解
+描述:我们在当前的环境中指定的目录是在 /home/hubwiz/web下，才可以进行访问测试
+代码示例:可以使用命令pwd查看我们当前指定的目录
+	$ pwd
+	/home/hubwiz/web
+代码描述:
+	pwd命令用于显示当前目录
+	在环境中这个仓库位于/home/hubwiz/web
+代码示例:预置一个静态页面（index.html）和一张logo图片，以及style.css文件,访问测试，将会看到你编译的效果
+	$ ls
+	index.html logo.png node_modules style.css scripts
+代码描述:
+	node_modules中是我们预置好的几个模块,可以查看
+index.html页面中预置
+	<h1>欢迎学习</h1>

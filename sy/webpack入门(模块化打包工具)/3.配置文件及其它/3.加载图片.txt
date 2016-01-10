@@ -1,0 +1,26 @@
+加载图片
+一个 url-loader 来说，它会将样式中引用到的图片转为模块来处理，使用该加载器需要先进行安装
+npm install url-loader
+代码示例:修改style.css文件
+body{
+	color: #fff;
+	background: url('./logo.png');
+}
+代码示例:配置webpack.config.js文件
+module.exports = {
+	entry: "./entry.js",
+	output: {
+		path: __dirname,
+		filename: "bundle.js"
+	},
+	module: {
+		loaders: {
+			{test: /\.css$/, loader: "style!css"},
+			{test: /\.(png|jpg)$, loader: "url?limit=40000"}	// 添加到这
+		}
+	}
+}
+注意后面那个limit的参数，当你图片大小小于这个限制的时候，会自动启用base64编码图片
+注意:我们还是运行
+webpack
+将会看到背景图片已设置成功。

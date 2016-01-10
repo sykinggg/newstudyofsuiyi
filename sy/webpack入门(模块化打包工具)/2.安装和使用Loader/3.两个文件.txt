@@ -1,0 +1,24 @@
+两个文件
+下一步，我们将把一些代码移到一个额外的文件中content.js 并修改入口 entry.js：
+// content.js
+pico content.js
+// 编辑内容
+module.exports = "It works from content.js.";
+
+// 修改entry.js
+//document.write('It works.');
+document.write(require("./content.js")); // 添加content.js
+编译文件：
+$ webpack ./entry.js bundle.js
+更新您的浏览器窗口，您应该看到文本It works from content.js.
+执行成功，会显示
+Hash: ef96fed65f6d3ebc0dd7
+Version: webpack 1.12.9
+Time: 91ms
+    Asset    Size  Chunks             Chunk Names
+bundle.js  1.7 kB       0  [emitted]  main
+   [0] ./entry.js 133 bytes {0} [built]
+   [1] ./content.js 97 bytes {0} [built]
+详细描述:Webpack 会分析入口文件，解析包含依赖关系的各个文件。这些文件（模块）都打包到 bundle.js 
+	Webpack 会给每个模块分配一个唯一的 id 并通过这个 id 索引和访问模块
+	在页面启动时，会先执行 entry.js 中的代码，其它模块会在运行 require 的时候再执行

@@ -1,0 +1,30 @@
+配置文件
+Webpack 在执行的时候，除了在命令行传入参数，还可以通过指定的配置文件来执行
+会搜索当前目录的 webpack.config.js 文件
+	这个文件是一个 node.js 模块，返回一个 json 格式的配置信息对象，或者通过 --config 选项来指定配置文件
+代码示例:将配置选项移动到配置文件中，创建一个配置文件 webpack.config.js
+module.exports = {
+	entry:"./entry.js",
+	output: {
+		path:__dirname,
+		filename: "bundle.js"
+	},
+	module: {
+		loaders: {
+			{test:/\.css$/, loader: "style!css"}
+		}
+	}
+}
+代码示例:现在我们仅仅运行
+webpack
+代码描述:
+	如果完成成功，将会返回运行结果，该命令将尝试WebPACK当前目录中加载文件webpack.config.js
+	这里对Webpack的打包行为做了配置，主要分为几个部分
+		1.entry：指定打包的入口文件，每有一个键值对，就是一个入口文件
+		2.output：配置打包结果，path定义了输出的文件夹，filename则定义了打包结果文件的名称
+		3.module：定义了对模块的处理逻辑，这里可以用loaders定义了一系列的加载器，以及一些正则
+			当需要加载的文件匹配test的正则时，就会调用后面的loader对文件进行处理，这正是webpack强大的原因
+漂亮的输出:
+如果该项目的增长，编译可能需要更长的时间。所以我们要展示一些进度条。我们想要的颜色
+代码示例:
+webpack --progress --colors

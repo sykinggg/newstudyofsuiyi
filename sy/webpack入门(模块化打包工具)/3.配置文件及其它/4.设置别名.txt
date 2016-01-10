@@ -1,0 +1,15 @@
+在 Webpack 中使用别名
+别名（resolve.alias） 是 Webpack 的一个配置项，它的作用是把用户的一个请求重定向到另一个路径
+代码示例:例如通过修改 webpack.config.js 配置文件，jquery为别名加入
+resolve: {
+	alias: {
+		jquery: "./script/jquery.min.js"
+	}
+}
+代码示例:在entry.js中，想要把jquery打包
+require("./script/jquery.min.js");
+代码示例:设置别名，就可以修改为
+require('jquery');
+代码描述:
+这样待打包的脚本中的 require('jquery'); 其实就等价于 require('./scripts/jquery.min.js'); 
+	通过别名的使用在本例中可以减少几乎一半的时间

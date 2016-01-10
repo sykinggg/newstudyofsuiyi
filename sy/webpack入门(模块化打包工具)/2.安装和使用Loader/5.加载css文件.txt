@@ -1,0 +1,16 @@
+加载 CSS 文件
+WebPACK只能处理JavaScript本身，所以我们需要css-loader去处理 CSS
+	我们还需要style-loader去应用这个样式在CSS文件
+代码示例:安装 loader
+npm install css-loader style-loader
+代码描述:
+注意：安装 loaders（只需要在本地安装，不需 -g）将会创建一个 node_modules 文件夹，在哪里 loaders 将会激活
+	我们要在页面中引入一个 CSS 文件 style.css，首页将 style.css 也看成是一个模块，然后用 css-loader 来读取它，再用 style-loader 把它插入到页面中
+代码示例:添加一个style.css文件
+body{
+	background:red;
+}
+代码示例:修改 entry.js
++ require("!style!css!./style.css");	// 载入 style.css
+document.write(require("./content.js"));
+注意:重新编译并更新您的浏览器看到红色背景
