@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	批量插入文档
+	基本概念:
+		insert语句不但可以插入单个文档，还可以一次性插入多个文档
+		插入多个文档时，insert命令的参数为一个数组，数组元素为BSON格式的文档
+	代码示例:多个文档可以放在一个数组内，一次插入多条数据
+		db.users.insert([{name:"tommy"}, {name:"xiaoming"}])
+	代码描述:
+		文档批量插入非常方便，但是使用批量插入时也有一些问题需要注意，
+			因为BSON格式的限制，一次插入的数据量不能超过16M，在一个insert命令中插入多条数据时，MongoDB不保证完全成功或完全失败
+	代码示例:一次插入多条数据
+	db.person.insert([
+	 {name:"Mary",  age:21, status:"A"},
+	 {name:"Lucy",  age:89, status:"A"},
+	 {name:"Jacky", age:30, status:"A"} 
+	]);
+	<body>
+	</body>
+</html>
