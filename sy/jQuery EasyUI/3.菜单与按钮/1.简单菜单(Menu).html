@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../themes/black/easyui.css" />
+		<link rel="stylesheet" href="../themes/icon.css" />
+		<script src="../jquery.min.js"></script>
+		<script src="../jquery.easyui.min.js"></script>
+	</head>
+	Menu
+	基本概念:通过标签创建菜单，给< div >标签添加一个名为'easyui-menu'的类
+		每个菜单项都通过< div >标签创建。我们可以添加'iconCls'属性来给菜单项定义一个图标显示到菜单项的左侧
+			添加'menu-sep'类菜单项将会生成一个菜单分割线
+	概念示例:
+		<div id="mm" class="easyui-menu" style="width:120px">
+			<div onclick="javascript:alert('new')">New</div>
+			<div>
+				<span>Open</span>
+				<div style="width:150px">
+					<div><b>Word</b></div>
+					<div>Excel</div>
+					<div>PowerPoint</div>
+				</div>
+			</div>
+			<div icon="icon-save">Save</div>
+			<div class="menu-sep"></div>
+			<div>Exit</div>
+		</div>
+		注意:当菜单创建之后是不显示的，调用 'show' 方法显示它或者调用 'hide' 方法隐藏它
+	<body>
+	<script>
+		$(function(){
+			$(document).bind('contextmenu', function(e){
+				e.preventDefault();
+				$("#mm").menu('show', {
+					left:e.pageX,
+					top:e.pageY
+				});
+			});
+		});
+	</script>
+	</body>
+</html>

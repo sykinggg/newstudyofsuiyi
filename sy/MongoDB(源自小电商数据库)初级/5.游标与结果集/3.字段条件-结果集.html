@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	限制条件 - 结果集
+	基本概念:
+		只需要返回结果集中的部分字段，这个时候可以通过传入字段条件的方式来实现
+	语法结构:
+		db.collection.find( 查询条件,字体条件  );
+	参数说明:
+		字段条件：JSON对象，格式=>{字段：值},值等于1时表示需要返回,0时表示不需要返回
+	简单示例:返回person的"status"和"age"字段
+		db.person.find({}, {status:1, age:1});
+	代码示例:列出person集合中名字(name)
+		db.person.find({}, {name:1});
+	<body>
+	</body>
+</html>

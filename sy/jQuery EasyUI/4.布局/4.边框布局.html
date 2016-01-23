@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>边框布局</title>
+		<link rel="stylesheet" href="../themes/black/easyui.css" />
+		<link rel="stylesheet" href="../themes/icon.css" />
+		<script src="../jquery.min.js"></script>
+		<script src="../jquery.easyui.min.js"></script>
+	</head>
+	<h1>边框布局</h1>
+	<h2>边框布局(border layout)提供五个区域:east, west, north, south, center.</h2>
+	<p>north区域可以显示网站的标题</p>
+	<p>south区域可以用来显示版权以及一些说明</p>
+	<p>west区域可以用来显示导航菜单</p>
+	<p>east区域可以用来显示一些推广的项目</p>
+	<p>center区域可以用来显示主要的内容</p>
+	<p>如图: <img src="../img/layout.bmp" alt="" /></p>
+	<h3>1. 通过标签创建布局</h3>
+	<p>为< div >标签增加名为'easyui-layout'的类</p>
+	<div id="cc" class="easyui-layout" style="width:600px; height:400px">
+		<div data-options="region:'north', title:'North Title', split:true" style="height:100px"></div>
+		<div data-options="region:'south', title:'South Title', split:true" style="height:100px"></div>
+		<div data-options="region:'east', iconCls:'icon-reload', title:'Rast', split:true" style="width:200px"></div>
+		<div data-options="region:'west', title:'West', split:true" style="width:100px"></div>
+		<div data-options="region:'center', title:'center title'" style="padding:5px; background:#eee"></div>
+	</div>
+	<h3>2. 使用完整页面创建布局</h3>
+	<div class="easyui-layout">
+		<div data-options="region:'north', title:'North Title', split:true" style="height: 100px;"></div>
+		<div data-options="region:'south', title:'South Title', split:true" style="height: 100px;"></div>
+		<div data-options="region:'east', iconCls:'icon-reload', title:'East', split:true" style="width:100px"></div>
+		<div data-options="region:'west', title:'West', split:true" style="width: 100px;"></div>
+	</div>
+	<h3>3. 创建嵌套布局</h3>
+	<p>嵌套在内部布局面板的左侧面板是折叠的</p>
+	<div class="easyui-layout">
+		<div data-options="region:'north'" style="height: 100px;"></div>
+		<div data-options="region:'center'">
+			<div class="easyui-layout" data-options="fit:true">
+				<div data-options="region:'west', collapsed:true" style="width: 180px;"></div>
+				<div data-options="region:'center'"></div>
+			</div>
+		</div>
+	</div>
+	<p>可以以下方法折叠布局面板</p>
+	<script>
+		$("#cc").layout();
+		$("#cc").layout('collapse', 'west');
+	</script>
+	<p>如下js代码添加到西侧区域面板和工具菜单按钮</p>
+	<script>
+		$("#cc").layout('add', {
+			region: 'west',
+			width: 180,
+			title: 'West Title',
+			split: true,
+			tools: [{
+				iconCls:'icon-add',
+				handler: function(){
+					alert('add');
+				},{
+					iconCls:'icon-remove',
+					handler: function(){
+						alert('remove');
+					}
+				}
+			}]
+		})
+	</script>
+	<h1>真实案例</h1>
+	<div class="easyui-layout" style="width: 400px; height: 200px;">
+		<div region="west" split="true" title="Navigator" style="width: 150px;">
+			<p style="padding: 5px; margin: 0;">Select Language</p>
+			<ul>
+				<li><a href="javascript:void(0)" onclick="showcontent('java')">Java</a></li>
+				<li><a href="javascript:void(0)" onclick="showcontent('cshape')">C#</a></li>
+				<li><a href="javascript:void(0)" onclick="showcontent('vb')">VB</a></li>
+				<li><a href="javascript:void(0)" onclick="showcontent('erlang')">Erlang</a></li>
+			</ul>
+		</div>
+		<div id="content" region="center" title="Language" style="padding: 5px;"></div>
+	</div>
+	<script>
+	function showcontent(Language){
+		$("#content").html("Introduction to" + Language + "language");
+	}
+	</script>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	限制条件 - 结果集
+	基本概念:
+		可以通过条件来限制结果集返回的内容
+	注意:limit方法：设定返回结果集中的最大文档数量
+	语法示例:
+		db.collection.find().limit(Num)
+	语法参数:
+		Num:Number类型，大于0
+	语法示例:db.testData.find().limit(3)
+	结果显示:
+		{ "_id" : ObjectId("51a7dc7b2cacf40b79990be6"), "x" : 1 }<br/>
+		{ "_id" : ObjectId("51a7dc7b2cacf40b79990be7"), "x" : 2 }<br/>
+		{ "_id" : ObjectId("51a7dc7b2cacf40b79990be8"), "x" : 3 }<br/>
+	代码示例:查找person集合中的前3个文档
+		db.person.find().limit(3);
+	<body>
+	</body>
+</html>

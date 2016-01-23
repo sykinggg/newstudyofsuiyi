@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Slider</title>
+		<link rel="stylesheet" href="../themes/black/easyui.css" />
+		<link rel="stylesheet" href="../themes/icon.css" />
+		<script src="../jquery.min.js"></script>
+		<script src="../jquery.easyui.min.js"></script>
+	</head>
+	<body>
+		<h1>Slider</h1>
+		<p>当滑块控件沿着轨道移动的时候，将会显示一个提示来表示当前值</p>
+		<p>用户可以通过设置其属性自定义滑块</p>
+		<p>如图: <img src="../img/slider.bmp" alt="" /></p>
+		<h2>使用< input >标签来创建滑动条，设置class属性为easyui-slider</h2>
+		<input class="easyui-slider" value="12" style="width: 300px;"
+			data-options="showTip: true, rule:[0, '|', 25, '|', 50, '|', 75, '|', 100]" />
+		<h2>使用< div >创建滑动条，但是'value'属性是无效的</h2>
+		<div class="easyui-slider" data-options="min: 10, max: 90, step: 10" style="width: 300px;"></div>
+		<h2>可以使用javascript来创建</h2>
+		<div id="xx" style="height: 200px"></div>
+		<script>
+			$("#xx").slider({
+				mode: 'v',
+				tipFormatter: function(value){
+					return value + "%";
+				}
+			});
+		</script>
+		<p>可以通过"setValue"方法来设置slider的值，通过“getValue”获取slider的值</p>
+		<script>
+			$("#xx").slider('setValue', 25);
+			$("#xx").slider('getValue', '');
+		</script>
+		<p>还有一个常用的onchange事件，在值发生变化时触发</p>
+		<script>
+			$("#xx").slider({
+				mode: v,
+				tipFormatter: function(value){
+					return value + '%';
+				},
+				onChange: function(value){
+					alert(value);
+				}
+			});
+		</script>
+		<h1>真实案例</h1>
+		<div style="margin: 20px 0 50px 0"></div>
+		<div class="easyui-slider" style="width: 200px" id="aa"></div>
+		<div id="ff" style="margin-top: 50px; font-size: 12px">jQuery EasyUI</div>
+		<script>
+			$(function(){
+				$("#aa").slider({
+					showTip: true,
+					rule: [0, '|', 25, '|', 50, '|', 75, '|', 100],
+					tipFormatter: function(value){
+						return value + 'px';
+					},
+					onChange: function(value){
+						$('#ff').css('font-size', value);
+					}
+				});
+			});
+		</script>
+		<h3>注意:可以通过max与min属性设置滑动条的最大与最小值</h3>
+	</body>
+</html>

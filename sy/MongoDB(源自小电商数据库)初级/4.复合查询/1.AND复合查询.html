@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	复合查询 - AND
+	基本概念:
+		在查询条件中指定多个字段条件，检索出所有满足条件的文档数据
+	语法示例:查询inventory集合中type字段为food并且价格低于95的所有文档
+		db.inventory.find({$and:[{type:"food"}, {price:{$lt:95}}]});
+	代码示例:查询person集合中年龄(age)大于30岁，并且名字(name)为"Lucy"的数据
+		db.person.find({$and:[{age:{$gt:30}}, {name:"Lucy"}]});
+	<body>
+	</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../themes/black/easyui.css" />
+		<link rel="stylesheet" href="../themes/icon.css" />
+		<script src="../jquery.min.js"></script>
+		<script src="../jquery.easyui.min.js"></script>
+	</head>
+	<h1>Split Button</h1>
+	<p>基本概念:分割按钮（Split Button）包含一个链接按钮（Link Button）和一个菜单（Menu）</p>
+		<p>注意:当用户点击或者鼠标悬停在向下箭头区域，将会显示一个对应的菜单</p>
+		<span>如图</span><img src="../img/splitbutton.bmp" alt="" />
+		<p>代码示例:使用标签创建分割按钮</p>
+		<a href="javascript:void(0)" id="sb" class="easyui-splitbutton"
+			data-options="menu:'#mm', iconCls:'icon-ok'" onclick="javascript:alert('ok')">OK</a>
+		<div id="mm" style="width:100px">
+			<div data-options="iconCls:'icon-ok'">Ok</div>
+			<div data-options="iconCls:'icon-cancel'">Cancel</div>
+		</div>
+		<p>代码示例:使用Javascript创建分割按钮</p>
+		<a href="javascript:void(0)" id="sb" onclick="javascript:alert('ok')">OK</a>
+		<div id="mm" style="width:100px">
+			<div data-options="iconCls:'icon-ok'">Ok</div>
+			<div data-options="iconCls:'icon-cancel'">Cancel</div>
+		</div>
+		<script>
+			$("#sb").splitbutton({
+				iconCls:'icon-ok',
+				menu:'#mm'
+			});
+		</script>
+	<body>
+	</body>
+</html>

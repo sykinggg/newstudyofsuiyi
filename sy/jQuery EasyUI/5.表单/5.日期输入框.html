@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>DateBox</title>
+		<link rel="stylesheet" href="../themes/black/easyui.css" />
+		<link rel="stylesheet" href="../themes/icon.css" />
+		<script src="../jquery.min.js"></script>
+		<script src="../jquery.easyui.min.js"></script>
+	</head>
+	<body>
+		<h1>DateBox</h1>
+		<p>日期输入框结合了一个可编辑的文本框控件和允许用户选择日期的下拉日历面板控件</p>
+		<p>选择的日期会自动转变为一个有效的日期然后填充到文本框中</p>
+		<p>选定的日期也可以被格式化为预定格式</p>
+		<p>如图: <img src="../img/datebox.bmp" alt="" /></p>
+		<h2>1.使用标签创建日期输入框。我们要为input标签添加一个“easyui-datebox”的类</h2>
+		<input id="ddd" type="text" class="easyui-datebox" required="reqiored" />
+		<h2>2.使用Javascript创建日期输入框</h2>
+		<input id="dd" type="text" />
+		<script>
+			$("#dd").datebox({
+				required: true
+			})
+		</script>
+		<p>可以通过"setValue"方法来设置datebox的值，通过“getValue”获取datebox的值</p>
+		<script>
+			$("#dd").datebox('setValue', '01/01/2016');
+			$("#dd").datebox('getValue', '');
+		</script>
+		<h1>真实案例</h1>
+		<input id="xx" type="text" class="easyui-datebox" required="required" />
+		<button onclick="getdate()">获取时间</button>
+		<script>
+		$(function(){
+			$("#xx").datebox('setValue', '01/01/2016');
+		})
+			function getdate(){
+				//获取时间的函数
+				alert($("#xx").datebox('getValue', ''));
+			}
+		</script>
+	</body>
+</html>

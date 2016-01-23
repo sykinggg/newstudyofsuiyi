@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	$mod取模运算
+	概念示例:
+		查询age 取模10 等于0 的数据
+		db.student.find({age:{$mod:[10, 1]}});
+		C1 表的数据如下
+		db.c1.find();
+		{ "_id" : ObjectId("4fb4af85afa87dc1bed94330"), "age" : 7, "length_1" : 30 }
+		{ "_id" : ObjectId("4fb4af89afa87dc1bed94331"), "age" : 8, "length_1" : 30 }
+		{ "_id" : ObjectId("4fb4af8cafa87dc1bed94332"), "age" : 6, "length_1" : 30 }
+		查询age 取模6 等于1 的数据
+		db.c1.find({age:{$mod:[6, 1]}});
+		{ "_id" : ObjectId("4fb4af85afa87dc1bed94330"), "age" : 7, "length_1" : 30 }
+		注意:可以看出只显示出了age 取模6 等于1 的数据
+		在users文档中查询"age"取模5 等于1的数据
+		db.users.find({age:{$mod:[5, 1]}});
+	<body>
+	</body>
+</html>

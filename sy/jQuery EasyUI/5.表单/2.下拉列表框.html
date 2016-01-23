@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ComboBox</title>
+		<link rel="stylesheet" href="../themes/black/easyui.css" />
+		<link rel="stylesheet" href="../themes/icon.css" />
+		<script src="../jquery.min.js"></script>
+		<script src="../jquery.easyui.min.js"></script>
+	</head>
+	<body>
+		<h1>ComboBox</h1>
+		<p>下拉列表框显示一个可编辑文本框和下拉式列表，用户可以选择一个值或多个值</p>
+		<p>用户可以直接输入文本到列表顶部或选择一个或多个当前列表中的值</p>
+		<p>如图: <img src="../img/combox.bmp" alt="" /></p>
+		<h2>1.通过< select >元素创建一个预定义结构的下拉列表框。我们要给该元素添加一个“easyui-combobox”的类</h2>
+		<select name="dept" id="cc" class="easyui-combobox" style="width:200px">
+			<option value="aa">aiteml</option>
+			<option>bitem2</option>
+			<option>bitem3</option>
+			<option>bitem4</option>
+			<option>bitem5</option>
+		</select>
+		<h2>2.通过< input >标签创建下拉列表框。我们要给该元素添加一个“easyui-combobox”的类</h2>
+		<input id="c" class="easyui-combobox" name="dept" data-options="valueFiled:'id', textFiled:'text', url:'get_data.php'" type="" />
+		<h2>3.通过javascript创建下拉列表框</h2>
+		<input id="zxc" name="dept" value="aa" />
+		<script>
+			$("#zxc").combobox({
+				url:'combobox_data.json',
+				valueField:'zxc',
+				textFile:'text'
+			})
+		</script>
+		<p>可以通过setValue设置组件的值，可以通过setText设置输入的文本</p>
+		<p>可以通过getValue与getText获取组件的值与输入的文本</p>
+		<script>
+			$("#zxc").combobox("setValue", 12);	//设置值
+			$("#zxc").combobox("getText", ""); 	// 获取输入文本
+		</script>
+		<h1>真实案例</h1>
+		<select name="dept" id="ccc" class="easyui-combobox" style="width: 200px;">
+			<option value="aa">aitem1</option>
+			<option>bitem2</option>
+			<option>bitem3</option>
+			<option>bitem4</option>
+			<option>bitem5</option>
+		</select>
+	</body>
+</html>

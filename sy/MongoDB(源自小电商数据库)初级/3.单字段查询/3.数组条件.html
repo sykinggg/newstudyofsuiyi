@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	数组条件
+	基本概念:
+		当字段包含数组，可以进行数组完全匹配或匹配特定的值
+		单个元素匹配只需要传入元素的值即可，完全匹配需要传入一个数组，特定元素匹配需要"字段.索引"形式传入参数
+	代码示例:
+		1.数组完全匹配:
+		db.inventory.find({tags:{'fruit', 'food', 'citrus'}});
+		2.单个元素匹配:
+		db.inventory.find({tags:'fruit'});
+		3.特定元素匹配:
+		db.inventory.find({'tags.0':'fruit'});
+	<body>
+	</body>
+</html>

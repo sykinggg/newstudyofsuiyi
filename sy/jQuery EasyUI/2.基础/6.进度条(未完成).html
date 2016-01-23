@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../themes/black/easyui.css" />
+		<link rel="stylesheet" href="../themes/icon.css" />
+		<script src="../jquery.min.js"></script>
+		<script src="../jquery.easyui.min.js"></script>
+	</head>
+	ProgressBar
+	基本概念:进度条提供了一个反馈显示一个长时间运行的操作进展。可以更新的进展条，让用户知道当前正在执行操作
+		1.从标签创建更加简单，添加'easyui-progressbar'类到< div >标签
+		<div id="p" calss="easyui-progressbar" data-options="value:60" style="width:400px;"></div>
+		2.使用Javascript创建进度条
+		<div id="pp" style="width:400px; border:1px solid red"></div>
+		<script>
+			$("#pp").progressbar({
+				value:60
+			});
+		</script>
+		注意:获取当前值和设置一个新的值到进度条控件
+		<script>
+			var value = $("#pp").progressbar('getValue');
+			if(value < 100){
+				value += Math.floor(Math.random() * 10);
+				$("#pp").progressbar('setValue', value);
+			}
+		</script>
+		真实示例:
+		<div style="margin: 20px 0">
+			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="start()">Start</a>
+		</div>
+		<div id="p" class="easyui-progressbar" style="width:200px; height:15px"></div>
+	<body>
+	<script>
+		function start(){
+			var value = $("#p").progressbar('getValue');
+			if(value < 100){
+				value += Math.floor(Math.random()*10);
+				$("#p").progressbar('setValue', value);
+				setTimeout(arguments.callee, 200);
+			}
+		};
+	</script>
+	</body>
+</html>

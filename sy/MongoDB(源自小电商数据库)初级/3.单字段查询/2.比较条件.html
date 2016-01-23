@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	比较条件
+	基本概念:
+		比较条件也是最基本的查询条件之一，通过运算符的比较运算来筛选或排除文档，从而获取到我们想要的文档数据
+	语法结构:
+		{field:{op:value}}
+	代码示例:查询"inventory集合中包含quantity字段并且值大于1000的文档"
+		db.inventory.find({quantity:{$gt:1000}});
+	示例描述:
+		示例中的$gt是我们之前没有遇见过的字段
+		$gt就是比较运算符的一种，代表"大于"
+			大于($gt)
+			大于等于($gte)
+			小于($lt)
+			小于等于($lte)
+			不等于($ne)
+			包含于($in)
+			不包含于($nin)
+	代码示例:从person集合中找出所有年龄（age）大于40岁的记录
+		db.person.find({age:{$gt:40}});
+	<body>
+	</body>
+</html>

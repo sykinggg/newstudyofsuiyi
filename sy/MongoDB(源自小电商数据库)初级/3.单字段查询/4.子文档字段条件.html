@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	子文档条件
+	基本概念:
+		查询数据时，我们可能会遇到包含嵌入的子文档数据:
+		<img src="../img/embed.jpg" alt="" />
+	代码示例:如果文档中包含嵌入的子文档，可以使用".key"的方式访问子文档节点
+		db.mycol.find({"access.level":5});
+	<body>
+	</body>
+</html>

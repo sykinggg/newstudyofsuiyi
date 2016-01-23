@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	cursor游标
+	基本概念:find命令并不直接返回结果，而是返回一个结果集的迭代器，即游标
+	语法示例:想要获取数据使用next方法来遍历游标
+		var myCursor = db.inventory.find({type:"food"});
+		var myDocument = myCursor.hasNext() ? myCursor.next() : null;
+		
+		if(myDocument) {
+			var myItem = myDocument.item;
+			print(tojson(myItem));
+		}
+	语法示例:使用forEach方法也能实现游标的遍历
+		var myCursor = db.inventory.find({type:"food"});
+		myCursor.forEach(printjson);
+	<body>
+	</body>
+</html>

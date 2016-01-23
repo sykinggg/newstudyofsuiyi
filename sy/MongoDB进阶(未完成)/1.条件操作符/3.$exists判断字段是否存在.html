@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	$exists判断字段是否存在
+	概念示例:
+		查询所有存在age 字段的记录
+			db.users.find({age:{$exists:true}});
+		查询所有不存在name 字段的记录
+			db.users.find({name:{$exists:false}});
+	代码示例:
+	C1 表的数据如下
+		db.c1.find();
+		{ "_id" : ObjectId("4fb4a773afa87dc1bed9432d"), "age" : 20, "length" : 30 }
+		{ "_id" : ObjectId("4fb4a7e1afa87dc1bed9432e"), "age_1" : 20, "length_1" : 30 }
+	查询存在字段age 的数据
+		db.c1.find({age:{$exists:true}});
+		{ "_id" : ObjectId("4fb4a773afa87dc1bed9432d"), "age" : 20, "length" : 30 }
+	在users文档中"sex"字段存在的记录
+		db.users.find({sex:{$exists:true}});
+	<body>
+	</body>
+</html>

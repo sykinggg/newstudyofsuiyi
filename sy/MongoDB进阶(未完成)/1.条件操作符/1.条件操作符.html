@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	条件操作符
+	基本概念:
+		<, <=, >, >= 这个操作符就不用多解释了
+	概念示例:
+		db.collection.find({"field":{$gt:value}});	// 大于: field > value
+		db.collection.find({"field":{$lt:value}});	// 小于: field < value
+		db.collection.find({"field":{$gte:value}});	// 大于等于: field >= value
+		db.collection.find({"field":{$lte:value}});	// 小于等于: field <= value
+	拓展示例:如果要同时满足多个条件
+		db.collection.find("field":{$gt:value1, $lt:value2});	// value1 < field < value2
+	注意:以后练习中请先创建数据，进行下面查询练习
+	代码示例:
+		db.users.insert([
+			{name:"Tom", age:20, sex:"m"},
+			{name:"Lily", age:40, sex:"f"},
+			{name:"a1", age:18, sex:"m"},
+			{name:"b1", age:20, sex:"f"}
+		])
+	代码示例:age大于19并且小于45的记录
+		db.users.find({ age : { $gt: 19, $lt: 45} });
+	<body>
+	</body>
+</html>

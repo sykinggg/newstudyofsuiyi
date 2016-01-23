@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../themes/black/easyui.css" />
+		<link rel="stylesheet" href="../themes/icon.css" />
+		<script src="../jquery.min.js"></script>
+		<script src="../jquery.easyui.min.js"></script>
+	</head>
+	pagination<br>
+	基本概念:分页控件允许用户导航页面的数据<br>
+		它支持页面导航和页面长度选择的选项设置<br>
+		可以在分页控件上添加自定义按钮，以增强其功能<br>
+		<img src="../img/pagination.bmp" alt="" /><br>
+		1.分页控件可以通过标签来创建，我们通过设置< div >标签的class=‘easyui-pagination’来创建。
+		<div id="pp" class="easyui-pagination" data-options="total:2000, pageSize:10"
+			style="background:#efefef; border:1px solid #ccc;"></div>
+		2.通过javascript来创建
+		<div id="ppp" style="background:#efefef; border: 1px solid #ccc;"></div>
+		<script>
+			$("#ppp").pagination({
+				total:2000,			//总记录数，在分页控件创建时初始的值。
+				pageSize:10			//页面大小
+			});
+		</script>
+		2.通过html来创建
+		<div class="easyui-panel">
+			<div class="easyui-pagination" data-options="total:114"></div>
+		</div>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	复合查询 - OR
+	基本概念:
+		当有多个查询条件但只需满足其中一个条件就可时，我们就可以使用$or运算符
+		注意:$or条件为一个数组类型的值，每个数组元素为一个BSON对象
+	语法示例:inventory集合中检索数量（qty）大于100或者（$or）价格（price）小于9.95的所有数据
+		db.inventory.find({$or:[{qty:{$gt:100}}, {price:{$lt:9.95}}]});
+	代码示例:在person集合中查一下，状态(status)为"A"或年龄(age)为30的数据
+		db.person.find({$or:[{status:"A"}, {age:30}]})
+	<body>
+	</body>
+</html>

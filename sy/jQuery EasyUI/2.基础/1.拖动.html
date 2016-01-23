@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../themes/black/easyui.css" />
+		<link rel="stylesheet" href="../themes/icon.css" />
+		<script src="../jquery.min.js"></script>
+		<script src="../jquery.easyui.min.js"></script>
+	</head>
+	<body>
+	Draggable
+	基本概念:
+		1.通过标签创建一个可拖动的元素。需要给标签添加一个class类，值为easyui-draggable
+	<div id="dd" class="easyui-draggable" data-options="headle:'#title'" style="width:100px; height:100px">
+		<div id="title" style="background:#ccc;">title</div>
+	</div>
+		2.通过javascript来创建
+	<div id="dd" style="width:100px; height:100px">
+		<div id="title" style="background:#ccc;">title</div>
+	</div>
+	<script>
+		$("#dd").draggable({
+			headle:'#title'
+		});
+	</script>
+	注意:draggable的一个重要属性proxy，在拖动的时候使用的代理元素，当使用'clone'的时候，将使用该元素的一个复制元素来作为替代元素
+		如果指定了一个函数,它将返回一个jquery对象
+	<div id="ddd">
+		<div id="tlt">title</div>
+	</div>
+	<script>
+		$("#ddd").draggable({
+			proxy:'clone'
+		});
+		$("#ddd").draggable({
+			proxy:function(source){
+				var p = $('<div class="proxy">proxy</div>');
+				p.appendTo('body');
+				return p;
+			}
+		})
+	</script>
+	</body>
+</html>

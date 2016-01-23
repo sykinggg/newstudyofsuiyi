@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	Null值处理
+	基本概念:
+	Null 值的处理稍微有一点奇怪，具体看下面的样例数据
+		db.c2.find()
+		{ "_id" : ObjectId("4fc34bb81d8a39f01cc17ef4"), "name" : "Lily", "age" : null }
+		{ "_id" : ObjectId("4fc34be01d8a39f01cc17ef5"), "name" : "Jacky", "age" : 23 }
+		{ "_id" : ObjectId("4fc34c1e1d8a39f01cc17ef6"), "name" : "Tom", "addr" : 23 }
+	其中”Lily”的age 字段为空，Tom 没有age 字段，想找到age 为空的行
+		db.c3.find({age:null});
+		{ "_id" : ObjectId("4fc34bb81d8a39f01cc17ef4"), "name" : "Lily", "age" : null }
+		{ "_id" : ObjectId("4fc34c1e1d8a39f01cc17ef6"), "name" : "Tom", "addr" : 23 }
+	注意:”null”不仅会匹配某个键的值为null的文档，而且还会匹配不包含这个键的文档 
+		db.c3.find({age:{$exists:true, null}});
+		db.users.find({sex:{"$in":[null], "$exists":true}});
+	<body>
+	</body>
+</html>

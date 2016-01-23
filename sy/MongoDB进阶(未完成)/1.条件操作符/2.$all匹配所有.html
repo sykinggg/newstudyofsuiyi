@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	$all匹配所有
+	基本概念:
+		这个操作符跟SQL 语法的in 类似，但不同的是, in 只需满足( )内的某一个值即可, 而$all 必须满足[ ]内的所有值
+	语法结构:
+		db.users.find({age:{$all:[6, 8]}});
+	注意:
+		可以查询出 {name: 'David', age: 26, age: [ 6, 8, 9 ] }
+		但查询不出 {name: 'David', age: 26, age: [ 6, 7, 9 ] }
+	关键:先创建含有数组的数据
+		db.users.insert({"name":"David",age:26,course:["js","Node","Mongodb"]},{"name":"Tom",age:26,course:["js","Node","Mongoose"]})
+	代码示例:在users文档中课程既有"js",又有"Mongodb"的文档
+		db.users.find({course:{$all:["js", "mongodb"]}});
+	<body>
+	</body>
+</html>
