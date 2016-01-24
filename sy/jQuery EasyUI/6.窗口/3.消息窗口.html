@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Messager</title>
+		<link rel="stylesheet" href="../themes/black/easyui.css" />
+		<link rel="stylesheet" href="../themes/icon.css" />
+		<script src="../jquery.min.js"></script>
+		<script src="../jquery.easyui.min.js"></script>
+	</head>
+	<body>
+		<h1>Message</h1>
+		<p>消息窗口提供了不同的消息框风格，包含alert(警告框), confirm(确认框), prompt(提示框), progress(进度框)等</p>
+		<p>所有的消息框都是异步的</p>
+		<p>用户可以在交互消息之后使用回调函数去处理结果或做一些自己需要处理的事情</p>
+		<p>如图: <img src="../img/message.bmp" alt="" /></p>
+		<p>消息窗口的用法比较简单，如下代码</p>
+		<script>
+			$.messager.alert('警告', '警告信息'); 		// alert
+			$.messager.confirm('确认', '您确认想要删除记录吗?', function(r){
+				if(r){
+					alert('确认删除');
+				}
+			});
+		</script>
+		<p>有$.messager.prompt、$.messager.progress、$.messager.show</p>
+		<p>这些方法中都有一些参数设置，如下的show方法</p>
+		<p>showType：定义将如何显示该消息。可用值有：null,slide,fade,show。默认：slide</p>
+		<p>showSpeed：定义窗口显示的过度时间。默认：600毫秒</p>
+		<p>width：定义消息窗口的宽度。默认：250px</p>
+		<p>height：定义消息窗口的高度。默认：100px</p>
+		<p>title：在头部面板显示的标题文本</p>
+		<p>msg：显示的消息文本</p>
+		<p>style：定义消息窗体的自定义样式</p>
+		<p>timeout：如果定义为0，消息窗体将不会自动关闭，除非用户关闭他。如果定义成非0的树，消息窗体将在超时后自动关闭。默认：4秒</p>
+		<script>
+			$.messager.show({
+				title: 'My Title',
+				msg: 'Message will be closed after 5 seconds.',
+				timrout: 500,
+				showType: 'slide'
+			})
+		</script>
+		<h1>真实案例</h1>
+		<div style="margin: 20px 0;">
+			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="show()">Show</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="slide()">Slide</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="fade()">Fade</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="progress()">Progress</a>
+		</div>
+		<script>
+			function show(){
+				$.messger.show({
+					title: 'My Title',
+					msg: 'Message will be closed after 4 seconds.',
+					showType: 'show'
+				});
+			}
+			function slide(){
+				$.messager.show({
+					title: 'My Title',
+					msg: 'Message will be closed after 5 seconds.',
+					showType: 'slide'
+				});
+			}
+			function fade(){
+				$.messager.show({
+					title: 'My Title',
+					msg: 'Message never be closed.',
+					timeout: 0,
+					showType: 'fade'
+				});
+			}
+			function progress(){
+				var win = $.messager.progress({
+					title: 'Please waiting',
+					msg: 'Loading data ...'
+				});
+				setTimeout(function(){
+					$.messager.progress('close');
+				}, 5000)
+			}
+		</script>
+	</body>
+</html>

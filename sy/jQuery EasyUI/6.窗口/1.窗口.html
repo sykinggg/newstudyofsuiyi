@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>window</title>
+		<link rel="stylesheet" href="../themes/black/easyui.css" />
+		<link rel="stylesheet" href="../themes/icon.css" />
+		<script src="../jquery.min.js"></script>
+		<script src="../jquery.easyui.min.js"></script>
+	</head>
+	<body>
+		<h1>window</h1>
+		<p>窗口控件是一个浮动和可拖拽的面板可以用作应用程序窗口</p>
+		<p>窗口可以移动,调整大小和关闭</p>
+		<p>它的内容也可以被定义为静态html或要么通过ajax动态加载</p>
+		<p>如图: <img src="../img/window.bmp" alt="" /></p>
+		<h2>1. 通过标< div >标签创建窗口, 当然我们要添加一个属性为easyui-window类</h2>
+		<div id="win" class="easyui-window" title="My Window" style="width: 600px; height: 400px;"
+			data-options="iconCls:'icon-save', modal: true">
+			Window Content
+		</div>
+		<h2>2.通过javascript创建</h2>
+		<div id="win1"></div>
+		<script>
+			$("#win1").window({
+				width: 600,
+				height: 400,
+				modal: true
+			});
+		</script>
+		<p>通过open与close来打开与关闭窗口</p>
+		<script>
+			$("#win1").window('open'); // open a window
+			$("#win1").window('close'); // close a window
+		</script>
+		<h1>真实案例</h1>
+		<h2>Window</h2>
+		<p>Window can be dragged freely on screen.</p>
+		<div style="margin: 20px 0;">
+			<a href="javascript:void(0)" class="easyui-linkbutton" 
+				onclick="$('#w').window('open')">Open</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton"
+				onclick="$('#w').window('close')">Close</a>
+		</div>
+		<div id="w" class="easyui-window" title="Window" data-options="iconCls:'icon-save',modal: true"
+			style="width: 200px; height: 100px ; padding: 10px;">
+			The Window Content.
+		</div>
+	</body>
+</html>

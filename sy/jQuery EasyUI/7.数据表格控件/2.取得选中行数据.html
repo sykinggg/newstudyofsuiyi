@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>取得选中行数据</title>
+		<link rel="stylesheet" href="../themes/black/easyui.css" />
+		<link rel="stylesheet" href="../themes/icon.css" />
+		<script src="../jquery.min.js"></script>
+		<script src="../jquery.easyui.min.js"></script>
+	</head>
+	<body>
+		<h1>取得选中行数据</h1>
+		<h2>数据网格（datagrid）组件包含两种方法来检索选中行数据</h2>
+		<h3>1.getSelected：取得第一个选中行数据，如果没有选中行，则返回 null，否则返回记录</h3>
+		<h3>2.getSelections：取得所有选中行数据，返回元素记录的数组数据</h3>
+		<p>先创建数据表格，然后取得选中行的数据</p>
+		<!--创建表格-->
+		
+		<script>
+			//取得选择中行
+			var row = $("#tt").datagrid('getSelected');
+			if(row){
+				alert('Item ID:' + row.itemid + "\nPrice" + row.listprice);
+			}
+			//取得所有选中行的itemid
+			var ids = [];
+			var rows = $("#tt").datagrid('getSelections');
+			for(var i = 0; i < rows.length; i++){
+				ids.push(rows[i].itemid);
+			}
+			alert(ids.join('/n'));
+		</script>
+		<h1>真实案例</h1>
+		<button onclick="getSelectedRow()">获取选中行的值</button> 
+		<div style="margin:20px 0;">
+			<table class="easyui-datagrid" title="Basic DataGrid" style="width:600px;height:250px"
+				data-options="singleSelect:true,collapsible:true" id='dg'>
+				<thead>
+					<tr>
+						<th data-options="field:'itemid',width:80">Item ID</th>
+						<th data-options="field:'productid',width:100">Product</th>
+						<th data-options="field:'listprice',width:80,align:'right'">List Price</th>
+						<th data-options="field:'unitcost',width:80,align:'right'">Unit Cost</th>
+						<th data-options="field:'attr1',width:100">Attribute</th>
+						<th data-options="field:'status',width:60,align:'center'">Status</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<script>
+			$(function(){
+				$("#dg").datagrid({
+					data:[
+					{"productid":"FI-SW-01",
+						"productname":"Koi",
+						"unitcost":10.00,
+						"status":"p",
+						"listprice":36.50,
+						"attr1":"Large",
+						"itemid":"EST-1"},
+					{"productid":"FI-SW-01",
+						"productname":"Koi",
+						"unitcost":10.00,
+						"status":"P",
+						"listprice":36.50,
+						"attr1":"Large",
+						"itemid":"EST-1"},
+					{"productid":"FI-SW-01",
+						"productname":"Koi",
+						"unitcost":10.00,
+						"status":"P",
+						"listprice":36.50,
+						"attr1":"Large",
+						"itemid":"EST-1"},
+					{"productid":"FI-SW-01",
+						"productname":"Koi",
+						"unitcost":10.00,
+						"status":"p",
+						"listprice":36.50,
+						"attr1":"Large",
+						"itemid":"EST-1"},
+					{"productid":"FI-SW-01",
+						"productname":"Koi",
+						"unitcost":10.00,
+						"status":"P",
+						"listprice":36.50,
+						"attr1":"Large",
+						"itemid":"EST-1"},
+					{"productid":"FI-SW-01",
+						"productname":"Koi",
+						"unitcost":10.00,
+						"status":"P",
+						"listprice":36.50,
+						"attr1":"Large",
+						"itemid":"EST-1"},
+					{"productid":"FI-SW-01",
+						"productname":"Koi",
+						"unitcost":10.00,
+						"status":"p",
+						"listprice":36.50,
+						"attr1":"Large",
+						"itemid":"EST-1"},
+					{"productid":"FI-SW-01",
+						"productname":"Koi",
+						"unitcost":10.00,
+						"status":"P",
+						"listprice":36.50,
+						"attr1":"Large",
+						"itemid":"EST-1"},
+					{"productid":"FI-SW-01",
+						"productname":"Koi",
+						"unitcost":10.00,
+						"status":"P",
+						"listprice":36.50,
+						"attr1":"Large",
+						"itemid":"EST-1"}
+					]
+				});
+			});
+			function getSelectedRow(){
+				var row = $("#dg").datagrid('getSelected');
+				if(row){
+					alert('Item ID:' + row.itemed + '\nList Price:' + row.listprice);
+				}
+			}
+		</script>
+	</body>
+</html>
