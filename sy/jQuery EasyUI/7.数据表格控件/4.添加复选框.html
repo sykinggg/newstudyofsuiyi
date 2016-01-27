@@ -2,37 +2,31 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>添加工具栏</title>
+		<title>添加复选框</title>
 		<link rel="stylesheet" href="../themes/black/easyui.css" />
 		<link rel="stylesheet" href="../themes/icon.css" />
 		<script src="../jquery.min.js"></script>
 		<script src="../jquery.easyui.min.js"></script>
 	</head>
 	<body>
-		<h1>添加工具栏</h1>
-		<p>通过给数据网格添加工具栏，来更方便的处理数据。只需要添加工具栏（toolbar）到数据网格（datagrid）</p>
-		<p>如图: <img src="../img/datagridtoolbar.bmp" alt="" /></p>
-		<table class="easyui-datagrid" title="Basic DataGrid" style="width:600px;height:250px"
-			data-options="singleSelect:true,collapsible:true" id='dg' toolbar="#tb">
+		<h1>添加复选框</h1>
+		<p>通过复选框，用户将可以选择 选中/取消选中 网格行数据</p>
+		<p>为了添加一个复选框列，我们仅仅需要添加一个列的 checkbox 属性，并设置它为 true</p>
+		<p>如图: <img src="../img/datagridcheckbox.bmp" alt="" /></p>
+		<table class="easyui-datagrid" title="Basic DataGrid" style="width: 600px; height: 250px;"
+			data-options="singleSelect:false" id='dg'>
 			<thead>
 				<tr>
-					<th data-options="field:'itemid',width:80">Item ID</th>
-					<th data-options="field:'productid',width:100">Product</th>
-					<th data-options="field:'listprice',width:80,align:'right'">List Price</th>
-					<th data-options="field:'unitcost',width:80,align:'right'">Unit Cost</th>
-					<th data-options="field:'attr1',width:100">Attribute</th>
-					<th data-options="field:'status',width:60,align:'center'">Status</th>
+					<th field="ok" checkbox="true"></th>
+					<th data-options="field:'itemid', width:80">Item ID</th>
+					<th data-options="field:'productid', width:100">Product</th>
+					<th data-options="field:'listprice', width:80, align:'right'">List Price</th>
+					<th data-options="field:'unitcost', width:80, align:'right'">Unit Cost</th>
+					<th data-options="field:'attr1', width:100">Attribute</th>
+					<th data-options="field:'status', width:60, align:'center'">Status</th>
 				</tr>
 			</thead>
 		</table>
-		<div id="tb">
-			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true"
-				onclick="javascript:alert('Add')">Add</a>
-			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-out" plain="true"
-				onclick="javascript:alert('Cut')">Cut</a>
-			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-save" plain="true"
-				onclick="javascript:alert('Save')">Save</a>
-		</div>
 		<script>
 			$(function(){
 				$('#dg').datagrid({    
@@ -48,8 +42,8 @@
 					{"productid":"FL-DLH-02","productname":"Persian","unitcost":12.00,"status":"P","listprice":89.50,"attr1":"Adult Male","itemid":"EST-17"},
 					{"productid":"AV-CB-01","productname":"Amazon Parrot","unitcost":92.00,"status":"P","listprice":63.50,"attr1":"Adult Male","itemid":"EST-18"}
 				]  
-			});  
-		});
+				});  
+			});
 
 		</script>
 	</body>
