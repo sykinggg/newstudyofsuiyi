@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Promise.race()方法</title>
+	</head>
+	<body>
+		<h1>Promise.race()方法</h1>
+		<p>Promise.race方法同样是将多个Promise实例，包装成一个新的Promise实例</p>
+		<script>
+			var p = Promise.race([p1, p2, p3]);
+		</script>
+		<p>上面代码中，只要p1、p2、p3之中有一个实例率先改变状态，p的状态就跟着改变</p>
+		<p>那个率先改变的Promise实例的返回值，就传递给p的回调函数</p>
+		<p>如果Promise.all方法和Promise.race方法的参数，不是Promise实例，就会先调用下面讲到的Promise.resolve方法，将参数转为Promise实例，再进一步处理</p>
+	</body>
+</html>

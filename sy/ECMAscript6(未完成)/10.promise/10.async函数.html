@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>async函数</title>
+	</head>
+	<body>
+		<h1>async函数</h1>
+		<h2>async函数与Promise、Generator函数一样，是用来取代回调函数、解决异步操作的一种方法</h2>
+		<script>
+			var asyncReadFile = async function() {
+				var f1 = await readFile('/ect/fstab');
+				var f2 = await readFile('/ect/shells');
+				document.write(f1.toString());
+				document.write(f2.toString());
+			}
+		</script>
+		<h3>async函数对Generator函数的改进，体现在以下三点</h3>
+		<h4>内置执行器。Generator函数的执行必须靠执行器，而async函数自带执行器</h4>
+		<h4>async函数的执行，与普通函数一模一样，只要一行</h4>
+		<script>
+			var result = asyncReadFile();
+		</script>
+		<p>更好的语义。async和await，比起星号和yield，语义更清楚了</p>
+		<p>async表示函数里有异步操作，await表示紧跟在后面的表达式需要等待结果</p>
+		<p>更广的适用性。co函数库约定，yield命令后面只能是Thunk函数或Promise对象，而async函数的await命令后面，可以跟Promise对象和原始类型的值（数值、字符串和布尔值，但这时等同于同步操作）</p>
+	</body>
+</html>

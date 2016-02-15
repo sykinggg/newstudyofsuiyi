@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Promise.reject()方法</title>
+	</head>
+	<body>
+		<h1>Promise.reject()方法</h1>
+		<h2>Promise.reject(reason)方法也会返回一个新的Promise实例，该实例的状态为rejected</h2>
+		<h2>Promise.reject方法的参数reason，会被传递给实例的回调函数</h2>
+		<script>
+			var p = Promise.reject('出错了!');
+			p.then(null, function(s) {
+				document.write(s);
+			});
+		</script>
+		<p>运行结果:出错了!</p>
+		<p>代码生成一个Promise对象的实例p，状态为rejected，回调函数会立即执行</p>
+	</body>
+</html>
