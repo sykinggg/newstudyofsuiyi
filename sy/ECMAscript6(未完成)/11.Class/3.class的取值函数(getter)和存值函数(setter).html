@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>class的取值函数（getter）和存值函数（setter）</title>
+	</head>
+	<body>
+		<h1>class的取值函数（getter）和存值函数（setter）</h1>
+		<p>在Class内部可以使用get和set关键字，对某个属性设置存值函数和取值函数</p>
+		<script>
+			class myClass {
+				get prop() {
+					return 'getter';
+				}
+				set prop(value) {
+					document.write('setter: ' + value);
+				}
+			}
+			
+			let inst = mew MyClass();
+			
+			inst.prop = 123;
+			// setter: 123
+			
+			inst.prop
+			//'getter'
+		</script>
+		<p>上面代码中，prop属性有对应的存值函数和取值函数，因此赋值和读取行为都被自定义了</p>
+	</body>
+</html>
