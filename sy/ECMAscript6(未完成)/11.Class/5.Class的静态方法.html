@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Class的静态方法</title>
+	</head>
+	<body>
+		<h1>Class的静态方法</h1>
+		<p>类相当于实例的原型，所有在类中定义的方法，都会被实例继承</p>
+		<p>如果在一个方法前，加上static关键字，就表示该方法不会被实例继承，而是直接通过类来调用，这就称为“静态方法”</p>
+		<script>
+			class Foo {
+				static classMethod() {
+					return 'hello';
+				}
+			}
+			
+			Foo.classMethod(); // 'hello'
+			var foo = new Foo();
+			foo.classMethod();
+			//TypeError: undefined is not a function
+		</script>
+		<h1>代码解释</h1>
+		<p>Foo类的classMethod方法前有static关键字，表明该方法是一个静态方法</p>
+		<p>可以直接在Foo类上调用（Foo.classMethod()），而不是在Foo类的实例上调用</p>
+		<p>如果在实例上调用静态方法，会抛出一个错误，表示不存在该方法</p>
+		<h1>代码示例</h1>
+		<p>父类的静态方法，可以被子类继承</p>
+		<script>
+			class Foo {
+				static classMethod() {
+					return 'hello';
+				}
+			}
+			
+			class Bar extends Foo {
+				
+			}
+			
+			Bar.classMethod(); 
+			//'hello'
+		</script>
+		<h1>代码解释</h1>
+		<p>父类Foo有一个静态方法，子类Bar可以调用这个方法</p>
+		<h1>代码示例</h1>
+		<p>静态方法也是可以从super对象上调用的</p>
+		<script>
+			class Foo {
+				static classMethod() {
+					return 'hello';
+				}
+			}
+			
+			class Bar extends Foo {
+				static classMethod() {
+					return super.classMethod() + ', too';
+				}
+			}
+			
+			Bar.classMethod();
+		</script>
+	</body>
+</html>
