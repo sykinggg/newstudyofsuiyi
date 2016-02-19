@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>模块的继承</title>
+	</head>
+	<body>
+		<h1>模块的继承</h1>
+		<p>模块之间也可以继承</p>
+		<h1>示例:</h1>
+		<p>假设有一个circleplus模块，继承了circle模块</p>
+		<script>
+			//circleplus.js
+			
+			export * from 'circle';
+			export var e = 2.71828182846;
+			export default function(x) {
+				return Math.exp(x);
+			}
+		</script>
+		<h1>代码描述</h1>
+		<p>上面代码中的“export *”，表示输出circle模块的所有属性和方法，export default命令定义模块的默认方法</p>
+		<h1>示例:</h1>
+		<p>这时，也可以将circle的属性或方法，改名后再输出</p>
+		<script>
+			//circleplus.js
+			
+			export { area as circleArea } from 'circle';
+		</script>
+		<h1>代码解释</h1>
+		<p>上面代码表示，只输出circle模块的area方法，且将其改名为circleArea</p>
+		<h1>代码示例:</h1>
+		<p>加载上面模块的写法如下</p>
+		<script>
+			//main.js
+			
+			module math from "circleplus";
+			import exp from "circleplus";
+			document.write(exp(math.pi));
+		</script>
+		<h1>代码描述:</h1>
+		<p>上面代码中的"import exp"表示，将circleplus模块的默认方法加载为exp方法</p>
+	</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>模块的整体输入</title>
+	</head>
+	<body>
+		<h1>模块的整体输入(概念说明)</h1>
+		<p>export命令除了输出变量，还可以输出方法或类（class）</p>
+		<p>下面是一个circle.js文件，它输出两个方法area和circumference</p>
+		<script>
+			//circle.js
+			
+			export function area(radius) {
+				return Math.PI * radius * radius;
+			}
+			
+			export function circumference(radius) {
+				return 2 * Math.PI * radius;
+			}
+		</script>
+		<p>然后，main.js输入circlek.js模块</p>
+		<script>
+			//main.js
+			import { area, circumference } form 'circle';
+			document.write("圆面积:" + area(4));
+			document.write("圆周长:" + circumference(14));
+		</script>
+		<p>上面写法是逐一指定要输入的方法。另一种写法是整体输入</p>
+		<script>
+			import * as circle form 'circle';
+			document.write("圆面积:" + circle.area(4));
+			document.write("圆周长:" + circle.circumference(14));
+		</script>
+	</body>
+</html>
