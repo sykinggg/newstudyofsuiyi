@@ -5,3 +5,35 @@ suiyistudy.cn
 https://account.aliyun.com
 空间登录
 https://bandwagonhost.com
+网站后台
+http://suiyistudy.cn:8080/
+
+ssh地址 ： 104.224.134.212
+ssh端口 ： 28146
+
+登录command ：  ssh root@104.224.134.212 -p 28146
+输入密码： na367895
+
+#更新包程序
+yum -y update
+
+#安装screen
+yum -y install screen
+
+#切换到tmp目录
+cd /tmp
+
+#下载wdcp源码
+wget http://dl.wdlinux.cn:5180/lanmp_laster.tar.gz
+
+#解压
+tar zxvf lanmp_laster.tar.gz
+
+#创建会话（防止ssh会话中断）
+screen -S lamp
+
+#安装
+sh install.sh
+
+#设置域名解析
+#
