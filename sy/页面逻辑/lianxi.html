@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html ng-app="lianxi">
+<head lang="en">
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="css/bootstrap.css"/>
+  <title></title>
+</head>
+<body >
+<div ng-controller="c1">
+    <img ng-src="img/{{src[index]}}" alt=""/>
+    <input type="button" value="上一张" ng-click="onLeft()"/>
+    <input type="button" value="下一张" ng-click="onRight()"/>
+    <p>这是第{{index+1}}张</p>
+</div>
+<br/><br/><br/><br/><br/>
+<div ng-controller="c2">
+   <p>简易版购物车计算器</p>
+    单价： <input type="text" ng-model="price"/>
+    数量： <input type="text" ng-model="num"/>
+    总和： <span>{{price * num}}</span>
+</div>
+<br/><br/><br/><br/><br/>
+<div ng-controller="c3">
+    <input type="checkbox" ng-model="change"/>我同意本站的使用条款
+    <p><input type="button" value="提交注册信息" ng-disabled="!change" /></p>
+</div>
+<br/><br/><br/><br/><br/>
+<div ng-controller="c4">
+    <select name="" id="" ng-model="src">
+        <option value="1.jpg">风景1</option>
+        <option value="2.jpg">风景2</option>
+        <option value="3.jpg">风景3</option>
+        <option value="4.jpg">风景4</option>
+    </select>
+    <img ng-src="img/{{src}}" alt=""/>
+</div>
+<br/><br/><br/><br/><br/>
+<div ng-controller="c5">
+    <div ng-repeat="x in price" ng-init="hj=x *num" class="c5">
+  单价：{{x}}&nbsp数量： <input type="text" ng-model="num"/>&nbsp 小计：<span>{{hj}}</span> <br/>
+    </div>
+
+</div>
+
+<script src="js/angular.js"></script>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    angular.module('lianxi',['ng']).
+            controller('c1',function($scope){
+          $scope.src=['1.jpg','2.jpg','3.jpg','4.jpg'];
+          $scope.index=0;
+          $scope.onLeft=function(){
+              if($scope.index<1){
+                  $scope.index=$scope.src.length-1;
+              }else{
+                  $scope.index--;
+              }
+          };
+          $scope.onRight=function(){
+               if($scope.index==$scope.src.length-1){
+                        $scope.index=0;
+               }else{
+                        $scope.index++;
+               }
+          }
+
+            }).controller('c2',function($scope){
+                $scope.price=0;
+                $scope.num=0;
+            }).controller('c3',function($scope){
+                $scope.change=true;
+
+            }).controller('c4',function($scope){
+                $scope.src='1.jpg'
+            }).controller('c5',function($scope,$rootScope){
+                $scope.price=['10.5','1.2','2.5'];
+                $scope.num=1;
+
+            });
+
+</script>
+</body>
+</html>
