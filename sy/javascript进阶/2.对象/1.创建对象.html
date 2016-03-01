@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>创建对象</title>
+	</head>
+	<body>
+		<h1>创建对象</h1>
+		<p>对象（object）是JavaScript的基本数据类型之一</p>
+		<p>对象是一种复合值：它把多个值（原始值或者其他对象）聚合在一起，可以通过名字访问这些值</p>
+		<p>对象也可看做是 属性的无序集合，每个属性都是一个名/值对。属性名是字符串，因此我们可以把对象 看成是从字符串到值的映射</p>
+		<h2>创建对象的两种方式</h2>
+		<h3>第一种是使用new操作符后跟object 构造函数</h3>
+		<script>
+			var obj = new Object();
+			obj.name = "MangGuo";
+			obj.age = 25;
+			document.write(obj, obj.name, obj.age);
+		</script>
+		<h3>第二种方式是使用对象字面量表示法</h3>
+		<script>
+			var obj = {
+				name : "MangGuo",
+				age : 25
+			}
+		</script>
+		<h3>代码描述:</h3>
+		<p>在对象字面量中，使用逗号来分隔不同的属性，因此"mangGuo"后面是一个逗号</p>
+		<p>但是，在age属性的值25的后面不能添加逗号，因为age是这个对象的最后一个属性</p>
+		<h3>注意:</h3>
+		<p>使用对象字面量创建对象需要注意：当属性名中含有空格、特殊字符或者是保留字的时候一定要加上引号,其他情况下可加可不</p>
+		<script>
+			var obj = {
+				"name" : "huizhi", "hui zhi" : "hubwiz", // 属性名中有空格
+				"hui-zhi" : "hubwiz", // 属性名中有特殊字符
+				"for" : "baoliuzi" // 属性名是保留字
+			}
+			document.write(obj.name);	//输出obj对象属性名为name的值
+		</script>
+	</body>
+</html>

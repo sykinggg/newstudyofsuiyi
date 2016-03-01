@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>方法调用模式</title>
+	</head>
+	<body>
+		<h1>方法调用模式</h1>
+		<p>当一个函数被保存为对象的一个属性时，我们称它为一个方法</p>
+		<p>如果调用表达式包含一个提取属性 的动作（即我们在讲解对象时说的 . 操作符），那么它就被当做一个方法来调用</p>
+		<h3>示例:</h3>
+		<script>
+			var myObj = {		//对象字面量
+				param1: 1,
+				param2: 2,
+				sum: function() {
+					//this关键字只带当前的对象
+					return this.result = this.param1 + this.param2;
+				}
+			}
+			alert(myObj.sum());
+		</script>
+	</body>
+</html>

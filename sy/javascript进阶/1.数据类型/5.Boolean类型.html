@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Boolean类型</title>
+	</head>
+	<body>
+		<h1>Boolean类型</h1>
+		<p>该类型只有两个值：true和false</p>
+		<h3>注意:</h3>
+		<p>不管是True和False还是其他形式的大小写混合都只是标识符，不是Boolean类型</p>
+		<h3>示例:</h3>
+		<script>
+			var True = true;
+			var False = false;
+		</script>
+		<h3>注意:</h3>
+		<p>Boolean类型用在最多的地方就是if/else语句</p>
+		<script>
+			if(i == 3){
+				i = i + 1;
+			}else{
+				i = i - 1;
+			}
+		</script>
+		<h3>注意:</h3>
+		<p>任意的JavaScript的值都能转换为布尔值</p>
+		<table>
+			<thead>
+				<tr><td>数据类型</td><td>转换为true的值</td><td>转换为false的值</td></tr>
+			</thead>
+			<tbody>
+				<tr><td>Boolean</td><td>true</td><td>false</td></tr>
+				<tr><td>String</td><td>任何非空字符串</td><td>""(空字符串)</td></tr>
+				<tr><td>Number</td><td>任何非零数字(包括无穷大)</td><td>0和NaN</td></tr>
+				<tr><td>object</td><td>任何对象</td><td>null</td></tr>
+				<tr><td>undefined</td><td>不适用</td><td>undefined</td></tr>
+			</tbody>
+		</table>
+		<h3>示例:</h3>
+		<script>
+			var str = "hello";
+			if(str) {
+				alert('is true');
+			}
+		</script>
+		<h3>代码描述:</h3>
+		<p>字符串str转换成了对应的Boolean值（true）</p>
+	</body>
+</html>

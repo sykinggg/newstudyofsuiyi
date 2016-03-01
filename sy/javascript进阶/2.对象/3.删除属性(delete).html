@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>删除属性</title>
+	</head>
+	<body>
+		<h1>删除属性</h1>
+		<p>delete 操作符是删除属性的唯一方法</p>
+		<p>把属性设置为undefined或者null不能真正的删除属性，它只是移除了属性和值的关联</p>
+		<h2>语法：delete 对象名.属性名;</h2>
+		<h3>示例:</h3>
+		<p>创建一个cat对象，包含属性：name、sex和color</p>
+		<p>然后删除name属性，给sex赋值为undefined，给color赋值为null</p>
+		<script>
+			var cat = {
+				"name" : "tom",
+				"sex" : "man",
+				"color" : "yellow"
+			}
+			delete cat.name;
+			cat.sex = undefined;
+			cat.color = null;
+			alert("name属性是否存在:" + cat.hasOwnProperty("name"));
+			alert("sex属性是否存在:" + cat.hasOwnProperty("sex"));
+			alert("color属性是否存在:" + cat.hasOwnProperty("color"));
+		</script>
+		<h3>代码描述:</h3>
+		<p>在通过hasOwnProperty()判断属性是否存在</p>
+	</body>
+</html>

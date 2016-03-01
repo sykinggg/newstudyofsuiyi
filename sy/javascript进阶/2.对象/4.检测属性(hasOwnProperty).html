@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>hasOwnProperty()函数</title>
+	</head>
+	<body>
+		<h1>hasOwnProperty()函数</h1>
+		<p>对象是属性的集合，我们经常会检测集合中成员的所属关系——判断某个属性是否属于某个对象</p>
+		<h2>语法：object.hasOwnProperty(proName)</h2>
+		<h3>参数说明:</h3>
+		<p>object:为必需参数，是对象的实例</p>
+		<p>proName:必需参数。 一个属性名称的字符串值</p>
+		<h3>示例:</h3>
+		<p>详解：如果object对象中存在指定名称的属性，则返回true，反之则返回false</p>
+		<script>
+			var mouse = {
+				"name" : "betta",
+				"age" : 3,
+				"varieties" : "milaoshu"
+			}
+			mouse.hasOwnProperty("name");	// true
+			mouse.hasOwnProperty("sex");	//false
+		</script>
+		<h3>注意:</h3>
+		<p>hasOwnProperty 是 JavaScript 中唯一一个处理属性但是不查找原型的函数</p>
+	</body>
+</html>

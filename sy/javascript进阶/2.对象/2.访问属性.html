@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>访问属性</title>
+	</head>
+	<body>
+		<h1>访问属性</h1>
+		<p>访问对象的属性有两种方式：点或者中括号操作符</p>
+		<h2>1.使用点操作符</h2>
+		<h3>语法：objectName.propertyName</h3>
+		<p>其中，objectName 为对象名称，propertyName为属性名称</p>
+		<h2>2.使用中括号操作符</h2>
+		<h3>语法：objectName[propertyName]</h3>
+		<p>其中，objectName 为对象名称，propertyName 为属性名称</p>
+		<h3>示例:</h3>
+		<script>
+			var cat = {
+				"name" : "tom",
+				"sex" : "man",
+				"color" : "yellow"
+			}
+			var name1 = cat.name;
+			var name2 = cat["name"];
+			console.log(name1);
+			console.log(name2);
+			alert(name2 == name1);
+			alert(name2 === name1);
+		</script>
+	</body>
+</html>
