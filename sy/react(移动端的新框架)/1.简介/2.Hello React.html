@@ -3,7 +3,9 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Hello React!</title>
-		<script src="//cdn.bootcss.com/react/0.14.7/react-dom-server.js"></script>
+		<script src="../react.js"></script>
+		<script src="../react-dom.js"></script>
+		<script src="../browser.min.js"></script>
 	</head>
 	<body>
 		<h1>Hello React</h1>
@@ -34,14 +36,16 @@
 		<p>callback参数是可选的函数，当渲染完成或更新后被执行，通常我们不用它</p>
 		<h3>真实示例:共四步</h3>
 		<!--1.引入React库-->
-		<script src="//cdn.bootcss.com/react/0.14.7/react-dom-server.js"></script>
+		<script src="../react.js"></script>
+		<script src="../react-dom.js"></script>
+		<script src="../browser.min.js"></script>
 		<!--2.在真实DOM上定义容器-->
 		<div id="content"></div>
 		<script>
 			//3.在虚拟DOM上创建p元素
 			var el = React.createElement("p",null,"Hello World!");
 			//4.将虚拟机DOM上的p元素渲染到真是Dom上的content容器
-			React.render(el,document.querySelector("#content"));
+			ReactDOM.render(el,document.querySelector("#content"));
 		</script>
 	</body>
 </html>
