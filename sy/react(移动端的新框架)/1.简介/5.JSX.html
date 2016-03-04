@@ -71,7 +71,9 @@
 		<h1>真实案例</h1>
 		<div id="content"></div>
 		<script type="text/babel">
-			var ele = React.createClass({
+			//定义React组件(操定义的首字母大写切记切记！)
+			var Ele = React.createClass({
+				//每个React组件都应该事先render()方法
 				render: function(){
 					var e = 
 					<div>
@@ -81,7 +83,8 @@
 					return e;
 				}
 			})
-			ReactDOM.render(<ele/>,document.createSelector("#content"));
+			//渲染
+			ReactDOM.render(<Ele/>,document.querySelector("#content"));
 		</script>
 	</body>
 </html>
