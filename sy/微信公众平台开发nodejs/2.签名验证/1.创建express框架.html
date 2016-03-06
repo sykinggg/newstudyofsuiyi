@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>创建express框架</title>
+	</head>
+	<body>
+		<h1>创建express框架</h1>
+		<p>前面的课程中已经安装了express模块，并且在我们右面的环境中已经创建了一个名为app.js的文件</p>
+		<h3>示例</h3>
+		<script>
+			var express = require("express");
+			var path = require('path');
+			var app = express();
+			server = require('http').Server(app);
+			app.set('views',__dirname);
+			app.engine('.html',require('ejs').__express);
+			require('./index')(app);
+			server.listen(80,function(){
+				console.log('App start,port 80.')
+			});
+		</script>
+		<p>再添加一个名为test.html的文件</p>
+		<!doctype HTML>
+		<html>
+			<head lang="en">
+				<meta charset="utf-8"/>
+				<title>汇智网</title>
+			</head>
+			<body>
+				<div><%=issuccess%></div>
+			</body>
+		</html>
+		<p>我们还要添加一个名为index.js的文件，来实现我们的路由</p>
+		<h3>注意</h3>
+		<p>其中GET请求用来验证配置的URL合法性，POST请求用来处理微信消息</p>
+		<script>
+			module.exports = function(app){
+				app.get('/', function(req,res){
+					res.render('test',{issuccess:'success'})
+				});
+				app.get('/interface',function(req,res){});
+				app.post('/interface',function(req,res){});
+			}
+		</script>
+	</body>
+</html>
