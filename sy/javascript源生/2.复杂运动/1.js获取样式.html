@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>js获取样式</title>
+		<style>
+			* {
+				margin:　0;
+				padding: 0;
+			}
+			#container {
+				height: 200px;
+				width: 200px;
+				margin: auto;
+				border: 1px red solid;
+				background-color: #6effcd;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>js获取样式</h1>
+		<p>1.获取opacity属性问题</p>
+		<p>2.如果在前几个小节加上border属性你将会发现一个bug</p>
+		<p>因为offsetLeft包括元素宽度、可见垂直滚动条宽度、左边框和右边框宽度</p>
+		<p>当有边框时offsetLeft并不是我们想要的值</p>
+		<h2>如何获取样式</h2>
+		<p>使用getComputedStyle()这个函数获取样式值</p>
+		<h3>注意:</h3>
+		<p>非IE浏览器</p>
+		<p>函数第一个参数是元素对象，若是想获取伪类元素则应当在第二个参数上填上hover,active,link等属性，否则填null</p>
+		<p>IE浏览器</p>
+		<p>在IE中每个具有style属性的元素都有一个currentStyle属性。可以通过该属性获取元素</p>
+		<h3>注意:</h3>
+		<p>这两种方式都不可以返回类似border（含综合属性）的样式</p>
+		<p>不同浏览器表示值的方式可能不同，如在Firefox和Safari中返回颜色值是RGB格式的</p>
+		<p>以上方式均只能读取样式</p>
+		<script>
+			function getStyle(obj, attr){
+				if(obj.currentStyle){
+					return obj.currentStyle[attr];
+				}else{
+					return getComputedStyle(obj, false)[attr];
+				}
+			}
+		</script>
+		<h1>真实案例</h1>
+		<div id="container"></div>
+		<script>
+			window.onload = function(){
+				var container = document.getElementById('container');
+				function getStyle(obj, attr) {
+					if(obj.currentStyle){
+						return obj.currentStyle[attr];
+					}else{
+						return getComputedStyle(obj, false)[attr];
+					}
+				}
+				alert(getStyle(container, 'width'));
+			};
+		</script>
+	</body>
+</html>

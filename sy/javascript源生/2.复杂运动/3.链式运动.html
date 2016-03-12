@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>链式运动</title>
+		<style>
+			#container {
+				border: 1px solid blue;
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				opacity: 0.5;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>链式运动</h1>
+		<h2>实现思路：</h2>
+		<p>先进行某个运动，该运动完成后，再进行下一步运动，就达到了链式运动的效果</p>
+		<h3>效果</h3>
+		<img src="../img/c2_3.gif" alt="" />
+		<h2>链式运动</h2>
+		<h3>在链式运动编写中简单的异步用一个callback函数做参数,当前面运动执行完后我们将调用下一步要执行的运动的函数</h3>
+		<h3>在右方回调（callback）函数中，使用this，它指向的是Window</h3>
+		<h3>运用到了第一小节写的getStyle函数，注意不同之处,由于我们我们之前的getStyle函数获取width返回的是带单位的字符串</h3>
+		<p>对取得的width值转换为浮点数</p>
+		<script>
+//			function startMove(obj, target, attr, fn){
+//				clearInterval(timer);
+//				timer = setInterval(function(){
+//					var speed = (Target - getStyle(obj, attr))/20;
+//					speed = speed>0?Math.ceil(speed):Math.floor(speed);
+//					if(getStyle(obj, attr) === target){
+//						clearInterval(timer);
+//						if(fn){
+//							fn();
+//						}
+//					}else{
+//						obj.style[attr]=getStyle(obj, attr) + speed + 'px';
+//					}
+//				}, 30)
+//			}
+//			function getStyle(obj, attr){
+//				if(obj.currentStyle) {
+//					return parseFloat(obj.currentStyle[attr]);
+//				}else{
+//					return parseFloat(getComputedStyle(obj, false)[attr]);
+//				}
+//			}
+		</script>
+		<h1>真实示例</h1>
+		<div id="container"></div>
+		<script>
+			window.onload = function(){
+				var container = document.getElementById('container');
+				container.onmouseover = function(){
+					startMove(this, 400, 'height', function(){
+						startMove(this, 400, 'width');
+						//第二册执行
+						startMove(container, 400, 'width');
+					});
+				}
+			};
+			var timer = null;
+			function startMove(obj, target, attr, fn){
+				clearInterval(timer);
+				timer = setInterval(function(){
+					var speed = (target - getStyle(obj, attr))/20;
+					speed=speed>0?Math.ceil(speed):Math.floor(speed);
+					if(getStyle(obj, attr)===target){
+						clearInterval(timer);
+						if(fn){
+							fn();
+						}
+					}else{
+						obj.style[attr]=getStyle(obj, attr) + speed + 'px';
+					}
+				}, 30)
+			}
+			function getStyle(obj, attr){
+				if(obj.currentStyle){
+					return parseFloat(obj.currentStyle[attr]);
+				}else{
+					return parseFloat(getComputedStyle(obj, false)[attr]);
+				}
+			}
+		</script>
+	</body>
+</html>

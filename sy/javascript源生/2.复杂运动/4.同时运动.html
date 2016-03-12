@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>同时运动</title>
+		<style>
+			#container {
+				border: 1px solid blue;
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				opacity: 0.5;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>同时运动</h1>
+		<h2>实现思路：</h2>
+		<p>同时改变长宽或者其他属性，也就是在单属性的语句后加入改变其他属性效果语句，达到函数每一次都改变多个属性效果</p>
+		<h3>效果</h3>
+		<img src="../img/c2_4.gif" alt="" />
+		<h2>函数编写</h2>
+		<h3>1.将要改变的属性以传入一个对象{width:300,height:300,opacity:100}为参数的方式进行传值</h3>
+		<h3>2.用for循环遍历的方式改变元素属性</h3>
+		<h3>3.设立isComplete变量，如果全部属性均已达到目标，则isComplete为true，定时器关闭</h3>
+		<h3>4.在判断opacity时我使用的是getStyle(obj,attr)*100，大家也可在getStyle函数里进行判断</h3>
+		<script>
+//			var isComplete = false;
+//			function startMove(obj, attrClass){
+//				clearInterval(timer);
+//				timer = setInterval(function(){
+//					for(attr in attrClass){
+//						if((attr==='opacity'?getStyle(obj, attr)<em>100:getStyle(obj, attr))===attrClass[attr]){
+//							isComplete = true;
+//							continue;
+//						}
+//						isComplete = false;
+//						console.log(attr);
+//						else if(attr==='opqcity'){
+//							var speed=(attrClass[attr] - getStyle(obj, attr)</em>100)/20;
+//							speed=speed>0?Math.ceil(speed):Math.floor(speed);
+//							obj.style[attr]=(getStyle(obj, attr)*100+speed)/100.0;
+//						}else{
+//							var speed=(attrClass[attr] - getStyle(obj, attr))/20;
+//							speed=speed>0?Math.ceil(speed):Math.floor(speed);
+//							obj.style[attr]=getStyle(obj, attr)+speed+'px';
+//						}
+//					}
+//					if(isComplete){
+//						clearInterval(timer);
+//					}
+//				}, 30);
+//			}
+		</script>
+		<h1>真实案例</h1>
+		<div id="container"></div>
+		<script>
+			window.onload = function(){
+				var container = document.getElementById('container');
+				container.onmouseover = function(){
+					//变量初始化
+//					startMove(this);
+					startMove(this, {width: 300, height: 300, opacity: 100});
+				}
+			};
+			var timer = null;
+			var isComplete = false;
+			function startMove(obj, attrClass) {
+				clearInterval(timer);
+				timer = setInterval(function(){
+					for(attr in attrClass){
+						if((attr==='opacity'?getStyle(obj, attr)*100:getStyle(obj, attr))===attrClass[attr]){
+							isComplete=true;
+							continue;
+						}
+						isComplete=false;
+						console.log(attr);
+						if(attr==='opacity'){
+							var speed=(attrClass[attr] - getStyle(obj, attr)*100)/20;
+							speed=speed>0?Math.ceil(speed):Math.floor(speed);
+							obj.style[attr]=(getStyle(obj, attr)*100+speed)/100.0;
+						}else{
+							var speed=(attrClass[attr] - getStyle(obj, attr))/20;
+							speed=speed>0?Math.ceil(speed):Math.floor(speed);
+							obj.style[attr]=getStyle(obj, attr) + speed + 'px';
+						}
+					}
+					if(isComplete){
+						clearInterval(timer);
+					}
+				}, 30);
+			}
+			function getStyle(obj, attr){
+				if(obj.currentStyle){
+					return parseFloat(obj.currentStyle[attr]);
+				}else{
+					return parseFloat(getComputedStyle(obj, false)[attr]);
+				}
+			}
+		</script>
+	</body>
+</html>

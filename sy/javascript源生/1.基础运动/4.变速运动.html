@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>变速运动</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			#container {
+				height: 200px;
+				width: 200px;
+				position: relative;
+				left: -200px;
+				background-color: #e6ffcd;
+			}
+			#btn {
+				height: 60px;
+				width: 30px;
+				position: absolute;
+				left: 200px;
+				top: 75px;
+				background-color: #73eeff;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>变速运动</h1>
+		<h2>实现思路：</h2>
+		<p>对每次的速度值进行计算，达到变速运动的效果</p>
+		<img src="../img/c1_5.gif" alt="" />
+		<p>速度计算代码</p>
+		<script>
+			var speed = (Target-container.offsetLeft)/5;
+		</script>
+		<p>三目运算符 </p>
+		<script>
+			speed=speed>0?Math.ceil(speed):Math.floor(speed);
+		</script>
+		<p>三目运算符的形式：关系表达式 ？ 表达式1 ： 表达式2</p>
+		<p>在进行速度运算中我们用三目运算符，判断speed的值，如果为正就向上取整，如果为负就向下取整</p>
+		<script>
+			function moveStart(Target){
+				clearInterval(timer);
+				timer = setInterval(function(){
+					var speed = (Target-container.offsetLeft)/5;
+					speed=speed>0?Math.ceil(speed):Math.floor(speed);
+					if(container.offsetLeft==Target){
+						clearInterval(timer);
+					}else{
+						container.style.left=container.offsetLeft+speed+'px';
+					}
+				}, 30);
+			}
+		</script>
+		<h1>真实示例</h1>
+		<div id="container">
+			<div id="btn"></div>
+		</div>
+		<script>
+			window.onload = function(){
+				var container = document.getElementById('container');
+				var btn = document.getElementById('btn');
+				btn.onclick = function(){
+					if(container.offsetLeft == 0){
+						moveStart(-200);
+					}else{
+						moveStart(0);
+					}
+				};
+			};
+			var timer = null;
+			function moveStart(Target) {
+				clearInterval(timer);
+				timer=setInterval(function(){
+					var speed = (Target-container.offsetLeft)/5;
+					speed=speed>0?Math.ceil(speed):Math.floor(speed);
+					if(container.offsetLeft==Target){
+						clearInterval(timer);
+					}else{
+						container.style.left = container.offsetLeft+speed+'px';
+					}
+				}, 30)
+			}
+		</script>
+	</body>
+</html>

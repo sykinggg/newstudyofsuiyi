@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>透明度动画</title>
+		<style>
+			#container {
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				filter: alpha(opacity: 50);
+				opacity: 0.5;
+				margin: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>透明度动画</h1>
+		<h2>实现思路</h2>
+		<p>每次均匀改变opacity值（ie的filter值），达到改变透明度的效果</p>
+		<h2>效果</h2>
+		<img src="../img/c1_4.gif" alt="" />
+		<h3>实现步骤：</h3>
+		<p>对元素绑定鼠标移入移出事件</p>
+		<script>
+			window.onload = function(){
+				var container=document.getElementById('container');
+				container.onmouseover = function(){
+					moveStart(10, 100);
+				};
+				container.onmouseout = function(){
+					moveStart(-10, 30)
+				}
+			};
+		</script>
+		<h2>编写moveStart()函数</h2>
+		<h3>对于ie和Firefox等浏览器不同处理 </h3>
+		<p>在ie浏览器中透明度的设置：filter: alpha(opacity:50);</p>
+		<p>在其他浏览器中:opacity: 0.5;</p>
+		<h3>并没有container.offseAlpha属性 </h3>
+		<p>在后续章节里将会提到用js获取属性的方法，在此处我们用var alpha代替</p>
+		<p>clearInterval(timer)代码段的解释可将moveStart中的第一个clearInterval(timer)</p>
+		<p>删除，将鼠标快速移入移出元素，你会发现元素会出现闪烁</p>
+		<h3>注意</h3>
+		<p>这是因为在进行移入移出操作不停调用moveStart，在未达到clearInterval的条件时就已经开始了下一个函数，而上一个定时器并未关闭，透明度增加和减少交替进行，就形成了闪烁的情况</p>
+		<script>
+			var timer = null;
+			var alpha = 50;
+			function moveStart(oSpeed, oTarget){
+				clearInterval(timer);
+				timer=setInterval(function(){
+					if(oTarget === alpha){
+						clearInterval(timer);
+					}else{
+						alpha += oSpeed;
+						container.style.filter = 'alpha(opacity:'+alpha+');'
+						container.style.opacity = alpha/100.0;
+					}
+				}, 30);
+			}
+		</script>
+		<h1>真实案例</h1>
+		<div id="container"></div>
+		<script>
+			window.onload = function(){
+				var container = document.getElementById('container');
+				container.onmouseover = function(){
+					moveStart(10, 100);
+				};
+				container.onmouseout = function(){
+					moveStart(-10, 30);
+				}
+			};
+			var timer = null;
+			var alpha = 50;
+			function moveStart(oSpeed, oTarget){
+				clearInterval(timer);
+				timer = setInterval(function(){
+					if(oTarget == alpha){
+						clearInterval(timer);
+					}else{
+						alpha += oSpeed;
+						container.style.filter = 'alpha(opacity:'+alpha+');'
+						container.style.opacity = alpha/100.0;
+					}
+				}, 30);
+			}
+		</script>
+	</body>
+</html>
