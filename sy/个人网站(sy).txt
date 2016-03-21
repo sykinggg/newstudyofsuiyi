@@ -42,3 +42,5 @@ sh install.sh
 社保！！！！！！！
 网站查询密码: 02211019
 交易密码: 399022
+angularjs官方git文档
+https://github.com/angular
