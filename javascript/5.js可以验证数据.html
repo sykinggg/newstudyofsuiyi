@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset = "utf-8">
+	</head>
+	<body>
+		<h1>javascript一般可用于input输入验证</h1>
+		<p>请输入1到100的数字</p>
+		<input type="text" id="numb">
+		<button type="button" onclick="myFunction()">Submit</button>
+		<p id="demo"></p>
+	</body>
+	<script>
+		function myFunction() {
+			var x, text;
+			x = document.getElementById("numb").value;
+			if(isNaN(x)||x<1||x>100) {
+				text = "Input not valid";
+			} else {
+				text = "Input OK";
+			}
+			document.getElementById("demo").innerHTML = text;
+		}
+	</script>
+</html>

@@ -9,6 +9,7 @@
     <div ng-app="checkbox" ng-controller="homeCtrl">
       <div ng-repeat="item in list">
         <input type="checkbox" checkbox-group>
+        <!-- <div style="width:400px; height:500px; border:1px solid red;" checkbox-group></div> -->
       </div>{{array}}
     </div>{{update()}}
   </body>
@@ -49,7 +50,7 @@
             } else {
               if(index !== -1)scope.array.splice(index, 1);
             }
-            scope.$apply(scope.array(function(a, b) {
+            scope.$apply(scope.array.sort(function(a, b) {
               return a - b;
             }));
           });

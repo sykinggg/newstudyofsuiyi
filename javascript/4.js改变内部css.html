@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<p id="demo">测试Javascript改变内部css</p>
+		<button id="click">click Me</button>
+	</body>
+	<script>
+		var click = document.getElementById("click");
+		click.onclick = function() {
+			document.getElementById("demo").style.fontSize = "25px";
+		}
+	</script>
+</html>

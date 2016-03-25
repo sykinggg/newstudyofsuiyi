@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<h1>javascript弹框总结</h1>
+		<p>写入一个警告框，使用窗口。alert()。</p>
+		<p>写入使用文档的HTML输出。write()。</p>
+		<p>写入一个HTML元素，使用innerHTML。</p>
+		<p>写入浏览器的控制台，控制台log()使用。</p>
+		<h2>示例</h2>
+		<h3>使用窗口。alert()</h3>
+		<script>
+			window.alert(5+6);
+		</script>
+		<h3>使用文档。write()</h3>
+		<script>
+			document.write(5+6);
+		</script>
+		<h3>注意</h3>
+		<p>使用文档，HTML文档完全加载后write()，将删除所有现有的HTML：</p>
+		<button onclick="document.write(5 + 6)">Try it</button>
+		<h3>使用innerHTML</h3>
+		<h3>注意</h3>
+		<p>访问一个HTML元素，JavaScript可以使用文档。getElementById（ID）的方法。</p>
+		<p>id属性定义的HTML元素。innerHTML属性定义的HTML内容：</p>
+		<p id="demo"></p>
+		<script>
+			document.getElementById("demo").innerHTMl = 5 + 6;
+		</script>
+		<p>数据显示在HTML，（大多数情况下）你会设置一个id属性的值。</p>
+		<h3>使用console.log()</h3>
+		<script>
+			console.log(5+6);
+		</script>
+	</body>
+</html>
