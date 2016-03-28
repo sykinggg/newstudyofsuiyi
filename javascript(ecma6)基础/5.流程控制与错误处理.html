@@ -360,5 +360,51 @@
 
 
    		<h1>连续语句(continue Statement)</h1>
+   		<p>连续语句用于重新开始 while, do-while, for语句，或者标签语句（label statement）</p>
+   		<ul>
+   			<li>与中断语句（break Statement）相比，连续语句不会把整个循环终止</li>
+   			<li>在while循环里，将跳回条件判断（condition）</li>
+   			<li>在for循环里，则跳回累计表达式（increment-expression）</li>
+   			<li>当你使用带有标签语句的连续语句时，用于识别循环体中的标签语句</li>
+   		</ul>
+   		<h2>语法结构</h2>
+   		<script>
+   			// continue
+   			// continue label
+   			/**
+   			*	栗子一
+   			*/
+   			i = 0;
+   			n = 0;
+   			while(i < 5) {
+   				i++;
+   				if(i == 3)
+   					continue;
+   				n += i;
+   			}
+   			/**
+   			*	栗子二
+   			*/
+   			checkiandj: 
+   				while(i < 4) {
+   					document.write(i + "<br/>");
+   					i += 1;
+   					checkj: 
+   						while(j > 4) {
+   							document.write(j + "<br/>");
+   							j -= 1;
+   							if((j % 2) == 0)
+   								continue checkj;
+   							document.write(j + "is odd.<br/>");
+   						}
+   					document.write("i="+i+"<br>");
+   					document.write("j="+j+"<br>");
+   				}
+   		</script>
+		<h3>语法描述</h3>
+		<p>一个标签语句checkiandj包含了一个标签语句checkj</p>
+		<p>如果连续语句被触发，程序会中止在当前循环中的checkj然后开始下一轮循环</p>
+		<p>每次连续语句被触发，checkj会重复直到该条件判断返回false值。当返回false值时，会完成剩下的checkiandj语句，然后checkiandj会重复直到其条件判断返回false值</p>
+		<p>当返回false值时，程序会继续执行在checkiandj后面的语句</p>
 	</body>
 </html>
