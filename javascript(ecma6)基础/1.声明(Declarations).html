@@ -1,0 +1,73 @@
+<!doctype HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<h1>声明(Declarations)</h1>
+		<p>js有三种声明</p>
+		<h2>var</h2>
+		<p>声明变量，可选择将其初始化为一个值</p>
+		<h2>let</h2>
+		<p>声明块范围局部变量(block scope local variable)，可选择将其初始化为一个值</p>
+		<h2>const</h2>
+		<p>声明一个只读(read-only)命名常量</p>
+
+
+		<h2>声明变量(Declaring variables)</h2>
+		<p>使用var可以同时用来声明局部和全部变量</p>
+		<p>使用let来声明代码块的内部变量</p>
+
+		<h2>对变量求值</h2>
+		<script>
+			var a;
+			console.log(a);
+			// undefined
+			console.log(b);
+			// 报错
+		</script>
+		<h6>输出说明</h6>
+			<p>用 var 或 let 声明的未赋初值的变量，值会被设定为undefined（译注：即未定义值，本身也是一个值）</p>
+			<p>试图访问一个未初始化的变量会导致一个 ReferenceError 异常被抛出</p>
+		<h4>可以使用undefined来确定变量是否已赋值</h4>
+		<script>
+			var input;
+			if(input == undefined){
+				console.log(true);
+			}else{
+				console.log(false);
+			}
+		</script>
+		<h6>输出结果</h6>
+			<p>true</p>
+		<h4>undefined值在布尔类型环境中会被当作false</h4>
+		<script>
+			var myArray = new Array();
+			console.log("myArray     "+myArray[0]);
+			// undefined
+			if(!myArray[0]){
+				console.log("array    "+true);
+			}else{
+				console.log("array    "+false);
+			}
+		</script>
+		<h6>输出说明</h6>
+			<p>数组myArray中的元素未被赋值</p>
+		<h4>数值类型环境中undefined值会被转换为NaN（译注：NaN为“Not a Number”，不是一个数字 的缩写）</h4>
+		<script>
+			var a;
+			a + 2;
+			console.log(a+2);
+			// NaN
+		</script>
+		<h4>对一个空变量求值时，空值null在数值类型环境中会被当作０来对待，而布尔类型环境中会被当作false</h4>
+		<script>
+			var n = null;
+			console.log(n * 32);
+			// 0
+			// 测试变量的域
+			console.log(window.myvar);
+			// undefined不能跨一面
+		</script>
+	</body>
+</html>

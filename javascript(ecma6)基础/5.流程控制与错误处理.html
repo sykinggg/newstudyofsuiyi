@@ -1,0 +1,364 @@
+<!doctype html>
+<html>
+	<head>
+		<meta chatset="utf-8">
+		<title>流程控制与错误处理</title>
+	</head>
+	<body>
+		<h1>语句块(Block Statement)</h1>
+		<p>大多数程序都使用语句块来给语句分组，这样可以使语句的结构清晰明了</p>
+		<script>
+			// {
+			// 	statement_1; statement_2;
+			// 	statement_3;
+			// 	...
+			// 	statement_n;
+			// }
+		</script>
+		<h2>栗子</h2>
+		<p>语句块通常大多数用于流程控制，如 if, for, while等</p>
+		<script>
+			while(x<10) {
+				x++;
+			}
+			// 这里{ x++; } 就是语句块
+			/**
+			*	注意：在ECMAScript 6标准之前，Javascript没有块作用域
+			*	如果你在块的外部声明了一个变量，然后在块中声明了一个相同变量名的变量，并赋予不同的值
+			*	那么在程序执行中将会使用块中的值，这样做虽然是合法的，但是这不同于JAVA与C
+			*/
+
+			var x = 1;
+			{
+				var x = 2;
+			}
+			console.log(x);
+			// 2
+			/**
+			*	这是因为 var x = 2 的作用范围与 var x = 1 的作用范围相同
+			*/
+		</script>
+		<h3>注意:使用 let 定义的变量是块作用域的</h3>
+
+
+
+
+		<h1>条件判断语句(Conditional Statements)</h1>
+		<p>条件判断语句指的是根据指定的条件所返回的结果（真或假或其它预定义的），来执行特定的语句</p>
+		
+
+		<h2>if...else语句</h2>
+		<p>当一个逻辑条件为真，用if语句执行一个语句。当这个条件为假，使用可选择的else从句来执行这个语句</p>
+		<script>
+			if(condition) {
+				statement_1;
+			}[else{
+				statement_2;
+			}]
+			//推荐使用严格的语句块模式，语句else可选
+			/*使用 else if 来测试连续的多种条件判断*/
+			if(condition_1) {
+				statement_1;
+			}[else if(condition_2) {
+				statement_2;
+			}else if(condition_3) {
+				statement_3;
+			}else if(condition_4) {
+				statement_4;
+			}][else{
+				statement_n;
+			}]
+			/*在条件表达式中最好不要使用“=”来判断条件是否相等，因为这会产生非预期结果*/
+		</script>
+		<!-- false values -->
+		<ul>
+			<li>false</li>
+			<li>undefined</li>
+			<li>null</li>
+			<li>0</li>
+			<li>NaN</li>
+			<li>空字符串("")</li>
+		</ul>
+		<p>当传递给条件语句时，所有其他值，包括所有对象会被计算为 true </p>
+		<script>
+			/**
+			*	请不要混淆原始的布尔值true和false 与 布尔对象的值true和false
+			*/
+			var b = new Boolean(false);
+			console.log(b);
+			// Boolean {[[PrimitiveValue]]: false}
+			if(b){
+				console.log(b);
+			}
+			// Boolean {[[PrimitiveValue]]: false}
+			console.log(b==true);
+			// false
+			if(b==false){
+				console.log(b);
+				// Boolean {[[PrimitiveValue]]: false}
+			}
+			/*栗子*/
+			function checkData(array) {
+				if(array.length == 3) {
+					// return true;
+					console.log(true);
+				} else {
+					// alert("Enter exactly three characters." + 
+					// 	array.value + " is not valid.");
+					console.log("Enter exactly three characters." + 
+						array + " is not valid.");
+					// Enter exactly three characters.asdasdasdasd is not valid.
+					// return false;
+					console.log(false);
+					// false
+				}
+			}
+			console.log(checkData("asdasdasdasd"));
+			// undefined
+		</script>
+
+
+		<h1>switch语句(switch statement)</h1>
+		<p>开关语句允许一个程序求一个表达式的值并且尝试去匹配表达式的值到一个case label</p>
+		<p>如果匹配成功，这个程序执行相关的语句</p>
+		<script>
+			switch (expression) {
+				case label_1:
+					statements_1
+					[break;]
+				case label_2:
+					statements_2
+					[break;]
+				...
+				default:
+					statements_def
+					[break;]
+			}
+		</script>
+		<h2>执行流程</h2>
+		<p>程序首先查找一个与 expression 匹配的 case 语句，然后将控制权转移到该子句，执行相关的语句</p>
+		<p>如果没有匹配值， 程序会去找 default 语句，如果找到了，控制权转移到该子句，执行相关的语句</p>
+		<p>如果没有找到 default，程序会继续执行 switch 语句后面的语句</p>
+		<p>可选的 break 语句与每个 case 语句相关联， 保证在匹配匹配的语句被执行后程序可以跳出 switch 并且继续执行 switch 后面的语句</p>
+		<p>注意:如果不写 break , 程序将继续执行 switch 中的语句</p>
+		<button type="button" id="click">点击</button>
+		<script>
+			switch (fruittype) {
+				case 'Oranges':
+					document.write("Oranges are $0.59 a pound.<br>");
+					break;
+				case 'Apples':
+					document.write("Apples are $0.32 a pound.<br>");
+					break;
+				case  'Bananas':
+					document.write("Bananas are $0.48 a pound.<br>");
+					break;
+				case  'Cherries': 
+					document.write("Cherries are $3.00 a pound.<br>");
+					break;
+				case "Mangoes":
+				case "Papayas":
+					document.write("Mangoes and papayas are $2.79 a pound.<br>");
+					break;
+				default:
+					document.write("Sorry, we are out of " + fruittype + ".<br>");
+			}
+			document.write("Is there anything else you'd like?<br>");
+		</script>
+
+
+
+
+
+
+		<h1>循环语句(Loop Statement)</h1>
+		<p>循环语句是一系列反复执行直到符合特定条件的命令</p>
+
+
+		<h2>for语句(for statement)</h2>
+		<p>for 循环反复直到一个特定的条件计算为假</p>
+		<h3>语法示例</h3>
+		for ([initialExpression]; [condition]; [incrementExpression])
+   			statement
+   		<h3>语法描述</h3>
+   		<p>1.[initialExpression]:初始化表达式，若存在则执行</p>
+   		<span>此表达式通常初始化了一个或多个循环用计数器，语法上也允许设定一个任意复杂度的表达式</span>
+   		<span>表达式里还可以声明变量</span>
+   		<p>2.[cindition]:条件表达式</p>
+   		<span>如果表达式的值为true，将执行循环语句；若为flase，循环终止</span>
+   		<h3>注意:</h3>
+   		<p>若要完全忽略此条件表达式，则设此表达式的值为true</p>
+   		<p>3.statement:需执行的语句</p>
+   		<span>如果要执行多条语句，就要用中括号（{...}）把语句括起来</span>
+   		<p>4.[incrementExpression]:累计表达式.</p>
+   		<span>若存在则执行，然后会回到第2步执行语句</span>
+   		<h2>真实示例</h2>
+   		<script type="text/javascript">
+   		function howMany(selectObject) {
+   			var numberSelected = 0;
+   			for(var i = 0; i < selectObject.options.length; i++) {
+   				if(selectObject.options[i].selected)
+   					numberSelected++;
+   			}
+   			return numberSelected;
+   		}
+   		</script>
+   		<form name="selectForm">
+   			<p>
+   				<strong>Choose some music types, then click the button below:</strong>
+   				<br>
+   				<select name="musicTypes" multiple="multiple">
+   					<option selected="selected" >R&B</option>
+   					<option>Jazz</option>
+   					<option>Blues</option>
+   					<option>New Age</option>
+   					<option>Classical</option>
+   					<option>Opera</option>
+   				</select>
+   			</p>
+   			<p>
+   				<!-- <input type="button" value="How many are selected?"
+   				onclick="alert ('Number of options selected: ' + howMany(document.selectForm.musicTypes))"/> -->
+   				<input type="button" value="click Me!"
+   				onclick="console.log(+howMany(document.selectForm.musicTypes))">
+   			</p>
+   		</form>
+
+
+   		<h1>do...while语句</h1>
+   		<p>do...while 语句反复直到一个特定条件计算为假</p>
+   		<script>
+   			// do 
+   			// 	statement
+   			// while (condition);
+   		</script>
+   		<h3>语法描述</h3>
+   		<p>语句（statement）会在条件判断前执行一次。如果要执行多条语句，就要用中括号（{...}）把语句括起来</p>
+   		<p>如果条件表达式（condition）为true，语句将再次执行</p>
+   		<p>在每次语句执行完毕时，会执行条件判断</p>
+   		<p>如果条件表达式（condition）为false，执行停止并跳到do...while后继续执行下面的语句</p>
+   		<script>
+   			/**
+   			*	举个栗子
+   			*/ 
+   			do {
+   				i += 1;
+   				document.write(i);
+   			}while(i<5);
+   		</script>
+
+
+
+   		<h1>while语句</h1>
+   		<p>while语句只要一个特定条件计算为真就执行语句</p>
+   		<script>
+   			while (condition)
+   				statement
+   		</script>
+   		<h3>语法描述</h3>
+   		<p>如果条件表达式（condition）为false，在循环体内的语句停止执行，然后跳到循环体后的语句继续执行</p>
+   		<p>条件（condition）在循环体内的语句执行之前进行判断</p>
+   		<p>如果条件表达式（condition）为false，语句（statement）将会试行并且条件会再次进行判断</p>
+   		<p>如果条件表达式（condition）为false，执行停止，然后跳到while循环体后的语句执行</p>
+   		<script>
+   			/**
+   			*	举个栗子一
+   			*/
+   			n = 0;
+   			x = 0;
+   			while (n < 3) {
+   				n++;
+   				x += n;
+   				console.log("n" + n);
+   				console.log("x" + x);
+   			}
+   		</script>
+   		<h3>例子说明</h3>
+   		<p>在每次迭代中，循环计数器n会增加1并会与x相加。因此，x与n在每次迭代中的值为</p>
+   		<ul>
+   			<li>第一次执行后：n=1，x=1</li>
+   			<li>第二次执行后：n=2，x=3</li>
+   			<li>第三次执行后：n=3，x=6</li>
+   		</ul>
+   		<span>在第三次执行完成后，条件判断 n<3 不再为true，循环终止</span>
+   		<script>
+   			/**
+   			*	举个栗子二
+   			*/
+   			// while (true) {
+   			// 	alert("hello World");
+   			// }
+   		</script>
+
+
+
+   		<h1>标签语句(label Statement)</h1>
+   		<p>标签语句提供一种使你同一程序的在另一处找到它的标识</p>
+   		<script>
+   			// label: 
+   			// 	statement
+   		</script>
+   		<h3>语法描述</h3>
+   		<p>label 的值可以是js的任何非保留字标识符</p>
+   		<p>用label 标识的语句可以是任何语句</p>
+   		<script>
+   			/**
+   			*	举个栗子
+   			*/
+   			markloop:
+   			while (theMark == true) {
+   				doSomething();
+   			}
+   		</script>
+
+
+
+   		<h1>中断语句(break Statement)</h1>
+   		<p>使用中断语句终止循环、开关或与标签语句连接</p>
+   		<ul>
+   			<li>当你使用没有带标签语句的中断语句（break）时，while，do-while，for或者switch封闭的内部语句将立即终止，并转移到后面的语句执行</li>
+   			<li>当你使用带有标签语句的中断语句（break）时，将终止在特定的标签语句</li>
+   		</ul>
+   		<h3>语法格式</h3>
+   		<script>
+   			break;
+   			break label;
+   		</script>
+   		<h3>语法描述</h3>
+   		<p>第一种语法形式用于终止在循环体或者switch的封闭内部</p>
+   		<p>第二种语法形式用于在特定的封闭标签语句</p>
+   		<script>
+   			/**
+   			*	举个栗子一
+   			*/
+   			for(i = 0; i < a.length; i++) {
+   				if(a[i] == theValue)
+   					break;
+   			}
+   			/**
+   			*	举个栗子二
+   			*/
+   			var x = 0;
+   			var z = 0;
+   			labelCancelLoops: while(true) {
+   				console.log("Outer loops" + x);
+   				x += 1;
+   				z = 1;
+   				while(true) {
+   					console.log("Inner loops:" + z);
+   					z += 1;
+   					if(z === 10&&x === 10) {
+   						break labelCancelLoops;
+   					}else if(z === 10) {
+   						break;
+   					}
+   				}
+   			}
+   		</script>
+
+
+
+
+   		<h1>连续语句(continue Statement)</h1>
+	</body>
+</html>

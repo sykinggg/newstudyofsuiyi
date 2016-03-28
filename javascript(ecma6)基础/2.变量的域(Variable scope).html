@@ -1,0 +1,82 @@
+<!doctype HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<h1>变量的域(Variable scope)</h1>
+		<p>在所有函数之外声明的变量，叫做全局变量，因为它可被当前文档中的其他代码所访问</p>
+		<p>在函数内部声明的变量，叫做局部变量，因为它只能在该函数内部访问</p>
+		<p>注意:ecmascript6中的语句块的概念</p>
+		<script>
+			if(true) {
+				var x = 5;
+			}
+			console.log(x);
+			// 5
+		</script>
+
+		<script>
+			if(true) {
+				let y = 5;
+			}
+			console.log(y);
+			// 应该是报错,但是es6在现在的情况下不支持
+		</script>
+
+
+		<h1>变量声明的提升(Variable hoisting)</h1>
+		<p>JavaScript 变量的另一特别之处是，你可以引用稍后声明的变量，而不会引发异常</p>
+		<p>这一概念称为变量声明提升(hoisting)；JavaScript 变量感觉上是被“举起”或提升到了所有函数和语句之前</p>
+		<p>然而提升后的变量将返回 undefined 值，所以即使在使用或引用某个变量之后存在声明和初始化操作，仍将得到 undefined 值</p>
+		<script>
+			// Example 1
+			console.log(x === undefined);
+			// false
+			var x = 3;
+
+			// Example 2
+			var myvar = "my value";
+
+			(function() {
+				console.log(myvar);
+				// undefined
+				var myvar = "local value";
+			})();
+		</script>
+		<!-- 也可以写作 -->
+		<script>
+			/**
+			*	Example 1
+			*/ 
+			var x;
+			console.log(x === undefined);
+			// false
+			x = 3;
+			/**
+			*	Example 2
+			*/ 
+			var myvar = "my value";
+
+			(function() {
+				var myvar;
+				console.log(myvar);
+				// undefined
+				myvar = "local value";
+			})();
+		</script>
+		<p>注意:由于存在变量声明提升，一个函数中所有的var语句应尽可能地放在接近函数顶部的地方。这大大地提升了程序代码的清晰度</p>
+
+		<h1>全局变量(Global variables)</h1>
+		<p>核心:全局变量实际上是全局对象的属性</p>
+		<p>在网页中，（译注：缺省的）全局对象是 window，所以你可以用形如 window.variable的语法来设置和访问全局变量</p>
+		<script>
+			console.log(window);
+			// js实例化出的对象
+			console.log(window.myvar);
+			// my value ,可以用window.全局变量名来货的全局变量的值
+		</script>
+		<h3>使用:</h3>
+		<p>一个叫 phoneNumber 的变量在文档里被声明，你可以在子框架里用 parent.phoneNumber 来引用它</p>
+	</body>
+</html>

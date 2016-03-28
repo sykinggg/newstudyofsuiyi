@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<h1>常量(Constants)</h1>
+		<p>用关键字 const 创建一个只读(read-only)的常量</p>
+		<p>常量标识符的命名规则和变量的相同</p>
+		<script>
+			const prefix = "222";
+			console.log(prefix);
+			// 222
+			console.log(prefix+2);
+			// 2222
+		</script>
+		<h3>注意:常量不可以通过赋值改变其值，也不可以在脚本运行时重新声明。它必须被初始化为某个值</h3>
+		<p>常量的作用域规则与 let 块级作用域变量相同。若const关键字被省略了，该标识符将被视为变量</p>
+		<p>在同一作用域中，不能用与变量或函数同样的名字来命名常量</p>
+		<script>
+			function f() {};
+			const f = 5;
+			console.log(f);
+			// Uncaught TypeError: Identifier 'f' has already been declared
+			// 报错
+			const g = 5;
+			var g;
+			console.log(g);
+			// Uncaught TypeError: Identifier 'g' has already been declared
+			// 报错
+		</script>
+	</body>
+</html>

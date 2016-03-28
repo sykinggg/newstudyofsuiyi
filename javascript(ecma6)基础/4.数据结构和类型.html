@@ -1,0 +1,464 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<h1>数据结果和类型</h1>
+		<p>JavaScript语言可以识别下面 7 种不同类型的值</p>
+			<h2>六种是 原型 的数据类型</h2>
+				<p>Boolean布尔值,true和false</p>
+				<p>null. 一个表明 null 值的特殊关键字.JavaScript 是大小写敏感的，因此 null 与 Null、NULL或其他变量完全不同</p>
+				<p>undefined.  变量未定义时的属性</p>
+				<p>Number.  表示数字，例如： 42 或者 3.14159</p>
+				<p>String.  表示字符串，例如："Howdy"</p>
+				<p>Symbol ( 在 ECMAScript 6 中新添加的类型).一种数据类型，它的实例是唯一且不可改变的</p>
+			<h2>以及Object对象</h2>
+		<h1>使用注意:</h1>
+		<p>Objects和function是js的两个基本元素</p>
+			<p>将对象视为存放值的命名容器</p>
+			<p>将函数视为你的应用程序能够执行的过程(procedures)</p>
+
+
+		<h1>数据类型的转换(Data type conversion)</h1>
+		<p>JavaScript是一种动态类型语言(dynamically typed language)。这意味着你声明变量时可以不必指定数据类型，而数据类型会在脚本执行需要时自动转换</p>
+		<script>
+			var answer = 42;
+			console.log(answer);
+			// 42
+			answer = "Hello World";
+			console.log(answer);
+			// Hello World
+			/*因为 JavaScript 是动态类型的，这样的指定并不会提示出错*/ 
+			/**
+			*	在涉及加法运算符(+)的数字和字符串表达式中，JavaScript 会把数字值转换为字符串
+			*/ 
+			var x = "The answer is" + 42;
+			var y = 42 + "is the answer";
+			console.log(x);
+			// The answer is42
+			console.log(y);
+			// 42is the answer
+			/**
+			*	在涉及其它运算符（译注：如下面的減號'-'）时，JavaScript语言不会把数字变为字符
+			*/ 
+			console.log("37"-7);
+			// 30
+			console.log("37"+7);
+			// 377
+			console.log("37"-(-7));
+			// 44
+			console.log((+"37")+7);
+			// 44
+		</script>
+
+
+		<h1>字符串转换为数字(converting strings to numbers)</h1>
+		<p>有一些方法可以将内存中表示一个数字的字符串转换为对应的数字</p>
+		<h2>parseInt()和parseFloat()</h2>
+		<p>注意:parseInt 仅能够返回整数，所以使用它会丢失小数部分</p>
+		<p>调用 parseInt 时最好总是带上进制(radix) 参数，这个参数用于指定使用哪一种数制</p>
+		<h2>单目加法运算符</h2>
+		<p>将字符串转换为数字的另一种方法是使用单目加法运算符</p>
+		<script>
+			console.log("1.1"+"1.1");
+			// 1.11.1
+			console.log((+"1.1")+(+"1.1"));
+			// 2.2
+		</script>
+
+		<!-- parseFloat -->
+		<h1>概述</h1>
+		<p>parseFloat()方法将参数中指定的字符串解析成一个浮点数字并返回</p>
+		<h2>语法</h2>
+		<script>
+			// parseFloat(string);
+			console.log(window.parseFloat);
+			// function parseFloat() { [native code] }
+		</script>
+		<h3>参数</h3>
+		<p>string:需要被解析成浮点数的字符串</p>
+		<h2>描述</h2>
+		<p>parseFloat是个全局函数,不属于任何自定义对象</p>
+		<p>parseFloat将它的字符串参数解析成为浮点数并返回.如果在解析过程中遇到了正负号(+或-),数字(0-9),小数点,或者科学记数法中的指数(e或E)以外的字符,则它会忽略该字符以及之后的所有字符,返回当前已经解析到的浮点数.同时参数字符串首位的空白符会被忽略.</p>
+
+		<h3>注意:</h3>
+		<p>如果参数字符串的第一个字符不能被解析成为数字,则parseFloat返回NaN</p>
+		<p>你可以通过调用isNaN函数来判断parseFloat的返回结果是否是NaN.</p>
+
+		<h4>使用注意:</h4>
+		<p>可以通过调用isNaN函数来判断parseFloat的返回结果是否是NaN.</p>
+		<p>如果让NaN作为了任意数学运算的操作数,则运算结果必定也是NaN.</p>
+		<p>parseFloat 也可转换和返回Infinity值.可以使用isFinite函数来判断结果是否是一个优先的数值(非Infinity,-Infinity,或NaN)</p>
+
+
+		<h1>真实示例</h1>
+		<h2>栗子: parseFloat返回正常数字</h2>
+		<script>
+			console.log(parseFloat("3.14"));
+			// 3.14
+			console.log(parseFloat("314e-2"));
+			// 3.14
+			console.log(parseFloat("0.0314E+2"));
+			// 3.14
+			console.log(parseFloat("3.14more non-digit characters"));
+			// 3.14
+		</script>
+		<h2>栗子: parseFloat返回NaN</h2>
+		<script>
+			console.log(parseFloat("FF2"));
+			// NaN
+		</script>
+		<h2>更严格的转换函数</h2>
+		<p>该函数通过正则表达式的方式,在需要更严格地转换float值时可能会有用:</p>
+		<script>
+			var filterFloat = function (value) {
+				if(/^(\-|\+)?([0-9]+(\.[0-9]+)?|Infinity)$/
+					.test(value))
+					return Number(value);
+				return NaN;
+			}
+			console.log("-----------parseFloat(更严格的转换函数)------------");
+			console.log(filterFloat('421'));
+			// 421
+			console.log(filterFloat('-421'));
+			// -421
+			console.log(filterFloat('+421'));
+			// 421
+			console.log(filterFloat('Infinity'));
+			// Infinity
+			console.log(filterFloat('1.6321314564613'));
+			// 1.6321314564613
+			console.log(filterFloat('421e+0'));
+			// NaN
+			console.log(filterFloat('421hop'));
+			// NaN
+			console.log(filterFloat('hop1.568746165641'));
+			// NaN
+		</script>
+		<p>注意上面的代码只是示例 该方法不接受如 1. 和 .5 这种合法的数值</p>
+
+
+
+		<!-- parseInt() -->
+		<h1>概念</h1>
+		<p>parseint()函数将一个字符串参数并返回一个指定进制的整数（数学数字系统的基础）</p>
+		<h2>语法</h2>
+		<script>
+			// parseInt(string, radix);
+			console.log(window.parseInt);
+			// function parseInt() { [native code] }
+		</script>
+		<h2>参数</h2>
+		<p>string</p>
+		<span>解析的值。如果字符串不是一个字符串，然后转换为字符串（使用ToString抽象操作）。字符串中的空格被忽略</span>
+		<p>radix</p>
+		<span>一个整数在2和36之间，表示基数（在数学的数字系统的基础）的上述字符串。指定用于人类常用的十进制数字系统的10。总是指定这个参数来消除读者的混乱，并保证可预测的行为。实现方法的不同，产生不同的结果时，基数不指定，通常默认值10</span>
+		<h2>描述</h2>
+		<p>parseInt函数将作为第一个参数为一个字符串,并返回一个整数或字符串,默认是十进制</p>
+		<p>如果输入字符串开头0x其基数为16进制</p>
+		<p>注意:如果第一个字符无法转化为一个数字,parseInt返回NaN</p>
+
+
+		<h1>真实示例</h1>
+		<p>使用parseInt</p>
+		<script>
+			console.log("-----------parseInt---------");
+			console.log(parseInt(' 0xf', 16));
+			/*15*/
+			console.log(parseInt(' F', 16));
+			/*15*/
+			console.log(parseInt('17', 8));
+			/*15*/
+			console.log(parseInt(021, 8));
+			/*15*/
+			console.log(parseInt('015', 10));
+			/*15*/
+			console.log(parseInt(15.99, 10));
+			/*15*/
+			console.log(parseInt('15.123', 10));
+			/*15*/
+			console.log(parseInt('FXX123', 16));
+			/*15*/
+			console.log(parseInt('1111', 2));
+			/*15*/
+			console.log(parseInt('15*3', 10));
+			/*15*/
+			console.log(parseInt('15e2', 10));
+			/*15*/
+			console.log(parseInt('15px', 10));
+			/*15*/
+			console.log(parseInt('12', 13));
+			/*15*/
+			/**
+			*	NaN测试
+			*/ 
+			console.log("-------NaN测试--------");
+			console.log(parseInt('Hello', 8));
+			// NaN
+			console.log(parseInt('564', 2));
+			// NaN
+			/**
+			*	下面的例子全部返回-15
+			*/ 
+			console.log("下面的例子全部返回-15");
+			console.log(parseInt('-f', 16));
+			console.log(parseInt('-0f', 16));
+			console.log(parseInt('-0xf', 16));
+			console.log(parseInt(-15.1, 10));
+			console.log(parseInt('-17', 8));
+			console.log(parseInt('-15', 10));
+			console.log(parseInt('-1111', 2));
+			console.log(parseInt('-15e1', 10));
+			console.log(parseInt('-12', 13));
+			console.log(parseInt('0e0', 16));
+			// 224
+			/**
+			*	注意:8进制没有基数(注意当0在最前面的时候)
+			*/ 
+			console.log(parseInt('0e0'));
+			// 0
+			console.log(parseInt('08'));
+			// 8
+			/**
+			*	因此ecma5删除八进制(Ecma5不再允许字符串从0开始)
+			*/ 
+		</script>
+
+		<h1>更严格的解析函数</h1>
+		<p>使用正则表达式进行过滤</p>
+		<script>
+			console.log("-------parseInt(更严格的解析函数)------------");
+			filterInt = function (value) {
+				if(/^(\-|\+)?([0-9]+|Infinity)$/.test(value))
+					return Number(value);
+				return NaN;
+			}
+			filterInt = function (value) {
+				if(/^(\-|\+)?([0-9]+|Infinity)$/.test(value)) {
+					return Number(value);
+				}else{
+					return NaN;
+				}
+			}
+
+			console.log(filterInt('421'));
+			// 421
+			console.log(filterInt('-421'));
+			// -421
+			console.log(filterInt('+421'));
+			// 421
+			console.log(filterInt('Infinity'));
+			// Infinity
+			console.log(filterInt('421e+0'));
+			// NaN
+			console.log(filterInt('421hop'));
+			// NaN
+			console.log(filterInt('hop1.46502132198'));
+			// NaN
+			console.log(filterInt('1.54646516849'));
+			// NaN
+		</script>
+		
+
+		<h1>字面值(Literals)</h1>
+		<p>在JavaScript中，你可以使用各种字面值。这些字面值是脚本中按字面意思给出的固定的值，而不是变量</p>
+		<h2>数组字面值(Array literals)</h2>
+		<p>数组字面值是一个封闭在方括号对([])中的包含有零个或多个表达式的列表，其中每个表达式代表数组的一个元素</p>
+		<p>当你使用数组字面值创建一个数组时，该数组将会以指定的值作为它的元素进行初始化，而其长度被设定为元素的个数</p>
+		<script>
+			console.log("---------数组字面值(Array literals)----------");
+			var offees = ['French Roast', 'Colombian', 'Kona'];
+			var a = [3];
+			console.log(a.length);
+			console.log(a[0]);
+		</script>
+		<p>注意 这里的数组字面值也是一种对象初始化器</p>
+		<h3>注意:数组的使用</h3>
+		<p>若在顶层（全局）脚本里用字面值创建数组，JavaScript语言会在每次对包含该数组字面值的表达式求值时解释该数组</p>
+		<p>在函数中使用的数组，将在每次调用函数时被创建一次</p>
+		<h3>数组字面值中的多余逗号</h3>
+		<p>如果是在元素列表中说明常见了一个未定义元素</p>
+		<p>如果是在元素列表最后面则会出现浏览器不同引起的兼容问题</p>
+			<span>尾部的逗号在早期版本的浏览器中会产生错误，因而编程时的最佳实践就是移除它们</span>
+		<script>
+			console.log("---数组中有两个逗号---");
+			var fish = ['Lion',,"angel"];
+			console.log(fish);
+			// ["Lion", 2: "angel"]
+			console.log(fish.length);
+			// 3
+			console.log(fish[1]);
+			// undefined
+		</script>
+		<h3>注意:理解多余的逗号（在脚本运行时会被如何处理）的含义，对于从语言层面理解JavaScript是十分重要的</h3>
+		<h3>但是，你自己写代码时：显式地将缺失的元素声明为undefined，将大大增加你的代码的清晰度和可维护性</h3>
+
+
+
+		<h1>逻辑字面值--布尔字面值(Boolean literals)</h1>
+		<p>布尔类型有两种字面值：true和false</p>
+
+
+
+		<h1>整数(intergers)</h1>
+		<p>整数可以被表示成十进制（基数为10）、十六进制（基数为16）以及八进制（基数为8）</p>
+		<ul>
+			<li>注意:十进制整数字组成的数字序列，不带前导0</li>
+			<li>带前导0、0O、0o 的整数字面值表明它是八进制。八进制整数只能包括数字0-7</li>
+			<li>前缀0x或0X表示十六进制。十六进制整数，可以包含数字（0-9）和字母a~f或A~F</li>
+		</ul>
+		<!-- 整数的字面值： -->
+		<!-- 0, 117 and -345 (decimal, base 10)
+		015, 0001 and -077 (octal, base 8) 
+		0x1123, 0x00111 and -0xF1A7 (hexadecimal, "hex" or base 16) -->
+		
+
+
+
+		<h1>浮点数字面值(floating-point literals)</h1>
+		<p>浮点数字面值可以有以下的组成部分</p>
+		<ul>
+			<li>一个十进制整数，它可以带符号（即前面的“+”或“ - ”号）</li>
+			<li>一个小数点（“.”）</li>
+			<li>一个小数部分（由一串十进制数表示）</li>
+			<li>一个指数部分</li>
+		</ul>
+		<p>指数部分是以“e”或“E”开头后面跟着一个整数，可以有正负号（即前面写“+”或“-”）</p>
+		<p>一个浮点数字面值必须至少有一位数字，后接小数点或者“e”（大写“E”也可）组成</p>
+		<h2>语法</h2>
+		<script>
+			/*浮点数的正则表达式*/ 	
+			// [(+|-)][digits][.digits][(E|e)[(+|-)]digits]
+		</script>
+
+
+
+
+		<h1>对象字面值(Object literals)</h1>
+		<p>对象字面值是封闭在花括号对({})中的一个对象的零个或多个"属性名-值"对的（元素）列表</p>
+		<p>这将导致错误或非你所预想的行为，因为此时左花括号（{）会被认为是一个语句块的起始符号</p>
+		<script>
+			console.log("----对象字面值(Object literals)----");
+			var Seles = "Toyota";
+
+			function CarTypes(name) {
+				return (name === "Honda")?
+				name:
+					"Sorry, we don't sell"+name+".";
+			}
+			var car = {
+				myCar:'Saturn',
+				getCar: CarTypes('Honda'),
+				special: Seles
+			};
+			console.log(car.myCar);
+			// Saturn
+			console.log(car.getCar);
+			// Honda
+			console.log(car.special);
+			// Toyota
+
+			/**
+			*	可以使用数字或字符串字面值作为属性的名字，或者在另一个字面值内嵌套上一个字面值
+			*/ 
+			var ccar = {
+				manyCars:{
+					a:'Saab',
+					"b": "Jeep"
+				},
+				7: "Mazda"
+			};
+			console.log(ccar.manyCars.b);
+			// Jeep
+			console.log(ccar[7]);
+			// Mazda
+
+			/**
+			*	对象属性名字可以是任意字符串，包括空串
+			* 	注意:如果对象属性名字不是合法的javascript标识符，它必须用""包裹
+			* 	属性的名字不合法，那么便不能用.访问属性值，而是通过类数组标记("[]")访问和赋值
+			*/ 
+
+			var unusualPropertyNames = {
+				"":"An empty string",
+				"!":"bang!"
+			}
+			// console.log(unusualPropertyNames."");
+			// SyntaxError: Unexpected string
+			// console.log(unusualPropertyNames.[""]);
+			// Uncaught SyntaxError: Unexpected token [
+			// console.log(unusualPropertyNames.!);
+			// Uncaught SyntaxError: Unexpected token !
+			// console.log(unusualPropertyNames.["!"]);
+			// Uncaught SyntaxError: Unexpected token [
+			// console.log(unusualPropertyNames);
+			// Object {"": "An empty string", !: "bang!"}
+
+			/*注意*/ 
+			var foo = {a:"alpha", 2:"two"};
+			console.log(foo.a);
+			// alpha
+			// console.log(foo.[2]);
+			// Uncaught SyntaxError: Unexpected token [
+			// console.log(foo.2);
+			// Uncaught SyntaxError: missing ) after argument list
+			console.log(foo[a]);
+			// undefined
+			console.log(foo["a"]);
+			// alpha
+			console.log(foo["2"]);
+			// two
+
+
+			/**
+			*	对象支持到设置原型
+			*/ 
+			var obj = {
+				// __proto__
+				__proto__:theProtoObj,
+				// Shorthand for ‘handler: handler’
+				handler,
+				// methods
+				toString() {
+					// Super calls
+					return "d" + super.toString();
+				},
+				// Computed(dynamic)property names
+				['prop__'+(() => 42)() ]:42;
+			}
+
+			/**
+			*	复合对象格式的正则表达式
+			*/
+			var re = /ab+c/;
+		</script>
+
+
+
+		<h1>字符串字面值(String literals)</h1>
+		<p>字符串字面值可以包含有零个或多个字符，由双引号（"）对或单引号（‘）对包围</p>
+		<p>字符串被限定在同种引号之间</p>
+		<h2>使用原理</h2>
+		<p>你可以在字符串字面值上使用字符串对象的所有方法——JavaScript会自动将字符串字面值转换为一个临时字符串对象，调用该方法，然后废弃掉那个临时的字符串变量</p>
+		<script>
+			console.log('John asdasdasdasd'.length);
+			// 17
+			/*除非有特别需要使用字符串对象，你应当始终使用字符串字面值*/
+			/*作为一般字符的扩展，你可以在字符串中使用特殊字符*/
+			console.log("one line \n another line");
+			// one line 
+ 		// 	another line
+
+ 		/**
+ 		*	通过在引号前加上反斜线'\'，可以在字符串中插入引号，这就是引号转义
+ 		*/ 
+ 		var quote = "He read \"The Cremation of Sam McGee\" by R.W. Service.";
+ 		console.log(quote);
+ 		// He read "The Cremation of Sam McGee" by R.W. Service.
+ 		console.log("c:\\temp");
+ 		// c:\temp
+		</script>
+
+	</body>
+</html>
