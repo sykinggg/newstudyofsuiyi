@@ -406,5 +406,186 @@
 		<p>如果连续语句被触发，程序会中止在当前循环中的checkj然后开始下一轮循环</p>
 		<p>每次连续语句被触发，checkj会重复直到该条件判断返回false值。当返回false值时，会完成剩下的checkiandj语句，然后checkiandj会重复直到其条件判断返回false值</p>
 		<p>当返回false值时，程序会继续执行在checkiandj后面的语句</p>
+
+
+
+
+
+
+
+      <h1>对象操作语句(Object Mainpulation Statements)</h1>
+      <p>JavaScript 用 for...in, for each...in和 with语句来操作对象</p>
+
+
+
+
+      <h2>对象操作语句</h2>
+
+
+
+      <p>for...in 语句迭代一个指定的变量去遍历这个对象的属性，每个属性，javascript 执行指定的语句</p>
+      <h3>语法格式</h3>
+      <script>
+         // for (variable in Object) {
+         //    statements
+         // }
+         console.log("------对象操作语句-------");
+      </script>
+      <script>
+        function dump_props(obj, obj_name) {
+            var result = "";
+            for(var i in Obj) {
+                result += obj_name + "." + i + "=" + obj[i] + "<br>";
+            }
+            result += "<hr>";
+            return result;
+        }
+      </script>
+      <h3>语法描述</h3>
+      <p>如上的函数中传递了两个参数：一个对象和这个对象的名称，然后循环了这个对象的属性，最后得到一个列出了这个对象所有的属性名称和值的字符串</p>
+
+      <h3>数组(Arrays)</h3>
+      <p>因此还是用带有数字索引的传统for循环来遍历数组会比较好</p>
+        
+
+      <p>for each...in语句</p>
+      <p>for each...in 是一种在 JavaScript 1.6介绍过的循环语句</p>
+      <h3>注意:</h3>
+      <p>和for...in相似，但是让对象属性的值递回取得，而不是作用于它们的名字</p>
+      <script>
+      /*___错的___*/ 
+        // var sum = 0;
+        // var obj = {prop1: 5, prop2: 13, prop3: 8};
+        // for each (var item in obj) {
+        //   console.log(item);
+        // }
+        // print(sum); // prints "26", which is 5+13+8
+      </script>
+
+
+
+
+
+
+
+      <h1>异常处理语句(Exception Handling Statements)</h1>
+      <p>可以用throw 语句抛出一个异常并且用try...catch 语句捕获处理它</p>
+
+
+      <h1><a href="">Handling Java Exceptions in JavaScript</a></h1>
+      <h1><a href="">JavaScript to Java Communication</a></h1>
+        
+        <ul>
+            <li><a href="">throw Statement</a></li>
+            <li><a href="">try...catch Statement and DOMError</a></li>
+        </ul>
+
+      <h2>异常类型(Exception Types)</h2>
+      <p>JavaScript可以抛出任意对象</p>
+      <p>不是所有对象能产生相同的结果</p>
+        <ul>
+            <li><a href="">ECMAScript exceptions</a></li>
+            <li><a href="">DOMException</a></li>
+            <li><a href="">nsIXPCException (XPConnect)</a></li>
+        </ul>
+
+
+
+      <h2>抛出语句(throw Statement)</h2>
+      <p>使用throw语句抛出一个异常。当你抛出异常，你规定一个含有值的表达式要被抛出</p>
+      <h3>语法格式</h3>
+      <script>
+        console.log("-----异常处理-----");
+        // throw expression;
+      </script>
+      <p>你可以抛出任意表达式而不是特定一种类型的表达式</p>
+      <script>
+        /**
+        *   抛出了几个不同类型的表达式
+        */
+        /*___不得行___*/
+        // throw "Error2";
+        // throw 42;
+        // throw true;
+        // throw {toString: function(){return "I'm an object!";}};
+        /**
+        *   在抛出异常时声明一个对象
+        *   可以在捕捉块中查询到对象的属性
+        *   创建了一个UserException类型的对象myUserException用在抛出语句中
+        */
+        // 创建一个对象类型userexception
+        function UserException (message) {
+            this.message = message;
+            this.name="UserException";
+        }
+        // 当执行时将异常转化为一个字符串
+        UserException.prototype.toString = function () {
+            return this.name+':"'+this.message+'"';
+        }
+        // 创建对象实例并检查他
+        throw new Userexception("Value too high");
+      </script>
+
+
+
+
+      <h1>try...catch语句</h1>
+      <p>try...catch 语句标记一块待尝试的语句，并规定一个以上的响应应该有一个异常被抛出</p>
+      <h2>执行原理</h2>
+      <span>try...catch 语句有一个包含一条或者多条语句的try代码块，0个或多个的catch代码块，catch代码块中的语句会在try代码块中抛出异常时执行</span>
+      <p>流程一:如果try代码块中的语句（或者try 代码块中调用的方法）一旦抛出了异常，那么执行流程会立即进入catch 代码块</p>
+      <p>流程二:如果try代码块没有抛出异常，catch代码块就会被跳过。finally 代码块总会紧跟在try和catch代码块之后执行，但会在try和catch代码块之后的其他代码之前执行</p>
+      <script>
+            function getMonthName(mo) {
+                mo = mo - 1;
+                // 调整组月份
+                var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul",
+                "Aug","Sep","Oct","Nov","Dec"];
+                if (months[mo]) {
+                    return months[mo];
+                } else {
+                    // 在这使用抛出关键字
+                    throw "InvalidMonthNo";
+                }
+            }
+            try {
+                // 函数抛回异常
+                monthName = getMonthName(myMonth);
+            }
+            // 将异常对象传递给错误处理程序
+            catch (e) {
+                monthName = "unkmown";
+                logMyError(e);
+            }
+      </script>
+
+
+      <h2>捕捉块(the catch block)</h2>
+      <p>使用捕捉块来处理所有可能在try代码块中产生的异常</p>
+      <script>
+            catch (catchID) {
+                statements
+            }
+      </script>
+      <span>捕捉块指定了一个标识符 (上述语句中的catchID）来存放抛出语句指定的值</span>
+      <span>你可以用这个标识符来获取抛出的异常信息。在插入捕捉块时JavaScript创建这个标识符</span>
+      <span>标识符只存在于捕捉块的存续期间里</span>
+      <span>当捕捉块执行完成时，标识符不再可用</span>
+      <script>
+            /**
+            *代码抛出了一个异常。当异常出现时跳到捕捉块（the catch block）
+            */
+            try {
+                throw "myException"
+            }
+            catch(e) {
+                // 语句来处理任何异常
+                // 将异常对象传递给错误处理程序
+                logMyError(e);
+            }
+      </script>
+
+
+      <h2>终结块（The finally Block）</h2>
 	</body>
 </html>
