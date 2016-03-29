@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>js实现tab切换</title>
+  </head>
+  <body>
+    <h1>1.js实现tab切换</h1>
+    <p>
+      用js对筛选条件、酒店列表两个选项所在div绑定点击事件，
+      点击后将本选项对应的内容显示，将另外一个选项对应div隐藏
+    </p>
+    <h3>举个栗子</h3>
+    <script type="text/javascript">
+      sider_filter.onclick = function() {
+        list.style.display = 'block';
+        sidebar_filter.className = 'select';
+        sidebar_hotel.className = '';
+        hotel.style.display = 'none';
+      };
+      silder_hotel.onclick = function() {
+        list.style.display = 'none';
+        sidebar_hotel.className = 'select';
+        sidebar_filter.className = '';
+        hotel.style.display = 'block';
+      }
+    </script>
+  </body>
+</html>

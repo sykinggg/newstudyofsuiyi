@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>基础布局</title>
+  </head>
+  <body>
+    <h1>基础布局</h1>
+    <h2>tab效果布局</h2>
+    <span>BMap.Map("container")</span>
+    <p>
+      创建一个地图实例，其中container指容器id,
+        之后需要调用Map.centerAndZoom()方法对地图进行初始化。
+        未进行初始化的地图将不能进行任何操作
+    </p>
+    <p>
+      2.BMap.Point
+      <br>
+      <b>以指定的经度和维度</b>
+    </p>
+    <p>
+      3.map.centerAndZoom(centerPoint, zoom:Number)
+      <br>
+      <b>一是center类型为Point时，zoom必须赋值，范围3-19级，还有就是如果center类型为字符串时</b>
+    </p>
+    <script type="text/javascript">
+      window.onload = function() {
+        var map = new BMap.Map("map-cont");
+        var point = new BMap.point(116.404, 39.915);
+        map.centerAndZoom(point, 15);
+      }
+    </script>
+  </body>
+</html>
