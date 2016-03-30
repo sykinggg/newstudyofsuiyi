@@ -587,5 +587,114 @@
 
 
       <h2>终结块（The finally Block）</h2>
+      <p>终结块包含了在try和catch块完成后、下面接着的try...catch语句之前执行的语句</p>
+      <p>终结块无论是否抛出异常都会执行。如果抛出了一个异常，就算没有异常处理，终结块里的语句也会执行</p>
+
+      <script>
+        /**
+        *   用文件处理语句打开了一个文件（服务端的JavaScript允许你进入文件）
+        *   在文件打开时一个异常抛出，终结块会在脚本错误之前关闭文件
+        */
+        openMyFile();
+        try {
+          writeMyFile(theData);
+          /*可能会引起一个错误*/
+        } catch(e) {
+          handleError(e);
+          /*处理产生的错误*/
+        } finally {
+          closeMyFile();
+          /*关闭资源*/
+        }
+
+        /**
+        *   如果终结块返回一个值，该值会是整个try-catch-finally流程的返回值
+        */
+        function f() {
+          try {
+            console.log(0);
+            throw "bogus";
+          } catch(e) {
+            console.log(1);
+            return true;
+            /*返回语句终止用以完成该终结块*/
+            console.log(2);
+            /*不可执行*/
+          } finally {
+            console.log(3);
+            return false;
+            /*覆盖以前的终止操作*/
+            console.log(4);
+            /*不可执行*/
+          }
+          /*跳出终结块后执行*/
+          console.log(5);
+        }
+        f();
+      </script>
+      <h3>代码引申</h3>
+      <p>嵌套try...catch语句</p>
+      <p>使用注意:</p>
+      <span>你可以嵌套一个或多个try...catch语句<b>如果一个内部的try...catch语句没有捕捉块（catch block），将会启动匹配外部的try...catch语句的捕捉块（catch block）</b></span>
+
+
+
+      <h2>错误匹配对象(Utilizing Error objects)</h2>
+      <p>可以用'name'和'message'获取更精炼的信息。'name'提供了常规的错误类(e.g., 'DOMException' or 'Error')，而'message'通常提供了一条从错误对象转换成字符串的简明信息</p>
+      <script>
+            console.log("使用错误构造函数（the Error constructor）");
+            /**
+            *   使用错误构造函数（the Error constructor）
+            */
+            function doSomethingErrorProne() {
+                if(ourCodeMakesAMistake()) {
+                    throw (new Error('The message'));
+                } else {
+                    doSomethingToGetAJavascriptError();
+                }
+            }
+            // ...
+            try {
+                doSomethingErrorProne();
+            }
+            catch (e) {
+                console.log(e.name);
+                console.log(e.message);
+            }
+      </script>
+
+
+
+
+      <h1>补充概念(ecma6javascript)</h1>
+      <p>从ECMAScript 6的收益承诺，JavaScript对象允许你控制延迟和异步操作流程支持。</p>
+      <h2>ajax的状态</h2>
+      <ul>
+          <li>未决：初始状态，未完成或拒绝</li>
+          <li>完成：成功运作</li>
+          <li>拒绝：失败操作</li>
+          <li>解决： 承诺或履行或拒绝，而不是等待</li>
+      </ul>
+      <p>详细描述:用承诺和XMLHttpRequest对象来加载一个图像是一个简单的例子可以在GitHub的MDN承诺测试库。你也可以在行动中看到它。每一步都是评论和允许你按照承诺和XHR建筑紧密。</p>
+      <script>
+            function imgLoad(url) {
+                return new Promise(function(resolve, reject) {
+                    var request = new XMLHttpRequest();
+                    request.open('GET', url);
+                    request.responseType = 'blob';
+                    request.onload = function() {
+                        if (request.status === 200) {
+                            resolve(request.response);
+                        } else {
+                            reject(Error('Image didn\'t load successfully; error code:':request.statusText));
+                        }
+                    };
+                    request.onerror = function() {
+                        reject(Error('There was a network error.'));
+                    };
+                    request.send();
+                });
+            }
+      </script>
 	</body>
 </html>
