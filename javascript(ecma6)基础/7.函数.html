@@ -448,6 +448,7 @@
 			/**
 			*	定义一个闭包
 			*/
+			console.log("-----闭包-----");
 			var pet = function(name) {
 				var getName = function() {
 					//内部函数可以访问 外部函数定义的"name"
@@ -465,7 +466,152 @@
 		<script>
 			var createPet = function(name) {
 				var sex;
+
+				return {
+					setName: function(newName) {
+						name = newName;
+					},
+
+					getName: function() {
+						return name;
+					},
+
+					getSex: function() {
+						return sex;
+					},
+
+					setSex: function(newSex) {
+						if(typeof newSex == "string"&&(newSex.toLowerCase()=="male" || newSex.toLowerCase() == "female")) {
+							sex = newSex;
+						}
+					}
+				}
 			}
+
+			var pet = createPet("Vivie");
+			pet.getName();
+			console.log(pet.getName());
+			// Vivie
+
+			pet.setName("Oliver");
+			console.log(pet.setName("Oliver"));
+			// undefined
+			pet.setSex("male");
+			console.log(pet.setSex("male"));
+			// undefined
+			pet.getSex();
+			console.log(pet.getSex());
+			// male
+			pet.getName();
+			console.log(pet.getName());
+			// Oliver
 		</script>
+		<h3>代码描述</h3>
+		<span>外部函数的name变量对内嵌函数来说是可取得的，而除了通过内嵌函数本身，没有其它任何方法可以取得内嵌的变量</span>
+		<h3>内部代码的作用</h3>
+		<span>内嵌函数的内嵌变量就像内嵌函数的保险柜</span>
+		<span>它们会为内嵌函数保留“稳定”——而又安全——的数据参与运行</span>
+		<span>而这些内嵌函数甚至不会被分配给一个变量，或者不必一定要有名字</span>
+		<script type="text/javascript">
+			var getCode = (function(){
+				var secureCode = "0]Eal(eh&2";
+
+				return function() {
+					return secureCode;
+				};
+			})();
+			getCode();
+			console.log(getCode());
+			// 0]Eal(eh&2
+		</script>
+		<h3>注意:</h3>
+		<p>
+			使用闭包时仍然要小心避免一些陷阱
+		</p>
+		<p>
+			如果一个闭包的函数用外部函数的变量名定义了同样的变量，那在外部函数域将再也无法指向该变量
+		</p>
+		<script type="text/javascript">
+			/**
+			*		闭包的陷阱
+			*/
+			var createPet = function(name) {
+				return {
+					setName: function(name) {
+						name = name;
+					}
+				}
+			}
+			createPet("suiyi");
+			console.log(createPet("suiyi"));
+			// Object {}
+			/*输出的也就是整个函数(this)*/
+		</script>
+		<h3>注意:</h3>
+		<p>
+			闭包中的神奇变量this是非常诡异的
+		</p>
+		<p>
+			因为this指代什么完全取决于函数在何处被调用，而不是在何处被定义
+		</p>
+		例如:<a href="http://jibbering.com/faq/notes/closures/">解释闭包的文章</a>
+
+
+
+
+
+
+
+
+
+		<h1>使用arguments对象</h1>
+		<p>重点:函数的实际参数会被保存在一个类似数组的arguments对象中</p>
+		<h2>语法格式</h2>
+		<script type="text/javascript">
+			// arguments[i]
+		</script>
+		<h2>语法描述</h2>
+		<p>其中i是引数的序数编号，以0开始</p>
+		<p>所以第一个传来的参数会是arguments[0]</p>
+		<p>参数的数量由arguments.length表示</p>
+		<h3>传值的优势</h3>
+		<p>使用arguments对象，你可以处理比声明的更多的参数来调用函数</p>
+		<p>可以用arguments.length来获得实际传递给函数的参数的数量，然后用arguments对象来取得每个参数</p>
+		<script type="text/javascript">
+			function myConcat(separator) {
+				var result = "",
+					i;
+				for(i = 1; i < arguments.length; i++) {
+					result += arguments[i] + separator;
+				}
+				return result;
+			}
+			// 可以给这个函数传递任意数量的参数，它会将各个参数连接成一个字符串“列表”
+			myConcat("", "red", "orange", "blue");
+			console.log(myConcat("", "red", "orange", "blue"));
+			// redorangeblue
+			myConcat("", "elephant", "giraffe", "lion", "cheetah");
+			console.log(myConcat("", "elephant", "giraffe", "lion", "cheetah"));
+			// elephantgiraffelioncheetah
+			myConcat("", "sage", "basil", "oregano", "pepper", "parsley");
+			console.log(myConcat("", "sage", "basil", "oregano", "pepper", "parsley"));
+			// sagebasiloreganopepperparsley
+		</script>
+		<h3>注意:</h3>
+		<p>arguments 变量只是 ”类数组对象“，并不是一个数组</p>
+		<p>称其为类数组对象是说它有一个索引编号和Length属性</p>
+
+
+
+
+
+
+
+
+
+		<h1>函数参数(Function parameter)</h1>
+		<p>在JavaScript中，函数参数的默认值是undefined</p>
+		<h1>ECMA6新概念</h1>
+		<span>在某些情况下设置不同的默认值是有用的</span>
 	</body>
 </html>
