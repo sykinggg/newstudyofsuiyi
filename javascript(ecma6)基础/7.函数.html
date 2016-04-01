@@ -732,5 +732,68 @@
 				}, 1000);
 			}
 		</script>
+
+
+
+
+
+
+
+
+
+
+		<h1>预定义函数(Predefined functions)</h1>
+		<p>JavaScript语言有好些个顶级的内建函数</p>
+		<h2>方法名称及描述</h2>
+
+
+		<h3>eval()</h3>
+		<p>eval()方法会对一串字符串形式的JavaScript代码字符求值</p>
+
+
+		<h3>uneval()</h3>
+		<p>uneval()方法创建的一个Object的源代码的字符串表示</p>
+
+
+		<h3>isFinite()</h3>
+		<p>isFinite()函数判断传入的值是否是有限的数值</p>
+		<span>如果需要的话，其参数首先被转换为一个数值</span>
+
+
+		<h3>isNaN()</h3>
+		<p>isNaN()函数判断一个值是否是NaN</p>
+		<h4>注意:</h4>
+		<p>注意： isNaN函数内部的强制转换规则十分有趣</p>
+		<span>另一个可供选择的是ECMAScript 6 中定义Number.isNaN() </span>
+		<span>使用 typeof 来判断数值类型</span>
+
+
+		<h3>parseFloat()</h3>
+		<p>parseFloat() 函数解析字符串参数，并返回一个浮点数</p>
+
+
+		<h3>parseInt()</h3>
+		<p>parseInt() 函数解析字符串参数，并返回指定的基数（基础数学中的数制）的整数</p>
+
+		<h3>decodeURL()</h3>
+		<p>decodeURI() 函数对先前经过encodeURI函数或者其他类似方法编码过的字符串进行解码</p>
+
+		<h3>decodeURLComponent()</h3>
+		<p>decodeURIComponent()方法对先前经过encodeURIComponent函数或者其他类似方法编码过的字符串进行解码</p>
+
+		<h3>encodeURL()</h3>
+		<p>encodeURI()方法通过用以一个，两个，三个或四个转义序列表示字符的UTF-8编码替换统一资源标识符（URI）的某些字符来进行编码（每个字符对应四个转义序列，这四个序列组了两个”替代“字符）</p>
+
+		<h3>encodeURIComponent()</h3>
+		<p>encodeURIComponent() 方法通过用以一个，两个，三个或四个转义序列表示字符的UTF-8编码替换统一资源标识符（URI）的每个字符来进行编码（每个字符对应四个转义序列，这四个序列组了两个”替代“字符）</p>
+
+		<h3>escape()</h3>
+		<p>已废弃的 escape() 方法计算生成一个新的字符串，其中的某些字符已被替换为十六进制转义序列</p>
+		<span>使用 encodeURI或者encodeURIComponent替代本方法</span>
+
+		<h3>unescape()</h3>
+		<p>已废弃的 unescape() 方法计算生成一个新的字符串，其中的十六进制转义序列将被其表示的字符替换</p>
+		<h4>注意:</h4>
+		<p>因为 unescape 已经废弃，建议使用decodeURI()或者decodeURIComponent 替代本方法</p>
 	</body>
 </html>
