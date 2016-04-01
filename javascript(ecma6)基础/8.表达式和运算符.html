@@ -379,18 +379,32 @@
         /*下面是&&（逻辑与）操作符的示例*/
         var a1 = true && true;
         console.log(a1);
+        // true
         var a2 = true && false;
         console.log(a2);
+        // false
         var a3 = false && true;
         console.log(a3);
+        // false
         var a4 = false && true;
         console.log(a4);
+        // false
         var a5 = false && (3==4);
         console.log(a5);
+        // false
         var a6 = false && "Cat";
         console.log(a6);
+        // false
         var a7 = "Cat" && false;
         console.log(a7);
+        // false
+
+        /*下面是||(逻辑或)操作符的示例*/
+        var o1 = true || true;
+        var o2 = false || true;
+        var o3 = true || false;
+        var o4 = false || (3===4);
+        var o5 = "Cat" || "Dog";
     </script>
   </body>
 </html>
