@@ -21,8 +21,376 @@
     <p>JavaScript 拥有二元（binary）和一元（unary）运算符， 和一个特殊的三元（ternary）运算符（条件运算符）</p>
     <span>一个二元运算符需要两个操作数（operand），分别在运算符的前面和后面</span>
     <script type="text/javascript">
-      operand1  operator operand2
-      操作数1    运算符    操作数2
+      // operand1  operator operand2
+      // 操作数1    运算符    操作数2
+    </script>
+    <h3>代码描述:3+4或x*y</h3>
+    <p>一个一元运算符需要一个在运算符（operator）前面或后面的操作数（operand）</p>
+    <script>
+      // operator  operand
+      // 运算符     操作数
+    </script>
+    <script>
+      // operand   operator
+      // 操作数     运算符
+    </script>
+    <h3>代码描述:x++或++x</h3>
+
+
+
+
+
+
+
+
+
+    <h1>赋值运算符(Assignment operators)</h1>
+    <p>一个 赋值运算符（assignment operator) 赋一个基于它右边操作数值的值给它左边的操作数</p>
+    <h2>复合赋值运算符</h2>
+    <script>
+        /**
+        *   赋值运算符总结
+        */
+        /*赋值Assignment*/
+        var Assignment = 3;
+        console.log(Assignment);
+        // 3
+
+        /*加法赋值AdditionAssignment*/
+        var AdditionAssignment = 0;
+        AdditionAssignment += Assignment;
+        console.log(AdditionAssignment);
+        // 3
+        AdditionAssignment = AdditionAssignment + Assignment;
+        console.log(AdditionAssignment);
+        // 6
+
+        /*减法赋值SubtractionAssignment*/
+        var SubtractionAssignment = 0;
+        SubtractionAssignment -= Assignment;
+        console.log(SubtractionAssignment);
+        // -3
+        SubtractionAssignment = SubtractionAssignment - Assignment;
+        console.log(SubtractionAssignment);
+        // -6
+
+        /*乘法赋值MultiplicationAssignment*/
+        var MultiplicationAssignment = 1;
+        MultiplicationAssignment *= Assignment;
+        console.log(MultiplicationAssignment);
+        // 3
+        MultiplicationAssignment = MultiplicationAssignment * Assignment;
+        console.log(MultiplicationAssignment);
+        // 9
+
+        /*除法赋值DivisionAssignment*/
+        var DivisionAssignment = 1;
+        DivisionAssignment /= Assignment;
+        console.log(DivisionAssignment);
+        // 0.3333333333333333
+        DivisionAssignment = DivisionAssignment / Assignment;
+        console.log(DivisionAssignment);
+        // 0.1111111111111111
+
+        /*求余赋值RemainderAssignment*/
+        var RemainderAssignment = 1;
+        RemainderAssignment %= Assignment;
+        console.log(RemainderAssignment);
+        // 1
+        RemainderAssignment = RemainderAssignment % Assignment;
+        console.log(RemainderAssignment);
+        // 1
+
+        /*求幂赋值ExponentiationAssignment*/
+        // var ExponentiationAssignment = 1;
+        // ExponentiationAssignment **= Assignment;
+        // console.log(ExponentiationAssignment);
+        // ExponentiationAssignment = ExponentiationAssignment ** Assignment;
+        // console.log(ExponentiationAssignment);
+
+        /*左移位赋值LeftShiftAssignment*/
+        var LeftShiftAssignment = 1;
+        LeftShiftAssignment <<= Assignment;
+        console.log(LeftShiftAssignment);
+        // 8
+        LeftShiftAssignment = LeftShiftAssignment << Assignment;
+        console.log(LeftShiftAssignment);
+        // 64
+
+        /*右移赋值RightShiftAssignment*/
+        var RightShiftAssignment = -10;
+        RightShiftAssignment <<= Assignment;
+        console.log(RightShiftAssignment);
+        // -80
+        RightShiftAssignment = RightShiftAssignment << Assignment;
+        console.log(RightShiftAssignment);
+        // -640
+
+        /*无符号右移赋值UnsignedRightShiftAssignment*/
+        var UnsignedRightShiftAssignment = 100;
+        UnsignedRightShiftAssignment >>>= Assignment;
+        console.log(UnsignedRightShiftAssignment);
+        // 12
+        UnsignedRightShiftAssignment = UnsignedRightShiftAssignment >>> Assignment;
+        console.log(UnsignedRightShiftAssignment);
+        // 1
+
+        /*按位与赋值BitwiseANDAssignment*/
+        var BitwiseAndAssignment = 10;
+        BitwiseAndAssignment &= Assignment;
+        console.log(BitwiseAndAssignment);
+        // 2
+        BitwiseAndAssignment = BitwiseAndAssignment & Assignment;
+        console.log(BitwiseAndAssignment);
+        // 2
+
+        /*按位异或赋值BitwiseXORAssignment*/
+        var BitwiseXORAssignment = 9;
+        BitwiseXORAssignment ^= Assignment;
+        console.log(BitwiseXORAssignment);
+        // 10
+        BitwiseXORAssignment = BitwiseXORAssignment ^ Assignment;
+        console.log(BitwiseXORAssignment);
+        // 9
+
+        /*按位或赋值BitwiseORAssignment*/
+        var BitwiseORAssignment = 9;
+        BitwiseORAssignment |= Assignment;
+        console.log(BitwiseORAssignment);
+        // 11
+        BitwiseORAssignment = BitwiseORAssignment | Assignment;
+        console.log(BitwiseORAssignment);
+        // 11
+    </script>
+
+    <h2>解构Destructuring</h2>
+    <p>这个 解构赋值 destructuring assignment 语法是一个能从数组或对象对应的数组结构或对象字面量里提取数据的 Javascript 表达式</p>
+    <script>
+        var foo = ["one", "two", "three"];
+        // 不使用解构
+        var one = foo[0];
+        var two = foo[1];
+        var three = foo[2];
+        console.log("one   :"+one);
+        console.log("two   :"+two);
+        console.log("three :"+three);
+        // 使用解构（兼容性问题）
+        // var [one, two, three] = foo;
+    </script>
+
+
+
+
+
+
+
+
+
+    <h1>比较运算符(Comparison operators)</h1>
+    <p>总结:一个 比较运算符 comparison operator 比较它的操作数并返回一个机遇表达式是否为真的逻辑值</p>
+    <span>1.操作数可以是数字，字符串，逻辑，对象值</span>
+    <span>字符串比较是机遇标准的字典顺序，使用Unicode值</span>
+    <h2>比较运算符ComparsionOperators</h2>
+    <script>
+        console.log("-----比较运算符-----");
+        var var1 = 3;
+        var var2 = 9;
+        var var3 = "fuck";
+        var var4 = "3";
+        /*等于Equal(==)*/
+        console.log("等于Equal(==)");
+        /*如果两边操作数相等时返回true*/
+        console.log(var1 == var2);
+        // false
+        console.log(var1 == var3);
+        // false
+        console.log(var1 == var4);
+        // true
+
+        /*不等于NotEqual(!==)*/
+        console.log("不等于NotEqual(!==)");
+        /*如果两边操作数不相等时返回true*/
+        console.log(var1 !== var2);
+        // true
+        console.log(var1 !== var3);
+        // true
+
+        /*全等StrictEqual(===)*/
+        console.log("全等StrictEqual(===)");
+        /*两边操作数相等且类型相同时返回true*/
+        console.log(var1 === var4);
+        // false
+
+        /*不全等StrictNotEqual(!===)(注意:兼容性不支持)*/
+        console.log("不全等StrictNotEqual(!===)");
+        /*两边操作数不相等或类型不同时返回true*/
+        // console.log(var1 !=== var4);
+        // console.log(var1 !=== var2);
+
+        /*大于Greater than(>)*/
+        console.log("大于Greater than(>)");
+        /*左边的操作数大于右边的操作数返回true*/
+        console.log(var1 > var2);
+        // false
+        console.log(var2 > var1);
+        // true
+
+        /*大于等于Greater than or equal(>=)*/
+        console.log("大于等于Greater than or equal(>=)")
+        /*左边的操作数大于或等于右边的操作数返回true*/
+        console.log(var1 >= var2);
+        // false
+        console.log(var2 >= var1);
+        // true
+
+        /*小于Less than(<)*/
+        console.log("小于Less than(<)");
+        /*左边的操作数小于右边的操作数返回true*/
+        console.log(var1 < var2);
+        // true
+        console.log(var1 < var4);
+        // false
+
+        /*小于等于Less than or equal(<=)*/
+        console.log("小于等于Less than or equal(<=)");
+        /*左边的操作数小于或等于右边的操作数返回true*/
+        console.log(var1 <= var2);
+        // true
+        console.log(var1 <= var4);
+        // true
+    </script>
+    <h3>注意:(=>)不是运算符,但是有符号箭头功能</h3>
+
+
+
+
+
+
+
+
+
+    <h1>算术运算符(Arithmetic operators)</h1>
+    <p>算术运算符使用数值(字面量或者变量)作为操作数并返回一个数值</p>
+    <span>标准的算术运算符就是加减乘除(+ - * /).当操作数是浮点数时,这些运算符表现得跟它们在大多数编程语言中一样(特殊要注意的是,除零会产生Infinity(译者注:大多数编程语言除零会抛出异常))</span>
+    <script>
+        console.log("算术运算符");
+        /**
+        *   算术运算符
+        */
+        console.log(1/2);
+        // 0.5
+        console.log(1/2 == 1.0/2.0);
+        // true
+    </script>
+    <h2>算术运算符总结</h2>
+    <script>
+        /*%(求余)*/
+        console.log("%(求余)");
+        /*二元运算符. 返回相除之后的余数*/
+        console.log(12%5);
+        // 2
+
+        /*++(自增)*/
+        console.log("++(自增)");
+        /*注意:一元运算符. 将操作数的值加一*/
+        /*如果放在操作数前面 (++x), 则返回加一后的值*/
+        /*如果放在操作数后面 (x++), 则返回操作数原值,然后再将操作数加一*/
+        var x = 1;
+        console.log(++x);
+        // 2
+        console.log(x);
+        // 2
+        console.log(x++);
+        // 2
+        console.log(x);
+        // 3
+
+        /*--(自减)*/
+        console.log("--(自减)");
+        /*一元运算符. 将操作数的值减一. 前后缀两种用法的返回值类似自增运算符*/
+        console.log(x);
+        // 3
+        console.log(--x);
+        // 2
+        console.log(x);
+        // 2
+        console.log(x--);
+        // 2
+        console.log(x);
+        // 1
+
+        /*-(一元负值符)*/
+        console.log("-(一元负值符)");
+        /*一元运算符,返回操作数的负值*/
+        console.log(x);
+        // 1
+        console.log(-x);
+        // -1
+
+        /*+*/
+        console.log("+");
+        /*一元运算符,试图将操作数转换为数*/
+        console.log(+"123s");
+        // NaN
+        console.log(+"123");
+        // 123
+    </script>
+
+
+
+
+
+
+
+
+
+    <h1>位运算符(Bitwise operators)</h1>
+    <p>位运算符将它的操作数视为32位元的二进制串(0和1组成)而非十进制八进制或十六进制数</p>
+    <span>例如:十进制数字9用二进制表示为1001，位运算符就是在这个二进制表示上执行运算，但是返回结果是标准的JavaScript数值</span>
+    <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Expressions_and_Operators">位运算符的技术</a>
+
+
+
+
+
+
+
+
+
+    <h1>逻辑运算符(Logical operators)</h1>
+    <p>逻辑运算符常用于布尔（逻辑）值之间; 当操作数都是布尔值时，返回值也是布尔值</p>
+    <p>不过实际上&&和||返回的是一个特定的操作数的值，所以当它用于非布尔值的时候，返回值就可能是非布尔值</p>
+    <script>
+        console.log("逻辑运算符(Logical operators)");
+        /*逻辑与LogicalAND(&&)*/
+        // console.log(expr1 && expr2);
+        /*(逻辑与) 如果expr1能被转换为false，那么返回expr1；否则，返回expr2。因此，&&用于布尔值时，当操作数都为true时返回true；否则返回false*/
+
+        /*逻辑或LogicalOR(||)*/
+        // console.log(expr1 || expr2);
+        /*(逻辑或) 如果expr1能被转换为true，那么返回expr1；否则，返回expr2。因此，||用于布尔值时，当任何一个操作数为true则返回true；如果操作数都是false则返回false*/
+
+        /*逻辑非LOgicalNOT(!)*/
+        // console.log(!expr)
+        /*(逻辑非) 如果操作数能够转换为true则返回false；否则返回true*/
+    </script>
+    <h2>能被转换为false的值有null, 0, NaN, 空字符串("")和undefined</h2>
+    <script>
+        /*下面是&&（逻辑与）操作符的示例*/
+        var a1 = true && true;
+        console.log(a1);
+        var a2 = true && false;
+        console.log(a2);
+        var a3 = false && true;
+        console.log(a3);
+        var a4 = false && true;
+        console.log(a4);
+        var a5 = false && (3==4);
+        console.log(a5);
+        var a6 = false && "Cat";
+        console.log(a6);
+        var a7 = "Cat" && false;
+        console.log(a7);
     </script>
   </body>
 </html>
