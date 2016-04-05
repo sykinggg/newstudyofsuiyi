@@ -401,10 +401,654 @@
 
         /*下面是||(逻辑或)操作符的示例*/
         var o1 = true || true;
+        console.log(o1);
+        // true
         var o2 = false || true;
+        console.log(o2);
+        // true
         var o3 = true || false;
+        console.log(o3);
+        // true
         var o4 = false || (3===4);
+        console.log(o4);
+        // false
         var o5 = "Cat" || "Dog";
+        console.log(o5);
+        // Cat
+        var o6 = false || "Cat";
+        console.log(o6);
+        // Cat
+        var o7 = "Cat" || false;
+        console.log(o7);
+        // Cat
+
+        /*下面是！（逻辑非）操作符的示例*/
+        var n1 = !true;
+        console.log(n1);
+        // false
+        var n2 = !false;
+        console.log(n2);
+        // true
+        var n3 = !"Cat";
+        console.log(n3);
+        // false
     </script>
+
+
+
+
+
+
+
+
+
+    <h1>短路求值(Short-circuit evaluation)</h1>
+    <p>由于逻辑表达式从左到右执行,因此有短路规则.</p>
+    <ul>
+        <li>false&&anything to false</li>
+        <li>true||anything to true</li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+    <h1>字符串运算符(String operators)</h1>
+    <p>串联运算符(+)链接变量,数字,字符串等,和字符串链接并返回字符串</p>
+    <script>
+        console.log("字符串运算符(String operators)");
+        console.log("my" + "string" + 2);
+        // mystring2
+        /*间歇的赋值符号+=也可以用来连接字符串*/
+        var myString = "alpha";
+        console.log(myString);
+        // alpha
+        myString += "bet";
+        console.log(myString);
+        // alphabet
+    </script>
+
+
+
+
+
+
+
+
+
+    <h1>条件运算符(Conditional(ternary)operator)</h1>
+    <p>条件运算符(conditional operator)是JavaScript中唯一需要三个操作数的运算符</p>
+    <h2>语法格式</h2>
+    <script>
+        console.log("条件运算符(Conditional(ternary)operator)");
+        // condition ? val1 : val2
+    </script>
+    <h2>代码描述</h2>
+    <p>如果condition为true，则结果取val1。否则为val2</p>
+    <h2>使用规则</h2>
+    <p>你能够在任何允许使用标准运算符的地方使用条件运算符</p>
+    <script>
+        // var status = (age >= 18) ? "dault" : "minor";
+    </script>
+    <h2>代码描述</h2>
+    <p>当age大于等于18的时候，语句将“adult”赋值给status；否则将“minor”赋值给status</p>
+
+
+
+
+
+
+
+
+    <h1>逗号操作符(Comma operator)</h1>
+    <p>逗号操作符(comma operator)( , )对两个操作数进行求值并返回第二个操作数的值</p>
+    <h2>用法指南</h2>
+    <p>常常用在for循环中，在每次循环时对多个变量进行更新</p>
+    <script>
+        console.log("逗号操作符(Comma operator)");
+        // for(var i = 0; j = 9; i <= j; i++; j--)
+        //     console.log("a[" + i + "][" + j + "]=" + a[i][j])
+    </script>
+
+
+
+
+
+
+
+
+
+
+    <h1>一元操作符</h1>
+    <p>一元操作符仅对应一个操作数</p>
+    <script>
+        console.log("一元操作符");
+    </script>
+
+    
+
+
+
+
+    <h2>delete</h2>
+    <p>delete操作符, 删除一个对象(an object)或一个对象的属性(an object's property)或者一个数组中某一个键值(an element at a specified index in an array)</p>
+    <h3>语法格式</h3>
+    <script>
+        console.log("delete");
+        // delete objectName;
+        // delete objectName.property;
+        // delete objectName[index];
+        // delete property;
+    </script>
+    <h3>代码描述</h3>
+    <p>objectName是一个对象名, property 是一个已经存在的属性, index是数组中的一个已经存在的键值的索引值</p>
+    <p>第四行的形式只在with声明的状态下是合法的， 从对象中删除一个属性</p>
+    <p>你能使用 delete 删除各种各样的隐式声明(implicity declared)， 但是被var声明的除外</p>
+    <h3>注意:</h3>
+    <p>如果 delete 操作成功, 属性或者元素会变成 undefined. 如果 delete可行会返回true，如果不成功返回false.</p>
+    <script>
+        x = 42;
+        var y = 43;
+        myobj = new Number();
+        myobj.h = 4;
+        delete x;
+        console.log(delete x);
+        // false
+        delete y;
+        console.log(delete y);
+        // false
+        delete Math.PI;
+        console.log(delete Math.PI);
+        // false
+        delete myobj.h;
+        console.log(delete myobj.h);
+        // true
+        delete myobj;
+        console.log(delete myobj);
+        // true
+    </script>
+
+    <h2>删除数组元素(deleting array elements)</h2>
+    <p>删除数组中的元素时，数组的长度是不变的，例如delete a[3], a[4]  ，a[4] 和a[3] 仍然存在变成了undefined</p>
+    <script>
+        /**
+        *   delete 删除数组中的一个元素, 这个元素就不在数组中了. 例如, trees[3]被删除,trees[3] 仍然可寻址并返回undefined.
+        */
+        var trees = new Array("redwood", "bay", "cedar", "oak", "maple");
+        delete trees[3];
+        if(3 in tree) {
+            // 不会被执行
+        }
+    </script>
+
+
+
+
+
+    <h2>typeof</h2>
+    <h3>语法格式</h3>
+    <script>
+        console.log("typeof");
+        // typeof operand
+        // typeof (operand)
+    </script>
+    <h3>语法描述</h3>
+    <p>typeof运算符返回一个字符串，表示未计算操作数的类型</p>
+    <p>操作数是字符串、变量、关键字或对象的类型是返回的</p>
+    <p>括号是可选的</p>
+    <script>
+        var myFun = new Function("5 + 2");
+        var shape = "round";
+        var size = 1;
+        var today = new Date();
+        /**
+        *   使用示例
+        */
+        console.log("typeof 使用示例");
+        typeof myFun;
+        console.log(typeof myFun);
+        // funtion
+        typeof shape;
+        console.log(typeof shape);
+        // String
+        typeof size;
+        console.log(typeof size);
+        // number
+        typeof today;
+        console.log(typeof today);
+        // object
+        typeof dontExist;
+        console.log(typeof dontExist);
+        // undefined
+
+        /**
+        *   typeof 对于真值和空值  
+        */
+        console.log("typeof 对于真值和空值");
+        typeof true;
+        console.log(typeof true);
+        // boolean
+        typeof false;
+        console.log(typeof false);
+        // boolean
+        typeof null;
+        console.log(typeof null);
+        // object
+
+        /**
+        *   typeof 对于数字和字符串  
+        */
+        console.log("typeof 对于数字和字符串");
+        typeof 62;
+        console.log(typeof 62);
+        // number
+        typeof "Hello World";
+        console.log(typeof "Hello World");
+        // String
+
+        /**
+        *   typeof 对于属性值
+        */
+        console.log("typeof 对于属性值");
+        typeof document.lastModified;
+        console.log(typeof document.lastModified);
+        // String
+        typeof window.length;
+        console.log(typeof window.length);
+        // Number
+        typeof Math.LN2;
+        console.log(typeof Math.LN2);
+        // Number
+
+        /**
+        *   typeof  对于方法和函数
+        */
+        console.log("typeof  对于方法和函数");
+        typeof blur;
+        console.log(typeof blur);
+        // function
+        typeof eval;
+        console.log(typeof eval);
+        // function
+        typeof parseInt;
+        console.log(typeof parseInt);
+        // function
+        typeof shape.split;
+        console.log(typeof shape.split);
+        // function
+
+        /**
+        *   typeof  对于预定义的对象
+        */
+        console.log("typeof  对于预定义的对象");
+        typeof Date;
+        console.log(typeof Date);
+        // function
+        typeof Function;
+        console.log(typeof Function);
+        // function
+        typeof Math;
+        console.log(typeof Math);
+        // Object
+        typeof Option;
+        console.log(typeof Option);
+        // function
+        typeof String;
+        console.log(typeof String);
+        // function
+    </script>
+
+
+
+
+
+
+    <h2>void</h2>
+    <h3>语法格式</h3>
+    <script>
+        console.log("void");
+        // void (expression)
+        // void expression
+    </script>
+    <h3>使用描述</h3>
+    <p>void操作符指定一个表达式来进行赋值,而不是返回值</p>
+    <p>表达的是一个javascript表达式</p>
+    <p>可以使用空操作符来指定一个表达式为超文本链接,表达式进行了操作但未加载当前文档的位置</p>
+    <h3>真实示例</h3>
+    <p>当用户点击链接，无效（0）对未定义，这在JavaScript没有影响</p>
+    <a href="javascript:void(0)">Click here to do nothing</a>
+    <p>代码创建了一个超文本链接，用户点击该链接时提交表单</p>
+    <a href="javascript:void(document.form.submit())">Click here to Submit</a>
+
+
+
+
+
+
+
+
+
+
+    <h1>关系操作符</h1>
+    <p>一个关系运算符比较其操作数，然后返回一个布尔值</p>
+
+
+
+
+
+    <h2>in</h2>
+    <p>如果指定的属性(property)在指定的对象(object)中会返回true</p>
+    <h3>语法格式</h3>
+    <script>
+        // propNameOrNumber in  objectName
+    </script>
+    <h3>语法描述</h3>
+    <p>propNameOrNumber是一个字符串或数值表达式代表一个属性名或数组索引objectName是一个对象名</p>
+    <script>
+        /**
+        *    in 操作的常见用法
+        */
+        console.log("in 操作的常见用法");
+        var trees = new Array("redwood", "bay", "ceder", "oak", "maple");
+        0 in trees;
+        console.log(0 in trees);
+        // true
+        3 in trees;
+        console.log(3 in trees);
+        // true
+        6 in trees;
+        console.log(6 in trees);
+        // false
+        "bay" in trees;
+        console.log("bay" in trees);
+        // false
+        "length" in trees;
+        console.log("length" in trees);
+        // true
+
+        /**
+        *   in 操作预定义对象
+        */
+        console.log("in 操作预定义对象");
+        "PI" in trees;
+        console.log("PI" in trees);
+        // false
+        var myString = new String("coral");
+        "length" in myString;
+        console.log("length" in myString);
+        // true
+
+        /**
+        *   in 操作自定义对象
+        */
+        console.log("in 操作自定义对象");
+        var mycar = {make: "Honda", model: "Accord", year: 1998};
+        "make" in mycar;
+        console.log("make" in mycar);
+        // true
+        "model" in mycar;
+        console.log("model" in mycar);
+        // true
+    </script>
+
+
+
+
+
+        <h2>instanceof</h2>
+        <p>如果对象是某种指定类型(object type)返回true</p>
+        <h3>语法格式</h3>
+        <script>
+            console.log("instanceof");
+            // objectName instanceof objectType
+        </script>
+        <h3>语法描述</h3>
+        <p>objectName 是对象的名称相较于objectType,objectType是对象的类型, 例如Date或 Array</p>
+        <h3>使用注意</h3>
+        <p>当你需要确认一个对象在运行时的类型时使用instanceof</p>
+        <p>例如, 抓取异常, 你可以根据抛出异常的类型分类处理异常代码</p>
+        <script>
+            /**
+            *   使用instanceof去判断 theDay是否是一个 Date 对象
+            */
+            var theDay = new Date(1995, 12, 17);
+            if(theDay instanceof Date) {
+                // statement to execute执行
+            }
+        </script>
+
+
+
+
+
+
+
+
+
+
+        <h1>运算符优先级</h1>
+        <p>运算符的优先级决定了它们应用于表达式时的顺序</p>
+        <h3>注意</h3>
+        <p>可以用圆括号重写运算符优先级</p>
+        <h2>操作符优先级</h2>
+        <p>操作符的优先级，从最高到最低</p>
+        <table>
+            <thead>
+                <tr>
+                    <td>Operator type</td><td>individual operators</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>member</td><td>. []</td>
+                </tr>
+                <tr>
+                    <td>call/create instance</td><td>() new</td>
+                </tr>
+                <tr>
+                    <td>negation/increment</td><td>! ~ - + ++ -- typeof void delete</td>
+                </tr>
+                <tr>
+                    <td>multiply/divide</td><td>* / %</td>
+                </tr>
+                <tr>
+                    <td>addition/subtraction</td><td>+ -</td>
+                </tr>
+                <tr>
+                    <td>bitwise shift</td><td><< >> >>></td>
+                </tr>
+                <tr>
+                    <td>relational</td><td>< <= > >= in instanceof</td>
+                </tr>
+                <tr>
+                    <td>equality</td><td>== != === !==</td>
+                </tr>
+                <tr>
+                    <td>bitwise-and</td><td>&</td>
+                </tr>
+                <tr>
+                    <td>bitwise-XOr</td><td>^</td>
+                </tr>
+                <tr>
+                    <td>bitwise-or</td><td>|</td>
+                </tr>
+                <tr>
+                    <td>logical-and</td><td>&&</td>
+                </tr>
+                <tr>
+                    <td>logical-or</td><td>||</td>
+                </tr>
+                <tr>
+                    <td>conditional</td><td>?:</td>
+                </tr>
+                <tr>
+                    <td>assignment</td><td>= += -= *= /= <<= >>= >>>= &= ^= |=</td>
+                </tr>
+                <tr>
+                    <td>comma</td><td>,</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+
+
+
+
+
+
+        <h1>表达式</h1>
+        <script>
+            console.log("表达式");
+        </script>
+        <p>表达式是可以解析为值的任何有效单位</p>
+        <h2>概念描述</h2>
+        <ul>
+            <li>赋值给一个变量赋值的表达式</li>
+            <li>仅仅是有值的表达式</li>
+        </ul>
+        <h3>表达式×= 7是第一类的例子</h3>
+        <p>这个表达式使用=操作符将值7赋值给变量X,表达式本身的计算值为7</p>
+        <h3>表达式3 + 4是第二类的例子</h3>
+        <p>此表达式使用+运算符将结果添加到3和4，而不指定结果，7，为变量</p>
+
+        <h2>javascript有以下表现</h2>
+        <ul>
+            <li>算术：评估一个数字，例如3.14159</li>
+            <li>字符串：一个字符串，例如，“弗莱德”或“234”</li>
+            <li>逻辑：评估为真或假</li>
+            <li>主要表现：JavaScript基本关键词和一般表达式</li>
+            <li>左手边表达式：左值是赋值的目的地</li>
+        </ul>
+
+
+
+
+
+
+
+        <h2>主要表达式(Primary expressions)</h2>
+        <script>
+            console.log("主要表达式(Primary expressions)");
+        </script>
+
+
+
+
+        <h3>this</h3>
+        <p>使用this keyword关键字来指代当前对象(current object)，通常，this指代的是方法中正在被调用的对象</p>
+        <h4>用法示例</h4>
+        <script>
+            console.log("this");
+            // this["propertyName"]
+            // this.propertyName
+
+            /**
+            *   Example 1.
+            */
+            /*假设一个用于验证对象value属性的validate函数，传参有对象，最高值和最低值*/
+            function validate(obj, lowval, hival) {
+                if((obj.value < lowval) || (obj.value > hival))
+                    console.log("Invalid Value!");
+            }
+        </script>
+        <p>可以在任何表格元素的onchange时间处理中调用validat函数，用this来指代当前的表格元素</p>
+        <p>Enter a number between 18 and 99.</p>
+        <input type="text" name="age" size=3 onChange="validate(this, 18, 99);">
+        
+        <!-- Example 2. -->
+        <form name="myform">
+            form Name: <input type="text" name="text1" value="Beluga">
+            <br>
+            <input type="text" name="button" value="Show Form Name"
+            onClick="text1.value=this.value">
+        </form>
+        <h4>代码描述</h4>
+        <p>当和表格的属性相结合时，this可以指代当前对象的父元素表格</p>
+        <p>表格myFrom包含了一个文本对象和一个按钮。当用户点击按钮的时候，文本对象的value值将会变成表格的名字</p>
+        <p>按钮的onClick处理事件使用this.form来指代父元素表格myForm</p>
+
+
+
+
+
+
+        <h3>分组计算</h3>
+        <p>分组运算符（）控制表达式中的优先级</p>
+        <script>
+            var a = 1;
+            var b = 2;
+            var c = 3;
+
+            /*默认优先级*/
+            a + b * c
+            console.log(a + b * c);
+
+            /*改变的优先级*/
+            a + ( b * c )
+            console.log(a + ( b * c ));
+
+            /*优先级至高*/
+            (a + b) * c
+            console.log((a + b) * c);
+
+        </script>
+
+
+
+
+
+
+
+
+
+
+        <h1>内存理解</h1>
+        <p>理解是一个实验的JavaScript功能，目标是包括在未来的ECMAScript版本。有两个版本的理解</p>
+        <ul>
+            <li>[for(x of y)x]</li>
+            <p>阵列(Array comprehensions)</p>
+            <li>(for(x of y)y)</li>
+            <p>Generator理解</p>
+        </ul>
+        <script>
+            console.log("内存理解");
+            /**
+            *   理解存储于许多编程语言，允许你快速组装一个基于现有的一个新数组
+            */
+            // var i;
+            // [for (i of [ 1, 2, 3 ]) i*i ]; 
+            // console.log([for (i of [ 1, 2, 3 ]) i*i ]; );
+
+            // var abc = ["A", "B", "C"];
+            // [for (letters of abc) letters.toLowerCase()];
+            // console.log([for (letters of abc) letters.toLowerCase()]);
+        </script>
+
+
+
+
+
+
+
+
+
+        <h1>左手表达式</h1>
+        <p>左值是赋值的目的地</p>
+        <h2>new</h2>
+        <p>你可以使用new operator 创建一个自定义类型或者是 Array, Boolean, Date, Function, Image, Number, Object, Option, RegExp, String这些预置类型的对象实例</p>
+        <h3>注意</h3>
+        <p>在服务端，你也可以和DbPool, Lock, File, SendMail一起使用</p>
+        <script>
+            var objectName = new objectType([param1, param2, ..., paramN);
+        </script>
   </body>
 </html>
