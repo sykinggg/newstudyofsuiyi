@@ -353,16 +353,71 @@
 		<p>Then Xmas95.getMonth() 返回 11, and Xmas95.getFullYear() 返回 1995</p>
 		<p>getTime 和 setTime 方法对于比较日期是非常有用的</p>
 		<p>getTime方法返回从1970年1月1日00:00:00的毫秒数</p>
+
+
+
+
+
 		<script type="text/javascript">
 			/*今年剩下的天数*/
 			var today = new Date();
-			var endYear = new Date(1995, 11, 31, 23, 59, 59, 999); // 设置日和月，注意，月份是0-11
-			endYear.setFullYear(today.getFullYear()); // 把年设置为今年
-			var msPerDay = 24 * 60 * 60 * 1000; // 每天的毫秒数
+			// 设置日和月，注意，月份是0-11
+			var endYear = new Date(1995, 10, 31, 23, 59, 59, 999); 
+			// 把年设置为今年
+			endYear.setFullYear(today.getFullYear());
+			// 每天的毫秒数
+			var msPerDay = 24 * 60 * 60 * 1000;
 			var daysLeft = (endYear.getTime() - today.getTime()) / msPerDay;
-			var daysLeft = Math.round(daysLeft); //返回这一年剩下的天数
+			//返回这一年剩下的天数
+			var daysLeft = Math.round(daysLeft);
 			console.log(daysLeft);
 			// 270
 		</script>
+		<h3>代码描述</h3>
+		<p>创建了一个包含今天的日期的Date对象，并命名为today</p>
+		<p>创建了一个名为endYear的Date对象，并把年份设置为当前年份</p>
+		<p>使用每天的毫秒数和getTime分别获取今天和年底的毫秒数，计算出了今天到年底的天数，最后四舍五入得到今年剩下的天数</p>
+
+
+		<h3>parse方法对于从日期字符串赋值给现有的Date对象很有用</h3>
+		<script>
+			/*代码使用parse和setTime分配了一个日期值给IPOdate对象*/
+			var IPOdate = new Date();
+			IPOdate.setTime(Date.parse("Aug 9, 1995"));
+			console.log(IPOdate);
+			// Wed Aug 09 1995 00:00:00 GMT+0800 (中国标准时间)
+		</script>
+
+
+
+		<script>
+			/**
+			*	JSClock()函数返回了用数字时钟格式的时间
+			*/
+			function JSClock() {
+				var time = new Date();
+				var hour = time.getHours();
+				var minute = time.getMinutes();
+				var second = time.getSeconds();
+				var temp = "" + ((hour > 12) ? hour - 12 : hour);
+				if(hour == 0)
+					temp = "12";
+				temp += ((minute < 10) ? ":0" : ":") + minute;
+				temp += ((second < 10) ? ":0" : ":") + second;
+				temp += (hour >= 12) ? "P.M." : "A.M.";
+				return temp;
+			}
+			console.log(JSClock());
+			// 9:36:46A.M.
+		</script>
+		<h3>代码描述</h3>
+		<p>JSClock函数首先创建了一个叫做time的新的Date对象，因为没有参数，所以time代表了当前日期和时间</p>
+		<p>调用了getHours, getMinutes以及getSeconds方法把当前的时分秒分别赋值给了hour, minute,second</p>
+
+		<h4>接下来的4句在time的基础上创建了一个字符串</h4>
+		<p>第一句创建了一个变量temp，并通过一个条件表达式进行了赋值，如果小时大于12，就为 (hour - 12), 其他情况就为 hour, 除非 hour 为 0, 这种情况下，它会变成 12</p>
+		<p>接下来的语句拼接了minute的值到temp后</p>
+		<p>如果minute小于10，条件表达式就会在minute前边加个0，其他情况下加一个分号。然后按同样的方式在temp后拼接上了秒</p>
+		<p>最后，如果hour是12或者更大，条件表达式会在temp后拼接"P.M."，否则拼接"A.M."</p>
 	</body>
 </html>

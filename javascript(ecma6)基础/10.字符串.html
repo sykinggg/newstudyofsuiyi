@@ -1,0 +1,303 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>字符串</title>
+	</head>
+	<body>
+		<h1>字符串</h1>
+		<p>JavaScript中的 String 类型用于表示文本型的数据</p>
+		<p>它是由无符号整数值（16bit）作为元素而组成的集合</p>
+		<p>字符串中的每个元素在字符串中占据一个位置</p>
+		<p>第一个元素的index值是0, 下一个元素的index值是1, 以此类推</p>
+		<p>字符串的长度就是字符串中所含的元素个数.你可以通过String字面值或者String对象两种方式创建一个字符串</p>
+
+
+
+
+
+		<h2>String字面值</h2>
+		<p>使用单引号或双引号创建简单的字符串</p>
+		<script>
+			'foo'
+			console.log('foo');
+			// foo
+			"bar"
+			console.log("bar");
+			// bar
+		</script>
+		
+
+
+
+
+		<h2>16进制转义序列</h2>
+		<p>\x之后的数值将被认为是一个16进制数</p>
+		<script>
+			'\xA9';
+			console.log('\xA9');
+			// ©
+		</script>
+
+
+
+
+
+		<h2>Unicode转义序列</h2>
+		<p>Unicode转义序列在\u之后需要至少4个字符</p>
+		<script>
+			'\u00A9';
+			console.log('\u00A9');
+			// ©
+		</script>
+
+
+
+
+
+		<h2>Unicode code point escapes</h2>
+		<p>这是ECMAScript 6中的新特性. 有了Unicode code point escapes, 任何字符都可以用16进制数转义</p>
+		<p>这使得通过Unicode转义表示大于0x10FFFF的字符成为可能</p>
+		<p>使用简单的Unicode转义时通常需要分别写字符相应的两个部分</p>
+		<script>
+			/**
+			*	Unicode code point escapes
+			*/
+			'\u{2F804}';
+			console.log('\u{2F804}');
+			// 你
+			'\uD87E\uDc04';
+			console.log('\uD87E\uDc04');
+			// 你
+		</script>
+
+
+
+
+
+
+
+
+
+		<h1>字符串对象</h1>
+		<p>String 对象是对原始string类型的封装</p>
+		<script>
+			console.log("字符串对象");
+			var s = new String("foo");
+			console.log(s);
+			// String {0: "f", 1: "o", 2: "o", length: 3, [[PrimitiveValue]]: "foo"}
+			typeof s;
+			console.log(typeof s);
+			// object
+		</script>
+		<h2>代码描述</h2>
+		<p>可以在String字面值上使用String对象的任何方法—JavaScript自动把String字面值转换为一个临时的String对象</p>
+		<p>然后调用其相应方法,最后丢弃此临时对象.在String字面值上也可以使用String.length属性</p>
+		<h3>注意:除非必要, 应该尽量使用String字面值, 因为String对象的某些行为可能并不与直觉一致</h3>
+		<script>
+			/*eval()计算String中可能得到的值*/
+			var s1 = "2 + 2";
+			console.log("s1:" + s1);
+			// 2 + 2
+			var s2 = new String("2 + 2");
+			console.log("s2:" + s2);
+			// 2 + 2
+			eval(s1);
+			console.log("eval(s1)" + eval(s1));
+			// 4
+			eval(s2);
+			console.log("eval(s2)" + eval(s2));
+			// 2 + 2
+		</script>
+		<h3>代码描述:String对象有一个属性, length, 标识了字符串中的字符个数.</h3>
+		<script>
+			/**
+			*	下面的代码把13赋值给了x, 因为"Hello, World!"包含了13个字符
+			*/
+			var myString = "Hello World!";
+			console.log(myString);
+			// Hello World!
+			var x = myString.length;
+			console.log(x);
+			// 12
+		</script>
+		<h2>总结了String的方法</h2>
+		<table>
+			<thead>
+				<tr>
+					<td>方法</td><td>描述</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>charAt,charCodeAt,codePointAt</td><td>返回字符串指定位置的字符或者字符编码</td>
+				</tr>
+				<tr>
+					<td>indexof,lastIndexOf</td><td>分别返回字符串中指定子串的位置或最后位置</td>
+				</tr>
+				<tr>
+					<td>startWith,endWith,includes</td><td>返回字符串是否以指定字符串开始、结束或包含指定字符串</td>
+				</tr>
+				<tr>
+					<td>concat</td><td>连接两个字符串并返回新的字符串</td>
+				</tr>
+				<tr>
+					<td>formCharCode,formCodePoint</td><td>从指定的Unicode值序列构造一个字符串</td>
+					<h3>注意:这是一个String类方法，不是实例方法</h3>
+				</tr>
+				<tr>
+					<td>split</td><td>通过将字符串分离成一个个子串来把一个String对象分裂到一个字符串数组中</td>
+				</tr>
+				<tr>
+					<td>slice</td><td>从一个字符串提取片段并作为新字符串返回</td>
+				</tr>
+				<tr>
+					<td>substring,substr</td><td>分别通过指定起始和结束位置，起始位置和长度来返回字符串的指定子集</td>
+				</tr>
+				<tr>
+					<td>match,replace,search</td><td>通过正则表达式来工作</td>
+				</tr>
+				<tr>
+					<td>toLowerCase,toUpperCase</td><td>分别返回字符串的小写表示和大写表示</td>
+				</tr>
+				<tr>
+					<td>normalize</td><td>返回调用字符串的Unicode格式</td>
+				</tr>
+				<tr>
+					<td>repeat</td><td>将字符串内容重复指定次数后返回</td>
+				</tr>
+				<tr>
+					<td>trim</td><td>去掉字符串开头和结尾的空白字符</td>
+				</tr>
+			</tbody>
+		</table>
+
+
+
+
+
+
+
+
+
+		<h1>多行模板字符串</h1>
+		<p>模板字符串是一种允许内嵌表达式的String字面值. 可以用它实现多行字符串或者字符串内插等特性</p>
+		<p>模板字符串使用反勾号 (` `) (grave accent) 包裹内容而不是单引号或双引号</p>
+		<p>模板字符串可以包含占位符. 占位符用美元符号和花括号标识 (${expression}).</p>
+
+
+
+		<h2>多行</h2>
+		<p>源代码中插入的任何新行开始字符都作为模板字符串的内容</p>
+		<script>
+			console.log("string text line 1\n\string text line 2");
+			// string text line 1
+			// string text line 2
+		</script>
+		<p>为了实现同样效果的多行字符串</p>
+		<script>
+			console.log(`string text line 1
+			string text line 2`);
+			// string text line 12
+		</script>
+
+
+
+
+
+		<h2>嵌入表达式</h2>
+		<p>为了在一般的字符串中嵌入表达式</p>
+		<script>
+			var a = 5;
+			var b = 10;
+			console.log("Fifteen is" + (a + b) + "and\nnot" + (2 * a + b) + ".");
+			// Fifteen is15and
+			// not20.
+		</script>
+		<p>现在, 使用模板字符串, 可以使用语法糖让类似功能的实现代码更具可读性</p>
+		<script>
+			var a = 5;
+			var b = 10;
+			console.log(`Fifteen is ${a + b} and\nnot $(2 * a + b).`);
+			// Fifteen is 15 and
+			// not 20.
+		</script>
+
+
+
+
+
+
+
+
+
+		<h1>Intl</h1>
+		<p>Intl 对象是ECMAScript国际化API的命名空间, 它提供了语言敏感的字符串比较，数字格式化和日期时间格式化功能</p>
+		<p>Collator, NumberFormat, 和 DateTimeFormat 对象的构造函数是Intl对象的属性</p>
+
+		<h2>日期和时间格式化</h2>
+		<p>DateTimeFormat 对象在日期和时间的格式化方面很有用</p>
+		<script>
+			var msPerDay = 24 * 60 * 60 * 1000;
+			console.log(msPerDay);
+			// 86400000
+			var july1722014 = new Date(msPerDay * (44 * 365 + 11 + 197));
+			//2014-1970=44年
+			//这样创建日期真是醉人。。。还要自己计算天数。。。11是闰年中多出的天数。。。
+			//197是6×30+16(7月的16天)+3(3个大月)-2(2月少2天)
+			console.log(july1722014);
+			// Thu Jul 17 2014 08:00:00 GMT+0800 (中国标准时间)
+			var options = {year: '2-digit', month: '2-digit', dat: '2-digit',
+							hour: '2-digit', minute: '2-digit', timeZoneName: 'short'};
+			console.log(options);
+			// Object {year: "2-digit", month: "2-digit", dat: "2-digit", hour: "2-digit", minute: "2-digit"…}
+			var americanDateTime = new Intl.DateTimeFormat("en-US", options).format;
+			console.log(americanDateTime);
+			// function__boundformat__() { [native code] }
+			console.log(americanDateTime(july1722014));
+			// 07/14, 8:00 AM GMT+8
+		</script>
+
+		<h2>数字格式化</h2>
+		<p>NumberFormat 对象在数字的格式化方面很有用, 比如货币数量值</p>
+		<script>
+			var	gasPrice = new Intl.NumberFormat("en-US",
+				{style:'currency', currency: 'USD',
+				minimumFractionDigits:3});
+			console.log(gasPrice);
+			// Object {resolved: Object}
+			console.log(gasPrice.format(5.259));
+			// $5.259
+			var hanDecimalRMBInChina = new Intl.NumberFormat("zh-CN-u-nu-hanidec",
+                        { style: "currency", currency: "CNY" });
+			console.log(hanDecimalRMBInChina);
+			// Object {resolved: Object}
+			console.log(hanDecimalRMBInChina.format(1314.25));
+			// ￥ 一,三一四.二五
+		</script>
+
+		<h2>定序</h2>
+		<p>Collator 对象在字符串比较和排序方面很有用</p>
+		<script>
+			var names = ["Hochberg", "honigswald", "Holzman"];
+			console.log(names);
+			// ["Hochberg", "honigswald", "Holzman"]
+			var germanPhonebook = new Intl.Collator("de-DE-u-co-phonebk");
+			console.log(germanPhonebook);
+			// Object {resolved: Object}
+			console.log(germanPhonebook.compare);
+			// function __boundcompare__() { [native code] }
+			console.log(names.sort(germanPhonebook.compare));
+			// ["Hochberg", "Holzman", "honigswald"]
+			console.log(names.sort(germanPhonebook.compare).join(','));
+			// Hochberg,Holzman,honigswald
+
+
+			var germanDictionary = new Intl.Collator("de-DE-u-co-dict");
+			console.log(germanDictionary);
+			// Object {resolved: Object}
+			console.log(names.sort(germanDictionary.compare).join(','));
+			// Hochberg,Holzman,honigswald
+		</script>
+	</body>
+</html>
