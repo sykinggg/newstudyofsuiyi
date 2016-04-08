@@ -630,5 +630,243 @@
 
 
 		<h1>多位数组(multi-dimensional arrays)</h1>
+		<h2>主要概念:</h2>
+		<p>数组是可以嵌套的, 这就意味着一个数组可以作为一个元素被包含在另外一个数组里面</p>
+		<p>利用JavaScript数组的这个特性, 可以创建多维数组</p>
+
+		<script>
+			/*创建了一个二维数组*/
+			var a = new Array(4);
+			console.log(a);
+			/*[]*/
+			for (var i = 0; i < 4; i++) {
+				a[i] = new Array(4);
+				for (var j = 0; j < 4; j++) {
+					a[i][j] = "[" + i + "," + j + "]";
+				}
+			}
+			console.log(a);
+			/*[Array[4], Array[4], Array[4], Array[4]]*/
+		</script>
+
+
+
+
+
+
+
+
+		<h1>数组和正则表达式</h1>
+		<p>当一个数组是一个正则表达式对一个字符串的匹配结果，这个数组返回属性和元素来提供正则匹配的信息</p>
+		<h2>RegExp.exec()</h2>
+		<h2>String.match()</h2>
+		<h2>String.split()</h2>
+		<h3>以上三个方法返回值均是数组</h3>
+
+
+
+
+
+
+
+
+
+
+		<h1>阵列元素使用(Working with array-like objects)</h1>
+		<p>一些 JavaScript 对象, 例如 document.getElementsByTagName() 返回的 NodeList 或者函数内部可用的 arguments 对象，他们表面上看起来，外观和行为像数组，但是不共享他们所有的方法</p>
+		<h3>注意:</h3>
+		<p>arguments 对象提供一个 length 属性，但是不实现 forEach() 方法</p>
+
+		<h3>阵列元素使用:</h3>
+		<p>提供运行Array方法对其他类似数组的对象的方式</p>
+		<p>每个标准阵列的方法有数组对象本身相应的方法</p>
+		<script>
+			/*function prointArguments() {
+				Array.forEach(arguments, function(item) {
+					console.log(item);
+				});
+			}*/
+		</script>
+		<p>利用JavaScript函数对象提供的调用方法进行仿真</p>
+		<script>
+			/*Array.prototype.forEach.call(arguments, function(item) {
+				console.log(item);
+			});*/
+		</script>
+		<p>阵列的通用方法可以在字符串中使用为好，因为它们提供的类似方式，以阵列的字符顺序访问</p>
+		<script>
+			/*Array.forEach("a String", function(chr) {
+				console.log(chr);
+			});*/
+		</script>
+
+
+
+
+
+
+
+
+
+		<p>方法均不支持</p>
+		<h1>数组解析(Array comprehensions)</h1>
+		<p>数组解析可以用map()和filter()或者作为组合两者的方法</p>
+		<script>
+			/*需要数字数组并在每个这些数字的两倍的新数组*/
+			var number = [1, 2, 3, 4];
+			var doubled = [i * 2 for (i of numbers)];
+			console.log(doubled);
+		</script>
+		<p>相当于如下操作</p>
+		<script>
+			var number = [1, 2, 3, 4];
+			var doubled = numbers.map(function(i){return i * 2});
+		</script>
+		<p>数组的解析还可以用于选择匹配特定表达的项目</p>
+		<script>
+			var numbers = [1, 2, 3, 21, 22, 30];
+			var evens = [i for (i of numbers) if (i % 2 === 0)];
+			console.log(evens);
+		</script>
+		<p>filter()被用于相同目的</p>
+		<script>
+			var evens = number.filter(function(i) {return i % 2 === 0});
+		</script>
+		<p>map()和filter()方法操作可以组合成一个单一的阵列</p>
+		<script>
+			var numbers = [1, 2, 3, 21, 22, 30];
+			var doubledEvens = [i * 2 for (i of numbers) if (i % 2 === 0)];
+			console.log(doubledEvens);
+		</script>
+		<p>数组理解的方括号引入作用域目的的隐含的块</p>
+		<p>已经使用let声明的新变量（如我在这个例子）进行处理</p>
+		<p>输入到一个阵列解析本身并不需要是阵列;</p>
+		<span>iterators和generators，也可以使用</span>
+		<p>可以用于过滤器和地图的操作</p>
+		<script>
+			var str = "abcdef";
+			var consonantsOnlyStr = [c for (c of str) if (!(/[aeiouAEIOU]/).test(c))  ].join('');
+			var interpolatedZeros = [c+'0' for (c of str) ].join('');
+			console.log(consonantsOnlyStr);
+			console.log(interpolatedZeros);
+		</script>
+		<h3>代码说明</h3>
+		<p>再次，输入表单不会被保留，所以我们必须使用join（）方法恢复到一个字符串</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>数组类型(Typed Arrays)</h1>
+		<p>JavaScript类型数组是阵列元素，并提供了访问原始二进制数据的机制</p>
+		<p>Array对象动态地增长和收缩，可以有任何JavaScript值</p>
+		<p>JavaScript引擎进行优化，使这些阵列的速度快</p>
+		<p>使用的WebSockets访问原始数据，等等，它已经很清楚，有些时候这将是有帮助的JavaScript代码，以便能够
+快速，轻松地操纵类型数组原始二进制数据</p>
+
+
+		<h2>缓冲区和视图:数组类型结构</h2>
+		<p>为了实现最大的灵活性和效率，JavaScript的类型数组拆分实施入缓冲区和看法</p>
+
+		<h3>缓冲（由ArrayBuffer对象实现）是代表一个数据块的对象;
+它没有格式可言，并提供没有机制来访问其内容</h3>
+		<p>为了访问包含在缓冲区的内存，你需要使用的视图</p>
+		<p>视图提供了一个上下文 - 也就是说，一个数据类型，起始偏移，和元素的数目 - 即数据变成实际的类型化的阵列</p>
+
+
+		<h2>ArrayBuffer</h2>
+		<p>ArrayBuffer方法:是用于表示一个通用的，固定长度的二进制数据缓冲器的数据类型</p>
+		<h3>注意:</h3>
+		<p>不能直接操纵ArrayBuffer的内容;
+		相反，你创建一个类型数组视图或代表以特定格式缓冲区一个DataView，并用它来读取和写入缓冲区的内容</p>
+		
+
+
+
+		<h2>数组类型视图</h2>
+		<p>类型数组看法有自我描述性的名称，并提供意见为所有常用的数字类型，如INT8，UINT32，Float64等等</p>
+		<p>有一个特殊的类型数组视图中，Uint8ClampedArray</p>
+		<p>它夹紧0和255这是为帆布数据处理有用的，例如之间的值</p>
+		<table>
+			<thead>
+				<tr>
+					<td>类型(Type)</td>
+					<td>大小以字节为单位(Size in bytes)</td>
+					<td>描述(Description)</td>
+					<td>网络IDL类型(Web IDL type)</td>
+					<td>等效的C类型(Equivalent C type)</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Int8Array</td>
+					<td>1</td>
+					<td>8位二进制补码有符号整数</td>
+					<td>byte(字节)</td>
+					<td>int8_t</td>
+				</tr>
+				<tr>
+					<td>Uint8Array</td>
+					<td>1</td>
+					<td>8位无符号整数</td>
+					<td>octet(八位)</td>
+					<td>uint8_t</td>
+				</tr>
+				<tr>
+					<td>Uint8ClampedArray</td>
+					<td>1</td>
+					<td>8位无符号整数（严格）</td>
+					<td>octet(八位)</td>
+					<td>uint8_t</td>
+				</tr>
+				<tr>
+					<td>Int16Array</td>
+					<td>2</td>
+					<td>16位二进制补码有符号整数</td>
+					<td>short(短)</td>
+					<td>int16_t</td>
+				</tr>
+				<tr>
+					<td>Uint16Array</td>
+					<td>2</td>
+					<td>16位无符号整数</td>
+					<td>unsigned short(无符号短)</td>
+					<td>uint16_t</td>
+				</tr>
+				<tr>
+					<td>Int32Array</td>
+					<td>4</td>
+					<td>32位二进制补码有符号整数</td>
+					<td>long(长)</td>
+					<td>int32_t</td>
+				</tr>
+				<tr>
+					<td>Uinit32Array</td>
+					<td>4</td>
+					<td>32位无符号整数</td>
+					<td>unsinged long(无符号长)</td>
+					<td>uinit32_t</td>
+				</tr>
+				<tr>
+					<td>Float32Array</td>
+					<td>4</td>
+					<td>32位IEEE浮点数</td>
+					<td>unrestricted float(无限制浮动)</td>
+					<td>float</td>
+				</tr>
+				<tr>
+					<td>Float64Array</td>
+					<td>8</td>
+					<td>64位IEEE浮点数</td>
+					<td>unrestricted double(无限制双精度)</td>
+					<td>double</td>
+				</tr>
+			</tbody>
+		</table>
 	</body>
 </html>
