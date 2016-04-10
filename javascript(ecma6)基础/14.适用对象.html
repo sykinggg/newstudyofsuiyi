@@ -128,6 +128,68 @@
 		/*当你将对象及其名称作为参数传入时，显示对象的属性*/
 		function showProps(obj, objName) {
 			var result = "";
+			for (var i in obj) {
+				if (obj.hasOwnProperty(i)) {
+					result += objName + "." + i + " = " + obj[i] + "\n";
+				}
+			}
+			return result;
+		}
+	</script>
+
+	<p>对于函数调用 showProps(myCar, "myCar") 将返回以下值</p>
+
+	<script type="text/javascript">
+		myCar.make = Ford;
+		myCar.model = Mustang;
+		myCar.year = 1969;
+	</script>
+
+	<h3>重点:对象即全部</h3>
+	<h3>所有的原生类型除了 null 与 undefined 之外都被当作对象</h3>
+	<h3>它们可以被赋予属性（某些类型的被赋予的属性不能被持久化），并且它们都有对象的全部特征</h3>
+
+
+
+
+
+
+
+
+
+
+	<h1>枚举一个对象的所有属性</h1>
+	<p>从 ECMAScript 5 开始，有三种原生的方法用于列出或枚举对象的属性</p>
+
+
+
+	<h1>for...in循环</h1>
+	<p>该方法依次访问一个对象及其原型链中所有可枚举的属性</p>
+
+
+
+	<h1>Object.keys(o)</h1>
+	<p>该方法返回一个对象的o自身包含（不包括原型中）的所有属性的名称的数组</p>
+
+
+
+
+	<h1>Object.getOwnPropropertyName(o)</h1>
+	<p>该方法返回一个数组，它包含了对象 o 所有拥有的属性（无论是否可枚举）的名称</p>
+
+
+	<p>在 ECMAScript 5 中，没有原生的方法枚举一个对象的所有属性</p>
+
+	<script type="text/javascript">
+		function  listAllProperties(o) {
+			var objectToInspect;
+			var result = [];
+
+			for(objectToInspect = 0; objectToInspect !== null; objectToInspect = Object.getPropertypeof(objectToInspect)) {
+				result = result.concat(Object.getOwnPropertyName(objectToInspect));
+			}
+
+			return result;
 		}
 	</script>
 </html>
