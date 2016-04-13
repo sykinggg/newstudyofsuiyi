@@ -697,5 +697,109 @@
 			Employee.prototype.name = "Unknow"
 			console.log(amy);
 		</script>
+
+		<h3>代码描述:amy 的 name 属性将为 "Unknown"</h3>
+		<p>如果希望对象的属性具有默认值，并且希望在运行时修改这些默认值，应该在对象的原型中设置这些属性，而不是在构造器函数中</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>判断实例的关系</h1>
+		<p>JavaScript 的属性查找机制首先在对象自身的属性中查找，如果指定的属性名称没有找到，将在对象的特殊属性 __proto__ 中查找</p>
+		<p>这个过程是递归的；被称为“在原型链中查找”</p>
+
+		<h2>__proto__属性的设置通过继承的影响</h2>
+		<p>特殊的 __proto__ 属性是在构建对象时设置的；设置为构造器的 prototype 属性的值</p>
+		<p>所以表达式 new Foo() 将创建一个对象，其 __proto__ == Foo.prototype</p>
+		<p>因而，修改 Foo.prototype 的属性，将改变所有通过 new Foo() 创建的对象的属性的查找</p>
+
+		<h2>__proto__属性与继承的关系</h2>
+		<p>每个对象都有一个 __proto__ 对象属性（除了 Object）；每个函数都有一个 prototype 对象属性</p>
+		<p>因此，通过“原型继承（prototype inheritance）”，对象与其它对象之间形成关系</p>
+		<p>通过比较对象的 __proto__ 属性和函数的 prototype 属性可以检测对象的继承关系</p>
+
+		<h2>检测原型继承</h2>
+		<p>JavaScript 提供了便捷方法：instanceof 操作符可以用来将一个对象和一个函数做检测，如果对象继承自函数的原型，则该操作符返回真</p>
+
+		<script>
+			/**
+			*	判断继承
+			*/
+			var f = new Date();
+			console.log(f);
+			/*Wed Apr 13 2016 08:53:14 GMT+0800 (ä¸­å½æ åæ¶é´)*/
+			var inTrue = (f instanceof Date);
+			console.log(inTrue);
+			/*true*/
+		</script>
+
+		<script>
+			/**
+			*	__proto__属性与继承
+			*/
+			var chris = new Engineer("pigman, Chris", ["jsd"], "fiji");
+			/*__proto__属性的使用*/
+			chris.__proto__ == Engineer.prototype;
+			console.log(chris.__proto__ == Engineer.prototype);
+			/*true*/
+
+			console.log(chris.__proto__);
+			/*Object {}constructor: Engineer(name, projs, mach)__proto__: Object*/
+
+
+
+			chris.__proto__.__proto__ == WorkerBee.prototype;
+			console.log(chris.__proto__.__proto__ == WorkerBee.prototype);
+			/*false*/
+
+			console.log(chris.__proto__.__proto__);
+			/*Object {}__defineGetter__: __defineGetter__()__defineSetter__: __defineSetter__()__lookupGetter__: __lookupGetter__()__lookupSetter__: __lookupSetter__()constructor: Object()hasOwnProperty: hasOwnProperty()isPrototypeOf: isPrototypeOf()propertyIsEnumerable: propertyIsEnumerable()toLocaleString: toLocaleString()toString: toString()valueOf: valueOf()get __proto__: get __proto__()set __proto__: set __proto__()*/
+
+
+
+			chris.__proto__.__proto__.__proto__ == Employee.prototype;
+			console.log(chris.__proto__.__proto__.__proto__ == Employee.prototype);
+			/*false*/
+
+			console.log(chris.__proto__.__proto__.__proto__);
+			/*null*/
+
+
+
+			chris.__proto__.__proto__.__proto__.__proto__ == object.prototype;
+			console.log(chris.__proto__.__proto__.__proto__.__proto__ == object.prototype);
+			/*Uncaught TypeError: Cannot read property '__proto__' of null*/
+			console.log(chris.__proto__.__proto__.__proto__.__proto__);
+			/*Uncaught TypeError: Cannot read property '__proto__' of null*/
+			chris.__proto__.__proto__.__proto__.__proto__.__proto__ == null;
+			console.log(chris.__proto__.__proto__.__proto__.__proto__.__proto__ == null);
+			/*Uncaught TypeError: Cannot read property '__proto__' of null*/
+			console.log(chris.__proto__.__proto__.__proto__.__proto__.__proto__);
+			/*Uncaught TypeError: Cannot read property '__proto__' of null*/
+		</script>
+
+
+		<script>
+			/**
+			*	instanceOf判断继承的函数
+			*/
+			function instanceOf(object, constructor) {
+				while (object != null) {
+					if(object == constructor.prototype)
+						return true;
+					if(typeof object == 'xml') {
+						return constructor.prototype == XML.prototype;
+					}
+					object = object.__proto__;
+				}
+				return false;
+			}
+		</script>
 	</body>
 </html>
