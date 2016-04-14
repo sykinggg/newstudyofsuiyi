@@ -786,8 +786,9 @@
 
 
 		<script>
+			var chris = new Engineer("Pigman, Chris", ["jsd"], "fiji");
 			/**
-			*	instanceOf判断继承的函数
+			*	instanceOf判断对象的类型是否为 "xml" 
 			*/
 			function instanceOf(object, constructor) {
 				while (object != null) {
@@ -800,6 +801,95 @@
 				}
 				return false;
 			}
+
+			/**
+			*	测试
+			*/
+			instanceOf(chris, Engineer);
+			console.log(instanceOf(chris, Engineer));
+			/*true*/
+			instanceOf(chris, WorkerBee);
+			console.log(instanceOf(chris, WorkerBee));
+			/*false*/
+			instanceOf(chris, Employee);
+			console.log(instanceOf(chris, Employee));
+			/*false*/
+			instanceOf(chris, Object);
+			console.log(instanceOf(chris, Object));
+			/*true*/
+			// instanceOf(chris, SelesPerson);
+			console.log(instanceOf(chris, SelesPerson));
+			/*SelesPerson is not defined*/
+		</script>
+
+
+
+
+
+
+
+
+
+
+		<h1>构造器中的全局信息</h1>
+		<p>创建构造器时，在构造器中设置全局信息要小心</p>
+		<script>
+			var idCounter = 1;
+
+			function Employee (name, dept) {
+				this.name = name || "";
+				this.dept = dept || "general";
+				this.id = idCounter++;
+			}
+		</script>
+		<p>基于该定义，在创建新的 Employee 时，构造器为其分配了序列中的下一个标识符</p>
+		<p>然后递增全局的标识符计数器</p>
+		<script>
+			var idCounter = 1;
+
+			function Employee (name, dept) {
+				this.name = name || "";
+				this.dept = dept || "general";
+				this.id = idCounter++;
+			}
+
+			var victoria = new Employee("pigbert", "Victoria", "pubs");
+			console.log(victoria);
+			/*Employee {name: "pigbert", dept: "Victoria", id: 1}*/
+			var harry = new Employee("Tschopik, Harry", "sales");
+			console.log(harry);
+			/*Employee {name: "Tschopik, Harry", dept: "sales", id: 2}*/
+		</script>
+		<p>无论什么目的，在每一次创建 Employee 对象时，idCounter 都将被递增一次</p>
+		<p>如果创建所描述的整个 Employee 层级结构，每次设置原型的时候，Employee 构造器都将被调用一次</p>
+		<script>
+			var idCounter = 1;
+
+			function Employee (name, dept) {
+				this.name = name || "";
+				this.dept = dept || "general";
+				this.id = idCounter++;
+			}
+
+
+			function Manger (name, dept, reports) {}
+			Manger.prototype = new Employee;
+			console.log(Manger ('suiyi', 'man', '123'));
+			console.log(Manger.prototype);
+
+			function WorkerBee (name, dept, projs) {}
+			WorkerBee.prototype = new Employee;
+			console.log(WorkerBee);
+
+			function Engineer (name, projs, mach) {}
+			Engineer.prototype = new WorkerBee;
+			console.log(Engineer);
+
+			function SalesPerson (name, projs, quote) {}
+			SalesPerson.prototype = new WorkerBee;
+			console.log(SalesPerson);
+
+			var mac = new Engineer("Wood, Mac");
 		</script>
 	</body>
 </html>
