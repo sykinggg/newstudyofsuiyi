@@ -697,5 +697,199 @@
 			Employee.prototype.name = "Unknow"
 			console.log(amy);
 		</script>
+
+		<h3>代码描述:amy 的 name 属性将为 "Unknown"</h3>
+		<p>如果希望对象的属性具有默认值，并且希望在运行时修改这些默认值，应该在对象的原型中设置这些属性，而不是在构造器函数中</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>判断实例的关系</h1>
+		<p>JavaScript 的属性查找机制首先在对象自身的属性中查找，如果指定的属性名称没有找到，将在对象的特殊属性 __proto__ 中查找</p>
+		<p>这个过程是递归的；被称为“在原型链中查找”</p>
+
+		<h2>__proto__属性的设置通过继承的影响</h2>
+		<p>特殊的 __proto__ 属性是在构建对象时设置的；设置为构造器的 prototype 属性的值</p>
+		<p>所以表达式 new Foo() 将创建一个对象，其 __proto__ == Foo.prototype</p>
+		<p>因而，修改 Foo.prototype 的属性，将改变所有通过 new Foo() 创建的对象的属性的查找</p>
+
+		<h2>__proto__属性与继承的关系</h2>
+		<p>每个对象都有一个 __proto__ 对象属性（除了 Object）；每个函数都有一个 prototype 对象属性</p>
+		<p>因此，通过“原型继承（prototype inheritance）”，对象与其它对象之间形成关系</p>
+		<p>通过比较对象的 __proto__ 属性和函数的 prototype 属性可以检测对象的继承关系</p>
+
+		<h2>检测原型继承</h2>
+		<p>JavaScript 提供了便捷方法：instanceof 操作符可以用来将一个对象和一个函数做检测，如果对象继承自函数的原型，则该操作符返回真</p>
+
+		<script>
+			/**
+			*	判断继承
+			*/
+			var f = new Date();
+			console.log(f);
+			/*Wed Apr 13 2016 08:53:14 GMT+0800 (ä¸­å½æ åæ¶é´)*/
+			var inTrue = (f instanceof Date);
+			console.log(inTrue);
+			/*true*/
+		</script>
+
+		<script>
+			/**
+			*	__proto__属性与继承
+			*/
+			var chris = new Engineer("pigman, Chris", ["jsd"], "fiji");
+			/*__proto__属性的使用*/
+			chris.__proto__ == Engineer.prototype;
+			console.log(chris.__proto__ == Engineer.prototype);
+			/*true*/
+
+			console.log(chris.__proto__);
+			/*Object {}constructor: Engineer(name, projs, mach)__proto__: Object*/
+
+
+
+			chris.__proto__.__proto__ == WorkerBee.prototype;
+			console.log(chris.__proto__.__proto__ == WorkerBee.prototype);
+			/*false*/
+
+			console.log(chris.__proto__.__proto__);
+			/*Object {}__defineGetter__: __defineGetter__()__defineSetter__: __defineSetter__()__lookupGetter__: __lookupGetter__()__lookupSetter__: __lookupSetter__()constructor: Object()hasOwnProperty: hasOwnProperty()isPrototypeOf: isPrototypeOf()propertyIsEnumerable: propertyIsEnumerable()toLocaleString: toLocaleString()toString: toString()valueOf: valueOf()get __proto__: get __proto__()set __proto__: set __proto__()*/
+
+
+
+			chris.__proto__.__proto__.__proto__ == Employee.prototype;
+			console.log(chris.__proto__.__proto__.__proto__ == Employee.prototype);
+			/*false*/
+
+			console.log(chris.__proto__.__proto__.__proto__);
+			/*null*/
+
+
+
+			chris.__proto__.__proto__.__proto__.__proto__ == object.prototype;
+			console.log(chris.__proto__.__proto__.__proto__.__proto__ == object.prototype);
+			/*Uncaught TypeError: Cannot read property '__proto__' of null*/
+			console.log(chris.__proto__.__proto__.__proto__.__proto__);
+			/*Uncaught TypeError: Cannot read property '__proto__' of null*/
+			chris.__proto__.__proto__.__proto__.__proto__.__proto__ == null;
+			console.log(chris.__proto__.__proto__.__proto__.__proto__.__proto__ == null);
+			/*Uncaught TypeError: Cannot read property '__proto__' of null*/
+			console.log(chris.__proto__.__proto__.__proto__.__proto__.__proto__);
+			/*Uncaught TypeError: Cannot read property '__proto__' of null*/
+		</script>
+
+
+		<script>
+			var chris = new Engineer("Pigman, Chris", ["jsd"], "fiji");
+			/**
+			*	instanceOf判断对象的类型是否为 "xml" 
+			*/
+			function instanceOf(object, constructor) {
+				while (object != null) {
+					if(object == constructor.prototype)
+						return true;
+					if(typeof object == 'xml') {
+						return constructor.prototype == XML.prototype;
+					}
+					object = object.__proto__;
+				}
+				return false;
+			}
+
+			/**
+			*	测试
+			*/
+			instanceOf(chris, Engineer);
+			console.log(instanceOf(chris, Engineer));
+			/*true*/
+			instanceOf(chris, WorkerBee);
+			console.log(instanceOf(chris, WorkerBee));
+			/*false*/
+			instanceOf(chris, Employee);
+			console.log(instanceOf(chris, Employee));
+			/*false*/
+			instanceOf(chris, Object);
+			console.log(instanceOf(chris, Object));
+			/*true*/
+			// instanceOf(chris, SelesPerson);
+			console.log(instanceOf(chris, SelesPerson));
+			/*SelesPerson is not defined*/
+		</script>
+
+
+
+
+
+
+
+
+
+
+		<h1>构造器中的全局信息</h1>
+		<p>创建构造器时，在构造器中设置全局信息要小心</p>
+		<script>
+			var idCounter = 1;
+
+			function Employee (name, dept) {
+				this.name = name || "";
+				this.dept = dept || "general";
+				this.id = idCounter++;
+			}
+		</script>
+		<p>基于该定义，在创建新的 Employee 时，构造器为其分配了序列中的下一个标识符</p>
+		<p>然后递增全局的标识符计数器</p>
+		<script>
+			var idCounter = 1;
+
+			function Employee (name, dept) {
+				this.name = name || "";
+				this.dept = dept || "general";
+				this.id = idCounter++;
+			}
+
+			var victoria = new Employee("pigbert", "Victoria", "pubs");
+			console.log(victoria);
+			/*Employee {name: "pigbert", dept: "Victoria", id: 1}*/
+			var harry = new Employee("Tschopik, Harry", "sales");
+			console.log(harry);
+			/*Employee {name: "Tschopik, Harry", dept: "sales", id: 2}*/
+		</script>
+		<p>无论什么目的，在每一次创建 Employee 对象时，idCounter 都将被递增一次</p>
+		<p>如果创建所描述的整个 Employee 层级结构，每次设置原型的时候，Employee 构造器都将被调用一次</p>
+		<script>
+			var idCounter = 1;
+
+			function Employee (name, dept) {
+				this.name = name || "";
+				this.dept = dept || "general";
+				this.id = idCounter++;
+			}
+
+
+			function Manger (name, dept, reports) {}
+			Manger.prototype = new Employee;
+			console.log(Manger ('suiyi', 'man', '123'));
+			console.log(Manger.prototype);
+
+			function WorkerBee (name, dept, projs) {}
+			WorkerBee.prototype = new Employee;
+			console.log(WorkerBee);
+
+			function Engineer (name, projs, mach) {}
+			Engineer.prototype = new WorkerBee;
+			console.log(Engineer);
+
+			function SalesPerson (name, projs, quote) {}
+			SalesPerson.prototype = new WorkerBee;
+			console.log(SalesPerson);
+
+			var mac = new Engineer("Wood, Mac");
+		</script>
 	</body>
 </html>
