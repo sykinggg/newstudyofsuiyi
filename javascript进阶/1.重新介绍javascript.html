@@ -1,0 +1,275 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="">
+	</head>
+	<body>
+		<h1>概览</h1>
+		<p>javascript中包含的类型</p>
+		<ul>
+			<li>Number（数字）</li>
+			<li>String（字符串）</li>
+			<li>Boolean（布尔）</li>
+			<li>Symbol（符号）（第六版新增）</li>
+			<li>
+				Object（对象）
+				<ul>
+					<li>Function（函数）</li>
+					<li>Array（数组）</li>
+					<li>Date（日期）</li>
+					<li>RegExp（正则表达式）</li>
+				</ul>
+			</li>
+			<li>Null（空）</li>
+			<li>Undefined（未定义）</li>
+		</ul>
+		<p>JavaScript 还有一种内置Error（错误）类型</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>数字</h1>
+		<p>JavaScript 采用“IEEE 754 标准定义的双精度64位格式”（"double-precision 64-bit format IEEE 754 values"）表示数字</p>
+		<p>JavaScript 不区分整数值和浮点数值</p>
+		<script>
+			// 0.1 + 0.2 = 0.3000000000004;
+			/*Uncaught ReferenceError: Invalid left-hand side in assignment*/
+			// 0.4 = 0.1 + 0.3;
+			console.log(0.1 + 0.2);
+			/*0.30000000000000004*/
+		</script>
+		<p>JavaScript 支持标准的算术运算符，包括加法、减法、取模（或取余）</p>
+		<p>内置对象 Math（数学对象），用以处理更多的高级数学函数和常数</p>
+		<script>
+			Math.sin(3.5);
+			console.log(Math.sin(3.5));
+			/*-0.35078322768961984*/
+			var r = 10;
+			var d = Math.PI*(r + r);
+			console.log(d);
+			/*62.83185307179586*/
+		</script>
+
+		<h2>parseInt()</h2>
+		<p>可以使用内置函数 parseInt() 将字符串转换为整型</p>
+		<p>该函数的第二个参数表示字符串所表示数字的基（进制）</p>
+		<script>
+			parseInt('123', 10);
+			console.log(parseInt('123', 10));
+			/*123*/
+			parseInt('010', 2);
+			console.log(parseInt('010', 2));
+			/*2*/
+			parseInt('010', 10);
+			console.log(parseInt('010', 10));
+			/*10*/
+		</script>
+		<p>如果调用时没有提供第二个参数（字符串所表示数字的基）</p>
+		<p>2013 年以前的 JavaScript 实现会返回一个意外的结果</p>
+		<script>
+			parseInt('010');
+			console.log(parseInt('010'));
+			/*10*/
+			parseInt('0x10');
+			console.log(parseInt('0x10'));
+			/*16*/
+		</script>
+		<p>字符串以数字 0 开头，parseInt()函数会把这样的字符串视作八进制数字</p>
+		<p>0x开头的字符串则视为十六进制数字</p>
+		<p>把一个二进制数字字符串转换成整数值，只要把第二个参数设置为 2 就可以了</p>
+		<script>
+			parseInt('11', 2);
+			console.log(parseInt('11', 2));
+			/*3*/
+		</script>
+
+		<h2>parseFolat()</h2>
+		<p>parseFloat()只应用于解析十进制数字</p>
+		<p>单元运算符 + 也可以把数字字符串转换成数值</p>
+		<script>
+			console.log(+"42");
+			/*42*/
+			console.log(+"010");
+			/*10*/
+			console.log(+"0x10");
+			/*16*/
+		</script>
+		<p>如果给定的字符串不存在数值形式，函数会返回一个特殊的值 NaN（Not a Number 的缩写）</p>
+		<script>
+			parseInt("hello", 10);
+			console.log(parseInt("hello", 10));
+			/*NaN*/
+		</script>
+		<h3>注意:</h3>
+		<p>要小心NaN：如果把 NaN 作为参数进行任何数学运算，结果也会是 NaN</p>
+		<script>
+			console.log(NaN + 5);
+			/*NaN*/
+		</script>
+		<h3>解决方法</h3>
+		<p>可以使用内置函数 isNaN() 来判断一个变量是否为 NaN</p>
+		<script>
+			console.log(isNaN(NaN));
+			/*true*/
+		</script>
+		<p>JavaScript 还有两个特殊值：Infinity（正无穷）和 -Infinity（负无穷）</p>
+		<script>
+			1 / 0;
+			console.log(1/0);
+			/*Infinity*/
+			-1 / 0;
+			console.log(-1/0);
+			/*-Infinity*/
+		</script>
+		<p>可以使用内置函数 isFinite() 来判断一个变量是否为 Infinity, -Infinity 或 NaN</p>
+		<script>
+			isFinite(1/0);
+			console.log(isFinite(1/0));
+			/*false*/
+			isFinite(-Infinity);
+			console.log(isFinite(-Infinity));
+			/*false*/
+			isFinite(Infinity);
+			console.log(isFinite(Infinity));
+			/*false*/
+			isFinite(NaN);
+			console.log(isFinite(NaN));
+			/*false*/
+			isFinite(54);
+			console.log(isFinite(54));
+			/*true*/
+		</script>
+		<h3>注意:</h3>
+		<p>parseInt()和parseFloat()函数会尝试逐个解析字符串中的字符，直到遇上一个无法被解析成数字的字符，然后返回该字符前所有数字字符组成的数字</p>
+		<p>使用运算符 "+" 将字符串转换成数字，只要字符串中含有无法被解析成数字的字符，该字符串都将被转换成 NaN</p>
+		<script>
+			console.log(parseInt("10.2abc"));
+			/*10*/
+			console.log(+("10.2abc"));
+			/*NaN*/
+		</script>
+
+
+
+
+
+
+
+
+
+
+		<h1>字符串</h1>
+		<p>JavaScript 中的字符串是一串Unicode 字符序列</p>
+		<p>是一串UTF-16编码单元的序列，每一个编码单元由一个 16 位二进制数表示</p>
+		<p>每一个Unicode字符由一个或两个编码单元来表示</p>
+
+		<p>如果想表示一个单独的字符，只需使用长度为 1 的字符串</p>
+
+		<p>通过访问字符串的  长度（编码单元的个数）属性可以得到它的长度</p>
+		<script>
+			console.log("hello".length);
+			/*5*/
+		</script>
+		<p>字符串也有methods（方法）能让你操作字符串和获取字符串的信息</p>
+		<script>
+			"hello".charAt(0);
+			console.log("hello".charAt(0));
+			/*h*/
+			"hello, World".replace("hello", "goodbye");
+			console.log("hello, World".replace("hello", "goodbye"));
+			/*goodbye, World*/
+			"hello".toUpperCase();
+			console.log("hello".toUpperCase());
+			/*HELLO*/
+			console.log("hello");
+		</script>
+
+
+
+
+
+
+
+
+
+
+		<h1>其他类型</h1>
+		<p>JavaScript 中 null 和 undefined 是不同的</p>
+		<p>前者表示一个空值（non-value），必须使用null关键字才能访问</p>
+		<p>后者是“undefined（未定义）”类型的对象，表示一个未初始化的值，也就是还没有被分配的值</p>
+		<h3>注意:</h3>
+		<p>JavaScript 允许声明变量但不对其赋值，一个未被赋值的变量就是 undefined 类型</p>
+		<p>undefined 实际上是一个不允许修改的常量</p>
+
+		<p>JavaScript 包含布尔类型，这个类型的变量有两个可能的值，分别是 true 和 false（两者都是关键字）</p>
+		<ul>
+			<li>false、0、空字符串("")、NaN、null 和 undefined 被转换为 false</li>
+			<li>所有其他值被转换为 true</li>
+		</ul>
+		<p>可以使用 Boolean() 函数进行显式转换</p>
+		<script>
+			Boolean(false);
+			console.log(Boolean(false));
+			/*false*/
+			Boolean(undefined);
+			console.log(Boolean(undefined));
+			/*false*/
+			Boolean(null);
+			console.log(Boolean(null));
+			/*false*/
+			Boolean(" ");
+			console.log(Boolean(" "));
+			/*true*/
+			Boolean(234);
+			console.log(Boolean(234));
+			/*true*/
+		</script>
+		<p>因为 JavaScript 会在需要一个布尔变量时隐式完成这个转换操作（比如在 if 条件语句中）</p>
+		<span>有时我们可以把转换成布尔值后的变量分别称为 真值（true values）——即值为 true  和 假值（false values）——即值为 false；也可以分别称为“真的”（truthy）和“假的”（falsy）</span>
+		<p>JavaScript 支持包括 &&（逻辑与）、|| （逻辑或）和!（逻辑非）在内的逻辑运算符</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>变量</h1>
+		<p>在 JavaScript 中声明一个新变量的方法是使用关键字 var</p>
+		<script>
+			var a;
+			console.log(a);
+			/*undefined*/
+		</script>
+		<p>如果声明了一个变量却没有对其赋值，那么这个变量的类型就是 undefined</p>
+		<h3>注意:</h3>
+		<p>JavaScript 与其他语言的（如 Java）的重要区别是在 JavaScript 中语句块（blocks）是没有作用域的，只有函数有作用域</p>
+		<p>因此如果在一个复合语句中（如 if 控制结构中）使用 var 声明一个变量，那么它的作用域是整个函数（复合语句在函数中）</p>
+		<p>从 ECMAScript Edition 6 开始将有所不同的， let 和 const 关键字允许你创建块作用域的变量</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>运算符</h1>
+		<p>JavaScript的算术操作符包括 +、-、*、/ 和 % ——求余（与模运算不同）</p>
+		<p>赋值使用 = 运算符，此外还有一些复合运算符，如 += 和 -=，它们等价于 x = x op y</p>
+		<script>
+			x += 5;
+		</script>
+	</body>
+</html>
