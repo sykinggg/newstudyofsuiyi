@@ -1,0 +1,343 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>迭代器和生成器</title>
+	</head>
+	<body>
+		<h1>迭代器和生成器</h1>
+		<p>处理一个集合中每一项是很常见的操作</p>
+		<p>JavaScript 提供了好几种方法来遍历一个集合，从简单的 for 和 for each 循环至 map()，filter() 和 array comprehensions</p>
+		<p>迭代器和生成器，在 JavaScript 1.7 中, 迭代器的概念属于核心语言中的重点，并提供了一种机制来定义 for...of 循环</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>迭代器</h1>
+		<h2>基本概念</h2>
+		<p>迭代器是一个对象，知道如何存取物品从一个集合一次取出一项， 而跟踪它的当前序列所在的位置</p>
+		<h2>使用方法</h2>
+		<p>在JavaScript 中 迭代器是一个对象，它提供了一个 next() 方法返回序列中的下一个项目。当这个序列消亡时这个方法可以随时抛出一个StopIteration exception（异常）</p>
+
+		<p>一旦创建，迭代器对象可以显式地通过不断调用 next()，或隐式地使用 JavaScript 的 for...in  和 for each 构造</p>
+
+		<p>简单的迭代器对象和数组可以使用 Iterator() 函数创建（下面是一个简单的对像）</p>
+
+		<script >
+			var lang = {name: 'JavaScript', birthYear: 1995};
+			console.log(lang);
+			/*注意:iterator方法和已经存在的方法有雷同因此用Symbol对象调用*/
+			console.log(Symbol);
+			/*function Symbol() { [native code] }*/
+			console.log(Symbol.iterator);
+			/*Symbol(Symbol.iterator)*/
+			// var it = iterator.lang;
+			// console.log(it);
+			/*兼容性不够因此浏览器对象没有扩展*/
+		</script>
+		<script>
+			var lang = {name: 'JavaScript', birthYear: 1995};
+			var it = Iterator(lang);
+			var pair = lang.next();
+			console.log(pair);
+			parit = lang.next();
+			console.log(pair);
+			parit = lang.next();
+			console.log(pair);
+		</script>
+
+
+
+
+
+
+
+
+
+
+		<h1>定义自定义迭代器</h1>
+		<p>某些对象遍历集合的项目时应该使用特定的方式遍历</p>
+		<ul>
+			<li>遍历一个序列对象时应该是一个接着一个</li>
+			<li>遍历一棵树时应该使用深度优先或者广度优先方式</li>
+			<li>遍历一个数据库查询结果对象时应该是一条一条地遍历，即使整个结果并没有被加载到一个数组中</li>
+			<li>一个迭代器在一个无限的数学序列(如斐波那契序列)应该能够一个一个地返回结果而不创建一个无限长度的数据结构</li>
+		</ul>
+
+		<script>
+			/*创建一个简单的序列*/
+
+			function Range(low, high) {
+				this.low = low;
+				this.high = high;
+			}
+
+			/**
+			*	要创建一个遍历器，可以返回这个序列中的一序列包容性的整数
+			*	这个遍历器接口要求我们我们实现一个next()方法
+			*	这个next()方法返回这个序列或者抛出一个StopIteration exception异常
+			*/
+
+			function RangeIterator(range) {
+				this.range = range;
+				this.current = this.range.low;
+			}
+			RangeIterator.prototype.next = function(){
+				if(this.current > this.range.high) {
+					throw StopIteration;
+				}else{
+					return this.current++;
+				}
+			};
+
+			/**
+			*	RangeIterator被一个序列实例所序列化，并且维持它自己当前的属性属性所在位置
+			*/
+
+			/**
+			*	为了RangeIterator与Range序列对象，我们需要给Range写一个特殊的__iterator__方法
+			*	当我们试着遍历这个Range序列时会调用这个方法，并且应该返回一个RangeIterator遍历器实例
+			*/
+			Range.prototype.__iterator__ = function() {
+				return new EangeIterator(this);
+			};
+
+			/**
+			*	检验
+			*/
+			var range = new Range(3, 5);
+			console.log(range);
+			/*Range {low: 3, high: 5}high: 5low: 3__proto__: Object__iterator__: ()constructor: Range(low, high)arguments: nullcaller: nulllength: 2name: "Range"prototype: Object__proto__: ()<function scope>__proto__: Object*/
+
+			/**
+			*	下面的代码启动页面打印
+			*/
+			// for (var i in range){
+			// 	print(i);
+			// 	console.log(print(i));
+			// }
+		</script>
+		
+
+
+
+
+
+
+
+
+
+
+		<h1>生成器（Generators）: 一个更好的方法来构建遍历器</h1>
+		<p>生成器给你提供了一个强大的选择：它允许你通过写一个可以保存自己状态的的简单函数来定义一个迭代算法</p>
+		<p>一个生成器其实是一种特殊类型的函数（这个函数作为一个为迭代器工作的工厂）</p>
+		<p>一个函数如果它里面包含了一个或一个以上的yield表达式，那么这个函数就成为一个生成器了</p>
+		<h3>注意:</h3>
+		<p>这个yield关键字只能被包含在下面的代码快中才有用<script type="application/javascript;version=1.7"></script></p>
+		<h3>使用描述</h3>
+		<p>当一个生成器函数被一个函数体调用时并不会马上执行;它会返回一个generator-iterator对象</p>
+		<p>每次调用generator-iterator的next()方法将会执行这个函数体至下一个yield表达式并且返回一个结果</p>
+		<p>当函数执行完或者执行到一个return时抛出一个StopIteration exception异常</p>
+
+		<script type="application/javascript;version=1.7">
+		/*似乎并不能执行...*/
+			function simpleGenerator(){
+			  yield "first";
+			  yield "second";
+			  yield "third";
+			  for (var i = 0; i < 3; i++)
+			    yield i;
+			}
+
+			var g = simpleGenerator();
+			print(g.next()); // prints "first"
+			print(g.next()); // prints "second"
+			print(g.next()); // prints "third"
+			print(g.next()); // prints 0
+			print(g.next()); // prints 1
+			print(g.next()); // prints 2
+			print(g.next()); // StopIteration is thrown
+		</script>
+		<h3>代码优化</h3>
+		<p>一个生成器函数可以直接用作为一个类的__iterator__方法，大大的减少了创建一个自定义迭代器的代码量</p>
+		<script type="application/javascript;version=1.7">
+		/*似乎并不能执行...*/
+			function Range(low, high) {
+				this.low = low;
+				this.high = high;
+			}
+
+			Range.prototype.__iterator__ = function() {
+				for (var i = this.low; i <= this.high; i++) {
+					yield i;
+				}
+			};
+
+			var range = new Range(3, 5);
+			for(var i in range){
+				console.log(i);
+			}
+		</script>
+		<p>可以创建一个无穷序列的生成器(斐波纳契数列的生成器)</p>
+		<script type="application/javascript;version=1.7">
+		/*似乎并不能执行...*/
+			function fibonacci() {
+				var fn1 = 1;
+				var fn2 = 1;
+				while (1) {
+					var current = fn2;
+					fn2 = fn1;
+					fn1 = fn1 + current;
+					yield current;
+				}
+			}
+
+			var sequence = fibonacci();
+			console.log(sequence);
+			print(sequence.next()); // 1
+			print(sequence.next()); // 1
+			print(sequence.next()); // 2
+			print(sequence.next()); // 3
+			print(sequence.next()); // 5
+			print(sequence.next()); // 8
+			print(sequence.next()); // 13
+		</script>
+		<h3>代码描述</h3>
+		<p>生成器可以有参数，但被限制在函数第一次调用时</p>
+		<p>生成器可以通过一个return语句来终止(因为他们将抛出一个topIteration exception)</p>
+		<p>下面是一个变异的fibonacci()函数有一个limit参数，一旦满足条件将终止</p>
+		<script type="application/javascript;version=1.7">
+			function fibonacci (limit) {
+				var fn1 = 1;
+				var fn2 = 1;
+				while (1){
+					var current = fn2;
+					fn2 = fn1;
+					fn1 = fn1 + current;
+					if (limit && current > limit)
+						return;
+					yield current;
+				}
+			}
+		</script>
+
+
+
+
+
+
+
+
+		// <script>
+		// 	/**
+		// 	* 迭代器模式 ： 提供一个API来遍历或操作复杂的自定义数据结构
+		// 	* 迭代器模式(Iterator)：提供一种方法顺序一个聚合对象中各个元素，而又不暴露该对象内部表示。
+
+		// 	    迭代器的几个特点是：
+
+		// 	    .访问一个聚合对象的内容而无需暴露它的内部表示。
+		// 	    .为遍历不同的集合结构提供一个统一的接口，从而支持同样的算法在不同的集合结构上进行操作。
+		// 	    .遍历的同时更改迭代器所在的集合结构可能会导致问题（比如C#的foreach里不允许修改item）。
+
+		// 	* 迭代器的使用场景是：
+		// 	    对于集合内部结果常常变化各异，
+		// 	    我们不想暴露其内部结构的话，但又响让客户代码透明底访问其中的元素，
+		// 	    这种情况下我们可以使用迭代器模式。
+		// 	*/
+		// 	/**
+		// 	*	自定义指令
+		// 	*/
+		// 	var agg = (function(){
+		//     var index = 0,
+		//         // 模拟数据
+		//         data = [1, 2, 3, 4, 5, 6, 7, 8 ,9],
+		//         length = data.length,
+		//         arr = [];
+
+		//     // 提供对外API，根据具体的需求提供相应的接口。一下为示例
+		//     // 一般会有next, hasNext, current, rewind等接口。数据中的索引是相当主要的，需要注意
+		// 	    return {
+		// 	        /*返回每隔一个元素的数组元素*/
+		// 	        next : function() {
+		// 	            /*如果数据到了末端，返回null*/
+		// 	            if(!this.hasNext) {
+		// 	                return null;
+		// 	            }
+		// 	            /*从索引0开始*/
+		// 	            var element = data[index];
+		// 	            /*index 索引可以增加简单的需求算法*/
+		// 	            index % 2 == 0 ? index += 2 : index += 1; arr.push(index);
+		// 	            return element;
+		// 	        },
+		// 	        /*是否有下一条数据*/
+		// 	        hasNext : function() {
+		// 	            return index < length;
+		// 	        },
+		// 	        /*重置索引*/
+		// 	        rewind : function() {
+		// 	            return index = 0;
+		// 	        },
+		// 	        /*仅获取数组的第一个元素(应该是错了)*/
+		// 	        current : function() {
+		// 	            return data[index];
+		// 	        },
+		// 	        /*获取当前过滤后的数组*/
+		// 	        unDivision : function() {
+		// 	            return arr;
+		// 	        }
+		// 	    };
+
+		// 	})();
+
+		// 	// 测试
+		// 	while (agg.hasNext()){
+		// 	    console.log("agg.next()" + agg.next());
+		// 	    /*agg.next()1*/
+		// 	    /*agg.next()3*/
+		// 	    /*agg.next()5*/
+		// 	    /*agg.next()7*/
+		// 	    /*agg.next()9*/
+		// 	}
+
+		// 	/*重置索引*/
+		// 	agg.rewind();
+		// 	/*仅获取数组的索引值的元素*/
+		// 	console.log("agg.current()" + agg.current());
+		// 	/*agg.current()1*/
+		// 	/*获取当前筛选后的数组*/
+		// 	console.log("agg.unDivision()" + agg.unDivision());
+		// 	/*agg.unDivision()2,4,6,8,10*/
+		// 	/*重置索引值*/
+		// 	console.log("agg.rewind()" + agg.rewind());
+		// 	/*当前索引是否会有有效的后续元素*/
+		// 	console.log("agg.hasNext()" + agg.hasNext());
+		// </script>
+
+		// <script>
+		// 	/*let示例*/
+		// 	"use strict";  //使用严格模式
+		// 	for (var i = 0, a=[]; i < 10; i++) {
+		// 	  var c = i;
+		// 	  a[i] = function () {
+		// 	    console.log(c);
+		// 	    /*9*/
+		// 	  };
+		// 	}
+		// 	a[0](); // 9
+		// 	for (var i = 0, b=[]; i < 10; i++) {
+		// 	  let c = i;  //使用let解决变量提升问题
+		// 	  b[i] = function () {
+		// 	    console.log(c);
+		// 	    /*0*/
+		// 	  };
+		// 	}
+		// 	b[0](); // 0
+		// </script>
+	</body>
+</html>

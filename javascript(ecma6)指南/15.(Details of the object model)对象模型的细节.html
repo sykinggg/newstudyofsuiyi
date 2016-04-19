@@ -891,5 +891,120 @@
 
 			var mac = new Engineer("Wood, Mac");
 		</script>
+		<h3>代码描述:</h3>
+		<p>上面省略掉的定义中包含 base 属性而且调用了原型链中高于它们的构造器</p>
+		<p>即便在现在这个情况下，在 mac 对象创建时，mac.id 为 5</p>
+		<h2>代码优化</h2>
+		<p>依赖于应用程序，计数器额外的递增可能有问题，也可能没问题</p>
+		<script>
+			function Employee (name, dept) {
+				this.name = name || "";
+				this.dept = dept || "general";
+				if (name)
+					this.id = idCounter++;
+			}
+		</script>
+
+
+
+
+
+
+
+
+
+
+
+		<h1>没有多继承</h1>
+		<p>某些面向对象语言支持多重继承。也就是说，对象可以从无关的多个父对象中继承属性和属性值</p>
+		<p>也就是说可以有多个爹</p>
+		<p>JavaScript 不支持多重继承</p>
+		<p>也就是说只有一个爹</p>
+
+
+		<h2>JavaScript 属性值的继承是在运行时通过检索对象的原型链来实现的</h2>
+		<p>因为对象只有一个原型与之关联，所以 JavaScript 无法动态地从多个原型链中继承</p>
+		
+
+		<h2>在 JavaScript 中，可以在构造器函数中调用多个其它的构造器函数</h2>
+		<p>这一点造成了多重继承的假象</p>
+
+		<script>
+			function Hobbyist (hobby) {
+				this.hobby = hobby || "scuba";
+			}
+
+			function Engineer (name, projs, mach, hoddy) {
+				this.base1 = WorkerBee;
+				this.base1(name, "engineering", projs);
+				this.base2 = Hobbyist;
+				// this.base2(hobby);
+				this.machine = mach || "";
+			}
+			Engineer.prototype = new WorkerBee;
+			console.log(Engineer.prototype);
+			/*Employee {}*/
+			/*__proto__:Employee*/
+
+			var denis = new Engineer("Doe, Dennis", ["collabra"], "hugo");
+			console.log(denis);
+			/*Engineer {machine: "hugo"}*/
+		</script>
+
+		<p>使用本章前面所属的 WorkerBee 的定义</p>
+		<script>
+			function Hobbyist (hobby) {
+				this.hobby = hobby || "scuba";
+			}
+
+			function Engineer (name, projs, mach, hoddy) {
+				this.base1 = WorkerBee;
+				this.base1(name, "engineering", projs);
+				this.base2 = Hobbyist;
+				// this.base2(hobby);
+				this.machine = mach || "";
+			}
+			Engineer.prototype = new WorkerBee;
+			console.log(Engineer.prototype);
+			/*Employee {}*/
+			/*__proto__:Employee*/
+
+			var denis = new Engineer("Doe, Dennis", ["collabra"], "hugo");
+			console.log(denis);
+			/*Engineer {machine: "hugo"}*/
+
+			denis.name == "Doe, Dennis";
+			console.log(denis.name == "Doe, Dennis");
+			/*false*/
+
+			denis.dept == "engineering";
+			console.log(denis.dept == "engineering");
+			/*false*/
+
+			denis.projects == ["collabra"];
+			console.log(denis.projects == ["collabra"]);
+			/*false*/
+
+			denis.machine == "hugo";
+			console.log(denis.machine == "hugo");
+			/*true*/
+
+			denis.hoddy == "scuba";
+			console.log(denis.hoddy == "scuba");
+			/*false*/
+
+
+			/**
+			*	dennis 确实从 Hobbyist 构造器中获得了 hobby 属性
+			*	假设添加了一个属性到 Hobbyist 构造器的原型
+			*/
+			Hobbyist.prototype.equipment = ["mask", "fins", "regulator", "bcd"];
+			console.log(denis);
+			/*Engineer {machine: "hugo"}*/
+			// base1: function WorkerBee(name, dept, projs)
+			// base2: function Hobbyist(boddy)
+			// machine: "hugo"
+			// __proto__: Employee
+		</script>
 	</body>
 </html>
