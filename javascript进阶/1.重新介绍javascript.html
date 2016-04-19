@@ -406,7 +406,7 @@
 					edtIt();
 					break;
 				default:
-					doNothing(); 
+					doNothing();
 			}
 		</script>
 		<h3>详细说明</h3>
@@ -497,7 +497,7 @@
 
 			// 定义一个对象
 			var You = new Person("You", 24);
-			// 创建一个新的 Person，名称是 "You" 
+			// 创建一个新的 Person，名称是 "You"
 			// ("You" 是第一个参数, 24 是第二个参数..)
 		</script>
 		<p>完成创建后，对象属性可以通过如下两种方式进行赋值和访问</p>
@@ -606,5 +606,22 @@
 				console.log(a[i]);
 			}
 		</script>
+		<p>还有一种更简洁但是有使用局限的写法</p>
+		<script type="text/javascript">
+			for (var i = 0, item; item = a[i++]; ) {
+				// Do something with item
+			}
+		</script>
+		<h3>注意:</h3>
+		<p>使用了两个变量</p>
+		<p>for 循环中间部分的赋值表达式同时也用来判断是否为真——如果为真，那么循环继续</p>
+		<p>因为 i 每次递增 1，这个数组的元素会被逐个传递给 item 变量</p>
+		<p>当遇到一个假值元素（如 undefined ）时，循环结束</p>
+
+		<h3>注意:</h3>
+		<p>注意这个技巧只能在你知道数组中不含假值（例如对象或DOM节点的数组）时才可以使用</p>
+		<p>如果想要遍历可能包含 0 或空字符串的数组，应该使用 i, len 的写法</p>
+
+		<p>遍历数组的另一种方法是使用 for...in 循环</p>
 	</body>
 </html>
