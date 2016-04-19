@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	</head>
+	 
+	<body>
+		<a id="A3" href="http://wpa.qq.com/msgrd?V=1&Uin=1493675713&Site=QQ&Menu=yes" style=" background-image:url('http://wpa.qq.com/pa?p=1:1493675713:1');display:block; height:25px; width:75px;" target="_blank" title="TM交谈" ></a>
+		<font color=red>输入QQ号码查询在线状态：</font><input id="QQNum" type=text value="1493675713" onkeypress="CheckQQ()"><Span id="QQ"></Span> 
+	</body>
+ 
+<script>
+var online= new Array(); 
+</script> 
+<script src="http://webpresence.qq.com/getonline?Type=1&1493675713:"></script> 
+<script> 
+if (online[0]==0) 
+document.write(" <img src=不在线显示的图片地址 border=0 align=center /><a class='qqb' target=blank href='http://wpa.qq.com/msgrd?V=1&Uin=1493675713&Site=在线咨询&Menu=no' title='QQ不在线，请留言'>名称</a>"); 
+else 
+document.write(" <img src=在线时显示的图片地址 border=0 align=center /><a class='qqa' target=blank href='http://wpa.qq.com/msgrd?V=1&Uin=1493675713&Site=在线咨询&Menu=no' title='在线即时交谈'>名称</a>"); 
+</script>
+</html>
