@@ -623,5 +623,506 @@
 		<p>如果想要遍历可能包含 0 或空字符串的数组，应该使用 i, len 的写法</p>
 
 		<p>遍历数组的另一种方法是使用 for...in 循环</p>
+		<h3>注意，如果有人向 Array.prototype 添加了新的属性，使用这样的循环这些属性也同样会被遍历</h3>
+		<p>所以并不推荐这种方法</p>
+		<script>
+			for (var i in a) {
+				// Do something with a[i]
+			}
+		</script>
+
+		<p>ECMAScript 5 增加了遍历数组的另一个方法 forEach()</p>
+		<script>
+			["dog", "cat", "hen"].forEach(function(currentValue, index, array) {
+				// Do something with currentValue or array[index]
+			})
+		</script>
+
+		<p>如果想在数组后追加元素，只需要</p>
+		<script>
+			a.push(item);
+		</script>
+
+		<p>Array（数组）类自带了许多方法</p>
+		<table>
+			<thead>
+				<tr>
+					<td>方法名称</td><td>描述</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>a.toString()</td>
+					<td>返回一个包含数组中所有元素的字符串，每个元素通过逗号分隔</td>
+					<script>
+						var a = ["dog", "cat", "hen"];
+						var b = ["dog1", "cat1", "hen1"];
+						console.log(a.toString());
+						// dog,cat,hen
+						console.log(a.toString(1));
+						// dog,cat,hen
+						a.toString();
+						console.log(a);
+						// ["dog", "cat", "hen"]
+					</script>
+				</tr>
+				<tr>
+					<td>a.toLocaleString()</td>
+					<td>根据宿主环境的区域设置，返回一个包含数组中所有元素的字符串，每个元素通过逗号分隔</td>
+					<script>
+						var a = ["dog", "cat", "hen"];
+						var b = ["dog1", "cat1", "hen1"];
+						console.log(a.toLocaleString());
+						// dog,cat,hen
+						console.log(a.toLocaleString(1));
+						// dog,cat,hen
+						a.toLocaleString();
+						console.log(a);
+						// ["dog", "cat", "hen"]
+					</script>
+				</tr>
+				<tr>
+					<td>a.concat(item[, item[, ...[, itemN]]])</td>
+					<td>返回一个数组，这个数组包含原先 a 和 item1、item2、……、itemN 中的所有元素</td>
+					<script>
+						var a = ["dog", "cat", "hen"];
+						var b = ["dog1", "cat1", "hen1"];
+						console.log(a.concat());
+						// ["dog", "cat", "hen"]
+						console.log(a.concat("dog"));
+						// ["dog", "cat", "hen", "dog"]
+						console.log(a.concat("dog"["cat"]));
+						// ["dog", "cat", "hen", undefined]
+						a.concat("dog");
+						console.log(a);
+						// ["dog", "cat", "hen"]
+					</script>
+				</tr>
+				<tr>
+					<td>a.join(sep)</td>
+					<td>返回一个包含数组中所有元素的字符串，每个元素通过指定的 sep 分隔</td>
+					<script>
+						var a = ["dog", "cat", "hen"];
+						var b = ["dog1", "cat1", "hen1"];
+						console.log(a);
+						// ["dog", "cat", "hen"]
+						a.join(b);
+						console.log(a);
+						// ["dog", "cat", "hen"]
+						console.log(a.join(b));
+						// dogdog1,cat1,hen1catdog1,cat1,hen1hen
+					</script>
+				</tr>
+				<tr>
+					<td>a.pop()</td>
+					<td>删除并返回数组中的最后一个元素</td>
+					<script>
+						var a = ["dog", "cat", "hen"];
+						var b = ["dog1", "cat1", "hen1"];
+						console.log(a.pop());
+						// hen
+						console.log(a);
+						// ["dog", "cat"]
+					</script>
+				</tr>
+				<tr>
+					<td>a.push(item1, ..., itemN)</td>
+					<td>将 item1、item2、……、itemN 追加至数组 a</td>
+					<script>
+						var a = ["dog", "cat", "hen"];
+						var b = ["dog1", "cat1", "hen1"];
+						var c = "fox";
+						var d = 1;
+						console.log(a.push(b));
+						// 4
+						console.log(a.push(c));
+						// 5
+						console.log(a.push(d));
+						// 6
+						a.push(b);
+						console.log(a);
+						// ["dog", "cat", "hen", Array[3], "fox", 1, Array[3]]
+						a.push(c);
+						console.log(a);
+						// ["dog", "cat", "hen", Array[3], "fox", 1, Array[3], "fox"]
+						a.push(d);
+						console.log(a);
+						// ["dog", "cat", "hen", Array[3], "fox", 1, Array[3], "fox", 1]
+					</script>
+				</tr>
+				<tr>
+					<td>a.reverse()</td>
+					<td>数组逆序（会更改原数组 a）</td>
+					<script>
+						var a = ["dog", "cat", "hen"];
+						console.log(a.reverse());
+						// ["hen", "cat", "dog"]
+						console.log(a);
+						// ["hen", "cat", "dog"]
+						a.reverse();
+						console.log(a);
+						// ["dog", "cat", "hen"]
+					</script>
+				</tr>
+				<tr>
+					<td>a.shift()</td>
+					<td>删除并返回数组中第一个元素</td>
+					<script>
+						var a = ["dog", "cat", "hen"];
+						console.log(a.shift());
+						// dog
+						console.log(a);
+						// ["cat", "hen"]
+						a.shift();
+						console.log(a);
+						// ["hen"]
+					</script>
+				</tr>
+				<tr>
+					<td>a.slice(start, end)</td>
+					<td>返回子数组，以 a[start] 开头，以 a[end] 前一个元素结尾</td>
+					<script>
+						var a = ["dog", "cat", "hen"];
+						console.log(a.slice(0, 1));
+						// ["dog"]
+						console.log(a.slice(a[0], a[1]));
+						// []
+						console.log(a.slice("dog", "cat"));
+						// []
+						console.log(a);
+						// ["dog", "cat", "hen"]
+						a.slice(0, 1);
+						console.log(a);
+						// ["dog", "cat", "hen"]
+					</script>
+				</tr>
+				<tr>
+					<td>a.sort([cmpfn])</td>
+					<td>依据 cmpfn 返回的结果进行排序，如果未指定比较函数则按字符顺序比较（即使元素是数字）</td>
+					<script>
+						var a = ["dog", "cat", "hen"];
+						console.log(a.sort());
+						// ["cat", "dog", "hen"]
+						console.log(a);
+						// ["cat", "dog", "hen"]
+					</script>
+				</tr>
+				<tr>
+					<td>a.splice(start, delcount[, item1[, ...[, itemN]]])</td>
+					<td>从 start 开始，删除 delcount 个元素，然后插入所有的 item</td>
+					<script>
+						var a = ["dog", "cat", "hen"];
+						var b = ["dog1", "cat1", "hen1"];
+						console.log(a.splice(0, 2, b));
+						// ["dog", "cat"]
+						console.log(a.splice(0, 1, ["dog1", "cat1", "hen1"]));
+						// [Array[3]]
+						console.log(a);
+						// [Array[3], "hen"]
+					</script>
+				</tr>
+				<tr>
+					<td>a.unshift([item])</td>
+					<td>将 item 插入数组头部，返回数组新长度（考虑 undefined）</td>
+					<script>
+						var a = ["dog", "cat", "hen"];
+						var b = ["dog1", "cat1", "hen1"];
+						console.log(a.unshift(b));
+						// 4
+						console.log(a);
+						// [Array[3], "dog", "cat", "hen"]
+					</script>
+				</tr>
+			</tbody>
+		</table>
+
+
+
+
+
+
+
+
+
+
+		<h1>函数</h1>
+		<p>最重要的就是要理解对象和函数两个部分</p>
+		<p>最简单的函数就像下面这个这么简单</p>
+		<script>
+			function add(x, y) {
+				var total = x + y;
+				return total;
+			}
+		</script>
+		<h3>代码描述</h3>
+		<p>一个 JavaScript 函数可以包含 0 个或多个已命名的变量</p>
+		<p>函数体中的表达式数量也没有限制</p>
+		<p>你可以声明函数自己的局部变量</p>
+		<p>return 语句在返回一个值并结束函数</p>
+		<p>如果没有使用 return 语句，或者一个没有值的 return 语句，JavaScript 会返回 undefined</p>
+
+		<p>已命名的参数更像是一个指示而没有其他作用</p>
+		<p>如果调用函数时没有提供足够的参数，缺少的参数会被 undefined 替代</p>
+		<script>
+			add(); //NaN
+			// 不能在 undefined 对象上进行加法操作
+			console.log(add());
+			// NaN
+			var add = function(){}
+			console.log(add());
+			// undefined
+		</script>
+
+		<p>还可以传入多于函数本身需要参数个数的参数</p>
+		<script>
+			function add(x, y) {
+				var total = +x + +y;
+				return total;
+			}
+			add(2, 3, 4);
+			console.log(add(2, 3, 4));
+			// 5
+		</script>
+		<h3>代码解析</h3>
+		<p>函数实际上是访问了函数体中一个名为 arguments 的内部对象</p>
+		<p>这个对象就如同一个类似于数组的对象一样，包括了所有被传入的参数</p>
+		<p>重写一下上面的函数，使它可以接收任意个数的参数</p>
+		<script>
+			function add() {
+				var sum = 0;
+				for(var i = 0, j = arguments.length; i < j; i++) {
+					sum += +arguments[i];
+				}
+				return sum;
+			}
+			console.log(add(1, 2, 3, 4, 5, 6, 7, 8, 9));
+			// 45
+		</script>
+		<p>跟直接写成 2 + 3 + 4 + 5 也没什么区别</p>
+
+		<p>接下来创建一个求平均数的函数</p>
+		<script>
+			function avg() {
+				var sum = 0;
+				for(var i = 0, j = arguments.length; i < j; i++) {
+					sum += +arguments[i];
+				}
+				return sum / arguments.length;
+			}
+			console.log(avg(1, 2, 3, 4, 5, 6, 7, 8, 9));
+			// 5
+		</script>
+		<p>avg() 函数处理一个由逗号连接的变量串</p>
+
+		<p>如果想得到一个数组的平均值</p>
+		<script>
+			function avgArray(arr) {
+				var sum = 0;
+				for(var i = 0, j = arr.length; i < j; i++) {
+					sum += arr[i];
+				}
+				return sum / arr.length;
+			}
+			console.log(avgArray([2, 3, 4, 5, 6, 7, 8, 9]));
+			// 5.5
+		</script>
+
+		<h3>注意:</h3>
+		<p> JavaScript 允许使用任意函数对象的apply() 方法来调用该函数，并传递给它一个包含了参数的数组</p>
+		<script>
+			avg.apply(null, [2, 3, 4, 5]);
+			console.log(avg.apply(null, [2, 3, 4, 5]));
+			// 3.5
+		</script>
+
+		<p>JavaScript 允许创建匿名函数</p>
+		<script>
+			var avg = function() {
+				var sum = 0;
+				for (var i = 0, j = arguments.length; i < j; i++) {
+					sum += +arguments[i];
+				}
+				return sum / arguments.length;
+			}
+		</script>
+		<h3>代码描述:</h3>
+		<p>这个函数在语义上与 function avg() 相同。你可以在代码中的任何地方定义这个函数，就像写普通的表达式一样</p>
+
+		<p>基于这个特性，有人发明出一些有趣的技巧。与 C 中的块级作用域类似，下面这个例子隐藏了局部变量</p>
+		<script>
+			var a = 1;
+			var b = 2;
+			console.log(a);
+			// 1
+			console.log(b);
+			// 2
+			(function() {
+				var b = 3;
+				a += b;
+			})();
+			console.log(a);
+			// 4
+			console.log(b);
+			// 2
+		</script>
+		
+		<h3>注意:</h3>
+		<p>JavaScript 允许以递归方式调用函数</p>
+		<p>递归在处理树形结构（比如浏览器 DOM）时非常有用</p>
+		<script>
+			// 没有循环出来！！！！！
+			function countChars(elm) {
+				if (elm.nodeType == 3) {
+					return elm.nodeType.length;
+				}
+				var count = 0;
+				for (var i = 0, child; child = elm.childNodes[i]; i++) {
+					count += countChars(child);
+				}
+				return count;
+			}
+			// var table = document.getElementsByTagName("table");
+			// console.log(countChars(table));
+			// 没有循环出来！！！！！
+		</script>
+
+		<p>10以内阶乘示例</p>
+		<script>
+			function fact(num){
+				if(num <= 1) {
+					return 1;
+				}else{
+					return num*fact(num-1);
+				}
+			}
+			console.log(fact(5));
+			// 120
+			// 但是:
+			var fact1 = fact;
+			console.log(fact1);
+			// function fact(num){
+			// 	if(num <= 1) {
+			// 		return 1;
+			// 	}else{
+			// 		return num*fact(num-1);
+			// 	}
+			// }
+			fact = null;
+			console.log(fact);
+			// null
+			console.log(fact1);
+			// function fact(num){
+			// 	if(num <= 1) {
+			// 		return 1;
+			// 	}else{
+			// 		return num*fact(num-1);
+			// 	}
+			// }
+			console.log(fact1(4));
+			// fact is not a function
+		</script>
+		<h3>代码描述:</h3>
+		<p>由于fact已经不是函数了，所以出错</p>
+		<p>用arguments.callee可解决问题，这是一个指向正在执行的函数的指针</p>
+		<script>
+			function fact(num) {
+				if(num <= 1) {
+					return 1;
+				}else{
+					return num*arguments.callee(num-1);
+				}
+			}
+			console.log(fact(5));
+			// 120
+
+			var fact1 = fact;
+			fact = null;
+			console.log(fact1(4));
+			// 24
+		</script>
+
+
+
+
+
+
+
+
+
+
+		<h1>自定义对象</h1>
+		<p>对象是指数据和在这些数据上进行的操作的集合</p>
+		<p>JavaScript 是一种基于原型的编程语言，并没有 class 语句，而是把函数用作类</p>
+		<script>
+			function makePerson(first, last) {
+				return {
+					first: first,
+					last: last
+				}
+			}
+
+			function personFullName(person) {
+				return person.first + " " + person.last;
+			}
+
+			function personFullNameReversed(person) {
+				return person.last + "," + person.last;
+			}
+
+			s = makePerson("Simon", "Willison");
+			console.log(s);
+			// Object
+			// first: "Simon"
+			// last: "Willison"
+			// __porto__:Object
+			personFullName(s);
+			console.log(personFullName(s));
+			// Simon Willison
+			console.log(s);
+			// Object
+			// first: "Simon"
+			// last: "Willison"
+			// __porto__:Object
+			personFullNameReversed(s);
+			console.log(personFullNameReversed(s));
+			// Willison,Willison
+			console.log(s);
+			// Object
+			// first: "Simon"
+			// last: "Willison"
+			// __porto__:Object
+		</script>
+		<h3>代码描述</h3>
+		<p>因为需要在全局命名空间中写很多函数</p>
+		<p>既然函数本身就是对象，如果需要使一个函数隶属于一个对象</p>
+		<p>那么不难得到</p>
+		<script>
+			function makePerson(first, last) {
+				return {
+					first: first,
+					last: last,
+					fullName: function() {
+						return this.first + " " + this.last;
+					},
+					fullNameReversed: function(){
+						return this.last + "," + this.first;
+					},
+					rerurnthis: function(){
+						return this;
+					}
+				}
+			}
+
+			s = makePerson("Simon", "Willison");
+			console.log(s.rerurnthis());
+			// Object {first: "Simon", last: "Willison"}
+			console.log(s);
+			s.fullName();
+			console.log(s.fullName());
+			console.log(s);
+			s.fullNameReversed();
+			console.log(s.fullNameReversed());
+			console.log(s);
+		</script>
 	</body>
 </html>
