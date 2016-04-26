@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>闭包</title>
+	</head>
+	<body>
+		<h1>闭包是指函数有自由独立的变量。换句话说，定义在闭包中的函数可以“记忆”它创建时候的环境</h1>
+		<h1>词法作用域</h1>
+		<script>
+			function init() {
+				var name = "Mozilla";
+				function displayName() {
+					console.log(name);
+				}
+				displayName();
+			}
+			init();
+			// Mozilla
+		</script>
+		<h3>代码描述</h3>
+		<p>函数 init() 创建了一个局部变量 name，然后定义了名为 displayName() 的函数</p>
+		<p>displayName() 是一个内部函数——定义于 init() 之内且仅在该函数体内可用</p>
+		<p>displayName() 没有任何自己的局部变量，然而它可以访问到外部函数的变量，即可以使用父函数中声明的 name 变量</p>
+
+		<h3>运行代码可以发现这可以正常工作</h3>
+		<p>这是词法作用域的一个例子</p>
+		<span>在 JavaScript 中，变量的作用域是由它在源代码中所处位置决定的（显然如此），并且嵌套的函数可以访问到其外层作用域中声明的变量</span>
+
+
+
+
+
+
+
+
+
+
+		<h1>闭包</h1>
+		<script>
+			function makeFunc() {
+				var name = "Mozilla"; 		//名字是由init创建一个局部变量
+				function displayName() {	//显示名（）是内的功能，一个封闭
+					console.log(name);		//显示名（）使用是在父函数声明的变量
+				}
+				return displayName;
+			}
+			makeFunc();
+			// 没执行
+			var myFunc = makeFunc();
+			myFunc();
+			// Mozilla
+		</script>
+		<h3>运行代码可以发现这可以正常工作</h3>
+		<p>这是词法作用域的一个例子</p>
+		<span>在 JavaScript 中，变量的作用域是由它在源代码中所处位置决定的（显然如此），并且嵌套的函数可以访问到其外层作用域中声明的变量</span>
+
+
+
+
+
+
+
+
+
+
+		<h1>闭包</h1>
+		<script>
+			function makeFunc() {
+				var name = "Mozilla";
+				function displayName() {
+					console.log(name);
+				}
+				return displayName;
+			}
+			makeFunc();
+			// 没执行
+			var myFunc = makeFunc();
+			myFunc();
+			// Mozilla
+		</script>
+	</body>
+</html>
