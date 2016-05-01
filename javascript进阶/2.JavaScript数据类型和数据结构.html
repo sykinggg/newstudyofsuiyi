@@ -16,12 +16,20 @@
 
 
 
+<<<<<<< HEAD
 
 		<h1>动态类型</h1>
 		<p>JavaScript 是一种弱类型或者说动态语言</p>
 		<p>这意味着你不用提前声明变量的类型，在程序运行过程中，类型会被自动确定</p>
 		<p>意味着你可以使用同一个变量保存不同类型的数据</p>
 		<script type="text/javascript">
+=======
+		<h1>动态类型</h1>
+		<p>JavaScript 是一种弱类型或者说动态语言</p>
+		<p>这意味着你不用提前声明变量的类型，在程序运行过程中，类型会被自动确定</p>
+		<p>可以使用同一个变量保存不同类型的数据</p>
+		<script>
+>>>>>>> 494821d8f8302894843db6808cdc5a8b10a1da77
 			var foo = 42;
 			console.log(foo);
 			// 42
@@ -37,6 +45,14 @@
 			// true
 			console.log(typeof(foo));
 			// boolean
+<<<<<<< HEAD
+=======
+			var foo;
+			console.log(foo);
+			// true
+			console.log(typeof(foo));
+			// boolean
+>>>>>>> 494821d8f8302894843db6808cdc5a8b10a1da77
 		</script>
 
 
@@ -47,9 +63,14 @@
 
 
 
+<<<<<<< HEAD
 
 		<h1>数据类型</h1>
 		<p> ECMAScript 标准定义了 7 种数据类型</p>
+=======
+		<h1>数据类型</h1>
+		<p>ECMAScript 标准定义了 7 种数据类型:</p>
+>>>>>>> 494821d8f8302894843db6808cdc5a8b10a1da77
 
 		<p>6 种 原始类型</p>
 		<ul>
@@ -58,7 +79,11 @@
 			<li>Undefined</li>
 			<li>Number</li>
 			<li>String</li>
+<<<<<<< HEAD
 			<li>Symbol(ECMAScript 6 新定义)</li>
+=======
+			<li>Symbol(Ecmascript6新定义的)</li>
+>>>>>>> 494821d8f8302894843db6808cdc5a8b10a1da77
 		</ul>
 		<p>和Object</p>
 
@@ -73,6 +98,7 @@
 
 		<h1>原始值</h1>
 		<p>除 Object 以外的所有类型都是不可变的（值本身无法被改变）</p>
+<<<<<<< HEAD
 		<h2>举例详细说明</h2>
 		<p>例如，与 C 语言不同，JavaScript 中字符串是不可变的</p>
 		<h2>javascript说明</h2>
@@ -89,12 +115,25 @@
 		<h2>Null类型</h2>
 		<p>Null 类型只有一个值： null，更多详情可查看 null 和 Null </p>
 
+=======
+		<p>JavaScript 中对字符串的操作一定返回了一个新字符串，原始字符串并没有被改变）</p>
+		<p>这些类型的值为“原始值”</p>
+
+
+		<h2>布尔类型</h2>
+		<p>布尔表示一个逻辑实体，可以有两个值：true 和 false</p>
+
+
+		<h2>Null类型</h2>
+		<p>Null 类型只有一个值： null</p>
+>>>>>>> 494821d8f8302894843db6808cdc5a8b10a1da77
 
 
 		<h2>Undefined类型</h2>
 		<p>一个没有被赋值的变量会有个默认值 undefined</p>
 
 
+<<<<<<< HEAD
 
 		<h2>数字类型</h2>
 		<p>根据 ECMAScript 标准，JavaScript 中只有一种数字类型</p>
@@ -112,10 +151,32 @@
 		<p>例如 +0 === -0 为真。 但是，你可能要注意除以0的时候</p>
 		<script type="text/javascript">
 			console.log(42/+0);
+=======
+		<h2>数字类型</h2>
+		<p>根据 ECMAScript 标准，JavaScript 中只有一种数字类型</p>
+		<p>基于 IEEE 754 标准的双精度 64 位二进制格式的值（-(253 -1) 到 253 -1）</p>
+		<h3>它并没有为整数给出一种特定的类型</h3>
+		<p>除了能够表示浮点数外，还有一些带符号的值：+Infinity，-Infinity 和 NaN (非数值，Not-a-Number)</p>
+
+		<p>要检查值是否大于或小于 +/-Infinity，你可以使用常量 Number.MAX_VALUE 和 Number.MIN_VALUE</p>
+
+		<h3>注意:</h3>
+		<p>在 ECMAScript 6 中，可以通过 Number.isSafeInteger() 方法</p>
+		<p>还有 Number.MAX_SAFE_INTEGER 和 Number.MIN_SAFE_INTEGER 来检查值是否在双精度浮点数的取值范围内</p>
+
+		<p>超出这个范围，JavaScript 中的数字不再安全了</p>
+		<p>也就是只有 second mathematical interger 可以在 JavaScript 数字类型中正确表现</p>
+
+		<p>数字类型只有一个整数，它有两种表示方法： 0 可表示为 -0 和 +0（"0" 是 +0 的简写）</p>
+		<h3>要注意除以0的时候</h3>
+		<script>
+			console.log(42/0);
+>>>>>>> 494821d8f8302894843db6808cdc5a8b10a1da77
 			// Infinity
 			console.log(42/-0);
 			// -Infinity
 		</script>
+<<<<<<< HEAD
 		<h3>代码描述</h3>
 		<p>尽管一个数字常常仅代表它本身的值，但JavaScript提供了一些位运算符</p>
 		<p>这些位运算符和一个单一数字通过位操作可以用来表现一些布尔值</p>
@@ -127,14 +188,267 @@
 
 
 
+=======
+
+
+		<h2>位运算符拓展</h2>
+		<p>尽管一个数字常常仅代表它本身的值，但JavaScript提供了一些位运算符</p>
+		<p> 这些位运算符和一个单一数字通过位操作可以用来表现一些布尔值</p>
+		<p>虽然 JavaScript 不提供其他的方式来表示一组布尔值如一个布尔值数组或一个布尔值分配给命名属性的对象</p>
+		<h3>使用环境</h3>
+		<p>试图应付本地存储的存储限制</p>
+		<p>位操作只应该是用来优化尺寸的最后选择</p>
+
+
+		<h2>字符串类型</h2>
+		<p>JavaScript的字符串类型用于表示文本数据</p>
+		<p>它是一组16位的无符号整数值的“元素”</p>
+		<p>在字符串中的每个元素占据了字符串的位置</p>
+		<p>第一个元素的索引为0，下一个是索引1，依此类推</p>
+		<p>字符串的长度是它的元素的数量</p>
+
+		<h3>特点及应用和操作</h3>
+		<p>不同于类 C 语言，JavaScript 字符串是不可更改的</p>
+		<p>这意味着字符串一旦被创建，就不能被修改</p>
+		<p>可以基于对原始字符串的操作来创建新的字符串</p>
+		<ul>
+			<li>获取一个字符串的子串可通过选择个别字母或者使用 String.substr()</li>
+			<li>两个字符串的连接使用连接操作符 (+) 或者 String.concat()</li>
+		</ul>
+		<h3>注意代码中的“字串符类型”</h3>
+		<p>可以使用字串符来表达复杂的数据</p>
+		<ul>
+			<li>容易连接构造复杂的字串符</li>
+			<li>字串符容易被调试(你看到的往往在字串符里)</li>
+			<li>
+				<p>字串符通常是许多APIs的常见标准 (input fields, local storage values, XMLHttpRequest当使用responseText等的时候回应)</p>
+				<p>只能与字符串一同使用</p>
+			</li>
+		</ul>
+		<p>字符串一般可以用来表达任何数据结构</p>
+		<p>例如，使用一个分隔符，一个可以模仿一个列表(一个JavaScript的数组可能更适合一些)</p>
+		<h3>当一个分隔符在用于列表中的元素时，打乱了这个列表</h3>
+		<p>这些惯例都变成了一个不存在的维护负担而没有正确的工具使用</p>
+		<p>表达文本数据和符号数据时候推荐使用字符串</p>
+		<p>当表达复杂的数据时，使用字符串解析和适当的缩写</p>
+
+
+		<h2>符号类型</h2>
+		<p>符号(Symbols)是ECMAScript 第6版新定义的</p>
+		<p>符号类型是唯一的并且是不可修改的, 并且也可以用来作为Object的key的值(如下)</p>
+		<p>在某些语言当中也有类似的原子类型(Atoms)</p>
 
 
 
 
+
+
+
+
+
+
+		<h1>对象</h1>
+		<p>对象是指内存中的可以被 标识符引用的一块区域</p>
+
+
+
+		<h2>属性</h2>
+		<p>在 Javascript 里，对象可以被看作是一组属性的集合</p>
+		<p>用对象字面量语法来定义一个对象时，会自动初始化一组属性</p>
+		<h3>说明</h3>
+		<p>定义一个var a = "Hello"，那么a本身就会有a.substring这个方法，以及a.length这个属性，以及其它</p>
+		<p>定义了一个对象，var a = {}，那么a就会自动有a.hasOwnProperty及a.constructor等属性和方法</p>
+		<p>这些属性还可以被增减</p>
+		<p>属性的值可以是任意类型，包括具有复杂数据结构的对象</p>
+		<p>属性使用键来标识，它的键值可以是一个字符串或者符号值（Symbol）</p>
+
+		<p>ECMAScript定义的对象中有两种属性：数据属性和访问器属性</p>
+
+
+
+		<h2>数据属性</h2>
+		<p>数据属性是键值对，并且每个数据属性拥有下列特性</p>
+		<p>数据属性的特性(Attributes of a data property)</p>
+		<table>
+			<thead>
+				<tr>
+					<td>特性</td>
+					<td>数据类型</td>
+					<td>描述</td>
+					<td>默认值</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>[[Value]]</td>
+					<td>任何Javascript类型</td>
+					<td>包含这个属性的数据值</td>
+					<td>undefined</td>
+				</tr>
+				<tr>
+					<td>[[Writable]]</td>
+					<td>Boolean</td>
+					<td>如果该值为 false，则该属性的[[Value]]特性不能被改变</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>[[Enumerable]]</td>
+					<td>Boolean</td>
+					<td>如果该值为 true，则该属性可以用for...in循环来枚举</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>[[Configurable]]</td>
+					<td>Boolean</td>
+					<td>如果该值为 false，则该属性不能被删除，并且 除了 [[Value]] 和 [[Writable]] 以外的特性都不能被改变</td>
+					<td>false</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<p>过时的属性(在ECMAScript 3定义的, 在ECMAScript 5被重命名)</p>
+		<table>
+			<thead>
+				<tr>
+					<td>属性</td>
+					<td>类型</td>
+					<td>描述</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Read-only</td>
+					<td>Boolean</td>
+					<td>ES5 [[Writable]] 属性的反状态(Reversed state)</td>
+				</tr>
+				<tr>
+					<td>DontEnum</td>
+					<td>Boolean</td>
+					<td>ES5 [[Enumerable]]  属性的反状态</td>
+				</tr>
+				<tr>
+					<td>DontDelete</td>
+					<td>Boolean</td>
+					<td>ES5 [[Configurable]] 属性的反状态</td>
+				</tr>
+			</tbody>
+		</table>
+
+
+		<h2>访问器属性</h2>
+		<p>访问器属性有一个或两个访问器函数 (get 和 set) 来存取数值</p>
+
+		<table>
+			<thead>
+				<tr>
+					<td>特性</td>
+					<td>类型</td>
+					<td>描述</td>
+					<td>默认值</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>[[Get]]</td>
+					<td>函数对象或者 undefined</td>
+					<td>该函数使用一个空的参数列表，能够在有权访问的情况下读取属性值</td>
+					<td>undefined</td>
+				</tr>
+				<tr>
+					<td>[[Set]]</td>
+					<td>函数对象或者 undefined</td>
+					<td>该函数有一个参数，用来写入属性值</td>
+					<td>undefined</td>
+				</tr>
+				<tr>
+					<td>[[Enumerable]]</td>
+					<td>Boolean</td>
+					<td>如果该值为 true，则该属性可以用 for...in 循环来枚举</td>
+					<td>false</td>
+				</tr>
+				<tr>
+					<td>[[Configurable]]</td>
+					<td>Boolean</td>
+					<td>如果该值为 false，则该属性不能被删除，并且不能被转变成一个数据属性</td>
+					<td>false</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h3>注意：这些特性只有 JavaScript 引擎才用到，因此你不能直接访问它们</h3>
+		<h3>所以特性被放在两对方括号中，而不是一对</h3>
+
+
+
+
+		<h2>"标准的" 对象, 和函数</h2>
+		<p>一个 Javascript 对象就是键和值之间的映射</p>
+		<p>键是一个字符串（或者 Symbol）</p>
+		<p>值可以是任意类型的值</p>
+>>>>>>> 494821d8f8302894843db6808cdc5a8b10a1da77
+
+
+
+
+<<<<<<< HEAD
 
 
 		<h1>字符串类型</h1>
 		<p>JavaScript的字符串类型用于表示文本数据</p>
 		<p>它是一组16位的无符号整数值的“元素”</p>
+=======
+		<h2>日期</h2>
+		<p>要显示日期时，毋庸置疑，使用内建的 Date 对象</p>
+
+
+
+
+		<h2>有序集: 数组和类型数组</h2>
+		<p>数组是一种使用整数作为键(integer-key-ed)属性和长度(length)属性之间关联的常规对象</p>
+		<p>此外，数组对象继承还了 Array.prototype 的一些操作数组的便捷方法</p>
+		<h3>例如, indexOf (搜索数组中的一个值) or push (向数组中添加一个元素)，等等</h3>
+		<p>这使得数组是表示列表或集合的最优选择</p>
+
+
+		<p>类型数组(Typed Arrays)是ECMAScript Edition 6中新定义的 JavaScript 内建对象</p>
+		<p>提供了一个基本的二进制数据缓冲区的类数组视图</p>
+
+
+
+
+		<h2>键控集: Maps, Sets, WeakMaps, WeakSets</h2>
+		<p>当 Map 和 WeakMap 把一个值和对象关联起来的时候， Set 和 WeakSet 表示一组对象</p>
+		<p>Map和WeakMaps之间的差别在于，在前者中，对象键是可枚举的</p>
+		<p>这允许垃圾收集器优化后面的枚举(This allows garbage collection optimizations in the latter case)</p>
+
+
+		<p>在纯ECMAScript 5下可以实现Maps和Sets</p>
+		<p>因为对象并不能进行比较（就对象“小于”示例来讲），所以查询必定是线性的</p>
+		<p>本地实现（包括WeakMaps）查询所花费的时间可能是对数增长</p>
+
+
+		<p>可以通过直接在对象上设置属性或着使用data-*属性，来绑定数据到DOM节点</p>
+		<p>然而缺陷是在任何的脚本里，数据都运行在同样的上下文中</p>
+		<p>Maps和WeakMaps方便将数据私密的绑定到一个对象</p>
+
+
+
+
+		<h2>结构化数据: JSON</h2>
+		<p>JSON (JavaScript Object Notation) 是一种轻量级的数据交换格式</p>
+		<p>来源于 JavaScrip 同时也被多种语言所使用</p>
+		<p>JSON 用于构建通用的数据结构</p>
+
+
+
+
+		<h2>标准库中更多的对象</h2>
+		<p>JavaScript 有一个内置对象的标准库</p>
+
+
+
+		<h2>使用typeof操作符判断对象类型</h2>
+		<p>typeof 运算符可以帮助你查询变量的类型</p>
+>>>>>>> 494821d8f8302894843db6808cdc5a8b10a1da77
 	</body>
 </html>
