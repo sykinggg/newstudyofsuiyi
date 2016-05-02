@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>jquery _ ajax</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+  </head>
+  <body>
+    <h1>在JQuery中，AJAX有三种实现方式：$.ajax() , $.post , $.get()</h1>
+    <p>$.get():</p>
+    <script type="text/javascript">
+      $.get("test.jsp",
+      {name:'cssrain', time:"2008/01/21"},//要传递的数据
+      function (data) {
+        alert('返回的数据'+data);
+      }
+    )
+    </script>
+    <p>$.post()</p>
+    <script type="text/javascript">
+      $.post("test.jsp",
+      {name:"cssrain", time:'2001/01/21'},
+      function(data) {
+        alert("返回的数据"+data);
+      }
+    )
+    </script>
+    <p>$.ajax()</p>
+    <script type="text/javascript">
+      $.ajax({
+        url:"Accept.jsp",
+        type:'post',
+        dataType:'html',
+        data:'text='+$("#name").val()+"&date="+new Date(),
+        error: function(){
+          alert("Error loading document");
+        },
+        success: function(msg){
+          alert("Date Saved:" + msg);
+        }
+      });
+    </script>
+
+
+    <h1>网上找的</h1>
+    <script type="text/javascript">
+    //版权归属 WUJXPING
+//ajax 1.2
+//更新2012-2-20
+//1、异步数据加载可以进行加载方式get,post的设定
+//2、异步同步模式的属性设定
+//3、数据加载自动超时设置
+//4、***数据加载事件的添加，通过事件可以进行服务器数据的实时处理
+//5、增加回调函数中用户自定义参数this.e
+//6、增加ajax反复提交控制，只需将ajax对象定义为全局变量，每次提交都会进行等待上次提交的执行结果
+//7、修改数据反复提交时XmlHttp对象被反复创建的问题
+//8、修复重大BUG，多个AJAX事件覆盖问题
+//服务器数据返回事件
+ajax.prototype.ServerEven=function(Func){
+this.callback=new delegate(Func);//实例化
+}
+//创建异步处理对象
+ajax.prototype.CreateXMLHttp=function(){
+if(this.XmlHttp!=null && typeof this.XmlHttp == "object")
+return this.XmlHttp;
+xmlhttpObj = ["Microsoft.XmlHttp","MSXML2.XmlHttp.5.0","MSXML2.XmlHttp.4.0","MSXML2.XmlHttp.3.0","MSXML2.XmlHttp"];
+//根据不同的浏览器创建XMLHttpRequest
+if(window.ActiveXObject){
+for(i=0;i<xmlhttpObj.length;i++){ //选择ie兼容版本
+  try{
+    this.XmlHttp = new ActiveXObject(xmlhttpObj[i]);
+  }catch(err){
+    continue;
+  }
+  if(this.XmlHttp)
+    break;
+}
+}
+else if(window.XMLHttpRequest){
+this.XmlHttp=new XMLHttpRequest();
+}
+return this.XmlHttp;
+}
+//开始调用
+ajax.prototype.Send=function(){
+if(this.isbusy)//ajax正忙
+return;
+this.isbusy=true;
+var xmlhtml=this.CreateXMLHttp(); //创建对象
+if(xmlhtml==null){
+this.isbusy=false
+if(this.callback!=null)
+  this.callback.run("XMLHttpRequest Create Faild!",this.e);
+return;
+}
+var url=this.url;
+var _this=this;
+// 加随机数防止缓存
+if (url.indexOf("?") > 0)
+url += "&randnum=" + Math.random();
+else
+url += "?randnum=" + Math.random();
+xmlhtml.open(this.method,url,this.async);
+xmlhtml.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8;");
+xmlhtml.setRequestHeader("Cache-Control","no-cache");
+xmlhtml.setRequestHeader("Connection","Keep-Alive");
+//开启定时进行超时等待
+var timer=setTimeout(function(){
+//if(xmlhtml.readyState!=4){
+xmlhtml.abort(); //取消本次传输
+_this.isbusy=false;
+if(_this.callback!=null)
+  _this.callback.run("send timeout!",_this.e);
+clearTimeout(timer); //关闭定时器
+},this.timeout);
+if(this.async)//异步数据加载时状态变化与事件挂钩
+xmlhtml.onreadystatechange=function(){//接收服务器响应
+  if(xmlhtml.readyState==4){//判断是否是完成状态
+    if(xmlhtml.status==200){ //判断是否执行成功
+      _this.isbusy=false;
+      clearTimeout(timer); //关闭定时器
+      if(_this.callback!=null)//开始触发服务器事件
+        _this.callback.run(xmlhtml,_this.e);
+    }
+  }
+};
+try{
+xmlhtml.send(this.option);
+}catch(err){
+this.isbusy=false
+clearTimeout(timer); //关闭定时器
+alert(err);
+return;
+}
+if(!this.async){//同步数据加载时数据返回处理
+this.isbusy=false;
+clearTimeout(timer); //关闭定时器
+if(this.callback!=null)
+  this.callback.run(xmlhtml,this.e);
+}
+}
+//创建ajax对象
+function ajax(url){
+this.method="post";//设置数据提交方式
+this.async=true;//是否进行异步数据加载模式
+this.option="";  //请求的参数
+this.url=url;//请求的Url连接
+this.timeout=1000*60*1;//默认超时时间为1分钟
+this.e=null;//回调事件中用户自定义参数
+this.XmlHttp=null;//接收异步创建的对象防止反复创建
+this.isbusy=false//获取当前ajax的执行状态
+this.callback=null;//声明回调事件
+// 实现委托的类
+delegate=function (func){
+this.arr = new Array(); // 回调函数数组
+this.add = function(func){
+this.arr[this.arr.length] = func;
+};
+this.run = function(sender,e){
+for(var i=0;i<this.arr.length;i++){
+ var func = this.arr[i];
+ if(typeof func == "function"){
+  func(sender,e); // 遍历所有方法以及调用
+ }
+}
+}
+this.add(func);
+}
+}
+    </script>
+
+
+    <p>对象声明</p>
+    <script type="text/javascript">
+    var XMLHttpRequestObject=false;
+    if(window.XMLHttpRequest)
+    {
+     XMLHttpRequestObject=new XMLHttpRequest();
+    }
+    else if(window.ActiveXObject)
+    {
+     XMLHttpRequestObject=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+
+
+    function getData(dataSource,divID)
+   {
+    if(XMLHttpRequestObject)
+    {
+     var obj=document.getElementById(divID);
+     XMLHttpRequestObject.open("GET",dataSource);
+     XMLHttpRequestObject.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+     XMLHttpRequestObject.onreadystatechange=function ()
+     {
+      if(XMLHttpRequestObject.readyState==4 && XMLHttpRequestObject.status==200)
+      {
+       obj.innerHTML=XMLHttpRequestObject.responseText;
+      }
+     }
+     XMLHttpRequestObject.send(NULL);
+    }
+   }
+    </script>
+  </body>
+</html>
