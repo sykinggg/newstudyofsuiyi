@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>javascript的eval()</title>
+  </head>
+  <body>
+    <h1>javascript的eval()</h1>
+    <p>eval()的参数是一个字符串，eval()会将传入的字符串当做代码来执行</p>
+    <script type="text/javascript">
+      eval("console.log('hi')");
+      // hi
+      var count = 10;
+      var number = eval("5 + count");
+      console.log(number);
+      // 15
+    </script>
+
+    <h2>概念描述</h2>
+    <p>在Javascript中eval()并不是唯一可以执行Javascript字符串的函数</p>
+    <p>使用Function构造函数亦可以做到这一点</p>
+    <p>setTimeout()和setInterval()也可以</p>
+    <script type="text/javascript">
+      var myfunc = new Function("console.log('hi!')");
+      setTimeout("document.body.style.background='red'", 50);
+      setInterval("document.title = 'It is now' + (new Date())",1000);
+    </script>
+
+    <p>尽管在Javascript类库中eval()，可能会经常用到（通常和JSON操作有关）</p>
+    <p>另外三种用法即使也非常罕见</p>
+    <p>一个通用的原则是，禁止使用Function，并且只在别无他法时使用，eval()</p>
+    <p>setTimeout和setInterval也是可以使用的，但不要用字符串形式而要用函数</p>
+  </body>
+</html>
