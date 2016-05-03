@@ -1,0 +1,497 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>javascript的继承</title>
+	</head>
+	<body>
+		<p>栗子</p>
+		<script>
+			var a = function() {}
+			a.prototype = {
+				v: 5,
+				tmp: 76,
+				echo: function() {
+					console.log(this.tmp);
+				},
+			}
+			var b = new a();
+			b.echo();
+			// 76
+			console.log(b.v);
+			// 5
+			console.log(b.tmp);
+			// 76
+		</script>
+		
+
+
+
+
+
+
+
+
+
+
+		<h1>继承概念</h1>
+		<p>JavaScript 不包含传统的类继承模型，而是使用 prototypal 原型模型</p>
+
+		<p>其实基于原型的继承模型比传统的类继承还要强大</p>
+		<p>实现传统的类继承模型是很简单，但是实现 JavaScript 中的原型继承则要困难的多</p>
+
+
+
+
+
+
+
+
+
+		<h1>原型</h1>
+		<script>
+			var decimalDigits = 2,
+				tax = 5;
+
+			function adds(x, y) {
+				return x + y;
+			}
+
+			function subract(x, y) {
+				return x - y;
+			}
+
+			console.log(adds(decimalDigits,tax));
+			// 7
+			console.log(subract(decimalDigits,tax));
+			// -3
+		</script>
+
+
+
+
+		<h2>原型使用方式1</h2>
+		<script>
+			var Calculator = function (decimalDigits, tax) {
+				this.decimalDigits = decimalDigits;
+				this.tax = tax;
+			};
+
+			Calculator.prototype = {
+				add: function(x, y) {
+					return x + y;
+				},
+				subract: function (x, y) {
+					return x - y;
+				}
+			};
+
+			var asd = new Calculator();
+			console.log(asd);
+			// Calculator {decimalDigits: undefined, tax: undefined}
+			// 	decimalDigits: undefined
+			// 	tax: undefined
+			// 	__proto__: Object
+			// 		add: function(x, y)
+			// 		subract: function(x, y);
+			// 		__proto__
+			console.log(asd.add(1, 3));
+			// 4
+			console.log(asd.subract(1, 3));
+			// -2
+			console.log(asd.tax);
+			// undefined
+			console.log(asd.decimalDigits);
+			// undefined
+			console.log((new Calculator()).add(1, 3));
+			// 4
+		</script>
+		<h3>代码描述</h3>
+		<p>就可以new Calculator对象以后，就可以调用add方法来计算结果</p>
+
+
+
+
+
+		<h2>原型使用方式2</h2>
+		<p>在赋值原型prototype的时候使用function立即执行的表达式来赋值</p>
+		<h3>注意</h3>
+		<h3>可以封装私有的function</h3>
+		<h3>通过return的形式暴露出简单的使用名称，以达到public/private的效果</h3>
+		<script>
+			Calculator.prototype = function(){}();
+		</script>
+		<script>
+			Calculator.prototype = function(){
+				add = function(x, y) {
+					return x + y;
+				},
+				subract = function(x, y) {
+					return x - y;
+				}
+				return {
+					add: add,
+					subract: subract
+				}
+			}();
+
+			var asd = new Calculator();
+			console.log(asd);
+			// Calculator {decimalDigits: undefined, tax: undefined}
+			// 	decimalDigits: undefined
+			// 	tax: undefined
+			// 	__proto__: Object
+			// 		add: function(x, y)
+			// 		subract: function(x, y);
+			// 		__proto__
+			console.log(asd.add(1, 2));
+			// 3
+			console.log(asd.subract(2, 3));
+			// -1
+			console.log((new Calculator()).add(1, 34));
+			// 35
+		</script>
+		<h3>代码描述</h3>
+		<p>可以new Calculator对象以后调用add方法来计算结果了</p>
+
+
+
+
+		<h2>分步声明</h2>
+		<p>分来设置原型的每个属性</p>
+		<script>
+			var BaseCalculator = function () {
+				//为每个实例都声明一个小数位数
+				this.decimalDigits = 2;
+			};
+
+			//使用原型给BaseCalculator扩展2个对象方法
+			BaseCalculator.prototype.add = function (x, y) {
+				return x + y;
+			};
+
+			BaseCalculator.prototype.script = function (x, y) {
+				return x - y;
+			};
+
+			var asd = new BaseCalculator();
+			console.log(asd);
+			// BaseCalculator {decimalDigits: 2}
+			// decimalDigits: 2
+			// __proto__
+			// 	add:function (x, y)
+			// 	constructor: function ()
+			// 	script: function(x, y)
+			// 	__proto__: Object
+			console.log(asd.add(12,2));
+			// 14
+			console.log(asd.script(24, 3));
+			// 21
+		</script>
+		<h3>代码描述</h3>
+		<p>首先，声明了一个BaseCalculator对象，构造函数里会初始化一个小数位数的属性decimalDigits</p>
+		<p>然后通过原型属性设置2个function，分别是add(x,y)和subtract(x,y)</p>
+
+		<script>
+			var BaseCalculator = function() {
+				this.decimalDigits = 2;
+			};
+
+			BaseCalculator.prototype = {
+				add: function(x, y) {
+					return x + y;
+				},
+				subract: function(x, y) {
+					return x - y;
+				}
+			};
+
+			/*引用实例*/
+			var Calculator = function() {
+				this.tax = 5;
+			};
+			Calculator.prototype = new BaseCalculator();
+			console.log(Calculator);
+			// function () {
+			// 	this.tax = 5;
+			// }
+			console.log(Calculator.prototype);
+			// Object {decimalDigits: 2}
+			// 	decimalDigits: 2
+			// 	__proto__: Object
+			// 		add: function(x, y)
+			// 		subract: function(x, y)
+			// 		__proto__:Object
+			console.log(Calculator.prototype.add(1, 2));
+			// 3
+			console.log(Calculator.prototype.subract(2, 3));
+			// -1
+		</script>
+		<h3>代码描述</h3>
+		<p>可以看到Calculator的原型是指向到BaseCalculator的一个实例上</p>
+		<p>目的是让Calculator集成它的add(x,y)和subtract(x,y)这2个function</p>
+		<h3>注意:</h3>
+		<p>由于它的原型是BaseCalculator的一个实例，所以不管你创建多少个Calculator对象实例，他们的原型指向的都是同一个实例</p>
+
+		<script>
+			var calc = new Calculator();
+			console.log(calc.add(1, 2));
+			// 3
+			console.log(calc.decimalDigits);
+			// 2
+		</script>
+		<h3>代码描述</h3>
+		<p>BaseCalculator 里声明的decimalDigits属性，在 Calculator里是可以访问到的</p>
+		<p>运行以后，可以看到因为Calculator的原型是指向BaseCalculator的实例上的</p>
+		<p>所以可以访问他的decimalDigits属性值</p>
+		<p>那如果不想让Calculator访问BaseCalculator的构造函数里声明的属性值</p>
+
+		<script>
+			var calculator = function () {
+				this.tax = 5;
+			};
+
+			calculator.prototype = BaseCalculator.prototype;
+			console.log(calculator);
+			// function () {
+			// 	this.tax = 5;
+			// }
+			console.log(BaseCalculator);
+			// function  {
+			// 	this.decimalDigits = 2;
+			// }
+		</script>
+		<p>通过将BaseCalculator的原型赋给Calculator的原型</p>
+		<p>这样在Calculator的实例上就访问不到那个decimalDigits值了</p>
+		<script>
+			var calc = new Calculator();
+			console.log(calc.add(1, 2));
+			// 3
+			console.log(calc.decimalDigits);
+			//2
+			// 应该是undefined
+		</script>
+
+
+
+
+
+
+
+
+
+
+		<h1>重写原型</h1>
+		<p>在使用第三方JS类库的时候，往往有时候他们定义的原型方法是不能满足我们的需要</p>
+		<p>但是又离不开这个类库，所以这时候我们就需要重写他们的原型中的一个或者多个属性或function</p>
+		<p>可以通过继续声明的同样的add代码的形式来达到覆盖重写前面的add功能</p>
+
+		<script>
+			Calculator.prototype.add = function (x, y) {
+				return x + y + this.tax;
+			};
+
+			var calc = new Calculator();
+			console.log(calc.add(1, 1));
+			// 7
+		</script>
+		<h3>代码描述</h3>
+		<p>计算得出的结果就比原来多出了一个tax的值</p>
+		<h3>注意</h3>
+		<p>那就是重写的代码需要放在最后，这样才能覆盖前面的代码</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>原型链</h1>
+		<script>
+			function Foo() {
+			    this.value = 42;
+			}
+			Foo.prototype = {
+			    method: function() {}
+			};
+
+			function Bar() {}
+
+			// 设置Bar的prototype属性为Foo的实例对象
+			Bar.prototype = new Foo();
+			Bar.prototype.foo = 'Hello World';
+
+			// 修正Bar.prototype.constructor为Bar本身
+			Bar.prototype.constructor = Bar;
+
+			var test = new Bar() // 创建Bar的一个新实例
+
+			// 原型链
+			// test [Bar的实例]
+			//     Bar.prototype [Foo的实例]
+			//         { foo: 'Hello World' }
+			//         Foo.prototype
+			//             {method: ...};
+			//             Object.prototype
+			//                 {toString: ... /* etc. */};
+		</script>
+		<h3>代码描述</h3>
+		<p>test 对象从 Bar.prototype 和 Foo.prototype 继承下来</p>
+		<p>因此，它能访问 Foo 的原型方法 method</p>
+
+		<p>同时，它也能够访问那个定义在原型上的 Foo 实例属性 value</p>
+		<p>需要注意的是 new Bar() 不会创造出一个新的 Foo 实例，而是重复使用它原型上的那个实例</p>
+		<p>因此，所有的 Bar 实例都会共享相同的 value 属性</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>属性查找</h1>
+		<p>当查找一个对象的属性时，JavaScript 会向上遍历原型链，直到找到给定名称的属性为止</p>
+		<p>到查找到达原型链的顶部 - 也就是 Object.prototype</p>
+		<p>但是仍然没有找到指定的属性，就会返回 undefined</p>
+		<script>
+			function foo() {
+				this.add = function (x, y) {
+					return x + y;
+				}
+			}
+
+			foo.prototype.add = function (x, y) {
+				return x + y + 10;
+			}
+
+			Object.prototype.subract = function (x, y) {
+				return x - y;
+			}
+
+			var f = new foo();
+			console.log(f);
+			// foo {}
+			// 	add: function(x, y)
+			// 	__proto__: Object
+			console.log(f.add(1, 2));
+			// 3
+			console.log(f.subract(1, 2));
+			// -1
+		</script>
+		<h3>代码描述</h3>
+		<p>发现subtract是按照我们所说的向上查找来得到结果的</p>
+		<p>但是add方法有点不同</p>
+		<h3>注意:</h3>
+		<p>属性在查找的时候是先查找自身的属性，如果没有再查找原型，再没有，再往上走，一直查到Object的原型上</p>
+		<p>在某种层面上说，用for in语句遍历属性的时候，效率也是个问题</p>
+
+		<h3>注意</h3>
+		<p>可以赋值任何类型的对象到原型上，但是不能赋值原始类型的值</p>
+		<script>
+			function Foo() {}
+			Foo.prototype = 1;
+			console.log(Foo.prototype);
+			// 结果是可行的
+			// 1
+		</script>
+
+
+
+
+
+
+
+
+
+
+		<h1>hasOwnProperty函数</h1>
+		<p>hasOwnProperty是Object.prototype的一个方法</p>
+		<p>能判断一个对象是否包含自定义属性而不是原型链上的属性</p>
+		<p>因为hasOwnProperty 是 JavaScript 中唯一一个处理属性但是不查找原型链的函数</p>
+		<script>
+			Object.prototype.bar = 1;
+			var foo = {
+				goo: undefined
+			};
+
+			console.log(foo.bar);
+			// 1
+			console.log("bar" in foo);
+			// true
+
+			foo.hasOwnProperty("bar");
+			console.log(foo.hasOwnProperty("bar"));
+			// false
+			foo.hasOwnProperty("goo");
+			console.log(foo.hasOwnProperty("goo"));
+			// true
+		</script>
+		<h3>代码描述</h3>
+		<p>只有 hasOwnProperty 可以给出正确和期望的结果，这在遍历对象的属性时会很有用</p>
+		<p>没有其它方法可以用来排除原型链上的属性，而不是定义在对象自身上的属性</p>
+
+		<p>但有个恶心的地方是：JavaScript 不会保护 hasOwnProperty 被非法占用</p>
+		<p>因此如果一个对象碰巧存在这个属性，就需要使用外部的 hasOwnProperty 函数来获取正确的结果</p>
+
+		<script>
+			var foo = {
+				hasOwnProperty: function() {
+					return false;
+				},
+				bar: 'Here be dragons'
+			};
+
+			foo.hasOwnProperty("bar");
+			console.log(foo.hasOwnProperty("bar"));
+			// false
+
+			/*似乎并不行*/
+			// 使用{}对象的 hasOwnProperty，并将其上下文设置为foo
+			// var asd = {}hasOwnProperty.call(foo, "bar");
+			// console.log(asd);
+			// Uncaught SyntaxError: Unexpected identifier
+			// {}.hasOwnProperty.call(foo, 'bar');
+		</script>
+
+
+		<p>当检查对象上某个属性是否存在时，hasOwnProperty 是唯一可用的方法</p>
+		<p>同时在使用 for in loop 遍历对象时，推荐总是使用 hasOwnProperty 方法</p>
+		<p>这将会避免原型对象扩展带来的干扰</p>
+		<script>
+			// 修改 Object.prototype
+			Object.prototype.bar = 1;
+
+			var foo = {moo: 2};
+
+			for(var i in foo) {
+				console.log(i);
+			}
+			// moo
+			// subract
+			// bar
+		</script>
+
+		<p>我们没办法改变for in语句的行为，所以想过滤结果就只能使用hasOwnProperty 方法</p>
+		<script>
+			// foo 变量是上例中的
+			for (var i in foo) {
+				if(foo.hasOwnProperty(i)) {
+					console.log(i);
+				}
+			}
+			// moo
+		</script>
+		<h3>代码描述</h3>
+		<p>由于我们使用了 hasOwnProperty，所以这次只输出 moo</p>
+		<p>如果不使用 hasOwnProperty，则这段代码在原生对象原型（比如 Object.prototype）被扩展时可能会出错</p>
+
+		<h3>注意</h3>
+		<h3>推荐使用 hasOwnProperty，不要对代码运行的环境做任何假设，不要假设原生对象是否已经被扩展了</h3>
+	</body>
+</html>
