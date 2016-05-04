@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>严格模式</title>
+	</head>
+	<body>
+		<h1>严格模式</h1>
+		<p>ECMAScript 5的严格模式是JavaScript中的一种限制性更强的变种方式</p>
+		<p>严格模式不是一个子集：它在语义上与正常代码有着明显的差异</p>
+		<ul>
+			<li>严格模式会将JavaScript陷阱直接变成明显的错误</li>
+			<li>其次，严格模式修正了一些引擎难以优化的错误</li>
+			<li>同样的代码有些时候严格模式会比非严格模式下更快</li>
+			<li>严格模式禁用了一些有可能在未来版本中定义的语法</li>
+		</ul>
+
+
+
+
+
+
+
+
+
+
+
+		<h1>开启严格模式</h1>
+		<p>严格模式可以应用到整个script标签或个别函数中</p>
+		<p>不要在封闭大括弧（ {} ）内这样做;在这样的上下文中这么做是没有效果的</p>
+		<p>在eval 代码，Function 代码，事件处理属性</p>
+		<p>传入 setTimeout方法的字符串和包含整个脚本的块中开启严格模式会如预期一样工作</p>
+
+
+		<h2>为某个script标签开启严格模式</h2>
+		<p>为整个script标签开启严格模式, 需要在所有语句之前放一个特定语句 "use strict"; （或 'use strict';）</p>
+		<script>
+			// 整个语句都开启严格模式的语法
+			'use strict';
+			var v = "Hi!  I'm a strict mode script!";
+			console.log(v);
+		</script>
+
+		<h3>这种语法存在陷阱</h3>
+		<p>不能盲目的合并冲突代码</p>
+		<p>试想合并一个严格模式的脚本和一个非严格模式的脚本</p>
+		<p>合并后的脚本代码看起来是严格模式</p>
+		<p>反之亦然：非严格合并严格看起来是非严格的</p>
+		<p>合并均为严格模式的脚本或均为非严格模式的都没问题，只有在合并严格模式与非严格模式有可能有问题</p>
+
+		<h2>为某个函数开启严格模式</h2>
+		<p>要给某个函数开启严格模式，得把 "use strict";  (或 'use strict'; )声明一字不漏地放在函数体所有语句之前</p>
+		<script>
+			function strict()
+			{
+				// 函数级别严格模式语法
+				'use strict';
+				function nested() {return "And so am I!";}
+			}
+		</script>
+	</body>
+</html>
