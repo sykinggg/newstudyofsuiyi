@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>html5浏览器兼容</title>
+	</head>
+	<body>
+		<h1>将 HTML5 元素定义为块元素</h1>
+		<p>HTML5 定了 8 个新的 HTML 语义（semantic） 元素</p>
+		<header></header>
+		<section></section>
+		<footer></footer>
+		<aside></aside>
+		<nav></nav>
+		<figure></figure>
+		<article></article>
+		main 不支持
+		<style>
+			header, section, footer, aside, nav, main, article, figure {
+				display: block;
+			}
+		</style>
+
+
+
+
+
+
+
+
+
+
+		<h1>为 HTML 添加新元素</h1>
+		<p>可以为 HTML 添加新的元素</p>
+		<myHero><myHero>
+		<h2>兼容</h2>
+		<script>
+			document.createElement("myHero");
+			// IE兼容
+		</script>
+		<p>	Internet Explorer 8 及更早 IE 版本的浏览器不支持以上的方式</p>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<p>作用是在 IE 浏览器的版本小于 IE9 时将读取 html5.js 文件，并解析它</p>
+		<p>国内使用</p>
+		<script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+	</body>
+</html>
