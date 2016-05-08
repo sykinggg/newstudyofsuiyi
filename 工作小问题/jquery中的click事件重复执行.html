@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jquery中click事件重复执行</title>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+	</head>
+	<body>
+		<h1>jquery中click事件重复执行</h1>
+		<script>
+			$("#sub").unbind('click').click(function () {
+				// ...
+			});
+		</script>
+	</body>
+</html>
