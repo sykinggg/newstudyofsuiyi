@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>HTML5 视频</title>
+	</head>
+	<body>
+		<h1>Web 上的视频</h1>
+		<p>HTML5 规定了一种通过 video 元素来包含视频的标准方法</p>
+		<h2>视频格式</h2>
+		<p>当前，video 元素支持三种视频格式</p>
+		<table>
+			<th>
+				<td>格式</td>
+				<td>IE</td>
+				<td>Firefox</td>
+				<td>Opera</td>
+				<td>Chrome</td>
+				<td>Safari</td>
+			</th>
+			<tr>
+				<td>Ogg</td>
+				<td>No</td>
+				<td>3.5+</td>
+				<td>10.5+</td>
+				<td>5.0+</td>
+				<td>No</td>
+			</tr>
+			<tr>
+				<td>MPEG 4</td>
+				<td>9.0+</td>
+				<td>No</td>
+				<td>No</td>
+				<td>5.0+</td>
+				<td>3.0+</td>
+			</tr>
+			<tr>
+				<td>WebM</td>
+				<td>No</td>
+				<td>4.0+</td>
+				<td>10.6+</td>
+				<td>6.0+</td>
+				<td>No</td>
+			</tr>
+		</table>
+		<h3>表格描述</h3>
+		<p>Ogg = 带有 Theora 视频编码和 Vorbis 音频编码的 Ogg 文件</p>
+		<p>MPEG4 = 带有 H.264 视频编码和 AAC 音频编码的 MPEG 4 文件</p>
+		<p>WebM = 带有 VP8 视频编码和 Vorbis 音频编码的 WebM 文件</p>
+
+
+		<h2>如何工作</h2>
+		<p>如需在 HTML5 中显示视频</p>
+		<video src="" controls="controls"></video>
+		<h3>代码描述</h3>
+		<p>control 属性供添加播放、暂停和音量控件</p>
+		<p>包含宽度和高度属性也是不错的主意</p>
+		<h3>注意:</h3>
+		<p><video> 与 </video> 之间插入的内容是供不支持 video 元素的浏览器显示的</p>
+		<h3>实例</h3>
+		<video src="" width="320" height="240" controls="controls">
+			浏览器不支持
+		</video>
+		<h3>注意</h3>
+		<p>适用于Firefox、Opera 以及 Chrome 浏览器</p>
+		<p>要确保适用于 Safari 浏览器，视频文件必须是 MPEG4 类型</p>
+		<h3>兼容性设置</h3>
+		<p>video 元素允许多个 source 元素。source 元素可以链接不同的视频文件</p>
+		<p>浏览器将使用第一个可识别的格式</p>
+		<video width="320" height="240" controls="controls">
+			<source src="" type="video/ogg">
+			<source src="" type="video/mp4">
+			浏览器不支持
+		</video>
+
+
+
+		<h2>Internet Explorer</h2>
+		<p>Internet Explorer 8 不支持 video 元素</p>
+		<p>在 IE 9 中，将提供对使用 MPEG4 的 video 元素的支持</p>
+
+
+		<h3><video> 标签的属性</h3>
+		<table>
+			<th>
+				<td>属性</td>
+				<td>值</td>
+				<td>描述</td>
+			</th>
+			<tr>
+				<td>
+					<p>autoplay</p>
+				</td>
+				<td>
+					<p>autoplay</p>
+				</td>
+				<td>
+					<p>如果出现该属性，则视频在就绪后马上播放</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p>controls</p>
+				</td>
+				<td>
+					<p>controls</p>
+				</td>
+				<td>
+					<p>如果出现该属性，则向用户显示控件，比如播放按钮</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p>height</p>
+				</td>
+				<td>
+					<p>pixels</p>
+				</td>
+				<td>
+					<p>设置视频播放器的高度</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p>loop</p>
+				</td>
+				<td>
+					<p>loop</p>
+				</td>
+				<td>
+					<p>如果出现该属性，则当媒介文件完成播放后再次开始播放</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p>preload</p>
+				</td>
+				<td>
+					<p>preload</p>
+				</td>
+				<td>
+					<p>如果出现该属性，则视频在页面加载时进行加载，并预备播放</p>
+					<h3>如果使用 "autoplay"，则忽略该属性</h3>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p>src</p>
+				</td>
+				<td>
+					<p>url</p>
+				</td>
+				<td>
+					<p>要播放的视频的 URL</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p>width</p>
+				</td>
+				<td>
+					<p>pixels</p>
+				</td>
+				<td>
+					<p>设置视频播放器的宽度</p>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
