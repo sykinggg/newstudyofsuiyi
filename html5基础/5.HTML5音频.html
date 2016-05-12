@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>HTML 5 音频</title>
+	</head>
+	<body>
+		<h1>HTML 5 音频</h1>
+		<p>HTML5 规定了一种通过 audio 元素来包含音频的标准方法</p>
+		<p>audio 元素能够播放声音文件或者音频流</p>
+
+		<h3>音频格式</h3>
+		<table>
+			<th>
+				<td></td>
+				<td>IE9</td>
+				<td>Firefox 3.5</td>
+				<td>Opera 10.5</td>
+				<td>Chrome 3.0</td>
+				<td>Safari 3.0</td>
+			</th>
+			<tr>
+				<td>Ogg Vorbis</td>
+				<td>不支持</td>
+				<td>支持</td>
+				<td>支持</td>
+				<td>支持</td>
+				<td>不支持</td>
+			</tr>
+			<tr>
+				<td>MP3</td>
+				<td>支持</td>
+				<td>不支持</td>
+				<td>不支持</td>
+				<td>支持</td>
+				<td>支持</td>
+			</tr>
+			<tr>
+				<td>Wav</td>
+				<td>不支持</td>
+				<td>支持</td>
+				<td>支持</td>
+				<td>不支持</td>
+				<td>支持</td>
+			</tr>
+		</table>
+
+
+		<h2>如需在 HTML5 中播放音频</h2>
+		<audio src="" controls="controls"></audio>
+		<p>control 属性供添加播放、暂停和音量控件</p>
+		<p><audio> 与 </audio> 之间插入的内容是供不支持 audio 元素的浏览器显示的</p>
+
+
+		<h3>实例</h3>
+		<audio src="" controls="controls">
+			浏览器不支持h5的音频播放
+		</audio>
+
+		<h3>注意:</h3>
+		<p>使用一个 Ogg 文件，适用于Firefox、Opera 以及 Chrome 浏览器</p>
+		<p>确保适用于 Safari 浏览器，音频文件必须是 MP3 或 Wav 类型</p>
+		<h3>audio 元素允许多个 source 元素</h3>
+		<h3>source 元素可以链接不同的音频文件</h3>
+
+
+		<h3>实例</h3>
+		<audio controls="controls">
+			<source src="" type="audio/ogg">
+			<source src="" type="audio/mpeg">
+			浏览器不支持h5
+		</audio>
+
+
+
+
+
+		<h1>Internet Explorer</h1>
+		<p>Internet Explorer 8 不支持 audio 元素。在 IE 9 中，将提供对 audio 元素的支持</p>
+
+
+
+		<h2><audio> 标签的属性</h2>
+		<table>
+			<th>
+				<td>属性</td>
+				<td>值</td>
+				<td>描述</td>
+			</th>
+			<tr>
+				<td>autoplay</td>
+				<td>autoplay</td>
+				<td>如果出现该属性，则音频在就绪后马上播放</td>
+			</tr>
+			<tr>
+				<td>controls</td>
+				<td>controls</td>
+				<td>如果出现该属性，则向用户显示控件，比如播放按钮</td>
+			</tr>
+			<tr>
+				<td>loop</td>
+				<td>loop</td>
+				<td>如果出现该属性，则每当音频结束时重新开始播放</td>
+			</tr>
+			<tr>
+				<td>preload</td>
+				<td>preload</td>
+				<td>
+					<p>如果出现该属性，则音频在页面加载时进行加载，并预备播放</p>
+					<h3>如果使用 "autoplay"，则忽略该属性</h3>
+				</td>
+			</tr>
+			<tr>
+				<td>src</td>
+				<td>url</td>
+				<td>要播放的音频的 URL</td>
+			</tr>
+		</table>
+	</body>
+</html>
