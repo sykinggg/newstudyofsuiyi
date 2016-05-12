@@ -11,5 +11,114 @@
 
 		<h2>拖放</h2>
 		<p>拖放是一种常见的特性，即抓取对象以后拖到另一个位置</p>
+
+
+
+		<h2>浏览器支持</h2>
+		<p>Internet Explorer 9、Firefox、Opera 12、Chrome 以及 Safari 5 支持拖放</p>
+		<h3>在 Safari 5.1.2 中不支持拖放</h3>
+		<style>
+			#div1 {
+				width: 488px;
+				height: 70px;
+				padding: 10px;
+				border: 1px solid #aaaaaa;
+			}
+		</style>
+		<script>
+			function allowDrop(ev) {
+				ev.preventDefault();
+			}
+
+			function drag(ev) {
+				ev.dataTransfer.setData("Text", ev.target.id);
+			}
+
+			function drop(ev) {
+				ev.preventDefault();
+				var data = ev.dataTransfer.getData("Text");
+				ev.target.appendChild(document.getElementById(data));
+			}
+		</script>
+		<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+		<img id="drag1" src="img/localstorage.png" draggable="true" ondragstart="drag(event)" width="336" height="69" alt="">
+
+
+
+
+
+
+
+
+
+
+		<h1>另一个例子</h1>
+		<style>
+			div {
+				float: left;
+			}
+		</style>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script>
+			 /** 
+	         * 拖放（Drag 和 drop）是 HTML5 标准的组成部分。 
+	         * 浏览器支持 
+	         *Internet Explorer 9、Firefox、Opera 12、Chrome 以及 Safari 5 支持拖放。 
+	         */
+	         $(function(){
+	         	$("#dragEle")[0].ondragstart = function (event) {
+	         		console.log("dragStart");
+	         		event.dataTransfer.setData("Text", event.target.id);
+	         	};
+
+	         	 /** 
+	             * 当放置被拖数据时，会发生 drop 事件。 
+	             * 调用 preventDefault() 来避免浏览器对数据的默认处理（drop 事件的默认行为是以链接形式打开） 
+	             * @param event 
+	             */
+	             $("#dropEle")[0].ondrop = function(event) {
+	             	console.log("onDrop");
+	             	var id = event.dataTransfer.getData("text");
+	             	$(this).append($("#" + id).clone().text($(this).find("div").length));
+	             	event.preventDefault();
+	             };
+
+	             /** 
+	             * ondragover 事件规定在何处放置被拖动的数据。 
+	             *默认地，无法将数据/元素放置到其他元素中。如果需要设置允许放置，我们必须阻止对元素的默认处理方式。 
+	             */
+	             $("#dropEle")[0].ondragover = function(event) {
+	             	console.log(event.dataTransfer);
+	             	console.log("onDrop over");
+	             	event.preventDefault();
+	             }
+
+	             $("#dropEle")[0].ondragenter = function(event) {
+	             	console.log("onDrop enter");
+	             }
+
+	             $("#dropEle")[0].ondragleave = function(event) {
+	             	console.log("onDrop leave");
+	             }
+
+	             $("#dropEle")[0].ondragend = function(event) {
+	             	console.log("onDrop end");
+	             }
+	         })
+		</script>
+		<div id="dragEle" draggable="true" style="border:1px solid red; width: 100px; height: 100px; text-align: center; line-height: 100px;" ></div>
+		<div id="dropEle" style="width: 330px; min-height: 202px; border: 1px solid #444; margin-top: 20px; over-flow-y:scroll;"></div>
+
+
+		<h3>代码描述</h3>
+		<p>a、ondragover中必须组织事件的默认行为，默认地，无法将数据/元素放置到其他元素中</p>
+		<p>b、drop 事件的默认行为是以链接形式打开，所以也需要阻止其默认行为</p>
+
+		<h2>91行输出</h2>
+		<p>items = [object DataTransferItemList]</p>
+		<p>files = [object FileList]</p>
+		<p>types:Array[0]</p>
+		<p>dropEffect:"none"</p>
+		<p>effectAllowed:"all"</p>
 	</body>
 </html>
