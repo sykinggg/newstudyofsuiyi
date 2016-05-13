@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>HTML5 地理定位</title>
+	</head>
+	<body>
+		<h1>HTML5 地理定位</h1>
+		<p>HTML5 Geolocation（地理定位）用于定位用户的位置</p>
+
+
+		<h2>定位用户的位置</h2>
+		<p>HTML5 Geolocation API 用于获得用户的地理位置</p>
+		<h3>鉴于该特性可能侵犯用户的隐私，除非用户同意，否则用户位置信息是不可用的</h3>
+
+
+		<h2>浏览器支持</h2>
+		<p>Internet Explorer 9、Firefox、Chrome、Safari 以及 Opera 支持地理定位</p>
+		<h3>对于拥有 GPS 的设备，比如 iPhone，地理定位更加精确</h3>
+
+
+		<h2>HTML5 - 使用地理定位</h2>
+		<p>使用 getCurrentPosition() 方法来获得用户的位置</p>
+
+
+		<h1>实例</h1>
+		<script>
+			var x = document.getElementById("demo");
+			function getLocation() {
+				if(navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(showPosition);
+				}else{
+					x.innerHTML = "Geolocation is not supported by this browser.";
+				}
+			}
+		</script>
+	</body>
+</html>
