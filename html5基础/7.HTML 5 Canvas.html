@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>HTML 5 Canvas</title>
+	</head>
+	<body>
+		<h1>HTML 5 Canvas</h1>
+		<p>canvas 元素用于在网页上绘制图形</p>
+
+
+		<h2><canvas> 标记和 SVG 以及 VML 之间的差异</h2>
+		<p><canvas> 标记和 SVG 以及 VML 之间的一个重要的不同是</p>
+		<ul>
+			<li><canvas> 有一个基于 JavaScript 的绘图 API</li>
+			<li>而 SVG 和 VML 使用一个 XML 文档来描述绘图</li>
+		</ul>
+		<p>这两种方式在功能上是等同的，任何一种都可以用另一种来模拟</p>
+		<p>从表面上看，它们很不相同，可是，每一种都有强项和弱点</p>
+		<p>SVG 绘图很容易编辑，只要从其描述中移除元素就行</p>
+
+
+		<h2>创建 Canvas 元素</h2>
+		<p>向 HTML5 页面添加 canvas 元素</p>
+		<span>规定元素的 id、宽度和高度</span>
+		<canvas id="myCanvas" width="200" height="100"></canvas>
+
+
+		<h2>通过 JavaScript 来绘制</h2>
+		<p>canvas 元素本身是没有绘图能力的</p>
+		<span>所有的绘制工作必须在 JavaScript 内部完成</span>
+		<script>
+			var c = document.getElementById("myCanvas");
+			var cxt = c.getContext("2d");
+			cxt.fillStyle = "#ff0000";
+			cxt.fillRect(0, 0, 150, 75);
+		</script>
+		<h3>代码解析</h3>
+		<p>JavaScript 使用 id 来寻找 canvas 元素</p>
+		<script>
+			var c = document.getElementById("myCanvas");
+		</script>
+		<p>然后，创建 context 对象</p>
+		<script>
+			var cxt = c.getContext("2d");
+		</script>
+		<p>getContext("2d") 对象是内建的 HTML5 对象，拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法</p>
+		<p>下面的两行代码绘制一个红色的矩形</p>
+		<script>
+			cxt.fillStyle="#ff0000";
+			cxt.fillRect(0, 0, 150, 75);
+		</script>
+		<p>fillStyle 方法将其染成红色，fillRect 方法规定了形状、位置和尺寸</p>
+
+
+
+		
+		<h1>实例描述</h1>
+		<h1>理解坐标</h1>
+		<script>
+			function cnvs_getCoordinates(e) {
+				x = e.clientX;
+				y = e.clientY;
+				document.getElementById("xycoordinates").innerHTML = "Coordinates:(" + x + "," + y + ")";
+			}
+
+			function cnvs_clearCoordinates() {
+				document.getElementById("xycoordinates").innerHTML="";
+			}
+		</script>
+		<div>
+			<div id="coordiv" style="float:left; width: 199px; height: 99px; border: 1px solid #c3c3c3;"
+			onmousemove="cnvs_getCoordinates(event)" onmouseout="cnvs_clearCoordinates()"></div>
+			<br>
+			<br>
+			<br>
+			<div id="xycoordinates"></div>
+			<div style="clear:both"></div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+		<h1>实例 - 线条</h1>
+		<p>通过指定从何处开始，在何处结束，来绘制一条线</p>
+		<img src="img/ct_html5_canvas_line.gif" alt="">
+		<canvas id="myCanvas1" width="200" height="100" style="border:1px solid #c3c3c3;">
+			Your browser does not support the canvas element
+		</canvas>
+		<script>
+			var c = document.getElementById("myCanvas1");
+			var cxt = c.getContext("2d");
+			cxt.moveTo(10, 10);
+			cxt.lineTo(150, 50);
+			cxt.lineTo(10, 50);
+			cxt.stroke();
+		</script>
+
+
+
+
+
+
+
+
+
+
+		<h1>实例 - 圆形</h1>
+		<p>通过规定尺寸、颜色和位置，来绘制一个圆</p>
+		<img src="img/ct_html5_canvas_circle.gif" alt="">
+		<canvas id="myCanvas2" width="200" height="100" style="border: 1px solid #c3c3c3;">
+			Your browser does not support the canvas element.
+		</canvas>
+		<script>
+			var c = document.getElementById('myCanvas2');
+			var cxt = c.getContext("2d");
+			cxt.fillStyle="#ff0000";
+			cxt.beginPath();
+			cxt.arc(70, 18, 15, 0, Math.PI*2, true);
+			cxt.closePath();
+			cxt.fill();
+		</script>
+
+
+
+
+
+
+
+
+
+
+		<h1>实例 - 渐变</h1>
+		<p>使用您指定的颜色来绘制渐变背景</p>
+		<img src="img/ct_html5_canvas_gradient.gif" alt="">
+		<canvas id="myCanvas3" width="200" height="100" style="border: 1px solid #c3c3c3">
+			Your browser does not support the canvas element
+		</canvas>
+		<script>
+			var c = document.getElementById("myCanvas3");
+			var cxt = c.getContext("2d");
+			var grd = cxt.createLinearGradient(0, 0, 175, 50);
+			grd.addColorStop(0, "#ff0000");
+			grd.addColorStop(1, "#00ff00");
+			cxt.fillStyle = grd;
+			cxt.fillRect(0, 0, 175, 50);
+		</script>
+
+
+
+
+
+
+
+
+
+
+		<h1>实例 - 图像</h1>
+		<p>把一幅图像放置到画布上</p>
+		<img src="img/ct_html5_canvas_image.gif" alt="">
+		<canvas id="myCanvas4" width="200" height="100" style="border: 1px solid #c3c3c3">
+			Your browser does not support the canvas element
+		</canvas>
+		<script>
+			var c = document.getElementById("myCanvas4");
+			var cxt = c.getContext("2d");
+			var img = new Image();
+			img.src = "img/ct_html5_canvas_image.gif";
+			cxt.drawImage(img, 0, 0);
+		</script>
+	</body>
+</html>
