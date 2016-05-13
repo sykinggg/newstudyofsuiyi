@@ -60,10 +60,10 @@
 		</style>
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script>
-			 /** 
-	         * 拖放（Drag 和 drop）是 HTML5 标准的组成部分。 
-	         * 浏览器支持 
-	         *Internet Explorer 9、Firefox、Opera 12、Chrome 以及 Safari 5 支持拖放。 
+			 /**
+	         * 拖放（Drag 和 drop）是 HTML5 标准的组成部分。
+	         * 浏览器支持
+	         *Internet Explorer 9、Firefox、Opera 12、Chrome 以及 Safari 5 支持拖放。
 	         */
 	         $(function(){
 	         	$("#dragEle")[0].ondragstart = function (event) {
@@ -71,10 +71,10 @@
 	         		event.dataTransfer.setData("Text", event.target.id);
 	         	};
 
-	         	 /** 
-	             * 当放置被拖数据时，会发生 drop 事件。 
-	             * 调用 preventDefault() 来避免浏览器对数据的默认处理（drop 事件的默认行为是以链接形式打开） 
-	             * @param event 
+	         	 /**
+	             * 当放置被拖数据时，会发生 drop 事件。
+	             * 调用 preventDefault() 来避免浏览器对数据的默认处理（drop 事件的默认行为是以链接形式打开）
+	             * @param event
 	             */
 	             $("#dropEle")[0].ondrop = function(event) {
 	             	console.log("onDrop");
@@ -83,9 +83,9 @@
 	             	event.preventDefault();
 	             };
 
-	             /** 
-	             * ondragover 事件规定在何处放置被拖动的数据。 
-	             *默认地，无法将数据/元素放置到其他元素中。如果需要设置允许放置，我们必须阻止对元素的默认处理方式。 
+	             /**
+	             * ondragover 事件规定在何处放置被拖动的数据。
+	             *默认地，无法将数据/元素放置到其他元素中。如果需要设置允许放置，我们必须阻止对元素的默认处理方式。
 	             */
 	             $("#dropEle")[0].ondragover = function(event) {
 	             	console.log(event.dataTransfer);
@@ -120,5 +120,16 @@
 		<p>types:Array[0]</p>
 		<p>dropEffect:"none"</p>
 		<p>effectAllowed:"all"</p>
+
+
+		<h1>详细解释</h1>
+
+		<h2>设置元素为可拖放</h2>
+		<p>为了使元素可拖动，把 draggable 属性设置为 true</p>
+		<img draggable="true" src="" alt="" />
+
+		<h2>拖动什么 - ondragstart 和 setData()</h2>
+		<p>ondragstart 属性调用了一个函数</p>
+		<p>drag(event)，它规定了被拖动的数据</p>
 	</body>
 </html>
