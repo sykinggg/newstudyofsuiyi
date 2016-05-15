@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>HTML 5 Workes</title>
+	</head>
+	<body>
+		<h1>HTML 5 Workes</h1>
+		<p>web worker 是运行在后台的 JavaScript，不会影响页面的性能</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>什么是 Web Worker</h1>
+		<p>当在 HTML 页面中执行脚本时，页面的状态是不可响应的，直到脚本已完成</p>
+		<p>web worker 是运行在后台的 JavaScript，独立于其他脚本，不会影响页面的性能</p>
+		<p>可以继续做任何愿意做的事情：点击、选取内容等等，而此时 web worker 在后台运行</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>浏览器支持</h1>
+		<p>所有主流浏览器均支持 web worker，除了 Internet Explorer</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>HTML5 Web Workers 实例</h1>
+		<p>创建了一个简单的 web worker，在后台计数</p>
+		<h1>真实案例</h1>
+		<p>计数<output id="result"></output></p>
+		<button onclick="startWorker()">开始Worker</button>
+		<button onclick="stopWorker()">停止Worker</button>
+		<script>
+			var w;
+			function startWorker() {
+				if(typeof(Worker) !== "undefined") {
+					if(typeof(w) == "undefined") {
+						w = new Worker("demo_workers.js");
+					}
+					w.onmessage = function (event) {
+						document.getElementById("result").innerHTML = event.data;
+					};
+				}else{
+					document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Workers..."
+				}
+			}
+
+			function stopWorker() {
+				w.terminate();
+			}
+		</script>
+
+		
+
+		<h2>检测 Web Worker 支持</h2>
+		<p>在创建 web worker 之前，请检测用户的浏览器是否支持它</p>
+		<script>
+			if(typeof(Worker) !== "undefined") {
+				document.write("Yes! Web worker support!");
+			}else{
+				document.write("Sorry! No Web Worker support..");
+			}
+		</script>
+
+
+		<h2>创建 web worker 文件</h2>
+		<p>在一个外部 JavaScript 中创建我们的 web worker</p>
+		<p>在这里，我们创建了计数脚本。该脚本存储于 "demo_workers.js" 文件中</p>
+		<script>
+			var i = 0;
+			function timedCount() {
+				i = i + 1;
+				postMessage(i);
+				setTimeout("timedCount()", 500);
+			}
+			timedCount();
+		</script>
+		<h3>注意</h3>
+		<h3>web worker 通常不用于如此简单的脚本，而是用于更耗费 CPU 资源的任务</h3>
+
+
+
+		<h2>创建 Web Worker 对象</h2>
+		<p>已经有了 web worker 文件，现在我们需要从 HTML 页面调用它</p>
+		<p>下面的代码检测是否存在 worker，如果不存在，- 它会创建一个新的 web worker 对象</p>
+		<script>
+			if(typeof(w) == "undefined") {
+				w = new Worker("demo_workers.js");
+			}
+		</script>
+		<p>可以从 web worker 发生和接收消息了</p>
+		<p>web worker 添加一个 "onmessage" 事件监听器</p>
+		<script>
+		w.onmessage = function(event) {
+			document.getElementById("result").innerHTML = event.data;
+		}
+		</script>
+		<p>当 web worker 传递消息时，会执行事件监听器中的代码</p>
+		<p>event.data 中存有来自 event.data 的数据</p>
+
+
+		<h2>终止 Web Worker</h2>
+		<p>创建 web worker 对象后，它会继续监听消息（即使在外部脚本完成之后）直到其被终止为止</p>
+		<p>终止 web worker，并释放浏览器/计算机资源，请使用 terminate() 方法</p>
+		<script>
+			w.terminate();
+		</script>
+
+
+
+
+
+		<h1>Web Workers 和 DOM</h1>
+		<p>web worker 位于外部文件中，它们无法访问下例 JavaScript 对象</p>
+		<ul>
+			<li>window 对象</li>
+			<li>document 对象</li>
+			<li>parent 对象</li>
+		</ul>
+	</body>
+</html>
