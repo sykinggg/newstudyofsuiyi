@@ -290,11 +290,12 @@
 		</script>
 
 		<p>JavaScript 实际上执行的是</p>
-		<script>
+		<script type="text/javascript">
 			var o = new Object();
 			o.[[prototype]] = Foo.prototype;
 			Foo.call(o);
 		</script>
+
 
 		<p>当执行</p>
 		<script>

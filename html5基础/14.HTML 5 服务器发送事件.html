@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>HTML 5 服务器发送事件</title>
+  </head>
+  <body>
+    <h1>HTML 5 服务器发送事件</h1>
+    <p>HTML5 服务器发送事件（server-sent event）允许网页获得来自服务器的更新</p>
+
+
+    
+
+    <h2>Server-Sent 事件 - 单向消息传递</h2>
+    <p>Server-Sent 事件指的是网页自动获取来自服务器的更新</p>
+
+
+    <h2>旧有技术的弊端</h2>
+    <p>以前也可能做到这一点，前提是网页不得不询问是否有可用的更新</p>
+    <p>通过服务器发送事件，更新能够自动到达</p>
+    
+
+    <h2>浏览器支持</h2>
+    <p>所有主流浏览器均支持服务器发送事件，除了 Internet Explorer</p>
+
+
+    <h2>接收 Server-Sent 事件通知</h2>
+    <p>EventSource 对象用于接收服务器发送事件通知</p>
+
+
+    <h2>示例</h2>
+    <script>
+        var source = new EventSource('demo_sse.php');
+        source.onmessage = function(event) {
+          document.getElementById("result").innerHTML += event.data + "<br />";
+        }
+    </script>
+
+    <h3>代码描述</h3>
+    <ul>
+      <li>
+        <p>创建一个新的 EventSource 对象，然后规定发送更新的页面的 URL（本例中是 "demo_sse.php"</p>
+      </li>
+      <li>
+        <p>每接收到一次更新，就会发生 onmessage 事件</p>
+      </li>
+      <li>
+        <p>当 onmessage 事件发生时，把已接收的数据推入 id 为 "result" 的元素中</p>
+      </li>
+    </ul>
+
+    <h2>检测 Server-Sent 事件支持</h2>
+    <p>一段额外的代码来检测服务器发送事件的浏览器支持情况</p>
+    <script>
+      if(typeof(EventSource)!==undefined) {
+        console.log("Yes! Server-sent events support!");
+      }else{
+        console.log("Sorry! No server-sent events support.");
+      }
+    </script>
+
+    <h2>服务器端代码实例</h2>
+    <p>还需要能够发送数据更新的服务器（比如 PHP 和 ASP）</p>
+    <p>服务器端事件流的语法是非常简单的。把 "Content-Type" 报头设置为 "text/event-stream"</p>
+    <p>可以开始发送事件流</p>
+
+    <h2>PHP 代码 (demo_sse.php)</h2>
+    <?php
+      header('Content-Type: text/event-stream');
+      header('Cache-Control: no-cache');
+
+      $time = data('r');
+      echo "data: the server tiem is : {$time}\n\n";
+      flush();
+    ?>
+
+    <h2>ASP 代码 (VB) (demo_sse.asp)</h2>
+    <%
+      Response.ContentType="text/event-stream"
+      Response.Expires=1
+      Response.Write("data: " & now())
+      Response.Flush()
+    %>
+
+    <h3>代码描述</h3>
+    <ul>
+      <li>
+        <p>把报头 "Content-Type" 设置为 "text/event-stream"</p>
+      </li>
+      <li>
+        <p>规定不对页面进行缓存</p>
+      </li>
+      <li>
+        <p>输出发送日期（始终以 "data: " 开头）</p>
+      </li>
+      <li>
+        <p>向网页刷新输出数据</p>
+      </li>
+    </ul>
+
+
+    <h2>EventSource 对象</h2>
+    <p>使用 onmessage 事件来获取消息</p>
+    <table>
+      <th>
+        <td>事件</td>
+        <td>描述</td>
+      </th>
+      <tr>
+        <td>onopen</td>
+        <td>当通往服务器的连接被打开</td>
+      </tr>
+      <tr>
+        <td>onmessage</td>
+        <td>当接收到消息</td>
+      </tr>
+      <tr>
+        <td>onerror</td>
+        <td>当错误发生</td>
+      </tr>
+    </table>
+  </body>
+</html>

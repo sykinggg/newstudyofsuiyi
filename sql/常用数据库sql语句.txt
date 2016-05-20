@@ -1,0 +1,41 @@
+如果存在此表就删除
+DROP TABLE IF EXISTS `open_plugin`;
+创建当前表
+CREATE TABLE `open_plugin` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '模块的ID',
+  `appid` varchar(60) NOT NULL COMMENT 'appid  模块的应ID',
+  `code` varchar(60) DEFAULT NULL COMMENT '应用唯一标识符',
+  `app_cat` int(10) DEFAULT '0' COMMENT '应用类型',
+  `app_catname` varchar(60) DEFAULT NULL COMMENT '应用分类名称',
+  `app_type` varchar(60) DEFAULT NULL COMMENT '当前模块安装的类型',
+  `name` varchar(60) DEFAULT NULL COMMENT '模块的名称',
+  `app_cover` varchar(255) DEFAULT NULL COMMENT '当前应用模块的封面图',
+  `app_url` varchar(120) DEFAULT NULL COMMENT '当前模块url下载地址',
+  `app_price` varchar(60) DEFAULT NULL COMMENT '当前价格',
+  `app_desc` text COMMENT '模块的简介',
+  `app_add_time` int(10) unsigned DEFAULT NULL COMMENT '添加模块时间',
+  `app_update_time` int(10) unsigned DEFAULT NULL COMMENT ' 模块更新时间',
+  `app_start_time` int(10) unsigned DEFAULT NULL COMMENT '开始时间',
+  `app_end_time` int(10) unsigned DEFAULT NULL COMMENT '结束时间',
+  `version` varchar(60) DEFAULT NULL COMMENT '当前模块版本号',
+  `status` int(1) unsigned DEFAULT NULL COMMENT '模块状态',
+  `updateurl` varchar(120) DEFAULT NULL COMMENT '当前应用更新包',
+  `updatedesc` text COMMENT '更新版本详解',
+  `test` varchar(120) NOT NULL COMMENT '当前应用更新包',
+  `testa` text NOT NULL COMMENT '更新版本详解',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
+
+
+字段增加
+ALTER TABLE `open_plugin` ADD COLUMN `updateurl` VARCHAR(120) DEFAULT NULL COMMENT '当前应用更新包';
+
+字段更新案例
+ALTER TABLE `open_plugin` MODIFY `app_type` VARCHAR(60) NULL DEFAULT '0' COMMENT '模块类型'
+
+
+字段删除
+ALTER TABLE `open_plugin` DROP COLUMN test
+
+清空数据
+TRUNCATE TABLE microb_orders

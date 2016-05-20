@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>HTML5 Input 类型</title>
+	</head>
+	<body>
+		<h1>HTML5 Input 类型</h1>
+		<p>拥有多个新的表单输入类型</p>
+
+		<h2>这些新的输入类型</h2>
+		<ul>
+			<li>email</li>
+			<li>url</li>
+			<li>number</li>
+			<li>range</li>
+			<li>Date pickers (date, month, week, time, datetime, datetime-local)</li>
+			<li>search</li>
+			<li>color</li>
+		</ul>
+
+		<h2>浏览器支持</h2>
+		<table>
+			<th>
+				<td>Input Type</td>
+				<td>IE</td>
+				<td>FireFox</td>
+				<td>Opera</td>
+				<td>Chrome</td>
+				<td>Safari</td>
+			</th>
+			<tr>
+				<td>email</td>
+				<td>No</td>
+				<td>4.0</td>
+				<td>9.0</td>
+				<td>10.0</td>
+				<td>No</td>
+			</tr>
+			<tr>
+				<td>url</td>
+				<td>No</td>
+				<td>4.0</td>
+				<td>9.0</td>
+				<td>10.0</td>
+				<td>No</td>
+			</tr>
+			<tr>
+				<td>number</td>
+				<td>No</td>
+				<td>No</td>
+				<td>9.0</td>
+				<td>7.0</td>
+				<td>No</td>
+			</tr>
+			<tr>
+				<td>range</td>
+				<td>No</td>
+				<td>No</td>
+				<td>9.0</td>
+				<td>4.0</td>
+				<td>4.0</td>
+			</tr>
+			<tr>
+				<td>Date pickers</td>
+				<td>No</td>
+				<td>No</td>
+				<td>9.0</td>
+				<td>10.0</td>
+				<td>No</td>
+			</tr>
+			<tr>
+				<td>search</td>
+				<td>No</td>
+				<td>4.0</td>
+				<td>11.0</td>
+				<td>10.0</td>
+				<td>No</td>
+			</tr>
+			<tr>
+				<td>color</td>
+				<td>No</td>
+				<td>No</td>
+				<td>11.0</td>
+				<td>No</td>
+				<td>No</td>
+			</tr>
+		</table>
+		<h3>表格注释</h3>
+		<p>Opera 对新的输入类型的支持最好</p>
+		<p>可以在所有主流的浏览器中使用它们了</p>
+		<p>即使不被支持，仍然可以显示为常规的文本域</p>
+
+
+
+
+
+		<h1>Input 类型 - email</h1>
+		<p>email 类型用于应该包含 e-mail 地址的输入域</p>
+		<p>在提交表单时，会自动验证 email 域的值</p>
+
+		<h2>示例</h2>
+		<form action="/example/html5/demo_form.asp" method="get">
+			Email: <input type="email" name="user_email">
+			<input type="submit">
+		</form>
+
+		<h3>注意:</h3>
+		<p>iPhone 中的 Safari 浏览器支持 email 输入类型</p>
+		<p>通过改变触摸屏键盘来配合它（添加 @ 和 .com 选项）</p>
+
+
+
+
+
+
+
+
+		<h1>Input 类型 - url</h1>
+		<p>url 类型用于应该包含 URL 地址的输入域</p>
+		<p>在提交表单时，会自动验证 url 域的值</p>
+
+		<h2>示例</h2>
+		<form action="" method="post">
+			Homepage:<input type="url" name="user_url">
+			<input type="submit">
+		</form>
+
+
+
+
+		
+	</body>
+</html>
