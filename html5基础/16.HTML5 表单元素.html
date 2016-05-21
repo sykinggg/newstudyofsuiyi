@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>HTML5 表单元素</title>
+	</head>
+	<body>
+		<h1>HTML5 表单元素</h1>
+
+
+
+		<h2>HTML5 的新的表单元素</h2>
+		<p>HTML5 拥有若干涉及表单的元素和属性</p>
+		<p>新的表单元素</p>
+		<ul>
+			<li>datalist</li>
+			<li>keygen</li>
+			<li>output</li>
+		</ul>
+		<p>浏览器支持</p>
+		<table>
+			<th>
+				<td>input type</td>
+				<td>IE</td>
+				<td>Firefox</td>
+				<td>Opera</td>
+				<td>Chrome</td>
+				<td>Safari</td>
+			</th>
+			<tr>
+				<td>datalist</td>
+				<td>No</td>
+				<td>No</td>
+				<td>9.5</td>
+				<td>No</td>
+				<td>No</td>
+			</tr>
+			<tr>
+				<td>Keygen</td>
+				<td>No</td>
+				<td>No</td>
+				<td>10.5</td>
+				<td>3.0</td>
+				<td>No</td>
+			</tr>
+			<tr>
+				<td>output</td>
+				<td>No</td>
+				<td>No</td>
+				<td>9.5</td>
+				<td>No</td>
+				<td>No</td>
+			</tr>
+		</table>
+
+
+
+
+
+
+
+
+
+		<h1>datalist 元素</h1>
+		<p>datalist 元素规定输入域的选项列表</p>
+		<p>列表是通过 datalist 内的 option 元素创建的</p>
+		<p>如需把 datalist 绑定到输入域，请用输入域的 list 属性引用 datalist 的 id</p>
+
+
+		<h2>示例</h2>
+		Webpage <input type="url" list="url_list" name="link">
+		<datalist id="url_list">
+			<option label="W3cSchool" value="http://www.W3School.com.cn"></option>
+			<option label="Google" value="http://www.google.com"></option>
+			<option label="Microsoft" value="http://www.microsoft.com"></option>
+		</datalist>
+
+
+		<h3>option 元素永远都要设置 value 属性</h3>
+
+
+
+		<h2>keygen 元素</h2>
+		<p>keygen 元素的作用是提供一种验证用户的可靠方法</p>
+		<p>keygen 元素是密钥对生成器（key-pair generator）</p>
+		<span>当提交表单时，会生成两个键，一个是私钥，一个公钥</span>
+		<h2>使用注意</h2>
+		<p>私钥（private key）存储于客户端，公钥（public key）则被发送到服务器</p>
+		<p>公钥可用于之后验证用户的客户端证书（client certificate）</p>
+
+		<h3>浏览器对此元素的糟糕的支持度不足以使其成为一种有用的安全标准</h3>
+
+		<h2>示例</h2>
+		<form action="" method="post">
+			Username: <input type="text" name="username">
+			Encrption: <keygen name="security">
+			<input type="submit">
+		</form>
+
+
+
+
+
+
+
+		<h1>output 元素</h1>
+		<p>output 元素用于不同类型的输出</p>
+
+		<h2>示例</h2>
+		<output id="result" onforminput="resCalc()"></output>
+
+		<h3>注意</h3>
+		<h3>The <keygen> element is deprecated and will be removed in M54, around October 2016. See https://www.chromestatus.com/features/5716060992962560 for more details</h3>
+	</body>
+</html>
