@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>JSON 使用</title>
+	</head>
+	<body>
+		<h1>JSON 使用</h1>
+
+
+		<h2>把 JSON 文本转换为 JavaScript 对象</h2>
+		<p>从 web 服务器上读取 JSON 数据（作为文件或作为 HttpRequest）</p>
+		<p>将 JSON 数据转换为 JavaScript 对象，然后在网页中使用该数据</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>JSON 实例 - 来自字符串的对象</h1>
+		<p>创建包含 JSON 语法的 JavaScript 字符串</p>
+		<script>
+			var txt = '{ "employees" : [' +
+			'{ "firstName":"Bill" , "lastName":"Gates" },' +
+			'{ "firstName":"George" , "lastName":"Bush" },' +
+			'{ "firstName":"Thomas" , "lastName":"Carter" } ]}';
+		</script>
+		<p>由于 JSON 语法是 JavaScript 语法的子集</p>
+		<p>JavaScript 函数 eval() 可用于将 JSON 文本转换为 JavaScript 对象</p>
+
+
+		<h3>使用方法</h3>
+		<p>eval() 函数使用的是 JavaScript 编译器</p>
+		<p>可解析 JSON 文本，然后生成 JavaScript 对象</p>
+
+		<p>必须把文本包围在括号中，这样才能避免语法错误</p>
+		<script>
+			var obj = eval ("(" + txt + ")");
+			console.log(obj);
+		</script>
+
+
+
+
+
+
+
+
+
+
+		<h1>JSON 解析器</h1>
+		<h3>提示：eval() 函数可编译并执行任何 JavaScript 代码</h3>
+		<p>使用 JSON 解析器将 JSON 转换为 JavaScript 对象是更安全的做法</p>
+		<p>JSON 解析器只能识别 JSON 文本，而不会编译脚本</p>
+
+
+		<h2>在浏览器中，这提供了原生的 JSON 支持，而且 JSON 解析器的速度更快</h2>
+		<p>较新的浏览器和最新的 ECMAScript (JavaScript) 标准中均包含了原生的对 JSON 的支持</p>
+
+		<table>
+			<th>
+				<td>Web浏览器支持</td>
+				<td>Web软件支持</td>
+			</th>
+			<tr>
+				<td>
+					<ul>
+						<li>Firefox (Mozilla) 3.5</li>
+						<li>Internet Explorer 8</li>
+						<li>Chrome</li>
+						<li>Opera 10</li>
+						<li>Safari 4</li>
+					</ul>
+				</td>
+				<td>
+					<ul>
+						<li>jQuery</li>
+						<li>Yahoo UI</li>
+						<li>Prototype</li>
+						<li>Dojo</li>
+						<li>ECMAScript 1.5</li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+
+		<h3>兼容性使用</h3>
+		<p>对于较老的浏览器，可使用 JavaScript 库 https://github.com/douglascrockford/JSON-js</p>
+		<p><a href="https://github.com/douglascrockford/JSON-js">对于较老的浏览器，可使用 JavaScript 库</a></p>
+	</body>
+</html>
