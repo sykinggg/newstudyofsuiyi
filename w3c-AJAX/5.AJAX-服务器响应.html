@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>AJAX-服务器响应</title>
+	</head>
+	<body>
+		<h1>AJAX-服务器响应</h1>
+
+
+
+
+
+		<h1>服务器响应</h1>
+		<p>如需获得来自服务器的响应，</p>
+		<p>请使用 XMLHttpRequest 对象的 responseText 或 responseXML 属性</p>
+		<table>
+			<th>
+				<td>属性</td>
+				<td>描述</td>
+			</th>
+			<tr>
+				<td>responseText</td>
+				<td>获得字符串形式的响应数据</td>
+			</tr>
+			<tr>
+				<td>responseXML</td>
+				<td>获得 XML 形式的响应数据</td>
+			</tr>
+		</table>
+
+
+
+
+
+
+		<h1>responseText属性</h1>
+		<p>来自服务器的响应并非 XML，使用 responseText 属性</p>
+		<p>responseText 属性返回字符串形式的响应</p>
+		<script>
+			document.getElementById('myDiv').innerHTML = xmlHttp.responseText;
+		</script>
+
+
+
+
+
+		<h1>responseXML属性</h1>
+		<p>来自服务器的响应是 XML，而且需要作为 XML 对象进行解析，请使用 responseXML 属性</p>
+		<script>
+			xmlDoc = xmlHttp.responseXML;
+			txt = "";
+			x = xmlDoc.getElementsByTagName("ARTIST");
+			for(i = 0; i < x.length; i++) {
+				txt = txt + x[i].childNodes[0].nodeValues + "<br />";
+			}
+			document.getElementById('myDiv').innerHTML=txt;
+		</script>
+	</body>
+</html>

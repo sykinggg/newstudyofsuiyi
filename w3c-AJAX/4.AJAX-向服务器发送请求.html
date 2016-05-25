@@ -1,0 +1,202 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>AJAX-向服务器发送请求</title>
+	</head>
+	<body>
+		<h1>AJAX-向服务器发送请求</h1>
+		<p>XMLHttpRequest 对象用于和服务器交换数据</p>
+
+
+
+
+		<h1>向服务器发送请求</h1>
+		<p>使用 XMLHttpRequest 对象的 open() 和 send() 方法</p>
+		<script>
+			var xmlHttp;
+			if(window.XMLHttpRequest) {
+				xmlHttp = new XMLHttpRequest();
+			}else{
+				xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlHttp.open('GET', 'text1.html', true);
+			xmlHttp.send();
+		</script>
+
+		<table>
+			<th>
+				<td>方法</td>
+				<td>描述</td>
+			</th>
+			<tr>
+				<td>open(method, url, async)</td>
+				<td>
+					<p>规定请求的类型、URL 以及是否异步处理请求</p>
+					<ul>
+						<li>method：请求的类型；GET 或 POST</li>
+						<li>url：文件在服务器上的位置</li>
+						<li>async：true（异步）或 false（同步）</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td>send(string)</td>
+				<td>
+					<p>将请求发送到服务器</p>
+					<ul>
+						<li>string：仅用于 POST 请求</li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+
+
+
+		<h1>GET 还是 POST</h1>
+		<p>与 POST 相比，GET 更简单也更快，并且在大部分情况下都能用</p>
+
+		<p> POST 请求使用环境</p>
+		<ul>
+			<li>无法使用缓存文件（更新服务器上的文件或数据库）</li>
+			<li>向服务器发送大量数据（POST 没有数据量限制）</li>
+			<li>发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠</li>
+		</ul>
+
+
+
+
+
+		<h1>GET 请求</h1>
+		<script>
+			xmlHttp.open("GET", 'demo_get.asp', true);
+			xmlHttp.send();
+		</script>
+		<h3>代码描述</h3>
+		<p>可能得到的是缓存的结果</p>
+		<p>为了避免这种情况，请向 URL 添加一个唯一的 ID</p>
+		<script>
+			xmlHttp.open("GET", "demo_get.asp?t="+Math.random(), true);
+			xmlHttp.send();
+		</script>
+		<p>通过 GET 方法发送信息，请向 URL 添加信息</p>
+		<script>
+			xmlHttp.open("GET", "demo_get.asp?fname=Bill&name=Gates", true);
+			xmlHttp.send();
+		</script>
+
+
+
+
+
+
+
+
+
+
+		<h1>POST请求</h1>
+		<p>一个简单 POST 请求</p>
+		<script>
+			xmlHttp.open("POST", "demo_get.asp", true);
+			xmlHttp.send();
+		</script>
+		<p>如果需要像 HTML 表单那样 POST 数据，请使用 setRequestHeader() 来添加 HTTP 头</p>
+		<p>然后在 send() 方法中规定您希望发送的数据</p>
+		<script>
+			xmlHttp.open("POST", "ajax_text.asp", true);
+			xmlHttp.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+			xmlHttp.send("fname=Bill&lname=Gates");
+		</script>
+
+
+		<table>
+			<th>
+				<td>方法</td>
+				<td>描述</td>
+			</th>
+			<tr>
+				<td>setRequestHeader(header, value)</td>
+				<td>
+					<p>向请求添加 HTTP 头</p>
+					<ul>
+						<li>header: 规定头的名称</li>
+						<li>value: 规定头的值</li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+
+
+
+
+
+
+
+
+
+		<h1>url - 服务器上的文件</h1>
+		<p>open() 方法的 url 参数是服务器上文件的地址</p>
+		<script>
+			xmlHttp.open("GET", "ajax_text.asp", true);
+		</script>
+		<h3>代码描述</h3>
+		<p>该文件可以是任何类型的文件，比如 .txt 和 .xml</p>
+		<p>或者服务器脚本文件，比如 .asp 和 .php </p>
+		<p>在传回响应之前，能够在服务器上执行任务</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>异步 - True 或 False</h1>
+		<p>AJAX 指的是异步 JavaScript 和 XML（Asynchronous JavaScript and XML）</p>
+		<p>XMLHttpRequest 对象如果要用于 AJAX 的话，其 open() 方法的 async 参数必须设置为 true</p>
+		<script>
+			xmlHttp.open("GET", "ajax_text.asp", true);
+		</script>
+		<h3>注意:AJAX的执行流程</h3>
+		<ul>
+			<li>在等待服务器响应时执行其他脚本</li>
+			<li>当响应就绪后对响应进行处理</li>
+		</ul>
+
+
+
+		<h2>Async = true</h2>
+		<p>请规定在响应处于 onreadystatechange 事件中的就绪状态时执行的函数</p>
+		<script>
+			xmlHttp.onreadystatechange = function() {
+				if(xmlHttp.readyState == 4 && xml.status == 200) {
+					document.getElementById("myDiv").innerHtml=xmlHttp.responseText;
+				}
+			}
+			xmlHttp.open("GET", 'test1.txt', true);
+			xmlHttp.send();
+		</script>
+
+
+
+		<h2>Async = false</h2>
+		<p>请将 open() 方法中的第三个参数改为 false</p>
+		<script>
+			xmlHttp.open("GET", "text1.txt", false);
+		</script>
+		<h3>代码说明</h3>
+		<p>不推荐使用 async=false，但是对于一些小型的请求，也是可以的</p>
+		<h3>注意</h3>
+		<p>JavaScript 会等到服务器响应就绪才继续执行</p>
+		<p>如果服务器繁忙或缓慢，应用程序会挂起或停止</p>
+		<h3>注意:</h3>
+		<h3>当使用 async=false 时，请不要编写 onreadystatechange 函数 - 把代码放到 send() 语句后面即可</h3>
+		<script>
+			xmlHttp.open("GET", "test1.txt", false);
+			xmlHttp.send();
+			document.getElementById("myDiv").innerHtml=xmlHttp.responseText;
+		</script>
+	</body>
+</html>

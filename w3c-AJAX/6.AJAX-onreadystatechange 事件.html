@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>AJAX-onreadystatechange事件</title>
+	</head>
+	<body>
+		<h1>onreadystatechange 事件</h1>
+		<p>每当 readyState 改变时，就会触发 onreadystatechange 事件</p>
+		<p>readyState 属性存有 XMLHttpRequest 的状态信息</p>
+
+
+		<h2> XMLHttpRequest 对象的三个重要的属性</h2>
+		<table>
+			<th>
+				<td>属性</td>
+				<td>描述</td>
+			</th>
+			<tr>
+				<td>onreadystatechange</td>
+				<td>
+					<p>存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数</p>
+				</td>
+			</tr>
+			<tr>
+				<td>readyState</td>
+				<td>
+					<p>存有 XMLHttpRequest 的状态。从 0 到 4 发生变化</p>
+					<ul>
+						<li>0: 请求未初始化</li>
+						<li>1: 服务器连接已建立</li>
+						<li>2: 请求已接收</li>
+						<li>3: 请求处理中</li>
+						<li>4: 请求已完成，且响应已就绪</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td>status</td>
+				<td>
+					<ul>
+						<li>200: "OK"</li>
+						<li>404: 未找到页面</li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+
+		<p>在 onreadystatechange 事件中，规定当服务器响应已做好被处理的准备时所执行的任务</p>
+
+		<p>当 readyState 等于 4 且状态为 200 时</p>
+		<script>
+			xmlHttp.onreadystatechange = function() {
+				if(xmlHttp.readyState==4 && xmlHttp.status==200) {
+					document.getElementById('myDiv').innerHtml=xmlHttp.responseText;
+				}
+			}
+		</script>
+
+		<h3>注意:</h3>
+		<p>onreadystatechange 事件被触发 5 次（0 - 4），对应着 readyState 的每个变化</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>使用 Callback 函数</h1>
+		<p>callback 函数是一种以参数形式传递给另一个函数的函数</p>
+		<p>创建 XMLHttpRequest 对象编写一个标准的函数</p>
+		<p>并为每个 AJAX 任务调用该函数</p>
+
+		<p>该函数调用应该包含 URL 以及发生 onreadystatechange 事件时执行的任务</p>
+		<script>
+			function myFunction() {
+				loadXMLDoc("ajax_info.txt", function() {
+					if(xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+						document.getElementById('myDiv').innerHtml=xmlHttp.responseText;
+					}
+				})
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<title>AJAX-创建XMLHttpRequest对象</title>
+	</head>
+	<body>
+		<h1>AJAX-创建XMLHttpRequest对象</h1>
+		<p>XMLHttpRequest 是 AJAX 的基础</p>
+
+
+
+		<h2>XMLHttpRequest 对象</h2>
+		<p>所有现代浏览器均支持 XMLHttpRequest 对象（IE5 和 IE6 使用 ActiveXObject）</p>
+		<h3>XMLHttpRequest 用于在后台与服务器交换数据</h3>
+		<p>这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>创建 XMLHttpRequest 对象</h1>
+		<p>所有现代浏览器（IE7+、Firefox、Chrome、Safari 以及 Opera）均内建 XMLHttpRequest 对象</p>
+
+
+
+		<h2>创建 XMLHttpRequest 对象的语法</h2>
+		<script>
+			var variable = new XMLHttpRequest();
+			console.log(variable);
+			// XMLHttpRequest以及包含的一些方法
+		</script>
+
+
+		<h2>老版本的 Internet Explorer （IE5 和 IE6）使用 ActiveX 对象</h2>
+		<script>
+			var cariable = new ActiveXObject("Microsoft.XMLHTTP");
+			console.log(cariable);
+			// Uncaught ReferenceError: ActiveX is not defined
+		</script>
+
+
+		<h2>使用描述</h2>
+		<p>为了应对所有的现代浏览器，包括 IE5 和 IE6，请检查浏览器是否支持 XMLHttpRequest 对象</p>
+		<p>如果支持，则创建 XMLHttpRequest 对象</p>
+		<p>如果不支持，则创建 ActiveXObject</p>
+		<script>
+			var xmlHttp
+			if(window.XMLHttpRequest) {
+				xmlHttp = new XMLHttpRequest();
+			}else{
+				xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+		</script>
+	</body>
+</html>
