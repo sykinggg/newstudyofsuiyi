@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>web app 之 rem</title>
+	</head>
+	<body>
+		<h1>web app 之 rem</h1>
+		<p>rem（font size of the root element）是指相对于根元素的字体大小的单位</p>
+		<p>em（font size of the element）是指相对于父元素的字体大小的单位</p>
+		<p>它们之间其实很相似，只不过一个计算的规则是依赖根元素一个是依赖父元素计算</p>
+
+
+
+
+		<h1>流式布局</h1>
+		<ul>
+			<li>页面布局的时候都是通过百分比来定义宽度</li>
+			<li>高度大都是用px来固定住</li>
+		</ul>
+
+		<h2>流式布局的缺点</h2>
+		<p>在大屏幕的手机下显示效果会变成有些页面元素宽度被拉的很长</p>
+		<p>但是高度还是和原来一样，实际显示非常的不协调</p>
+
+
+
+
+
+
+		<h1>屏幕适配布局</h1>
+		<ul>
+			<li>固定宽度做法</li>
+			<li>响应式做法</li>
+			<li>
+				<p>设置viewport进行缩放</p>
+				<p>这个方法简单粗暴，又高效但是会模糊</p>
+			</li>
+		</ul>
+
+
+
+
+
+
+		<h1>最佳解决方案</h1>
+		<p>rem能等比例适配所有屏幕</p>
+		<style>
+			html {
+				/*font-size: 20px;*/
+				/*font-size: 40px;*/
+			}
+			/*.btn {
+				width: 6rem;
+				height: 3rem;
+				line-height: 3rem;
+				font-size: 1.2rem;
+				display: inline-block;
+				background-color: #06c;
+				color: #fff;
+				border-radius: 5rem;
+				text-decoration: none;
+				text-align: center;
+			}*/
+		</style>
+		<button class="btn">确定</button>
+
+		<p>改变html的font-size的值</p>
+		<h1>可以计算出1px多少rem</h1>
+		<p>120px = 6rem * 20px(根元素设置大值)</p>
+		<p>240px = 6rem * 40px(根元素设置大值)</p>
+
+		<h2>推算出</h2>
+		<ul>
+			<li>10px  = 1rem 在根元素（font-size = 10px的时候）</li>
+			<li>20px  = 1rem 在根元素（font-size = 20px的时候）</li>
+			<li>40px  = 1rem 在根元素（font-size = 40px的时候）</li>
+		</ul>
+		<style>
+			header, footer {
+				width: 100%;
+				line-height: 1.5rem;
+				font-size: 1rem;
+				color: #000;
+				border: 1px solid #ccc;
+				text-align: center;
+				background-color: #ccc;
+			}
+			.bd {
+				margin-top: 1rem;
+				margin-bottom: .5rem;
+				margin-right: -.5rem;
+				font-size: 0;
+			}
+			.blue-box {
+				background-color: #06c;
+			}
+			.org-box {
+				background-color: #1fc195;
+			}
+			.box {
+				width: 5rem;
+				height: 5rem;
+				display: inline-block;
+				margin-right: .5rem;
+				margin-bottom: .5rem;
+			}
+		</style>
+		<header>头部</header>
+		<div class="bd">
+			<div class="box blue-box"></div>
+			<div class="box org-box"></div>
+			<div class="box blue-box"></div>
+			<div class="box org-box"></div>
+			<div class="box blue-box"></div>
+			<div class="box org-box"></div>
+		</div>
+		<footer>页脚</footer>
+		<script>		
+        (function (doc, win) {
+          var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+              var clientWidth = docEl.clientWidth;
+              if (!clientWidth) return;
+              docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';
+            };
+
+          if (!doc.addEventListener) return;
+          win.addEventListener(resizeEvt, recalc, false);
+          doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+		</script>
+		<table>
+			<tr>
+				<td>宽度</td>
+				<td>320</td>
+				<td>384</td>
+				<td>480</td>
+				<td style="background: blue">640</td>
+			</tr>
+			<tr>
+				<td>屏幕对比比例</td>
+				<td>0.5</td>
+				<td>0.6</td>
+				<td>0.75</td>
+				<td style="background: blue">1</td>
+			</tr>
+			<tr>
+				<td>Html</td>
+				<td>10px</td>
+				<td>12px</td>
+				<td>15px</td>
+				<td style="background: blue">24px</td>
+			</tr>
+			<tr>
+				<td>元素宽度(px)</td>
+				<td>100px</td>
+				<td>120px</td>
+				<td>150px</td>
+				<td style="background: blue">200px</td>
+			</tr>
+			<tr>
+				<td>元素高度(px)</td>
+				<td>10rem</td>
+				<td>10rem</td>
+				<td>10rem</td>
+				<td style="background: blue">10rem</td>
+			</tr>
+		</table>
+		<h3>表格描述</h3>
+		<p>表格蓝色一列是Demo3中页面的尺寸，页面是以640的宽度去切的</p>
+		<p>384/640 = 0.6，384是640的0.6倍，所以384页面宽度下的font-size也等于它的0.6倍</p>
+		<p>这时384的font-size就等于12px</p>
+
+
+
+		<h1>css实现适配</h1>
+		<style>
+			html {
+			    font-size : 20px;
+			}
+			@media only screen and (min-width: 401px){
+			    html {
+			        font-size: 25px !important;
+			    }
+			}
+			@media only screen and (min-width: 428px){
+			    html {
+			        font-size: 26.75px !important;
+			    }
+			}
+			@media only screen and (min-width: 481px){
+			    html {
+			        font-size: 30px !important; 
+			    }
+			}
+			@media only screen and (min-width: 569px){
+			    html {
+			        font-size: 35px !important; 
+			    }
+			}
+			@media only screen and (min-width: 641px){
+			    html {
+			        font-size: 40px !important; 
+			    }
+			}
+		</style>
+	</body>
+</html>
