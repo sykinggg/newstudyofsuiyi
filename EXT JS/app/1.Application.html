@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Application</title>
+	</head>
+	<body>
+		<h1>Application</h1>
+		<p>代表Ext JS 4的应用，典型的单页面应用使用Viewport</p>
+
+
+		<h2>典型的Ext.app.Application</h2>
+		<script>
+			Ext.application({
+				name: 'MyApp',
+				launch: function() {
+					Ext.create('Ext.container.Viewport', {
+						items: {
+							html: 'My App'
+						}
+					});
+				}
+			});
+		</script>
+
+		<h3>代码描述</h3>
+		<p>创建一个叫MyApp的全局变量-你所有的应用类</p>
+		<span>例如Models、View和Controllers</span>
+
+		<p>将属于单独的命名空间namespace</p>
+		<p>彻底降低了与全局变量冲突的机会</p>
+
+
+		<p>当页面准备好所有的JavaScript加载完成，你的应用launch函数将被调用</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>Application有关其他的应用</h1>
+		<p>一个Ext.app.Application代表整个应用</p>
+		<p>与应用程序绑定的Models、Views和Controllers</p>
+
+		<h2>真实示例</h2>
+		<p>模型Model和控制器Controller来处理帖子和评论，列单的视图View，添加、编辑帖子和评论</p>
+
+		<script>
+			Ext.application({
+				name: 'Blog',
+				models: ['post', 'comment'],
+				controllers: ['posts', 'comments'],
+
+				launch: function() {
+					// ...
+				}
+			});
+		</script>
+
+		<h3>概念描述</h3>
+		<p>实际上并没有直接列出Views在应用程序本身</p>
+		<p>因为View被Controller所管理， 所以它是有意义去保持这些依赖项</p>
+		<p>应用程序将加载每一个指定的Controllers</p>
+
+
+		<p>每一个控制器需要列举它使用的Views并且这些Views会自动被加载</p>
+		<p>被定义的Posts控制器:</p>
+		<script>
+			Ext.define('MyApp.controller.Posts', {
+				extend: 'Ext.app.Controller',
+				views: ['posts.List', 'posts.Edit'],
+
+				// 其余的控制器在这里
+			});
+		</script>
+
+		<h3>概念描述</h3>
+		<p>应用程序关于我们的Models和Controllers，还有我们Controllers的关于它们的Views</p>
+		<p>Ext JS将自动为我们加载所有的应用程序文件</p>
+		<p>无论在何时添加一个新类时,我们不必手动在我们的html文件中添加script标签</p>
+	</body>
+</html>
