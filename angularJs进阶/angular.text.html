@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>angularjs 测试</title>
+		<script src="angular.js"></script>
+	</head>
+	<body>
+		<div ng-app="myApp" ng-init="aaa='fa'">
+			parentNode: {{aaa}}
+			<div ng-controller="myController">
+				childNode: {{aaa}}
+				<div ng-controller="myController2">
+					{{aaa}}
+				</div>
+			</div>
+		</div>
+		<script>
+			var a =  angular.module("myApp", []);
+			a.controller("myController", function($scope) {
+				$scope.aaa = "child";
+			});
+			a.controller('myController2', function($scope) {
+				$scope.aaa = "sonson";
+			});
+		</script>
+	</body>
+</html>
