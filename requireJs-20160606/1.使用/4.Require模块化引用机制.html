@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Require机制</title>
+	</head>
+	<body>
+		<h1>Require机制</h1>
+
+		
+
+		<h2>引用机制</h2>
+		<p>RequireJS使用head.appendChild()将每一个依赖加载为一个script标签</p>
+
+
+		
+		<h2>使用机制</h2>
+		<p>RequireJS等待所有的依赖加载完毕，计算出模块定义函数正确调用顺序，然后依次调用它们</p>
+
+
+
+		<h2>引用机制拓展</h2>
+		<p>在同步加载的服务端JavaScript环境中</p>
+
+		<p>可简单地重定义require.load()来使用RequireJS。build系统就是这么做的</p>
+		<p>该环境中的require.load实现可在build/jslib/requirePatch.js中找到</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>配置选项</h1>
+		<p>在顶层HTML页面(或不作为一个模块定义的顶层脚本文件)中，可将配置作为首项放入</p>
+		<script src="./js/Require.js"></script>
+		<script>
+			require.config({
+				baseUrl: "/another/path",
+				paths: {
+					"some":"some/v1.0"
+				},
+				waitSeconds: 15
+			});
+
+			require(["some/module", "my/module", "a.js", "b.js"],
+				function(someModule, myModule) {
+					//This function will be called when all the dependencies
+			        //listed above are loaded. Note that this function could
+			        //be called before the page is loaded.
+			        //This callback is optional.
+				});
+		</script>
+
+		<script>
+			var require = {
+				deps: ["some/module1", "my/module2", "a.js", b.js],
+				callback: function(module1, module2) {
+					//This function will be called when all the dependencies
+		            //listed above in deps are loaded. Note that this
+		            //function could be called before the page is loaded.
+		            //This callback is optional.
+				}
+			};
+		</script>
+		<script src="../js/Require.js"></script>
+
+		<p>配置作为全局变量"require"在require.js加载之前进行定义，它会被自动应用</p>
+		<p>依赖会在require.js一旦定义了require()之后即被加载</p>
+
+		<script>
+			require.config({
+				bundles: {
+					"primary":["main", "util", "text", "text|template.html"],
+					"secondary":["text|secondary.html"]
+				}
+			});
+
+			require(['util', 'text'], function(util, text) {
+				//The script for module ID 'primary' was loaded,
+			    //and that script included the define()'d
+			    //modules for 'util' and 'text'
+			});
+		</script>
+
+		<h3>注意:</h3>
+		<p>最好使用 var require = {} 的形式而不是 window.require = {}的形式</p>
+		<p>后者在IE中运行不正常</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>支持的配置</h1>
+
+
+
+		<h2>baseUrl</h2>
+		<p>所有模块的查找根路径</p>
+
+		<h3>上例中:</h3>
+		<p>"my/module"的标签src值是"/another/path/my/module.js"</p>
+		<p>当加载纯.js文件(依赖字串以/开头，或者以.js结尾，或者含有协议)，不会使用baseUrl</p>
+		<p>因此a.js及b.js都在包含上述代码段的HTML页面的同目录下加载</p>
+	</body>
+</html>

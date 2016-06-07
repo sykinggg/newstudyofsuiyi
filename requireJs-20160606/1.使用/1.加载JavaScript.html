@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>RequireJs</title>
+	</head>
+	<body>
+		<h1>RequireJs</h1>
+		<p>RequireJS的目标是鼓励代码的模块化，它使用了不同于传统<script/>标签的脚本加载步骤</p>
+
+		<h2>重点</h2>
+		<p>代码的模块化</p>
+
+		<h3>注意:</h3>
+		<p>鼓励在使用脚本时以module ID替代URL地址</p>
+
+		<h2>RequireJs加载原理</h2>
+		<p>RequireJS以一个相对于baseUrl的地址来加载所有的代码</p>
+
+		<p> 页面顶层<script/>标签含有一个特殊的属性data-main，require.js使用它来启动脚本加载过程</p>
+
+		<p>而baseUrl一般设置到与该属性相一致的目录</p>
+
+		<script data-main="script/main.js" src="../js/Require.js"></script>
+		<h3>代码描述</h3>
+		<p>baseUrl亦可通过RequireJS config手动设置</p>
+		<span>如果没有显式指定config及data-main，则默认的baseUrl为包含RequireJS的那个HTML页面的所属目录</span>
+
+		<h2>代码模块的引用</h2>
+		<p>RequireJS默认假定所有的依赖资源都是js脚本，因此无需在module ID上再加".js"后缀</p>
+		<p>RequireJS在进行module ID到path的解析时会自动补上后缀</p>
+
+		<span>可以通过paths config设置一组脚本，这些有助于我们在使用脚本时码更少的字</span>
+
+		<h2>避开baseUrl和paths的解析过程</h2>
+
+		<p>避开"baseUrl + paths"的解析过程，而是直接指定加载某一个目录下的脚本</p>
+		<p>如果一个module ID符合下述规则之一，其ID解析会避开常规的"baseUrl + paths"配置</p>
+		<p>直接将其加载为一个相对于当前HTML文档的脚本</p>
+
+		<h3>加载规定</h3>
+		<ul>
+			<li>以 ".js" 结束</li>
+			<li>以 "/" 开始</li>
+			<li>包含 URL 协议, 如 "http:" or "https:"</li>
+		</ul>
+
+		<h3>使用说明</h3>
+		<p>最好还是使用baseUrl及"paths" config去设置module ID。它会给你带来额外的灵活性，如便于脚本的重命名、重定位等</p>
+		<ul>
+			<li>要么将所有的脚本都放置到baseUrl中</li>
+			<li>要么分置为项目库/第三方库的一个扁平结构</li>
+		</ul>
+		<pre>
+			.www/
+				.index.html
+				.js/
+					.app/
+						.sub.js
+					.lib/
+						.jqurey.js
+						.canvas.js
+					.app.js
+		</pre>
+		<p>index.html</p>
+		<script data-main="js/app.js" src="js.require.js"></script>
+
+		<p>app.js</p>
+		<script>
+			require.config({
+				baseUrl: 'js/lib',
+				paths: {
+					app: '../app'
+				}
+			});
+			// 启动主应用程序逻辑
+			requirejs(['jquery', 'canvas', 'app/sub'], 
+			function($, canvas, sub) {
+				// jQuery的，画布和应用程序/子模块
+				// 加载并且可以在这使用
+			})
+		</script>
+		<h3>代码描述</h3>
+		<p>三方库如jQuery没有将版本号包含在他们的文件名中</p>
+		<p>将版本信息放置在单独的文件中来进行跟踪</p>
+		<span>使用诸如volo这类的工具，可以将package.json打上版本信息，并在磁盘上保持文件名为"jquery.js"</span>
+
+		<p>有助于保持配置的最小化，避免为每个库版本设置一条path</p>
+
+
+		<h3>理想状态</h3>
+		<p>每个加载的脚本都是通过define()来定义的一个模块</p>
+		<h4>浏览器的兼容</h4>
+		<span>但有些"浏览器全局变量注入"型的传统/遗留库并没有使用define()来定义它们的依赖关系，你必须为此使用shim config来指明它们的依赖关系</span>
+
+		<h3>注意:</h3>
+		<p>如果没有指明依赖关系，加载可能报错</p>
+		<p>这是因为基于速度的原因，RequireJS会异步地以无序的形式加载这些库</p>
+
+	</body>
+</html>
