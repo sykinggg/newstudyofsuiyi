@@ -1,0 +1,336 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>定义模块</title>
+	</head>
+	<body>
+		<h1>定义模块</h1>
+		<p>模块不同于传统的脚本文件，它良好地定义了一个作用域来避免全局名称空间污染</p>
+
+		<span>以显式地列出其依赖关系，并以函数(定义此模块的那个函数)参数的形式将这些依赖进行注入，而无需引用全局变量</span>
+
+		<p>RequireJS的模块是模块模式的一个扩展，其好处是无需全局地引用其他模块</p>
+
+		
+
+		<h2>模块类型以及引用</h2>
+
+
+
+
+
+
+		<h3>简单的值对</h3>
+		<p>如果一个模块仅含值对，没有任何依赖，则在define()中定义这些值对</p>
+		<script>
+			defined({
+				color: "black";
+				size: "unisize";
+			})
+		</script>
+
+
+
+
+
+		<h3>函数式定义</h3>
+		<p>如果一个模块没有任何依赖，但需要一个做setup工作的函数</p>
+		<p>define()中定义该函数，并将其传给define()</p>
+		<script>
+			define(function() {
+				return {
+					color: "black";
+					zise: "unisize";
+				}
+			});
+		</script>
+
+
+
+
+
+		<h3>存在依赖的函数式定义</h3>
+		<p>如果模块存在依赖</p>
+		<ul>
+			<li>第一个参数是依赖的名称数组</li>
+			<li>第二个参数是函数</li>
+		</ul>
+
+		<h4>使用描述</h4>
+		<p>在模块的所有依赖加载完毕后，该函数会被调用来定义该模块</p>
+		<p>依赖关系会以参数的形式注入到该函数上，参数列表与依赖名称列表一一对应</p>
+
+		<script>
+			define(["./cat", "./inventory"], function(cart, inventory) {
+				return {
+					color: "blue";
+					size: "unisize";
+					addTocar: function() {
+						inventory.decrement(this);
+						cart.add(this);
+					}
+				}
+			});
+		</script>
+		<pre>
+			.my/cart.js
+			.my/inventory.js
+			.my/shirt.js
+		</pre>
+		<h3>代码描述</h3>
+		<p>模块函数以参数"cart"及"inventory"使用这两个以"./cart"及"./inventory"名称指定的模块</p>
+		<p>在这两个模块加载完毕之前，模块函数不会被调用</p>
+
+		<p>函参的顺序应与依赖顺序保存一致</p>
+		<p>返回的object定义了"my/shirt"模块</p>
+		<span>这种定义模式下，"my/shirt"不作为一个全局变量而存在</span>
+
+
+
+
+
+		<h3>将模块定义为一个函数</h3>
+		<p>对模块的返回值类型并没有强制为一定是个object，任何函数的返回值都是允许的</p>
+		<p>此处是一个返回了函数的模块定义</p>
+
+		<script>
+			define(["my/cart", "my/inventory"], 
+			function(cart, inventory) {
+				return function(title) {
+					return title ? (window.title = title);
+						inventory.storeName + " " + cart.name;
+				}
+			});
+		</script>
+
+
+
+
+
+		<h3>简单包装的CommonJs来定义模块</h3>
+		<p>有一些以CommonJS模块格式编写的代码</p>
+		<p>而这些代码难于使用上述依赖名称数组参数的形式来重构</p>
+		<span>可以考虑直接将这些依赖对应到一些本地变量中进行使用</span>
+		<script>
+			define(function(require, exports, module) {
+				var a = require("a");
+				var b = require("b");
+
+				//Return the module value
+				return function() {};
+			})
+		</script>
+		<h3>代码描述</h3>
+		<p>该包装方法依靠Function.prototype.toString()将函数内容赋予一个有意义的字串值</p>
+
+
+
+
+
+		<h3>定义一个命名模块</h3>
+		<p>可能会看到一些define()中包含了一个模块名称作为首个参数</p>
+		<script>
+			define("foo/title", 
+				["my/cart", "my/inventory"],
+				function(cart, inventory) {
+					//Define foo/title object in here.
+				});
+		</script>
+		<h3>代码描述</h3>
+		<p>由优化工具生成</p>
+		<p>也可以自己显式指定模块名称，但这使模块更不具备移植性——就是说若你将文件移动到其他目录下，你就得重命名</p>
+		<p>一般最好避免对模块硬编码，而是交给优化工具去生成</p>
+		<p>优化工具需要生成模块名以将多个模块打成一个包，加快到浏览器的载人速度</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>其他注意事项</h1>
+
+
+
+
+		<h2>一个文件一个模块</h2>
+		<p>每个Javascript文件应该只定义一个模块，这是模块名-至-文件名查找机制的自然要求</p>
+		<p>多个模块会被优化工具组织优化，但你在使用优化工具时应将多个模块放置到一个文件中</p>
+
+
+
+		<h2>define()中的相对模块名</h2>
+		<p>为了可以在define()内部使用诸如require("./relative/name")的调用以正确解析相对名称</p>
+		<p>记得将"require"本身作为一个依赖注入到模块中</p>
+
+		<script>
+			define(["require", "./relative/name"], function(require) {
+				var mod = require("./relative/name");
+			});
+		</script>
+
+		<h3>优化</h3>
+		<p>转换CommonJS模块所设的更短的语法</p>
+		<script>
+			define(function(require) {
+				var mod = require("./relative/name");
+			});
+		</script>
+		<h3>代码描述</h3>
+		<p>为了以便于将代码共享给其他人或项目，在某个目录下创建了一些模块</p>
+		<p>可以访问模块的相邻模块，无需知道该目录的名称</p>
+
+
+
+		<h2>生成相对于模块的URL地址</h2>
+		<p>需要生成一个相对于模块的URL地址</p>
+		<p>可以将"require"作为一个依赖注入进来，然后调用require.toUrl()以生成该URL</p>
+		<script>
+			define(['require'], function(require) {
+				var cssUrl = require.toUrl("./style.css");
+			});
+		</script>
+
+
+
+		<h2>控制台调试</h2>
+		<p>需要处理一个已通过require(["module/name"], function(){})调用加载了的模块</p>
+		<p>可以使用模块名作为字符串参数的require()调用来获取它</p>
+		<script>
+			require("module/name").callSomeFunction()
+		</script>
+		<h3>代码描述</h3>
+		<p>这种形式仅在"module/name"已经由其异步形式的require(["module/name"])加载了后才有效</p>
+		<h3>注意:</h3>
+		<p>只能在define内部使用形如"./module/name"的相对路径</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>循环依赖</h1>
+		<p>定义了一个循环依赖(a依赖b，b同时依赖a)，则在这种情形下当b的模块函数被调用的时候</p>
+		<p>它会得到一个undefined的a。b可以在模块已经定义好后用require()方法再获取(记得将require作为依赖注入进来)</p>
+		<script>
+			define(["require", "a"], 
+				function(require, a) {
+					return function(title) {
+						return require("a").doSomething();
+					}
+				});
+		</script>
+		<h3>代码描述</h3>
+		<p>一般说来你无需使用require()去获取一个模块，而是应当使用注入到模块函数参数中的依赖</p>
+		<h3>注意:</h3>
+		<p>循环依赖比较罕见，它也是一个重构代码重新设计的警示灯</p>
+
+
+
+
+		<h3>commonJs的简易解决方案</h3>
+		<p>如果熟悉CommonJS，可以考虑使用exports为模块建立一个空object，该object可以立即被其他模块引用</p>
+		<p>在循环依赖的两头都如此操作之后，你就可以安全地持有其他模块了</p>
+		<p>这种方法仅在每个模块都是输出object作为模块值的时候有效，换成函数无效</p>
+		<script>
+			define(function(require, exports, module) {
+				var a = require("a");
+				exports.foo = function() {
+					return a.bar();
+				}
+			});
+		</script>
+
+
+
+
+
+		<h3>使用依赖数组的方案</h3>
+		<p>可用注入特殊的"exports"来解决</p>
+		<script>
+			define(["a", "exports"], function(a, exports) {
+				exports.foo = function() {
+					return a.bar();
+				};
+			});
+		</script>
+
+
+
+
+
+
+
+.
+
+
+		<h1>JSONP服务依赖</h1>
+		<p>JSONP是在javascript中服务调用的一种方式</p>
+		<p>需简单地通过一个script标签发起HTTP GET请求，是实现跨域服务调用一种公认手段</p>
+
+
+		<p>为了在RequireJS中使用JSON服务，须要将callback参数的值指定为"define"</p>
+		<h3>注意:</h3>
+		<p>可将获取到的JSONP URL的值看成是一个模块定义</p>
+
+		<h2>真实示例</h2>
+		<p>一个调用JSONP API端点的示例</p>
+		<script>
+			require(["http://example.com/api/data.json?callback=define"], 
+				function(data) {
+					console.log(data);
+				});
+		</script>
+		<h3>代码描述</h3>
+		<p>JSONP的callback参数为"callback"</p>
+		<p>因此"callback=define"告诉API将JSON响应包裹到一个"define()"中</p>
+
+		<h4>跨域引用的缺点</h4>
+		<p>JSONP的这种用法应仅限于应用的初始化中</p>
+		<span>一旦JSONP服务超时，其他通过define()定义了的模块也可能得不得执行，错误处理不是十分健壮</span>
+
+
+
+		<h3>仅支持返回值类型为JSON object的JSONP服务</h3>
+		<p>其他返回类型如数组、字串、数字等都不能支持</p>
+		
+		<h4>普通JSONP 和 require&JSONP 的 功能描述</h4>
+		<p>这种功能不该用于long-polling类的JSONP连接——那些用来处理实时流的API</p>
+		
+		<p>这些API在接收响应后一般会做script的清理</p>
+		<span>RequireJS则只能获取该JSONP URL一次——后继使用require()或define()发起的的对同一URL的依赖(请求)只会得到一个缓存过的值</span>
+
+		<p>JSONP调用错误一般以服务超时的形式出现</p>
+		<p>因为简单加载一个script标签一般不会得到很 详细的网络错误信息</p>
+		<p>可以override requirejs.onError()来过去错误</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>Undefined Module</h1>
+		<p>一个全局函数requirejs.undef()用来undefine一个模块</p>
+
+		<h2>功能</h2>
+		<p>重置loader的内部状态以使其忘记之前定义的一个模块</p>
+		<h3>缺点</h3>
+		<p>但是若有其他模块已将此模块作为依赖使用了，该模块就不会被清除</p>
+		<h3>使用注意</h3>
+		<p>所以该功能仅在无其他模块持有该模块时的错误处理中，或者当未来需要加载该模块时有点用</p>
+
+		<p>打算在undefine时做一些复杂的依赖图分析，则半私有的onResourceLoad API可能对你有用</p>
+	</body>
+</html>
