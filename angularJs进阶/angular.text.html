@@ -15,8 +15,11 @@
 			app.controller('ctrl', function($scope) {
 				$scope._val = "test";
 				console.log($scope._val.$modelValue);
+				// undefined
 				console.log($scope._val.$viewValue);
+				// undefined
 				console.log($scope._val.$$lastCommittedViewValue);
+				// undefined
 			})
 
 			app.directive('test', function() {
