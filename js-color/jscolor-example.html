@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jscolor Example</title>
+</head>
+<body style="text-align:center;">
+
+
+
+	<script src="jscolor.js"></script>
+
+
+
+	<h2>Example 1</h2>
+	Color: <input class="jscolor" value="ab2567">
+
+
+
+	<h2>Example 2</h2>
+
+	<!-- <button class="jscolor {valueElement:'chosen-value', onFineChange:'setTextColor(this)'}">
+		Pick text color
+	</button> -->
+	<div id="jscolor">
+		<button class="jscolor {valueElement:'chosen-value', onFineChange:'setTextColor(this)'}"
+	style="width: 200px; height: 200px;"></button>	
+	</div>
+	
+	<button class="jscolor addList {valueElement:'chosen-value', onFineChange:'setTextColor(this)'}"
+	style="width: 200px; height: 200px;"></button>
+	<button class="jscolor {valueElement:'chosen-value', onFineChange:'setTextColor(this)'}"
+	style="width: 200px; height: 200px;"></button>
+	
+	
+	<div id="container" style="width: 30px; height: 30px;"></div>
+
+	HEX value: <input id="chosen-value" value="000000">
+
+	<script>
+	function setTextColor(picker) {
+		// document.getElementsByTagName('body')[0].style.color = '#' + picker.toString()
+		document.getElementById('container').style.backgroundColor = '#' + picker.toString();
+		console.log(picker.toString());
+	}
+	</script>
+
+
+
+	<p style="margin-top:3em;">Check out <a href="http://jscolor.com/examples/">more examples at jscolor.com</a>!</p>
+	
+	<p>Link INPUT elements:
+<button class="jscolor
+    {valueElement:'valueInput', styleElement:'styleInput'}">
+    Click here to pick a color
+</button>
+
+<p>
+Value: <input id="valueInput" value="ff6699"><br>
+Style: <input id="styleInput">
+
+<p>Link SPAN elements:
+<button class="jscolor
+    {valueElement:'valueSpan',styleElement:'styleSpan',value:'ff6699'}">
+    Click here to pick a color
+</button>
+
+<p>
+Value: <span id="valueSpan"></span><br>
+Style: <span id="styleSpan">Color preview</span>
+
+
+
+</body>
+</html>
