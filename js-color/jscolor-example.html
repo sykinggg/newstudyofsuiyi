@@ -8,6 +8,7 @@
 
 
 	<script src="jscolor.js"></script>
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
 
 
 
@@ -43,7 +44,30 @@
 		console.log(picker.toString());
 	}
 	</script>
+	
+	<table id="add_List">
+        <tr class="spec_attr">
+            <td class="js-color">
+                <button class="jscolor {valueElement:'chosen-value', onFineChange:'setTextColor(this)'}"
+                style="width: 200px; height: 200px;"></button>
+            </td>
+        </tr>
+    </table>
+    <table id="spec_attr" style="display: none">
+        <tr class="spec_attr">
+            <td class="js-color">
+                <button class="jscolor {valueElement:'chosen-value', onFineChange:'setTextColor(this)'}"
+                style="width: 200px; height: 200px;"></button>
+            </td>
+        </tr>
+    </table>
 
+    <button onclick="clonethis()">clone</button>
+    <script>
+    	function clonethis() {
+    		$('#add_List').append($('#spec_attr .spec_attr').clone());
+    	}
+    </script>
 
 
 	<p style="margin-top:3em;">Check out <a href="http://jscolor.com/examples/">more examples at jscolor.com</a>!</p>
@@ -69,6 +93,21 @@ Value: <span id="valueSpan"></span><br>
 Style: <span id="styleSpan">Color preview</span>
 
 
+<button onclick="add()">Add 100 pickers</button>
+
+<p id="container"></p>
+
+<script>
+function add() {
+    for(var i = 0; i < 1; i++) {
+        var input = document.createElement('INPUT')
+        var picker = new jscolor(input)
+        picker.fromHSV(360 / 100 * i, 100, 100)
+    
+        document.getElementById('container').appendChild(input)
+    }
+}
+</script>
 
 </body>
 </html>
