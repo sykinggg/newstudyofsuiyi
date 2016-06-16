@@ -33,33 +33,43 @@
 			resizeEnable: true
 		});
 
-    map.plugin(["AMap.RangingTool"], function() {
-        ruler1 = new AMap.RangingTool(map);
-        AMap.event.addListener(ruler1, "end", function(e) {
-            ruler1.turnOff();
-        });
-        var sMarker = {
-            icon: new AMap.Icon({
-                size: new AMap.Size(19, 31),//图标大小
-                image: "http://webapi.amap.com/theme/v1.3/markers/n/mark_b1.png"
-            })
-        };
-        var eMarker = {
-            icon: new AMap.Icon({
-                size: new AMap.Size(19, 31),//图标大小
-                image: "http://webapi.amap.com/theme/v1.3/markers/n/mark_b2.png"
-            }),
-            offset: new AMap.Pixel(-9, -31)
-        };
-        var lOptions = {
-            strokeStyle: "solid",
-            strokeColor: "#FF33FF",
-            strokeOpacity: 1,
-            strokeWeight: 2
-        };
-        var rulerOptions = {startMarkerOptions: sMarker, endMarkerOptions: eMarker, lineOptions: lOptions};
-        ruler2 = new AMap.RangingTool(map, rulerOptions);
-    });
+		map.plugin(["AMap.RangingTool"], function() {
+			ruler1 = new AMap.RangingTool(map);
+			AMap.event.addListener(ruler1, "end", function(e) {
+				ruler1.turnOff();
+			});
+			var sMarker = {
+				icon: new AMap.Icon({
+					//图标大小
+					size: new Amap.Size(19, 31),
+					image: "http://webapi.amap.com/theme/v1.3/markers/n/mark_b1.png"
+				})
+			};
+
+			var eMarker = {
+				icon: new AMap.Icon({
+					//图标大小
+					size: new AMap.Size(19, 31),
+					image: "http://webapi.amap.com/theme/v1.3/markers/n/mark_b2.png"
+				}),
+				offset: new AMap.pixel(-9, -31)
+			};
+
+			var lOptions = {
+				strokeStyle: 'solid',
+				strokeColor: '#ff33ff',
+				strokeOpacity: 1,
+				strokeWeight: 2
+			};
+
+			var rulerOptions = {
+				startMarkerOptions: sMarker, 
+				endMarkerOptions: eMarker,
+				lineOptions: lOptions
+			}
+
+			ruler2 = new AMap.RangingTool(map, rulerOptions);
+		});
 
 		function startRuler1() {
 			ruler2.turnOff();
