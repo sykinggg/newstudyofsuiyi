@@ -8,4 +8,19 @@
 		<script src="../js/react-dom.js"></script>
 		<script src="../js/browser.min.js"></script>
 	</head>
+	<body>
+		<div id="container"></div>
+	</body>
+	<script type="text/babel">
+		var HelloMessage = React.createClass({
+			render: function() {
+				return <div>Hello {this.props.name}</div>
+			}
+		});
+
+		ReactDOM.render(
+			<HelloMessage name="John"/>,
+			document.getElementById('container')
+		);
+	</script>
 </html>
