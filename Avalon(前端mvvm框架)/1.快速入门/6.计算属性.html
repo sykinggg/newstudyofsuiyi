@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>计算属性</title>
+		<script src="../avalon-1.5.js"></script>
+		<script>
+			avalon.define({
+				$id: "test",
+				firstName: "firstName",
+				lastName: "lastName",
+				$computed: {
+					fullName: {
+						//一个包含set或get的对象
+						set: function(val) {
+							//里面必须用this指向vm，但不能使用vm
+							var array = (val || "").split(" ");
+							this.firstName = array[0] || "";
+							this.lastName = array[1] || "";
+						},
+						get: function() {
+							return this.firstName + "  " + this.lastName;
+						}
+					}
+				}
+			})
+		</script>
+	</head>
+	<body>
+		<h1>计算属性</h1>
+		<p>计算属性，监控属性的一种，名字取自emberjs，相当于WPF的DependencyProperty（依赖属性）， 意即它的值是根据其他两个或两个以上的监控属性计算出来</p>
+
+		<h1>真实示例</h1>
+		<div ms-controller="test">
+			<div>
+				<span>First Name</span>
+				<input ms-duplex="firstName" type="text">
+			</div>
+			<div>
+				<span>Last Name</span>
+				<input ms-duplex="lastName" type="text">
+			</div>
+			<div>
+				<span>Hello,</span>
+				<input ms-duplex="fullName" type="text">
+			</div>
+			<div>{{firstName + "" + lastName}}</div>
+		</div>
+    </div>
+	<h3>代码描述</h3>
+	<h3>注意:计算属性的get方法应该返回一个简单数据类型</h3>
+
+
+	<h1>真实事例二</h1>
+	<style>
+		.btn {
+			display: inline-block;
+			background-color: red;
+			padding: 6px 10px;
+		}
+	</style>
+	<script>
+		var vm = avalon.define({
+			$id:"test2",
+			num: 0,
+			$computed: {
+				cal: {
+					get: function() {
+						return [this.num - 1, this.num, this.num + 1];
+					}
+				},
+			},
+			add: function() {
+				vm.num++;
+			}
+		})
+	</script>
+	<div ms-controller="test2">
+		<div>{{cal.join(",")}}</div>
+		<div ms-repeat="cal">{{el}}</div>
+		<div class="btn" ms-click="add">add</div>
+	</div>
+	<h3>代码描述</h3>
+	<p>ms-repeat只能对应一个子VM或一个监控数组</p>
+	</body>
+</html>

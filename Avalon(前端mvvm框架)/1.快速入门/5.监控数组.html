@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>监控数组</title>
+		<script src="../avalon-1.5.js"></script>
+		<script>
+			var data = {
+				$id:'array',
+				array: ["1", "2", "3", "4"],
+				removeAt: function(e) {
+					if(isFinite(this.value) && e.which == 13) {
+						var a = ~~this.value
+						vm.array.removeAt(a)
+						this.value = "";
+					}
+				}
+			}
+
+			"push,unshift,remove,ensure".replace(/\w+/g, function(method) {
+				data[method] = function(e) {
+					//this为input元素
+					if(this.value && e.which == 13) {
+						vm.array[method](this.value);
+						this.value = "";
+					}
+				}
+			})
+
+			"pop,shift,sort,reverse".replace(/\w+/g, function(method) {
+				data[method] = function(e) {
+					vm.array[method]();
+				}
+			})
+
+			//avalon1.5这样定义VM
+			var vm = avalon.define(data)
+
+			if(!Date.now) {
+				Dat.now = function() {
+					return new Date - 0;
+				}
+			}
+
+			var vm2 = avalon.define({
+				$id: "c-controller2",
+				selected: "name",
+				options: ["name", "size", "data"],
+				trend: 1,
+				data: [{
+					name: "aaa",
+					size: 213,
+					date: Date.now() + 20
+				}, {
+					name: "bbb",
+					size: 4576,
+					date: new Date - 4
+				}, {
+					name: "ccc",
+					size: 563,
+					date: new Date - 7
+				}, {
+					name: "eee",
+					size: 3713,
+					date: 9 + Date.now()
+				}, {
+					name: "555",
+					size: 389,
+					date: Date.now() - 20
+				}]
+			})
+
+			vm2.$watch("selected", function(v) {
+				var t = parseFloat(vm2.trend)
+				vm2.data.sort(function(a, b) {
+					var ret = a[v] > b[v] ? 1 : -1
+					return t * ret
+				})
+			})
+			vm2.$watch("trend", function(t) {
+				var v = vm2.selected,
+					t = parseFloat(t)
+				vm2.data.sort(function(a, b) {
+					var ret = a[v] > b[v] ? 1 : -1
+					return t * ret
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<h1>监控数组</h1>
+		<p>操作此数组的方法会同步视图的特殊数组，它是由VM中的数组自动转换而来</p>
+		<p>方便与ms-repeat, ms-each配合使用， 能批量同步一大堆DOM节点</p>
+
+
+
+
+		<h1>监控数组封装好的方法</h1>
+		<p>监控数组的方法与普通数组没什么不同，它只是被重写了某一部分方法，如 pop, shift, unshift, push, splice，sort, revert</p>
+		<p>其次添加了四个移除方法，remove, removeAt, removeAll, clear， 及ensure，pushArray, size，set方法</p>
+		
+
+
+		<h2>监控数组封装好的方法</h2>
+		<ul>
+			<li>
+				<p>pushArray(el)</p>
+				<span>要求传入一数组，然后将它里面的元素全部到当前数组的末端</span>	
+			</li>
+			<li>
+				<p>remove(el)</p>
+				<span>要求传入一元素，通过全等于比较进行移除</span>
+			</li>
+			<li>
+				<p>removeAt(index)</p>
+				<span>要求传入一数字，会移除对应位置的元素</span>
+			</li>
+			<li>
+				<p>removeAll(arrayOrFunction), 有三种用法</p>
+				<ul>
+					<li>如果是一个函数，则过滤比较后得到真值的元素</li>
+					<li>如果是一数组，则将此数组中与原数组相等于的元素全部移除</li>
+					<li>如果没有任何参数，则全部清空</li>
+				</ul>
+			</li>
+			<li>
+				<p>clear()</p>
+				<span>相当于removeAll()的第三种方法，清空数组的所有元素。由于需要同步视图的缘故，不能通过vm.array.length = 0的方法来清空元素</span>
+			</li>
+			<li>
+				<p>ensure(el)</p>
+				<span>只有当数组不存在此元素时，只添加此元素</span>
+			</li>
+			<li>
+				<p>size()</p>
+				<span>返回数组的长度。由于length属性是固有属性，无法hack，也就无法实现双向绑定，因此请用它来代替length</span>
+			</li>
+			<li>
+				<p>set(index, el)</p>
+				<span>用于更新某一索引位置中的元素，因为简单数组元素的数组，是不会转换它的元素</span>
+			</li>
+		</ul>
+
+
+
+
+		<h1>真实示例</h1>
+		<fieldset ms-controller="array">
+			<legend>示例一</legend>
+			<ul>
+				<li ms-repeat="array">数组的第{{$index + 1}}个元素为{{el}}</li>
+			</ul>
+			<div>
+				<span>对数组进行push操作，并回车</span>
+				<input type="text" ms-keypress="push">
+			</div>
+			<div>
+				<span>对数组进行unshift操作，并回车</span>
+				<input type="text" ms-keypress="unshift">
+			</div>
+			<div>
+				<span>对数组进行ensure操作，并回车</span>
+				<input type="text" ms-keypress="ensure">
+			</div>
+			<div>
+				<span>对数组进行remove操作，并回车</span>
+				<input type="text" ms-keypress="remove">
+			</div>
+			<div>
+				<span>对数组进行removeAt操作，并回车</span>
+				<input type="text" ms=keypress="removeAt">
+			</div>
+			<div>
+				<button ms-click="sort">对数组进行sort操作</button>
+			</div>
+			<div>
+				<button ms-click="reverse">对数组进行reverse操作</button>
+			</div>
+			<div>
+				<button ms-click="shift">对数组进行shift操作</button>
+			</div>
+			<div>
+				<button ms-click="pop">对数组进行pop操作</button>
+			</div>
+			<div>
+				<b>当前数组的长度为</b>
+				<span style="color: red">{{array.size()}}</span>
+			</div>
+		</fieldset>
+
+		<fieldset ms-controller="c-controller2">
+			<legend>实例二</legend>
+			<p>
+				<select ms-duplex="selected">
+					<option ms-repeat="options">{{el}}</option>
+				</select>
+				<select ms-duplex="trend">
+					<option value="1">up</option>
+					<option value="-1">down</option>
+				</select>
+			</p>
+			<table width="500px" border="1">
+				<tbody>
+					<tr ms-repeat="data">
+						<td>{{el.name}}</td>
+						<td>{{el.size}}</td>
+						<td>{{el.date}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</fieldset>
+
+
+		<h3>代码描述</h3>
+		<h3>注意:无法修改数组length的固有行为，因此它无法同步视图，需要用size方法</h3>
+	</body>
+</html>

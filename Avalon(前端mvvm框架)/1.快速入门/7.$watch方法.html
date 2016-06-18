@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>$watch方法</title>
+		<script src="../avalon-1.5.js"></script>
+	</head>
+	<body>
+		<h1>avalon1.5对$watch机制进行大重构, 支持利用通配符*, 解决对数组元素,子属性的监听.注意,*号只能出现一次</h1>
+
+		<script>
+			var vm = avalon.define({
+				$id: "test",
+				array: [1, 2, 3],
+				arr: [{
+					a: 1
+				}, {
+					a: 2
+				}, {
+					a: 3
+				}],
+				obj: {
+					a: 1, 
+					b: 2
+				},
+				a: {
+					b: {
+						c: {
+							d: 33
+						}
+					}
+				}
+			})
+
+			vm.$watch("array.*", function(a, b) {
+				console.log(a);
+				console.log(b);
+				// expect(a).to.be(6)
+				// expect(b).to.be(2)
+			})
+
+			vm.$watch("arr.*.a", function(a, b) {
+				console.log(a);
+				console.log(b);
+				// expect(a).to.be(99)
+				// expect(b).to.be(1)
+			})
+
+			vm.$watch("obj.*", function(a, b, c) {
+				console.log(a);
+				console.log(b);
+				// expect(a).to.be(111)
+				// expect(b).to.be(1)
+			})
+
+			vm.$watch("a.*.b", function(a, b, c) {
+				console.log(a);
+				console.log(b);
+				/*expect(a).to.be(88)
+				expect(b).to.be(33)*/
+			})
+
+			setTimeout(function() {
+				vm.array.set(1, 6)
+				vm.arr[0].a = 99
+				vm.obj.a = 111
+				vm.a.b.c.d = 88
+			}, 100)
+		</script>
+		<p>$watch会返回一个函数,用于解除监听:</p>
+		<script>
+			var unwatch = vm.$watch("array.*", function(a, b) {
+				expect(a).to.be(6)
+				expect(a).to.be(2)
+			})
+			//移除当前$watch回调
+			unwatch();
+		</script>
+	</body>
+</html>
