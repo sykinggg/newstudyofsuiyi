@@ -76,5 +76,284 @@
 			//移除当前$watch回调
 			unwatch();
 		</script>
+
+
+
+
+
+
+
+
+
+		<h1>此方法是位于VM中，与$unwatch, $fire是一套东西</h1>
+		<h3>注意:建议不要在同一个VM中调用$fire,很容易造成死循环</h3>
+		
+		<pre>
+			vm.$watch(prop, function(value, oldvalue) {})
+		</pre>
+		<script>
+			vm.$watch(prop, function(value, oldvalue) {})
+		</script>
+
+		<h3>概念描述</h3>
+		<p>prop为VM中的第一层属性，类型是string,boolean,number这些简单类型或是数组长度</p>
+		<p>当它们发生改变时，就会执行预先绑定的回调</p>
+		<h3>参数说明</h3>
+		<p>回调里有两个参数，第一个是新值value，第2个是旧值oldValue</p>
+		<h3>使用说明</h3>
+		<span>prop为$all这个特殊的属性，它会在你修改VM中的任何第一层属性时，触发回调， 这时回调拥有三个参数，第一个是发生变动的属性的名字，第二个是新值，第三个是旧值</span>
+
+		<p>如果目标对象是数组，那么只能监听它的长度变化，并只能跑到avalon.define的外面绑定$watch回调</p>
+
+		<p>如果你想监听二级或三级对象的属性时，需要跑到avalon.define的外面，定位到目标属性的父对象上添加$watch回调</p>
+
+		<script>
+			var model = avalon.define({
+				$id: "test",
+				data: {
+					xxx: 222,
+					yyy: 333
+				}
+			})
+
+			model.data.$watch("xxx", function(a, b) {
+				// 内容说明
+			})
+		</script>
+
+
+
+
+		<h1>真实示例</h1>
+		<script>
+			var model = avalon.define({
+				$id: "$watch1",
+				prop: "xxx",
+				array: ["aaa", "bbb", "ccc", "ddd"],
+				data: {
+					aaa: "111"
+				},
+				propWatch: "",
+				arrayWatch: 4,
+				dataAAAWatch: "",
+				click: function() {
+					model.prop = new Date - 1
+					model.data.aaa = new Date - 2
+					model.array.push(new Date - 3)
+				}
+			})
+			model.$watch("prop", function(a) {
+				model.propWatch = a + "$watch"
+			})
+
+			model.$watch("array.length", function(a) {
+				model.arrayWatch = a + "$watch"
+			})
+
+			model.$watch("data.aaa", function(a) {
+				model.dataAAAWatch = a + "$watch"
+			})
+		</script>
+		<div ms-controller="$watch1">
+			<p>prop: {{prop}} --> propWatch: {{propWatch}}</p>
+			<p>array.length: {{array.size()}} --> arrayWatch: {{arrayWatch}}</p>
+			<p>data.aaa: {{data.aaa}} --> dataAAAWatch: {{dataAAAWatch}}</p>
+			<p>
+				<button ms-click="click" type="button">点我</button>
+			</p>
+		</div>
+
+
+
+
+
+
+		<h1>真实示例</h1>
+		<p>监听$all特殊属性</p>
+		<script>
+			var props = ["aaa", "bbb", "ccc", "ddd"];
+			var backup = props.concat();
+			var model = avalon.define({
+				$id: "$watch2",
+				aaa: "xxx",
+				bbb: "yyy",
+				ccc: "zzz",
+				ddd: "uuu",
+				propWatch: "",
+				click: function() {
+					var index = Math.floor(Math.random() * props.length)
+					var prop = props.splice(index, 1)[0]
+					if(!props.length) {
+						props = backup.concat()
+					}
+					model[prop] = new Date - 1
+				}
+			});
+			model.$watch("$all", function(name) {
+				if(name !== "propWatch") {
+					model.propWatch = name + "属性发生改变"
+				}
+			})
+			model.$watch("aaa", function(name) {
+				if(name !== "propWatch") {
+					model.propWatch = "aaa  属性发生改变"
+				}
+			})
+			model.$watch("bbb", function(name) {
+				if(name !== "propWatch") {
+					model.propWatch = "bbb  属性发生改变"
+				}
+			})
+			model.$watch("ccc", function(name) {
+				if(name !== "propWatch") {
+					model.propWatch = "ccc  属性发生改变"
+				}
+			})
+			model.$watch("ddd", function(name) {
+				if(name !== "propWatch") {
+					model.propWatch = "ddd  属性发生改变"
+				}
+			})
+		</script>
+		<div ms-controller="$watch2">
+			<ul>
+				<li>aaa: {{aaa}}</li>
+				<li>bbb: {{bbb}}</li>
+				<li>ccc: {{ccc}}</li>
+				<li>ddd: {{ddd}}</li>
+			</ul>
+			<p>{{propWatch}}</p>
+			<p>
+				<button ms-click="click" type="button">点击</button>
+			</p>
+		</div>
+
+
+
+
+
+		<h1>真实示例</h1>
+		<p>手机号码格式化</p>
+		<script>
+			var model = avalon.define({
+				$id: "mobile",
+				phone: ""
+			});
+
+			model.$watch("phone", function(e) {
+				var b = e.replace(/\s+/g, "");
+				var array = b.split("");
+				var ret = "";
+				for(var i = 0, n = array.length; i < n; i++) {
+					if(i > 10) {//不能超过11位
+						break;
+					}
+					if(i == 3) {
+						ret += " "
+					}
+					if(i == 7) {
+						ret += " "
+					}
+					ret += array[i]
+				}
+				model.phone = ret;
+			})
+		</script>
+		<div ms-controller="mobile">
+			<input type="text" ms-duplex="phone">
+		</div>
+
+
+
+
+
+		<h1>额外扩展</h1>
+		<h2>获取和设置鼠标光标位置</h2>
+		<input type="text" id="input">
+		<script>
+			function getCursortPosition (ctrl) {
+			    var CaretPos = 0;   // IE Support
+			    if (document.selection) {
+			    ctrl.focus ();
+			        var Sel = document.selection.createRange();
+			        Sel.moveStart ('character', -ctrl.value.length);
+			        CaretPos = Sel.text.length;
+			    }
+			    // Firefox support
+			    else if (ctrl.selectionStart || ctrl.selectionStart == '0')
+			        CaretPos = ctrl.selectionStart;
+			    return (CaretPos);
+			}
+			var input = document.getElementById("input");
+			var input_value = input.value;
+			console.log(getCursortPosition(input_value));
+		</script>
+
+
+
+
+
+
+		<script>
+			/*得到光标位置*/
+
+
+			/*对于text*/
+			function getCaret(textbox) {
+				var control = document.activeElement;
+				textbox.focus();
+				var rang = document.selection.createRange();
+				rang.setEndPoint("StartToStart", textbox.createRange())
+				control.focus();
+				return rand.text.length;
+			}
+
+			/*对于textarea*/
+			function getCaret(ZysrID) {
+				//根据ID获得对象
+				var txb = document.getElementById(ZysrID);
+				//设置初始位置
+				var pos = 0;
+				//输入框获得焦点,这句也不能少,不然后面会出错,血的教训啦
+				txb.focus();
+				//获得滚动条的位置
+				var s = txb.scrollTop;
+				//创建文档选择对象
+				var r = document.selection.createRange();
+				//创建输入框文本对象
+				var t = txb.createRange();
+				//将光标移到头
+				t.collapse(true);
+				//显示光标,这个不能少,不然的话,光标没有移到头.当时我不知道,搞了十几分钟
+				t.select();
+				//为新的光标位置创建文档选择对象
+				var j = document.selection.createRange();
+				//在以前的文档选择对象和新的对象之间创建对象
+				r.setEndPoint("StartToStart", j);
+				//获得对象的文本
+				var str = r.text;
+				//过滤掉换行符,不然你的文字会有问题
+				var re = new RegExp("[\\n]", "g");
+				//过滤
+				str = str.replace(re, "");
+				//获得长度.也就是光标的位置
+				pos = str.length;
+				//把光标恢复到以前的位置
+				r.collapse(false);
+				r.select();
+				//把滚动条恢复到以前的位置
+				txb.scrollTop = s;
+			}
+
+			/*设置光标函数*/
+			function setCare(id, pos) {
+				var textbox = document.all(id);
+				var r = textbox.createTextRange();
+				r.collapse(true);
+				r.moveStart("character", pos);
+				r.select();
+			}
+		</script>
+		<span style="border: 1px solid red">测试span</span>
 	</body>
 </html>
