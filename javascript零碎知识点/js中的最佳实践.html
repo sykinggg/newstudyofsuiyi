@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Js中的最佳实践</title>
+	</head>
+	<body>
+		<h1>继承</h1>
+		<p> node 官方的 util 库</p>
+		<script>
+			var util = require("util");
+			var events = require("events");
+
+			function MyStream() {
+				events.EventEmitter.call(this);
+			}
+
+			util.inherits(MyStream, events.EventEmitter);
+
+			MyStream.prototype.write = function(data) {
+				this.emit("data", data);
+			}
+
+			var stream = new MyStream();
+
+			console.log(stream instanceof events.EventEmitter);
+			console.log(MyStream.super_ === events.EventEmitter);
+
+			stream.on("data", function(data) {
+				console.log("Received data:'" + data + "'");
+			})
+			stream.write("It Works!");
+		</script>
+		<h3>概念描述</h3>
+		<p>js 是面向对象的，但是是“基于原型的面向对象”，没有类</p>
+		<p>没有多重继承，没有接口。没有结构体，没有枚举类型</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>callback hell</h1>
+		<p>用 eventproxy 和 async 已经能解决大部分问题</p>
+
+		<ul>
+			<li><a href="https://github.com/alsotang/node-lessons/tree/master/lesson4">使用 eventproxy 控制并发</a></li>
+			<li><a href="https://github.com/alsotang/node-lessons/tree/master/lesson5">使用 async 控制并发</a></li>
+		</ul>
+		
+
+
+
+		<h2>使用eventproxy控制并发</h2>
+
+		<p>建立一个 lesson4 项目，在其中编写代码</p>
+		<span>代码的入口是 app.js，当调用 node app.js 时，它会输出 CNode(https://cnodejs.org/ ) 社区首页的所有主题的标题，链接和第一条评论，以 json 的格式</span>
+
+		<p>输出示例</p>
+		<script>
+			[{
+				"title": "【公告】发招聘帖的同学留意一下这里",
+				"href": "http://cnodejs.org/topic/541ed2d05e28155f24676a12",
+				"comment1": "呵呵呵呵"
+			}, {
+				"title": "发布一款 Sublime Text 下的 JavaScript 语法高亮插件",
+				"href": "http://cnodejs.org/topic/54207e2efffeb6de3d61f68f",
+				"comment1": "沙发！"
+			}]
+		</script>
+
+		<h2>Node.js 最牛逼的地方——异步并发的内容</h2>
+
+
+
+
+
+
+
+
+
+
+		<h1>数据类型</h1>
+		<p>写 js 很少去定义类</p>
+		<h2>使用优点</h2>
+		<p>Object 的便利在多数其他语言需要定义类的场景下都能直接用</p>
+
+		<p>js 中，用好 Number，String，Array，Object 和 Function 就够了。有时用用 RegExp</p>
+		
+
+
+
+
+
+
+
+
+
+
+		<h1>控制流</h1>
+		<p>常规，C 语言那套</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>基本运算符</h1>
+		<p>C 语言那套。二进制操作并不会降低效率，V8 很聪明的</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>计算型属性</h1>
+		<p>帮一个对象的属性定义 get 和 set 方法</p>
+		<h2>使用方式</h2>
+		<span>通过 obj.value 和 obj.value= 的形式来调用</span>
+		<a href="http://koajs.com/">Koa很专业</a>
+
+
+
+
+
+
+
+
+
+
+		<h1>运算符重载</h1>
+		<p>无</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>类型转换</h1>
+		<p>手动帮你需要转换的类型的类定义 .toxxx 方法</p>
+		<span>比如 .toString，.toJSON，toNumber</span>
+		<h3>注意:js 的隐式类型转换用一次坑一次(精度)</h3>
+
+
+
+
+
+
+
+
+
+
+		<h1>相等比较</h1>
+		<p>在 js 中，务必使用 === 三个等于号来比较对象，或者自定义方法来比较，不要使用 ==</p>
+
+		<h3>注意:</h3>
+		<script>
+			String(x) === String(y)
+		</script>
+
+
+
+
+
+
+
+
+
+		<h1>嵌套类型</h1>
+		<p>function 构造函数、闭包、字面量哈希，都可以混在一起写，多少层都行，无限制</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>拓展</h1>
+		<p>当无法接触一个类的源码，又想帮这个类新增方法的时候</p>
+		<h2>简单写法</h2>
+		<p>操作它的 prototype 就好了。但不推荐！</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>函数式编程</h1>
+		<p>js 中，匿名函数非常的方便</p>
+		<h3>注意: lodash: <a href="https://lodash.com/docs">https://lodash.com/docs</a></h3>
+
+
+
+
+
+
+
+
+
+
+		<h1>权限控制</h1>
+		<p>没有 public private 等关键词，都靠约定</p>
+
+
+
+
+
+
+
+
+
+
+		<h1>设计模式</h1>
+		<a href="https://github.com/alsotang/node-lessons/blob/master/lesson14/%E8%A7%A3%E5%AF%86%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%8E%8B%E5%9E%A0.md">解密设计模式-王垠</a>
+	</body>
+</html>
