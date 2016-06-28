@@ -75,6 +75,199 @@
 
 		<h2>Node.js 最牛逼的地方——异步并发的内容</h2>
 
+		<p>使用 superagent 和 cheerio 来取主页内容,只需要发起一次 http get 请求就能办到</p>
+
+		<script>
+			var eventproxy = require('eventproxy');
+			var superagent = require('superagent');
+			var cheerio = require('cheerio');
+			// url 模块是 Node.js 标准库里面的
+			// http://nodejs.org/api/url.html
+			var url = require('url');
+
+			var cnodeUrl = 'http://cnodejs.org/';
+
+			superagent.get(cnodeUrl)
+				.end(function(err, res) {
+					if(err) {
+						return console.log(err);
+					}
+					var topicUrls = [];
+					var $ = cheerio.load(res.text);
+					// 获取首页所有的链接
+					$('#topic_list .topic_title').each(function(idx, element) {
+						var $element = $(element);
+						// $element.attr('href') 本来的样子是 /topic/542acd7d5d28233425538b04
+						// 我们用 url.resolve 来自动推断出完整 url，变成
+						// https://cnodejs.org/topic/542acd7d5d28233425538b04 的形式
+						// 具体请看 http://nodejs.org/api/url.html#url_url_resolve_from_to 的示例
+						var href = url.resolve(cnodeUrl, $element.attr('href'));
+						var href = url.resolve(cnodeUrl, $element.attr('href'));
+						topicUrls.push(href);
+					});
+					console.log(topicUrls);
+				});
+		</script>
+
+
+
+
+
+		<h2>js异步的写法</h2>
+		<p>如果异步获取几个地址的数据,并且在获取数据后进行处理</p>
+
+		<h2>解决方法</h2>
+		<p>维护一个计数器</p>
+
+		<span>定义一个 var count = 0，然后每次抓取成功以后，就 count++</span>
+		<span>每次当抓取成功的时候，就判断一下 count === 3</span>
+		<span>使用另一个函数继续完成操作</span>
+
+		<h2>nodejs中的计时器的方法</h2>
+		<span>eventproxy 就起到了这个计数器的作用，它来帮你管理到底这些异步操作是否完成，完成之后，它会自动调用你提供的处理函数，并将抓取到的数据当参数传过来</span>
+
+		<script>
+			// 参考 jquery 的 $.get 的方法
+			$.get("http://data1_source", function(data1) {
+				// something
+				$.get("http://data2_source", function(data2) {
+					// something
+					$.get("http://data3_source", function(data3) {
+						// something
+						var html = fuck(data1, data2, data3);
+						render(html);
+					})
+				})
+			})
+		</script>
+		<h3>代码描述</h3>
+		<p>先获取 data1，获取完成之后获取 data2，然后再获取 data3，然后 fuck 它们，进行输出</p>
+
+		<h2>nodejs异步并发执行</h2>
+		<p>其实这三个源的数据，是可以并行去获取的，data2 的获取并不依赖 data1 的完成，data3 同理也不依赖 data2</p>
+
+		<script>
+			(function() {
+				var count = 0;
+				var result = {};
+
+				$.get("http://data1_source", function(data) {
+					result.data1 = data;
+					count++;
+					handle();
+				});
+
+				$.get("http://data2_source", function(data) {
+					result.data2 = data;
+					count++;
+					handle();
+				});
+
+				$.get("http://data3_source", function(data) {
+					result.data3 = data;
+					count++;
+					handle();
+				});
+
+				function handle() {
+					if(count === 3) {
+						var html = fuck(result.data1, result.data2, result.data3);
+						render(html);
+					}
+				}
+			})();
+		</script>
+		<h3>注意:eventproxy进行优化</h3>
+		<script>
+			var eq = new eventproxy();
+			eq.all('data_event', 'data2_event', 'data3_event', function(data1, data2, data3) {
+				var html = fuck(data1, data2, data3);
+				render(html);
+			});
+
+			$.get('http://data1_source', function(data) {
+				eq.emit('data1_event', data);
+			});
+
+			$.get('http://data2_source', function(data) {
+				eq.emit('data2_event', data);
+			});
+
+			$.get('http://data3_source', function(data) {
+				eq.emit('data3_event', data);
+			});
+		</script>
+		<h3>代码描述</h3>
+		<pre>
+			eq.all('data1_event', 'data2_event', 'data3_event', function(data1, data2, data3) {});
+		</pre>
+		<p>这一句，监听了三个事件，分别是 data1_event, data2_event, data3_event</p>
+		<p>每次当一个源的数据抓取完成时，就通过 ep.emit() 来告诉 ep 某某事件已经完成了</p>
+		
+		<h3>eq.emit()概念描述</h3>
+		<p>当三个事件未同时完成时，ep.emit() 调用之后不会做任何事</p>
+		<p>当三个事件都完成的时候，就会调用末尾的那个回调函数，来对它们进行统一处理</p>
+
+
+		<h3>eventproxy的基本概念</h3>
+		<ul>
+			<li>
+				<p>首先实例化</p>
+				<pre>
+					var eq = new eventproxy();
+				</pre>
+			</li>
+			<li>
+				<p>启用监听事件,并设置回调函数</p>
+				<pre>
+					eq.all('event1', 'event2', function(result1, result2) {})
+				</pre>
+			</li>
+			<li>
+				<p>eq.emit()事件判断</p>
+				<pre>
+					eq.emit('event_name', 'event_name');
+				</pre>
+			</li>
+		</ul>
+
+
+		<h3>nodejs异步并发执行的示例</h3>
+		<script>
+			// 得到 topicUrls 之后
+
+			// 得到一个 eventproxy 的实例
+			var eq = new eventproxy();
+
+			// 命令 ep 重复监听 topicUrls.length 次（在这里也就是 40 次） `topic_html` 事件再行动
+			eq.after('topic_html', topicUrls.length, function(topics) {
+				// topics 是个数组，包含了 40 次 ep.emit('topic_html', pair) 中的那 40 个 pair
+
+				//开始
+				topics = topics.map(function(topicPaic) {
+					// 接下来都是 jquery 的用法了
+					var topicUrl = topicPair[0];
+					var topicHtml = topicPair[1];
+					var $ = cheerio.load(topicHtml);
+					return({
+						title: $('.topic_full_title').text().trim(),
+						href: topicUrl,
+						comment1: $('.reply_content').eq(0).text().trim(),
+					});
+				});
+
+				console.log('final:');
+				console.log(topics);
+			});
+
+			topicUrls.forEach(function(topicUrl) {
+				superagent.get(topicUrl)
+					.end(function(err, res) {
+						console.log("fetch" + topicUrl + " successful");
+						eq.emit('topic_html', [topicUrl, res.text]);
+					});
+			});
+		</script>
 
 
 
@@ -130,6 +323,15 @@
 		<h2>使用方式</h2>
 		<span>通过 obj.value 和 obj.value= 的形式来调用</span>
 		<a href="http://koajs.com/">Koa很专业</a>
+
+
+
+		<h1>koa基本概念</h1>
+
+
+		<h2>应用</h2>
+		
+
 
 
 

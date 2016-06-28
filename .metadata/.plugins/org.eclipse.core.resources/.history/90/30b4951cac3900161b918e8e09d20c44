@@ -1,9 +1,0 @@
-<?php
-   echo "Hello World";
-   
-   /* 变量使用 */
-   $x = 5;
-   $y = 6;
-   $z = $x + $y;
-   echo $z;
-?>
