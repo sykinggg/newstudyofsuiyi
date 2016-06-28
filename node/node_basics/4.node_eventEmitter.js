@@ -1,7 +1,7 @@
 /*
 
 	Node.js EventEmitter
-	http://www.runoob.com/nodejs/nodejs-event.html
+
 
 */
 /*Node.js 所有的异步 I/O 操作在完成时都会发送一个事件到事件队列*/
@@ -179,12 +179,13 @@ var listener2 = function listener() {
 	console.log("监听器listener2执行");
 }
 
-// 绑定 connection 事件，处理函数为 listener1 
+// 绑定 connection 事件，处理函数为 listener1
 eventEmitter.addListener('connection', listener1);
 
 // 绑定 connection 事件，处理函数为 listener2
 eventEmitter.addListener('connection', listener2);
 
+var eventListeners = require('events').EventEmitter.listenerCount(eventEmitter,'connection');
 console.log(eventListeners + "个监听器监听连接事件");
 
 
@@ -202,3 +203,31 @@ eventListeners = require("events").EventEmitter.listenerCount(eventEmitter, 'con
 console.log(eventListeners + "个监听器监听连接事件");
 
 console.log("程序执行完毕！");
+
+
+
+
+
+/*
+
+			error事件
+
+*/
+/* EventEmitter 定义了一个特殊的事件 error */
+/* 包含了错误的语义，在遇到 异常的时候通常会触发 error 事件 */
+// 当 error 被触发时，EventEmitter 规定如果没有响 应的监听器
+// Node.js 会把它当作异常，退出程序并输出错误信息
+
+var events = require('events');
+var emitter = new events.EventEmitter();
+emitter.emit('error');
+
+
+
+/*
+
+		继承EventEmitter
+
+*/
+//  不会直接使用 EventEmitter，而是在对象中继承它
+//   fs、net、 http 在内的，只要是支持事件响应的核心模块都是 EventEmitter 的子类
