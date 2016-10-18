@@ -1,0 +1,84 @@
+.alert-modal {
+  /*以前是红色 ff8080 warning.png*/
+}
+.alert-modal .modal-dialog {
+  width: 420px;
+  height: 300px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -210px;
+  margin-top: -150px;
+  -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  -o-box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+}
+.alert-modal .modal-dialog .modal-body {
+  height: 400px;
+}
+.alert-modal .modal-dialog .icon-modal {
+  margin-top: 48px;
+  height: 100px;
+  background: url("../images/success.png") no-repeat center center;
+}
+.alert-modal .modal-dialog .tips {
+  height: 51px;
+  color: #333 !important;
+  font-size: 14px;
+  text-align: center;
+}
+.alert-modal .modal-dialog .button-box {
+  width: 300px;
+  margin: 0 auto;
+  padding: 34px 0;
+  border-top: 1px solid #f8f8f8;
+  text-align: center;
+  background-color: #fff;
+}
+.alert-modal .modal-dialog .button-box .button-normal-empty {
+  margin-right: 17px;
+  color: #333;
+}
+.alert-modal .modal-dialog .button-box .button-success {
+  color: #fff;
+}
+.alert-modal.warning-modal .modal-dialog .icon-modal {
+  background-image: url("../images/blue-tips.png");
+  background-size: auto 100%;
+}
+.alert-modal.warning-modal .modal-dialog .tips {
+  color: #0077dd;
+}
+.alert-modal.warning-modal .modal-dialog .button-box .button-success {
+  background-color: #0077dd;
+  border-color: #0077dd !important;
+}
+.alert-modal.showQualification-modal .modal-dialog .icon-modal {
+  background-image: url("../images/indexIcon/auditing-right.png");
+  background-size: auto 100%;
+}
+.alert-modal.showQualification-modal .modal-dialog .tips {
+  color: #0077dd;
+}
+.alert-modal.showQualification-modal .modal-dialog .button-box .button-success {
+  background-color: #0077dd;
+  border-color: #0077dd !important;
+}
+.alert-modal.tips-modal .modal-dialog {
+  text-align: center;
+}
+.alert-modal.tips-modal .modal-dialog .icon-modal {
+  display: inline-block;
+  width: 108px;
+  height: 108px;
+  background: url("../images/blue-tips.png") no-repeat;
+  background-size: 100% 100%;
+}
+.alert-modal.tips-modal .modal-dialog .tips {
+  color: #0077dd;
+}
+.alert-modal.tips-modal .modal-dialog .button-box .button-success {
+  background-color: #0077dd;
+  border-color: #0077dd !important;
+}
