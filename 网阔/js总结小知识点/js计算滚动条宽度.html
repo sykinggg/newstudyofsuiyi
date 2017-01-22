@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1>占位方式</h1>
+    <p>在PC浏览器中，滚动条是占位元素的内边距和内容区域的</p>
+    <p>在移动浏览器中，滚动条是不占用内边距和内容区域，并且还及时显隐</p>
+    <h2>offsetWidth-clientWidth方法</h2>
+    <script>
+      function getScrollbarWidth() {
+        var oP = document.createElement('p'),
+          styles = {
+            width: '100px',
+            height: '100px',
+            overflowY: 'scroll'
+          }, i, scrollbarWidth;
+          for(i in styles) oP.style[i] = styles[i];
+          document.body.appendChild(oP);
+          scrollbarWidth = oP.offsetWidth - oP.clientWidth;
+          oP.remove();
+          return scrollbarWidth;
+      }
+      console.log(getScrollbarWidth());
+    </script>
+    <h2>clientWidth-clientWidth方法</h2>
+    <script>
+      function getScrollbarWidth() {
+        var oP = document.createElement('p'),
+          styles = {
+            width: '100px',
+            height: '100px',
+          }, i, clientWidth1, clientWidth2, scrollbarWidth;
+          for(i in styles) oP.style[i] = styles[i];
+          document.body.appendChild(oP);
+          clientWidth1 = oP.clientWidth;
+          oP.style.overflowY = 'scroll';
+          clientWidth2 = oP.clientWidth;
+          scrollbarWidth = clientWidth1 - clientWidth2;
+          oP.remove();
+          return scrollbarWidth;
+      }
+      console.log(getScrollbarWidth());
+    </script>
+  </body>
+</html>

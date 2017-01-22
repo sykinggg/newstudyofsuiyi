@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1>indexOf详解</h1>
+    <h2>String的使用</h2>
+    <pre>
+      let str = 'orange';
+      console.log(str.indexOf('o'));    // 0
+      console.log(str.indexOf('n'));    // 3
+      console.log(str.indexOf('c'));    // -1
+    </pre>
+    <script>
+      console.log('String的使用');
+      let str = 'orange';
+      console.log(str.indexOf('o'));    // 0
+      console.log(str.indexOf('n'));    // 3
+      console.log(str.indexOf('c'));    // -1
+    </script>
+    <h2>注意： 隐含隐式转换</h2>
+    <pre>
+      let numStr = '2016';
+      console.log(numStr.indexOf('2'));    // 0
+      console.log(numStr.indexOf(2));      // 0
+    </pre>
+    <script>
+      console.log('隐含隐式转换');
+      let numStr = '2016';
+      console.log(numStr.indexOf('2'));    // 0
+      console.log(numStr.indexOf(2));      // 0
+    </script>
+
+    <h2>Number类型的使用</h2>
+    <pre>
+      let num = 2016;
+      console.log(num.indexOf(2));
+      // Uncaught TypeError: num.indexOf is not a function(…)
+      console.log(num.indexOf('2'));
+      // Uncaught TypeError: num.indexOf is not a function(…)
+    </pre>
+    <script>
+      console.log('Number类型的使用');
+      let num = 2016;
+      console.log(num.indexOf(2));
+      // Uncaught TypeError: num.indexOf is not a function(…)
+      console.log(num.indexOf('2'));
+      // Uncaught TypeError: num.indexOf is not a function(…)
+    </script>
+    <h3>也可以这么写</h3>
+    <pre>
+      // let num = 2016;
+      // Uncaught SyntaxError: Identifier 'num' has already been declared(…)
+      console.log(('' + num).indexOf('2'));    // 0
+      console.log(('' + num).indexOf(2));      // 0
+    </pre>
+    <script>
+      console.log('也可以这么写');
+      // let num = 2016;
+      // Uncaught SyntaxError: Identifier 'num' has already been declared(…)
+      console.log(('' + num).indexOf('2'));    // 0
+      console.log(('' + num).indexOf(2));      // 0
+    </script>
+
+
+    <h2>Array类型的使用</h2>
+    <pre>
+      let arr = ['orange', '2016', '2015'];
+      console.log(arr.indexOf('orange'));
+      console.log(arr.indexOf('o'));
+      console.log(arr.indexOf('2016'));
+      console.log(arr.indexOf(2016));
+    </pre>
+    <script>
+        console.log('Array类型的使用');
+        let arr = ['orange', '2016', '2015'];
+        console.log(arr.indexOf('orange'));    // 0
+        console.log(arr.indexOf('o'));         // -1
+        console.log(arr.indexOf('2016'));      // 1
+        console.log(arr.indexOf(2016));        // -1
+    </script>
+    <h3>代码说明</h3>
+    <pre>
+      arr.indexOf(‘orange’) 输出 0 因为 ‘orange’ 是数组的第 0 个元素，匹配到并返回下标
+      arr.indexOf(‘o’) 输出 -1 因为此方法不会在每一个元素的基础上再次执行 indexOf 匹配
+      arr.indexOf(’2016′) 输出 1 因为此方法从头匹配直到匹配到时返回第一个数组元素的下表，而不是返回全部匹配的下标
+      arr.indexOf(2016) 输出 -1 注意：这里不会做隐式类型转换
+    </pre>
+    <h1>总结:</h1>
+    <p>数字会隐式的转换为字符串,但字符串不会隐式的转换为数字(猜测可能会报错)!</p>
+  </body>
+</html>

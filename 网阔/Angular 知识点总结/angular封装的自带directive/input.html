@@ -1,0 +1,154 @@
+<html>
+  <head>
+  <!-- 强制ie使用最新的浏览器方式渲染 -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <!-- bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+  </head>
+  <body class="container" ng-controller="myCtrl">
+    <h1>input 数据绑定以及判断策略</h1>
+    <h3><small>注意:数据绑定不支持input[file]</small></h3>
+    <h4><small>此指令优先级为0</small></h4>
+    <input type="text"
+       ng-model="string"
+       [name="string"]
+       [required="string"]
+       [ng-required="boolean"]
+       [ng-minlength="number"]
+       [ng-pattern="string"]
+       [ng-change="string"]
+       [ng-trim="boolean"]>
+    <h3>语法</h3>
+    <p class="lead">
+      ngModel
+      <mark>可输入内容的数据绑定</mark>
+    </p>
+    <p class="lead">
+      name
+      <mark>控件发布的窗体名称</mark>
+    </p>
+    <p class="lead">
+      required
+      <mark>如果未输入值,则设置所需验证错误</mark>
+    </p>
+    <p class="lead">
+      ngRequired
+      <mark>设置所需属性</mark>
+    </p>
+    <p class="lead">
+      ngMinlength
+      <mark>集minLength验证错误关键：如果值小于最小长度</mark>
+    </p>
+    <p class="lead">
+      ngMaxlength
+      <mark>设置MaxLength验证错误的关键如果值超过最大长度。
+        将属性设置为负数或非数值，允许查看任意长度的值.</mark>
+    </p>
+    <p class="lead">
+      ngPattern
+      <mark>通过正则表达式来判断输入的内容</mark>
+    </p>
+    <p class="lead">
+      ngChange
+      <mark>当用户与输入元素交互时输入变化时要执行的角表达式</mark>
+    </p>
+    <p class="lead">
+      ngTrim
+      <mark>如果设置为false,则不会对输入的内容进行操作</mark>
+    </p>
+
+    <div ng-controller="ExampleController">
+      <form name="myForm">
+        <label>
+           User name:
+           <input type="text" name="userName" ng-model="user.name" required>
+        </label>
+        <div role="alert">
+          <span class="error" ng-show="myForm.userName.$error.required">
+           Required!</span>
+        </div>
+        <label>
+           Last name:
+           <input type="text" name="lastName" ng-model="user.last"
+           ng-minlength="3" ng-maxlength="10">
+        </label>
+        <div role="alert">
+          <span class="error" ng-show="myForm.lastName.$error.minlength">
+            Too short!</span>
+          <span class="error" ng-show="myForm.lastName.$error.maxlength">
+            Too long!</span>
+        </div>
+      </form>
+      <hr>
+      <tt>user = {{user}}</tt><br/>
+      <tt>myForm.userName.$valid = {{myForm.userName.$valid}}</tt><br/>
+      <tt>myForm.userName.$error = {{myForm.userName.$error}}</tt><br/>
+      <tt>myForm.lastName.$valid = {{myForm.lastName.$valid}}</tt><br/>
+      <tt>myForm.lastName.$error = {{myForm.lastName.$error}}</tt><br/>
+      <tt>myForm.$valid = {{myForm.$valid}}</tt><br/>
+      <tt>myForm.$error.required = {{!!myForm.$error.required}}</tt><br/>
+      <tt>myForm.$error.minlength = {{!!myForm.$error.minlength}}</tt><br/>
+      <tt>myForm.$error.maxlength = {{!!myForm.$error.maxlength}}</tt><br/>
+    </div>
+  </body>
+  <script src="https://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+  <script>
+    angular.module('inputExample', [])
+           .controller('ExampleController', ['$scope', function($scope) {
+              $scope.user = {name: 'guest', last: 'visitor'};
+              var user = element(by.exactBinding('user'));
+              var userNameValid = element(by.binding('myForm.userName.$valid'));
+              var lastNameValid = element(by.binding('myForm.lastName.$valid'));
+              var lastNameError = element(by.binding('myForm.lastName.$error'));
+              var formValid = element(by.binding('myForm.$valid'));
+              var userNameInput = element(by.model('user.name'));
+              var userLastInput = element(by.model('user.last'));
+
+              it('should initialize to model', function() {
+                expect(user.getText()).toContain('{"name":"guest","last":"visitor"}');
+                expect(userNameValid.getText()).toContain('true');
+                expect(formValid.getText()).toContain('true');
+              });
+
+              it('should be invalid if empty when required', function() {
+                userNameInput.clear();
+                userNameInput.sendKeys('');
+
+                expect(user.getText()).toContain('{"last":"visitor"}');
+                expect(userNameValid.getText()).toContain('false');
+                expect(formValid.getText()).toContain('false');
+              });
+
+              it('should be valid if empty when min length is set', function() {
+                userLastInput.clear();
+                userLastInput.sendKeys('');
+
+                expect(user.getText()).toContain('{"name":"guest","last":""}');
+                expect(lastNameValid.getText()).toContain('true');
+                expect(formValid.getText()).toContain('true');
+              });
+
+              it('should be invalid if less than required min length', function() {
+                userLastInput.clear();
+                userLastInput.sendKeys('xx');
+
+                expect(user.getText()).toContain('{"name":"guest"}');
+                expect(lastNameValid.getText()).toContain('false');
+                expect(lastNameError.getText()).toContain('minlength');
+                expect(formValid.getText()).toContain('false');
+              });
+
+              it('should be invalid if longer than max length', function() {
+                userLastInput.clear();
+                userLastInput.sendKeys('some ridiculously long name');
+
+                expect(user.getText()).toContain('{"name":"guest"}');
+                expect(lastNameValid.getText()).toContain('false');
+                expect(lastNameError.getText()).toContain('maxlength');
+                expect(formValid.getText()).toContain('false');
+              });
+           }])
+  </script>
+</html>
