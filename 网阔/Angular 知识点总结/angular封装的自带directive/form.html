@@ -1,0 +1,89 @@
+<html>
+  <head>
+    <!-- 强制ie使用最新的浏览器方式渲染 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+  </head>
+  <body class="container">
+    <h1>form 指令</h1>
+    <h3><small>实例化form controller指令</small></h3>
+    <h4><small>此指令优先级为0</small></h4>
+    <p class="lend">如果指定了name属性，则窗体控制器将以该名称发布到当前作用域</p>
+
+    <h2>不同的class类</h2>
+    <ul>
+      <li>ng-valid: 如果窗体是否有效，则设置</li>
+      <li>ng-invalid: 如果窗体无效，则设置</li>
+      <li>ng-pending: 如果窗体正在等待，则设置</li>
+      <li>ng-pristine: 如果窗体是原始的</li>
+      <li>ng-dirty: 如果窗体是脏的</li>
+      <li>ng-submitted: 设置如果表单提交</li>
+    </ul>
+    <p>提交表单并防止默认操作</p>
+    <p>两种方式中的其中之一</p>
+    <ul>
+      <li>ng-submit</li>
+      <li>ng-click input[type=submit]</li>
+    </ul>
+    <p>为了防止处理器双执行，只使用一个的ngsubmit或ngclick指令,使用环境的问题：</p>
+    <ul>
+      <li>如果一个表只有一个输入字段，然后点击进入该领域触发表单提交（ng-submit）</li>
+      <li>如果窗体有2 +输入字段，没有按钮或input[type==submit]，然后点击input不触发提交</li>
+      <li>如果一个表有一个或多个输入字段和一个或input[type=submit]然后回车=提交的任何输入字段会触发第一个按钮或input[type=submit]提交Click处理程序（ngclick）和提交处理在封闭的形式（ngsubmit）</li>
+    </ul>
+    <p>ngclick事件将发生在模型更新</p>
+    <p>ngsubmit获得更新的模型</p>
+    <style>
+      .my-form {
+        transition: 0.5s linear all;
+        background: white;
+      }
+      .my-form.ng-invalid {
+        background: red;
+        color: white;
+      }
+    </style>
+    <form name="myForm" ng-controller="FormController" role="form" class="my-form">
+      <div class="form-group">
+        <label for="userType">userType:</label>
+        <input type="text" name="input" ng-model="userType" required id="userType">
+      </div>
+      <span class="error" ng-show="myForm.input.$error.required">Required!</span>
+      <code>userType = {{userType}}</code><br>
+      <code>myForm.input.#valid = {{myForm.input.$valid}}</code><br>
+      <code>myForm.$valid = {{myForm.$valid}}</code><br>
+      <code>myForm.$error.required = {{!!myForm.$error.required}}</code><br>
+    </form>
+  </body>
+  <!-- angular js -->
+  <script src="https://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+  <script>
+    angular.module('formExample', [])
+      .controller('FormController', function($scope) {
+        $scope.userType = 'guest';
+      });
+      // it('should initialize to model', function() {
+      //   var userType = element(by.binding('userType'));
+      //   var valid = element(by.binding('myForm.input.$valid'));
+      //
+      //   expect(userType.getText()).toContain('guest');
+      //   expect(valid.getText()).toContain('true');
+      // });
+      //
+      // it('should be invalid if empty', function() {
+      //   var userType = element(by.binding('userType'));
+      //   var valid = element(by.binding('myForm.input.$valid'));
+      //   var userInput = element(by.model('userType'));
+      //
+      //   userInput.clear();
+      //   userInput.sendKeys('');
+      //
+      //   expect(userType.getText()).toEqual('userType =');
+      //   expect(valid.getText()).toContain('false');
+      // });
+      angular.bootstrap(document, ['formExample']);
+  </script>
+</html>

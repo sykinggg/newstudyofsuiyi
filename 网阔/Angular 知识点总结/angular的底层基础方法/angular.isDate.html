@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <!-- 强制ie使用最新的浏览器方式渲染 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+  </head>
+  <body class="container" ng-controller="myCtrl">
+    <h1>angular.isDate</h1>
+    <h3><small>确定一个值是否是一个日期</small></h3>
+    <pre>
+      2016-12-02 ==> {{result1}}
+      20161202 ==> {{result2}}
+      12:02 ==> {{result3}}
+      new Date() ==> {{result4}}
+    </pre>
+  </body>
+  <!-- angular js -->
+  <script src="https://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+  <script>
+      angular.module('app', []).controller('myCtrl', function($scope) {
+        $scope.date1 = '2016-12-02';
+        $scope.date2 = '20161202';
+        $scope.date3 = '12:02';
+        $scope.date4 = new Date();
+        $scope.result1 = angular.isDate($scope.date1);
+        $scope.result2 = angular.isDate($scope.date2);
+        $scope.result3 = angular.isDate($scope.date3);
+        $scope.result4 = angular.isDate($scope.date4);
+      })
+      angular.bootstrap(document, ['app']);
+  </script>
+</html>

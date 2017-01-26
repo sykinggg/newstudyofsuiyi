@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <!-- 强制ie使用最新的浏览器方式渲染 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+  </head>
+  <body class="container" ng-controller="myCtrl">
+    <h1>angular.merge</h1>
+    <h3><small>对象合并</small></h3>
+    <pre>
+      ['1', '2', '3']
+      {a: 'asd', b: 'zxc'}
+      {{result}}
+      {{result1}}
+    </pre>
+  </body>
+  <!-- angular js -->
+  <script src="https://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+  <script>
+    angular.module('app', []).controller('myCtrl', function($scope) {
+      $scope.obj1 = ['1', '2', '3'];
+      $scope.obj2 = {a: 'asd', b: 'zxc'};
+      $scope.result = angular.merge({}, $scope.obj1, $scope.obj2);
+      $scope.result1 = angular.merge($scope.obj1, $scope.obj2);
+    })
+    angular.bootstrap(document, ['app']);
+  </script>
+</html>

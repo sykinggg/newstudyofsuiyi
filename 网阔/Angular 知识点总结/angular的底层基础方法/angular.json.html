@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <!-- 强制ie使用最新的浏览器方式渲染 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+  </head>
+  <body class="container">
+    <h1>angularjs 的Json操作</h1>
+    <h3>angular.fromJson <small>反序列化JSON字符串</small></h3>
+    <h3>angular.toJson <small>序列化JSON格式的字符串的输入</small></h3>
+    <p class="lend">属性与$ $字符将被剥离</p>
+  </body>
+  <!-- angular js -->
+  <script src="https://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+  <script>
+      var _DatetoJson = Date.prototype.toJSON;
+      Date.prototype.toJSON = function() {
+        try {
+          return _DatetoJson.call(this);
+        }catch(e) {
+          if(e instanceof RangeError) {
+            return null;
+          }
+          throw e;
+        }
+      };
+      
+  </script>
+</html>

@@ -1,0 +1,304 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1>使用场景</h1>
+    <p>但是简单的复制语句只能对对象进行浅拷贝，即复制的是一份引用，而不是它所引用的对象</p>
+    <p>希望对对象进行深拷贝，避免原始对象被无意修改</p>
+    <p>可用于编辑时判断原始对象是否改变</p>
+    <h2>对象的深拷贝与浅拷贝</h2>
+    <h3>浅拷贝：仅仅复制对象的引用，而不是对象本身(也就是拷贝的对象引用会改变原始对象)</h3>
+    <h3>深拷贝：把复制的对象所引用的全部对象都复制一遍(也就是拷贝的对象引用不会改变原始对象)</h3>
+
+
+    <h2>浅拷贝的实现</h2>
+    <p>浅拷贝的实现方法比较简单，只要使用是简单的复制语句即可</p>
+
+    <h3>简单的复制语句</h3>
+    <script>
+      <!--浅拷贝-->
+      function simpleClone(initalObj) {
+        var obj = {};
+        for(var i in initalObj) {
+          obj[i] = initalObj[i];
+        }
+        return obj;
+      }
+    </script>
+    <h3>调用方法</h3>
+    <script>
+      console.log('调用方法');
+      var obj = {
+        a: "hello",
+        b: {
+            a: "world",
+            b: 21
+        },
+        c: ["Bob", "Tom", "Jenny"],
+        d: function() {
+            alert("hello world");
+        }
+      }
+      var cloneObj = simpleClone(obj);
+      // console.log(cloneObj.b);
+      // Object {a: "world", b: 21}
+      // console.log(cloneObj.c);
+      // ["Bob", "Tom", "Jenny"]
+      // console.log(cloneObj.d);
+      // function () {
+      //     alert("hello world");
+      // }
+      // 修改拷贝后的对象
+      cloneObj.b.a = 'a';
+      cloneObj.c = [10, 20, 30];
+      cloneObj.d = function() {
+        console.log('hello World');
+      }
+
+      console.log(cloneObj.b);
+      // Object {a: "a", b: 21}
+      console.log(obj.b);
+      // Object {a: "a", b: 21}
+      // 原对象所引用的对象被修改了
+      console.log(cloneObj.c);
+      // [10, 20, 30]
+      console.log(obj.c);
+      // ["Bob", "Tom", "Jenny"]
+      // 原对象所引用的对象未被修改
+      console.log(cloneObj.d);
+      // function () {
+      //   console.log('hello World');
+      // }
+      console.log(obj.d);
+      // function () {
+      //     alert("hello world");
+      // }
+      // 原对象所引用的函数未被修改
+    </script>
+    <h3>方法二:Object.assign()</h3>
+    <p>Object.assign()方法可以把任意多个的源对象自身的可枚举属性拷贝给目标对象，然后返回目标对象</p>
+    <p>Object.assign()进行的是浅拷贝，拷贝的是对象的属性的引用，而不是对象本身</p>
+    <script>
+      console.log('方法二:Object.assign()');
+      var obj = {a: {a: 'hello', b: 21}, b: 'hello World!'};
+      var initalObj = Object.assign({}, obj);
+      initalObj.a.a = 'world';
+      console.log(initalObj.a.a);
+      // world
+      console.log(obj.a.a);
+      // world
+      initalObj.b = '?';
+      console.log(initalObj.b);
+      // ?
+      console.log(obj.b);
+      // hello world
+    </script>
+    <h3>总结:</h3>
+    <p>浅层拷贝:浅层的是引用也就是拷贝的不会改变原本对象,但是浅层下的对象只是引用即会通过原型链来改变原本的对象</p>
+
+
+    <h2>深拷贝的实现</h2>
+    <p>最简单的JSON.parse()方法</p>
+    <p>常用的递归拷贝方法</p>
+    <p>Obejct.create()方法</p>
+
+    <h3>方法一:使用JSON.parse()方法</h3>
+    <script>
+        <!--深拷贝功能-->
+        function deepClone(initalObj) {
+          var Obj = {};
+          // try {
+            obj = JSON.parse(JSON.stringify(initalObj));
+          // }
+          return obj;
+        }
+    </script>
+    <script>
+        console.log('深度拷贝的方法一！');
+        <!--调用上面的方法-->
+        var obj = {
+          a: {
+            a: 'world',
+            b: 21
+          }
+        }
+        var cloneObj = deepClone(obj);
+        cloneObj.a.a = 'changed';
+        console.log(cloneObj.a.a);
+        // changed
+        console.log(obj.a.a);
+        // changed
+        cloneObj.b = 'asd';
+        console.log(cloneObj.b);
+        // asd
+        console.log(obj.b);
+        // asd
+    </script>
+    <h3>总结：</h3>
+    <p>这种方法会使浅层以及深层均会变成引用原对象也就是会改变原对象的值</p>
+    <p>会抛弃对象的constructor</p>
+    <p>不管这个对象原来的构造函数是什么，在深拷贝之后都会变成Object</p>
+    <h3>使用环境：</h3>
+    <p>这种方法能正确处理的对象只有 Number, String, Boolean, Array, 扁平对象</p>
+    <p>些能够被 json 直接表示的数据结构</p>
+    <h3>注意: RegExp对象是无法通过这种方式深拷贝</h3>
+    <h3>方法二: 递归拷贝</h3>
+    <script>
+      <!--深拷贝-->
+      function deepClone(initalObj, finalObj) {
+        var obj = finalObj || {};
+        for(var i in initalObj) {
+          if(typeof initalObj[i] == 'object') {
+            obj[i] = (initalObj[i].constructor === Array) ? [] : {};
+            arguments.callee(initalObj[i], obj[i]);
+          }else{
+            obj[i] = initalObj[i];
+          }
+        }
+        return obj;
+      }
+    </script>
+    <script>
+      console.log('初步试验深拷贝！');
+      <!--死循环验证-->
+      var a = {
+        a: 'world',
+        b: 21
+      }
+      var obj = {
+        a: a
+      }
+      var asd = deepClone(obj, a);
+      // Uncaught RangeError: Maximum call stack size exceeded(…)
+      // 会报错
+      var wer = deepClone(a, obj);
+      console.log(wer);
+      // Object {a: "world", b: 21}
+    </script>
+    <h4>注意:会产生问题——两个互相引用的对象，会出现死循环的情况</h4>
+    <h4>解决方法:应该在遍历的时候判断是否相互引用对象，如果是则退出循环</h4>
+    <script>
+      <!--改进版代码-->
+      function deepClone1(initalObj, finalObj) {
+        var obj = finalObj || {};
+        for(var i in initalObj) {
+          var prop = initalObj[i];
+          // 避免相互引用对象导致死循环，如initalObj.a = initalObj的情况
+          if(prop === obj) {
+            continue;
+          }
+          if(typeof prop === 'object') {
+            obj[i] = (prop.constructor === Array) ? [] : {};
+            arguments.callee(prop, obj[i]);
+          }else{
+            obj[i] = prop;
+          }
+        }
+        return obj;
+      }
+    </script>
+    <script>
+      <!--死循环验证-->
+      console.log('进阶试验深拷贝！');
+      var a1 = {
+        a: 'world',
+        b: 21,
+        m: {
+          m1: 1,
+          m2: {
+            m21: 1
+          }
+        }
+      }
+      var obj1 = {
+        a: a1,
+        b: 's'
+      }
+      var asd1 = deepClone1(obj1, a1);
+      console.log(asd1);
+      // Object {a: "world", b: "s"}
+      var wer1 = deepClone1(a1, obj1);
+      console.log(wer1);
+      // Object {a: "world", b: "s"}
+      console.log("完美成功！");
+    </script>
+    <h4>总结: 有问题————会变成浅层(对象中不同层但同名的会整合并且合并到同名最上层)</h4>
+
+    <h3>方法三:使用Object.create()方法</h3>
+    <p>直接使用var newObj = Object.create(oldObj)，可以达到深拷贝的效果</p>
+    <script>
+        <!--深拷贝-->
+        function deepClone2(initalObj, finalObj) {
+          var obj = finalObj || {};
+          for(var i in initalObj) {
+            var prop = initalObj[i];
+
+            // 避免相互引用对象导致死循环，如initalObj.a = initalObj的情况
+            if(prop === obj) {
+              continue;
+            }
+
+            if(typeof prop === 'object') {
+              obj[i] = (prop.constructor === Array) ? [] : Object.create(prop);
+            }else{
+              obj[i] = prop;
+            }
+          }
+        }
+    </script>
+
+
+    <h3>方法三：参考:jQuery.extend()方法的实现</h3>
+    <p>jQuery.js的jQuery.extend()也实现了对象的深拷贝</p>
+    <script>
+      jQuery.extend = jQuery.fn.extend = function() {
+        var options, name, src, copy, copyIsArray, clone,
+            target = arguments[ 0 ] || {},
+            i = 1,
+            length = arguments.length,
+            deep = false;
+        if(typeof target === "boolean") {
+          deep = target;
+
+          target = arguments[ i ] || {};
+          i++;
+        }
+        if(typeof target !== "object" && !jQuery.isFunction(target)) {
+          target = {};
+        }
+        if (i == length) {
+          target = this;
+          i--;
+        }
+        for(;i < length; i++) {
+          if((options = arguments[i]) !== null) {
+            for(name in options) {
+              src = target[name];
+              copy = options[name];
+
+              if(target === copy) {
+                continue;
+              }
+
+
+              if(deep && copy && (jQuery.isPlainObject(copy) || (copyIsArray = jQuery.isArray(copy)))) {
+                if(copyIsArray) {
+                  copyIsArray = false;
+                  clone = src && jQuery.isArray(src) ? src : [];
+                }else{
+                  clone = src && jQuery.isPlainObject(src) ? src : [];
+                }
+
+                target[name] = jQuery.extend(deep, clone, copy);
+              }else if(copy !== undefined) {
+                target[name] = copy;
+              }
+            }
+          }
+        }
+        return target;
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <!-- 强制ie使用最新的浏览器方式渲染 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+  </head>
+  <body class="container" ng-controller="myCtrl">
+    <h1>angular.isArray</h1>
+    <h3>用来检查引用的数据是否是一个数组</h3>
+    <pre>
+      ['1', '2', '3'] ==> {{result1}}
+    </pre>
+    <pre>
+      {asd: 'asd', qwe: 'qwe'} ==> {{result2}}
+    </pre>
+  </body>
+  <!-- angular js -->
+  <script src="https://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+  <script>
+    angular.module('app', []).controller('myCtrl', function($scope) {
+      $scope.arr1 = ['1', '2', '3'];
+      $scope.arr2 = {asd: 'asd', qwe: 'qwe'};
+      $scope.result1 = angular.isArray($scope.arr1);
+      $scope.result2 = angular.isArray($scope.arr2);
+    })
+    angular.bootstrap(document, ['app']);
+  </script>
+</html>
