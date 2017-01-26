@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>严格模式</title>
+  </head>
+  <body>
+    <h1>严格模式</h1>
+    <span>
+      严格模式是一种特殊的执行模式,
+      修复了部分语言上的不足,
+      提供更强的错误检查,并增强安全性
+    </span>
+
+
+    <h2>进入严格模式</h2>
+    <pre>
+      是一个函数的代码进入严格模式
+      function func() {
+        'use strict';
+      }
+      该种方法是说明向上兼容;如果不兼容则会被当成一个字符串
+      也可以指定js文件内严格模式
+      'use strict';
+      function func() {
+
+      }
+    </pre>
+
+
+
+    <h2>严格模式下</h2>
+
+
+
+    <h3>不允许使用with</h3>
+    <script type="text/javascript">
+      console.log("不允许使用with");
+      'use strict';
+      !function() {
+        with({x: 1}) {
+          console.log(x);
+        }
+      }();
+      // Uncaught SyntaxError:
+      // Strict mode code may not include a with statement
+    </script>
+    <pre>
+      'use strict';
+      !function() {
+        with({x: 1}) {
+          console.log(x);
+        }
+      }();
+      运行结果:(报错)
+      // Uncaught SyntaxError:
+      // Strict mode code may not include a with statement
+    </pre>
+
+
+
+    <h2>不允许未声明的变量赋值</h2>
+    <script type="text/javascript">
+      console.log("不允许未声明的变量赋值");
+      'use strict';
+      !function() {
+        y = 1;
+        console.log(window.y);
+      }();
+      // 应该是要报错的
+    </script>
+    <pre>
+      'use strict';
+      !function() {
+        y = 1;
+        console.log(window.y);
+      }();
+      运行结果:(报错)
+      // Uncaught SyntaxError:
+      // Strict mode code may not include a with statement
+    </pre>
+
+
+
+    <h2>arguments变成参数的静态副本</h2>
+    <script type="text/javascript">
+      console.log("arguments变成参数的静态副本,非严格模式下");
+      !function(a) {
+        arguments[0] = 10;
+        console.log(a);
+      }(1);
+      // 当:arguments[0] = 100时
+      // 100
+      // 当:arguments[1] = 100时
+      // 1
+      // 当:arguments[1] = 10时
+      // 1
+      // 当:arguments[0] = 10时
+      // 10
+      /*
+        注意:
+          最后的传值(1)
+          1 => 100
+          不传 => undefined
+      */
+    </script>
+    <h3>当严格模式下</h3>
+    <script type="text/javascript">
+      console.log("arguments变成参数的静态副本,严格模式下");
+      !function(a) {
+        "use strict";
+        arguments[0] = 1;
+        console.log(a);
+      }(10);
+      // 当:arguments[0] = 100时
+      // 1
+      // 当:arguments[1] = 100时
+      // 1
+      // 当:arguments[0] = 1时
+      // 1
+      // 当:arguments[1] = 1时
+      // 1
+      // 当:传入的最后参数为10(10)时
+      // 10
+      /*
+        注意:
+          最后的传值,不管arguments怎么传值a的值始终为1
+          也就是arguments与形参a没有绑定关系
+      */
+    </script>
+    <h3>但如果传入一个对象</h3>
+    <script type="text/javascript">
+      console.log("arguments形参传入一个对象!");
+      !function(a) {
+        'use strict';
+        arguments[0].x = 1;
+        console.log(a.x);
+      }({x:10});
+      // 当:arguments[0].x = 1时
+      // 1
+      // 当:arguments[0].x = 100时
+      // 100
+      // 当:arguments[1].x = 1时
+      // 报错
+      // 当:({x:10})|arguments[0].x = 1时
+      // 1
+    </script>
+    <pre>
+      arguments变成参数的静态副本,非严格模式下！
+      !function(a) {
+        arguments[0] = 10;
+        console.log(a);
+      }(1);
+      // 当:arguments[0] = 100时
+      // 100
+      // 当:arguments[1] = 100时
+      // 1
+      // 当:arguments[1] = 10时
+      // 1
+      // 当:arguments[0] = 10时
+      // 10
+      /*
+        注意:
+          最后的传值(1)
+          1 => 100
+          不传 => undefined
+      */
+
+
+
+
+
+      arguments变成参数的静态副本,严格模式下！
+      !function(a) {
+        "use strict";
+        arguments[0] = 1;
+        console.log(a);
+      }(10);
+      // 当:arguments[0] = 100时
+      // 1
+      // 当:arguments[1] = 100时
+      // 1
+      // 当:arguments[0] = 1时
+      // 1
+      // 当:arguments[1] = 1时
+      // 1
+      // 当:传入的最后参数为10(10)时
+      // 10
+      /*
+        注意:
+          最后的传值,不管arguments怎么传值a的值始终为1
+          也就是arguments与形参a没有绑定关系
+      */
+
+
+      arguments形参传入一个对象!
+      !function(a) {
+        'use strict';
+        arguments[0].x = 1;
+        console.log(a.x);
+      }({x:10});
+      // 当:arguments[0].x = 1时
+      // 1
+      // 当:arguments[0].x = 100时
+      // 100
+      // 当:arguments[1].x = 1时
+      // 报错
+      // 当:({x:10})|arguments[0].x = 1时
+      // 1
+    </pre>
+
+
+
+    <h2>严格模式下 delete参数,函数名报错</h2>
+    <script type="text/javascript">
+      console.log("严格模式下 delete参数,函数名报错");
+      !function(a) {
+        console.log(delete a);
+      }(1);
+      // false
+      // 删除不成功,但也不会报错
+      // !function(a) {
+      //   "use strict";
+      //   console.log(delete a);
+      // }(1);
+      // Uncaught SyntaxError:
+      //  Delete of an unqualified identifier in strict mode.
+      /*
+        SyntaxError: 语法错误
+      */
+      console.log("delete不可配置的属性报错");
+      !function(a) {
+        var obj = {};
+        Object.defineProperty(obj,
+          "a", {configurable: false});
+          console.log(delete obj.a);
+      }(1);
+      // false
+      // 删除失败,但不会报错
+      !function(a) {
+        'use strict';
+        var obj = {};
+        Object.defineProperty(obj,
+          "a", {configurable: false});
+        delete obj.a;
+      }(1);
+      // Uncaught TypeError: Cannot delete property 'a' of #<Object>
+      // TypeError:语法错误
+    </script>
+
+
+    <h2>严格模式下,对象字面量重复属性名报错</h2>
+    <script type="text/javascript">
+      console.log("严格模式下,对象字面量重复属性名报错");
+      !function() {
+        var obj = {x: 1, x: 2};
+        console.log(obj.x);
+      }();
+      // 2
+      /*
+        注意:对象的相同属性名称不同赋值时以最后一次赋值为准
+      */
+      !function() {
+        "use strict";
+        var obj = {x: 1, x: 2};
+        console.log(obj.x);
+      }();
+      // Uncaught TypeError: Cannot delete property 'a' of #<Object>
+      // TypeError:语法错误
+    </script>
+
+
+
+
+    <h2>严格模式 禁止八进制字面量</h2>
+    <script type="text/javascript">
+      console.log('严格模式 禁止八进制字面量');
+      !function() {
+        console.log(0123);
+      }();
+      // 83
+      !function() {
+        'use strict';
+        console.log(0123);
+      }();
+      // SyntaxError语法错误
+    </script>
+
+
+
+    <h2>严格模式下 eval,arguments变为关键字,不能作为变量,函数名</h2>
+    <script type="text/javascript">
+      console.log("严格模式下 eval,arguments变为关键字,不能作为变量,函数名");
+      !function() {
+        function eval(){}
+        console.log(eval);
+      }();
+      // function eval(){}
+      !function() {
+        "use strict";
+        function eval(){}
+      }();
+      // SyntaxError 语法错误
+    </script>
+
+
+
+
+    <h2>严格模式 eval独立作用域</h2>
+    <script type="text/javascript">
+      console.log("严格模式 eval独立作用域");
+      !function() {
+        eval('var evalVal = 2;');
+        console.log(typeof evalVal);
+      }();
+      // number
+      !function() {
+        "use strict";
+        eval('var evalVal = 2');
+        console.log(typeof evalVal);
+      }();
+      // undefinde
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+    <h1>严格模式下的注意</h1>
+    <pre>
+      1.不允许使用with
+      2.所有变量必须声明,赋值给声明的变量报错,而不是隐式的创建全局变量
+      3.eval中的代码不能创建eval所在作用域下的变量,函数,而是为eval单独创建一个作用域,
+      并在eval返回时丢弃
+      4.函数中得特殊对象arguments是静态副本,而不像非严格模式那样,修改arguments或修改
+      参数变量会互相影响
+      5.删除configurable = false的属性时报错,而不是忽略
+      6.禁止八进制字面量,如010(八进制的8)
+      7.eval,arguments变为关键字,不可作为变量名,函数名等
+      8.一般函数调用时(不是对象的方法调用,也不是apply/call/bind等修改this)this指向
+      null,而不是全局对象
+      9.若使用apply/call,当传入null或undefined时,this指向null或undefined,而不是全
+      局对象
+      10.试图修改不可写的属性时(writable=false),在不可扩展的对象上添加属性时报
+      TypeError,而不是忽略
+      11.arguments.caller,arguments.callee被禁用
+    </pre>
+
+
+    <h2>严格模式的描述</h2>
+    <pre>
+      严格模式是一种特殊的运行模式
+      它修复了部分语言上的不足
+      提供更强的错误检查,并增强安全性
+    </pre>
+  </body>
+</html>
