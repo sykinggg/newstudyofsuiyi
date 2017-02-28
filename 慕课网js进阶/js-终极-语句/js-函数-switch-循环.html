@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>函数,switch,循环</title>
+  </head>
+  <body>
+    <h1>function 语句</h1>
+    <span>function 语句用于定义函数对象</span>
+    <pre>
+      function fd() {
+        //do sth.
+        return true;
+      }
+    </pre>
+    <span>用function创建函数对象一般称之为函数声明,与之对相应的是函数表达式</span>
+    <pre>
+      函数表达式是声明一个变量然后把一个匿名函数赋值给这个变量
+      var fa = function() {
+        // do sth.
+      }
+    </pre>
+    <h3>注意: 函数声明和函数表达式之间的区别</h3>
+    <h3>最主要的是:函数声明会被预先处理或者说是函数前置也就是说在函数声明的前面来
+      调用该函数声明也是可以的(可以被调用成功);但是函数表达式就不行</h3>
+
+
+
+
+
+
+
+
+
+
+    <h1>for ... in语句</h1>
+    <script type="text/javascript">
+      console.log("for ... in 语句");
+      var p;
+      var obj = {x: 1, y: 2}
+      for(p in obj) {
+        console.log(p);
+        // x
+        // y
+      }
+    </script>
+    <pre>
+      使用语法:
+      var p;
+      var obj = {x: 1, y: 2};
+      for(p in obj) {
+        console.log(p);
+      }
+
+      使用时三点注意:
+        1.顺序不确定(依赖于引擎的实现)
+        2.enumerable为false时不会出现(属性描述器)
+        3.for in对象属性时受原型链影响(注意如果obj的原型的enumerable为true也会被for in循环出来)
+    </pre>
+
+
+
+
+
+
+
+
+
+
+    <h1>switch 条件分支语句</h1>
+    <script type="text/javascript">
+      console.log("条件分支语句");
+      var val = 2;
+      switch(val) {
+        case 1:
+          console.log(1);
+          break;
+        case 2:
+          console.log(2);
+          break;
+        case 3:
+          console.log(0);
+          break;
+      }
+
+      /*
+        运行结果
+          2
+      */
+
+
+      switch(val) {
+        case 1:
+          console.log(1);
+        case 2:
+          console.log(2);
+        default:
+          console.log(0);
+      }
+      /*
+        运行结果
+          2
+          0
+      */
+
+
+      switch(val) {
+        case 1:
+        case 2:
+        case 3:
+          console.log(123);
+          break;
+        case 4:
+        case 5:
+          console.log(45);
+          break;
+        default:
+          console.log(0);
+      }
+      /*
+        运行结果:
+          123
+      */
+    </script>
+    <pre>
+      var val = 2;
+      switch(val) {
+        case 1:
+          console.log(1);
+          break;
+        case 2:
+          console.log(2);
+          break;
+        case 3:
+          console.log(0);
+          break;
+      }
+
+      /*
+        运行结果
+          2
+      */
+
+
+      switch(val) {
+        case 1:
+          console.log(1);
+        case 2:
+          console.log(2);
+        default:
+          console.log(0);
+      }
+      /*
+        运行结果
+          2
+          0
+      */
+      执行流程: 没有break则继续往下执行
+
+
+      switch(val) {
+        case 1:
+        case 2:
+        case 3:
+          console.log(123);
+          break;
+        case 4:
+        case 5:
+          console.log(45);
+          break;
+        default:
+          console.log(0);
+      }
+      /*
+        运行结果:
+          123
+      */
+    </pre>
+
+
+
+
+
+
+
+
+
+
+    <h1>循环语句</h1>
+    <pre>
+      while(isTrue) {
+        // do sth.
+      }
+
+      do {
+        // do sth.
+      }while(isTrue)
+
+      var i;
+      for(i = 0; i < n; i++) {
+        // do sth.
+      }
+    </pre>
+
+
+
+
+
+
+
+
+
+
+    <h1>with 语句</h1>
+    <span>可以修改当前的作用域</span>
+    <form class="" action="index.html" method="post">
+      <input type="button" name="name" value="name1">
+      <input type="button" name="name" value="name2">
+      <input type="button" name="name" value="name3">
+      <input type="button" name="name" value="name4">
+      <input type="button" name="name" value="name2">
+    </form>
+    <script type="text/javascript">
+      console.log("with 语句");
+      with({x: 1}) {
+        console.log(x);
+      }
+      // 运行结果
+      // 1
+      with(document.forms[0]) {
+        console.log(document.forms[0].name);
+        for(i in document.forms[0].name) {
+          console.log(i);
+          // 运行结果
+          // 0
+          // 1
+          // 2
+          // 3
+          // 4
+          // value
+          // length
+          // item
+          console.log(i.defaultValue);
+        }
+        console.log(name.value);
+      }
+      // 运行结果
+      // [input, input, input, input, input]
+      //   0: input
+      //   1: input
+      //   2: input
+      //   3: input
+      //   4: input
+      //   length: 5
+      //   value: ""
+      //   __proto__: RadioNodeList
+    </script>
+    <pre>
+      基本语法:
+        with({x: 1}) {
+          console.log(x);
+        }
+      优点: 不用写对象.x
+      with(document.forms[0]) {
+        console.log(name.value);
+      }
+      其实就是代替
+        console.log(document.forms[0].name.value);
+      也可以用
+        var form = document.forms[0];
+        console.log(form.name.value);
+      js现在基本上不使用with
+        1.让js引擎优化更难
+        2.可读性变差
+        3.可被变量定义代替
+        4.严格模式下禁用
+      总结:如果要定义深层访问则可用定义变量的方式来代替with
+    </pre>
+  </body>
+</html>

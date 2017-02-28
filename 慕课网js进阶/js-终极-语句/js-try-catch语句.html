@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>try-catch语句</title>
+  </head>
+  <body>
+    <h1>try-catch</h1>
+    <span>异常捕获的机制</span>
+    <h2>执行流程</h2>
+    <span>首先执行 try块中的代码,如果抛出异常则由catch语句去捕获然后执行
+    如果没有发生异常catch块中的代码会被忽略,
+    最后,不管有没有异常都会执行finally块中的语句</span>
+    <script type="text/javascript">
+      try {
+        throw "test";
+      }catch(ex) {
+        console.log(ex);
+        // test
+      }finally {
+        console.log("finally");
+        // finally
+      }
+    </script>
+    <pre>
+      try {
+        throw "test";
+      }catch(ex) {
+        console.log(ex);
+      }finally {
+        console.log("finally");
+      }
+      运行结果
+      test
+      finally
+    </pre>
+    <h3>语法应用:try 可以与finally 和 catch两两结合使用</h3>
+
+    <h2>请注意:try catch嵌套</h2>
+    <script type="text/javascript">0
+      console.log("try catch 嵌套");
+      try {
+        try {
+          throw new Error("oops");
+        }finally {
+          console.log("finally");
+          // finally
+        }
+      }catch(ex) {
+        console.error("outer", ex.message);
+      }
+      // outer oops
+    </script>
+    <pre>
+      try {
+        try {
+          throw new Error("oops");
+        }finally {
+          console.log("finally");
+        }
+      }catch(ex) {
+        console.error("outer", ex.message);
+      }
+      执行结果:
+        finally
+        outer oops
+      执行流程:
+      当try中存在端套当try块语句中产生错误,会传给当前流程的catch中
+      当当前没有catch语句则向上传递错误提示按执行流程传递给上层的try所对应的的catch中
+    </pre>
+
+    <h2>第二个例子</h2>
+    <script type="text/javascript">
+      console.log("第二个例子");
+      try {
+        try {
+          throw new Error('oops');
+        }
+        catch(ex) {
+          console.log("inner", ex.message);
+        }
+        finally {
+          console.log('finally');
+        }
+      }
+      catch (ex) {
+        console.log("outer", ex.message);
+      }
+      // inner oops
+      // finally
+    </script>
+    <pre>
+      try {
+        try {
+          throw new Error('oops');
+        }
+        catch(ex) {
+          console.log("inner", ex.message);
+        }
+        finally {
+          console.log('finally');
+        }
+      }
+      catch (ex) {
+        console.log("outer", ex.message);
+      }
+      执行结果:
+        inner oops
+        finally
+      执行流程:注意:先由内层处理也就是如果try块中的语句产生错误就将错误返回到该try语句所对应
+              的catch块语句中如果没有该catch块语句则看是否有上层嵌套如果有则返回到上层的catch
+              代码中.
+              简而言之,错误处理了,就不再有错误了,错误没有处理则不断地向上寻找处理错误的方法.
+    </pre>
+
+
+    <h3>第三个例子</h3>
+    <script type="text/javascript">
+      console.log("第三个例子");
+      try {
+        try {
+          throw new Error('oops');
+        }
+        catch(ex) {
+          console.log("inner", ex.message);
+          throw ex;
+        }
+        finally {
+          console.log("finally");
+        }
+      }
+      catch(ex) {
+        console.log("outer", ex.message);
+      }
+      // inner oops
+      // finally
+      // outer oops
+    </script>
+    <pre>
+      try {
+        try {
+          throw new Error('oops');
+        }
+        catch(ex) {
+          console.log("inner", ex.message);
+          throw ex;
+        }
+        finally {
+          console.log("finally");
+        }
+      }
+      catch(ex) {
+        console.log("outer", ex.message);
+      }
+      执行结果:
+        inner oops
+        finally
+        outer oops
+      执行流程:
+        内层的try产生一个错误后被相对应的catch接受并处理然后又将错误再次产生传到上层的try中
+        并在次传给相对应的catch进行处理
+      注意:
+        try嵌套的内层优先执行
+    </pre>
+  </body>
+</html>
