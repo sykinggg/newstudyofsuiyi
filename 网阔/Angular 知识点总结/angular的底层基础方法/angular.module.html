@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- 强制ie使用最新的浏览器方式渲染 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+  </head>
+  <body>
+    <h1>module 配置</h1>
+    <h3>Module</h3>
+    <p>模块是服务，指令，控制器，过滤器和配置信息的集合</p>
+    <p>angular.module用于配置$ injector。</p>
+    <pre>
+      创建新模块
+      var myModule = angular.module('myModule', []);
+      注册新服务
+      myModule.value('appName', 'myCoolApp');
+      配置初始化块中的现有服务
+      myModule.config(['$locationProvider', function($locationProvider) {
+        配置现有提供商
+        $locationProvider.hashPrefix('!');
+      }])
+      可以创建一个注入器并像这样加载模块
+      var injector = angular.injector(['ng', 'myModule']);
+    </pre>
+  </body>
+</html>
