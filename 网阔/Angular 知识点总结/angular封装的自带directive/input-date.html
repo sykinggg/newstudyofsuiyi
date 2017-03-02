@@ -56,19 +56,19 @@
       clearfun:function(elem, val) {},      //清除日期后的回调, elem当前输入框ID, val当前选择的值
       okfun:function(elem, val) {},         //点击确定后的回调, elem当前输入框ID, val当前选择的值
       success:function(elem) {},            //层弹出后的成功回调方法, elem当前输入框ID
+      注意： 上面的所有Boolean类型的参数true：1， false：0.
+      因为：控件中的中能用Boolean类型的值来设置
     </pre>
     <div>
       <input type="text" class="inline-block" date-pick id="time1"
             data-ng-model="startTime" time-conf="$('time1')" time-mark="start"
-            format="YYYY-MM-DD" festival=true
-            maxDate="startTime">
+            format="YYYY-MM-DD" festival=1 isinitVal="1">
       <span>startTime{{startTime}}</span>
     </div>
     <div>
       <input type="text" class="inline-block" date-pick id="time2"
             data-ng-model="endTime"  time-conf="$('time2')" time-mark="end"
-            format="YYYY-MM-DD" festival=true
-            minDate="endTime">
+            format="YYYY-MM-DD" festival=1 isinitVal="1">
       <span>endTime{{endTime}}</span>
       <input type="text" id="inpstart">
       <input type="text" id="inpend">
@@ -81,24 +81,20 @@
     angular.module('date', [])
            .controller('dataController', ['$scope', function($scope) {
               var start = {
-                  format: 'YYYY-MM-DD hh:mm:ss',
-                  minDate: '2014-06-16 23:59:59', //设定最小日期为当前日期
+                  format: 'YYYY-MM-DD',
                   festival:true,
-                  //isinitVal:true,
-                  maxDate: $.nowDate(0), //最大日期
-                  choosefun: function(elem,datas){
-                      end.minDate = datas; //开始日选好后，重置结束日的最小日期
-                  }
+                  // maxDate: $.nowDate(0), //最大日期
+                  // choosefun: function(elem,datas){
+                  //     end.minDate = datas; //开始日选好后，重置结束日的最小日期
+                  // }
               };
               var end = {
-                  format: 'YYYY年MM月DD日 hh:mm:ss',
-                  minDate: $.nowDate(0), //设定最小日期为当前日期
+                  format: 'YYYY年MM月DD日',
+                  // minDate: $.nowDate(0), //设定最小日期为当前日期
                   festival:true,
-                  //isinitVal:true,
-                  maxDate: '2099-06-16 23:59:59', //最大日期
-                  choosefun: function(elem,datas){
-                      start.maxDate = datas; //将结束日的初始值设定为开始日的最大日期
-                  }
+                  // choosefun: function(elem,datas){
+                  //     start.maxDate = datas; //将结束日的初始值设定为开始日的最大日期
+                  // }
               };
               $("#inpstart").jeDate(start);
               $("#inpend").jeDate(end);
@@ -114,15 +110,15 @@
                          minDate: attrs.minDate,
                          maxDate: attrs.masDate,
                          isTrigger: attrs.isTrigger,
-                         isinitVal: attrs.isinitVal,
-                         isTime: attrs.isTime,
-                         ishmsLimit: attrs.ishmsLimit,
-                         ishmsVal: attrs.ishmsVal,
-                         isClear: attrs.isClear,
-                         isToday: attrs.isToday,
-                         clearRestore: attrs.clearRestore,
-                         festival: attrs.festival,
-                         fixed: attrs.fixed,
+                         isinitVal: Boolean(attrs.isinitVal),
+                         isTime: Boolean(attrs.isTime),
+                         ishmsLimit: Boolean(attrs.ishmsLimit),
+                         ishmsVal: Boolean(attrs.ishmsVal),
+                         isClear: Boolean(attrs.isClear),
+                         isToday: Boolean(attrs.isToday),
+                         clearRestore: Boolean(attrs.clearRestore),
+                         festival: Boolean(attrs.festival),
+                         fixed: Boolean(attrs.fixed),
                          zIndex: attrs.zIndex,
                          marks: attrs.marks,
                          choosefun: function(elem, val) {

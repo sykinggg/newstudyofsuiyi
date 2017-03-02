@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>js 模块化编写</title>
+  </head>
+  <body>
+    <h3>放大模块</h3>
+    <p>如果一个模块很大，必须分成几个部分，或者一个模块需要继承另一个模块，这时就有必要采用"放大模式"</p>
+    <pre>
+      var module = {
+        m2: function() {
+          console.log('error');
+        }
+      }
+      console.log(module);
+      var module1 = (function(mod) {
+        mod.m3 = function() {
+          console.log('success');
+        };
+        return mod;
+      })(module)
+      console.log(module);
+    </pre>
+    <script type="text/javascript">
+      var module = {
+        m2: function() {
+          console.log('error');
+        }
+      }
+      module.m2();
+      // module.m3(); 报错
+      var module1 = (function(mod) {
+        mod.m3 = function() {
+          console.log('success');
+        };
+        return mod;
+      })(module)
+      module.m2();
+      module.m3();
+    </script>
+    <h3>宽放大模式</h3>
+    <p>在浏览器环境中，模块的各个部分通常都是从网上获取的，有时无法知道哪个部分会先加载</p>
+    <p>如果采用上一节的写法，第一个执行的部分有可能加载一个不存在空对象，这时就要采用"宽放大模式"</p>
+    <pre>
+      var module1 = (function(mod) {
+        mod.ms = function() {
+          console.log('success1');
+        }
+　　　　return mod;
+      })(window.module || {})
+    </pre>
+    <script>
+      var module1 = (function(mod) {
+        var a = setInterval() {
+          if(mod) {
+            mod.ms = function() {
+              console.log('success1');
+            }    
+          }
+        }
+  　　　　return mod;
+      })(module2 || {})
+    </script>
+  </body>
+</html>
