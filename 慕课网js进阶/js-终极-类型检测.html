@@ -20,42 +20,42 @@
     /*
       如果是数字,返回number
     */
-      console.log(typeof 100);
+      document.write( '100:     ' +  typeof 100);
       // number
       /*
         如果是布尔值,返回boolean
       */
-      console.log(typeof true);
+      document.write( 'true:    ' +  typeof true);
       // boolean
       /*
         如果是函数,返回function
       */
-      console.log(typeof function(){});
+      document.write( 'function(){}:      ' + typeof function(){});
       // function
       /*
         如果是undefeinde,返回undefined
       */
-      console.log(typeof undefined);
+      document.write( 'undefined:       ' + typeof undefined);
       // undefined
       /*
         如果是Object,返回Object
       */
-      console.log(typeof new Object());
+      document.write( 'Object():        ' + typeof new Object());
       // object
       /*
         如果是数组,返回object
       */
-      console.log(typeof [1, 2]);
+      document.write( 'array:           ' + typeof [1, 2]);
       // object
       /*
         如果是NaN,返回number
       */
-      console.log(typeof NaN);
+      document.write( 'NaN:             ' + typeof NaN);
       // nummber
       /*
         如果是null,返回undefined
       */
-      console.log(typeof null);
+      console.log( 'null:               '+ typeof null);
       // object
     </script>
     <p>
@@ -392,7 +392,7 @@
           return true;
 
       }();
-  document.write("判定结果:"+(result?"通过":"不通过"));
+      document.write("判定结果:"+(result?"通过":"不通过"));
     </script>
   </body>
 </html>
