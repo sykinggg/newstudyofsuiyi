@@ -1,0 +1,377 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script type="text/babel">
+      // 基本使用,replace:true(相当于angular-directive)
+      // ReactDOM.render(
+      //   <h1>hello world!</h1>,
+      //   document.getElementById('container')
+      // );
+
+      // 升级版使用map进行遍历注意key关键字不会在dom中显示应该是作为hook函数使用
+      // react标签
+      // <!-- react-text: 3 -->
+      // <!-- /react-text -->
+      // var names = [
+      //   {id: 'a'},
+      //   {id: 'b'},
+      //   {id: 'c'}
+      // ]
+      // ReactDOM.render(
+      //   <div>
+      //     {
+      //       names.map(function(value, key) {
+      //         return <div key={key}>hello, {value.id}</div>
+      //       })
+      //     }
+      //   </div>,
+      //   document.getElementById('container')
+      // )
+
+      // 单数组自动循环写入(注意:只能按照html格式进行书写)
+      // var arr = [
+      //   <h1>hello World</h1>,<span>asdasd</span>,
+      //   <h1>hello React</h1>,
+      //   <h1>hello error</h1>
+      // ];
+      // ReactDOM.render(
+      //   <div>{arr}</div>,
+      //   document.getElementById('container')
+      // );
+
+      // react 插件创建以及引用
+      // 比较大的问题声明的变量如果要以单标签的形式引入则首字母一定要大写
+      // 且仅有这一种方式使用
+      // var Hello = React.createClass({
+      //   render: function() {
+      //     return <h1>hello {this.props.name}</h1>;
+      //   }
+      // });
+      // ReactDOM.render(
+      //   <Hello name="world"/>,
+      //   document.getElementById('container')
+      // );
+
+      // 依然使用react 的map方法进行遍历
+      // 但是虚拟出的dom中ol标签中有data-reactroot这个属性
+      // var NotesList = React.createClass({
+      //   render: function() {
+      //     return (
+      //       <ol>
+      //         {
+      //           React.Children.map(this.props.children, function(child, key) {
+      //             return <li key={key}>{child}</li>
+      //           })
+      //         }
+      //       </ol>
+      //     );
+      //   }
+      // });
+      //
+      // ReactDOM.render(
+      //   <NotesList>
+      //     <span>hello</span>
+      //     <span>world</span>
+      //   </NotesList>,
+      //   document.getElementById("container")
+      // );
+
+      // 单独的实例
+      // var Test = React.createClass({
+      //   getInitialState: function() {
+      //     return {name: 'world'};
+      //   },
+      //   render: function() {
+      //     return (
+      //       <p>
+      //           hello {this.state.name}!
+      //       </p>
+      //     );
+      //   }
+      // });
+      //
+      // ReactDOM.render(
+      //   <Test />,
+      //   document.getElementById('container')
+      // )
+
+      // 数据流节点的类型限制
+      // var data = 123;
+      //
+      // var MyTitle = React.createClass({
+      //   proTypes: {
+      //     // 用来限制传入的属性值的格式
+      //     title: React.PropTypes.string.isRequired,
+      //     // 情况下，这些 prop 都是可传可不传的。
+      //     // optionalArray: React.PropTypes.array,
+      //     // optionalBool: React.PropTypes.bool,
+      //     // optionalFunc: React.PropTypes.func,
+      //     // optionalNumber: React.PropTypes.number,
+      //     // optionalObject: React.PropTypes.object,
+      //     // optionalString: React.PropTypes.string,
+      //     //
+      //     // optionalNode: React.PropTypes.node
+      //     // optionalElement: React.PropTypes.element
+      //     //
+      //     // 用 JS 的 instanceof 操作符声明 prop 为类的实例
+      //     // optionalMessage: React.PropTypes.instanceOf(Message)
+      //     //
+      //     // 用 enum 来限制 prop 只接受指定的值
+      //     // optionalEnum: React.PropTypes.oneOf(['News', 'Photos'])
+      //     //
+      //     // 指定的多个对象类型中的一个
+      //     // optionalUnion: React.PropTypes.oneOfType([
+      //     //   React.PropTypes.string,
+      //     //   React.PropTypes.number,
+      //     //   React.PropTypes.instanceOf(Message)
+      //     // ])
+      //     //
+      //     // 指定类型组成的数组
+      //     // optionalArrayOf: React.PropTypes.arrayOf(React.PropTypes.number)
+      //     //
+      //     // 指定类型的属性构成的对象
+      //     // optionalObjectOf: React.PropTypes.objectOf(React.PropTypes.number)
+      //     //
+      //     // 特定形状参数的对象
+      //     // optionalObjectWithShape: React.PropTypes.shape({
+      //     //   color: React.PropTypes.string,
+      //     //   fontSize: React.PropTypes.number
+      //     // })
+      //     //
+      //     // 以后任意类型加上 `isRequired` 来使 prop 不可空
+      //     // requiredFunc: React.PropTypes.func.isRequired
+      //     //
+      //     // 不可空的任意类型
+      //     // requiredAny: React.PropTypes.any.isRequired
+      //     //
+      //     // 自定义验证器。如果验证失败需要返回一个 Error 对象
+      //     // 不要直接使用 `console.warn` 或抛异常，因为这样 `oneOfType` 会失效
+      //     customProp:function(props, propName, componentName) {
+      //       if(!/matchme/.test(props[proName])) {
+      //         return new Error('Validation dailed!');
+      //       }
+      //     }
+      //   },
+      //
+      //   render: function() {
+      //     return <h1>hello {this.props.title} </h1>;
+      //   }
+      // });
+      //
+      // ReactDOM.render(
+      //   <MyTitle title={data}></MyTitle>,
+      //   document.getElementById("container")
+      // );
+
+      // 组件内部的操作逻辑在初始化render组件之前方法之内设置
+      // 设置方式就是以对象内部方法的形式设置再以内部this来调用
+      // 使用关键字ref来进行具体虚拟dom设置例如id、class
+      // 在控制台打印出的展示是refs
+      // var MyComponent = React.createClass({
+      //   handleClick: function() {
+      //     this.refs.myTextInput.focus();
+      //     this.refs.myTextInput.value = this.refs.myTextButton.value;
+      //   },
+      //   render: function() {
+      //     return (
+      //       <div>
+      //         <input type="text" ref="myTextInput"/>
+      //         <input type="button" ref="myTextButton" value="Focus the text input" onClick={this.handleClick}/>
+      //       </div>
+      //     );
+      //   }
+      // });
+      //
+      // ReactDOM.render(
+      //   <MyComponent></MyComponent>,
+      //   document.getElementById('container')
+      // );
+
+      // 组件getInitialState方法在组件渲染之前初始化组件中可能需要的参数
+      // 经查询render中jsx语法中不支持if...else...语句所以使用三目运算代替if...else...
+      // 方法getInitialState返回的定义数据格式如下：
+      // 在hookClick方法中的输出则说明state是全局变量
+      // var LikeButton = React.createClass({
+      //   getInitialState: function() {
+      //     return ({liked:false,liked2:false})
+      //   },
+      //   hookClick: function() {
+      //     console.log(this.state);
+      //     this.setState({liked: !this.state.liked});
+      //     console.log(this.state);
+      //   },
+      //   render: function() {
+      //     var text = this.state.liked ? 'like': 'haven\'t liked';
+      //     return (
+      //       <p style={{cursor: 'pointer'}} onClick={this.hookClick}>
+      //         You {text} this. Click to toggle.
+      //       </p>
+      //     );
+      //   }
+      // });
+      //
+      // ReactDOM.render(
+      //   <LikeButton></LikeButton>,
+      //   document.getElementById('container')
+      // );
+
+      // 使用内置方法获取当前dom已改变的value值，然后使用setState来设置state的值
+      // 并进行数据的单向绑定
+      // 当外部数据进行改变时则重新渲染组件即可
+      // var tdata = '';
+      // setTimeout(function() {
+      //   tdata = 123;
+      //   ReactDOM.render(
+      //     <Input tData={tdata}></Input>,
+      //     document.getElementById('container')
+      //   );
+      // }, 2000)
+      // var Input = React.createClass({
+      //   getInitialState: function() {
+      //     return {value: 'Hello!'};
+      //   },
+      //   hookClick: function(event) {
+      //     this.setState({value: event.target.value});
+      //   },
+      //   render: function() {
+      //     var value = this.state.value;
+      //     return (
+      //       <div>
+      //         <input type="text" value={value} onChange={this.hookClick}/>
+      //         <p>{this.props.tData}</p>
+      //         <p>{value}</p>
+      //       </div>
+      //     );
+      //   }
+      // });
+      //
+      // ReactDOM.render(
+      //   <Input tData={tdata}></Input>,
+      //   document.getElementById('container')
+      // );
+
+      // 可以在组件的componentDidMount方法中渲染出组件第一个变化的时刻,并可以请求
+      // var Hello = React.createClass({
+      //   getInitialState: function() {
+      //     return {
+      //       opacity: 1.0
+      //     };
+      //   },
+      //
+      //   componentDidMount: function() {
+      //     this.timer = setInterval(function() {
+      //       var opacity = this.state.opacity;
+      //       opacity -= 0.05;
+      //       if(opacity < 0.1) {
+      //         opacity = 1.0;
+      //       }
+      //       this.setState({
+      //         opacity: opacity
+      //       });
+      //     }.bind(this), 100);
+      //   },
+      //
+      //   render: function() {
+      //     return (
+      //       <div style={{opacity: this.state.opacity}}>
+      //         Hello {this.props.name}
+      //       </div>
+      //     );
+      //   }
+      // });
+      //
+      // ReactDOM.render(
+      //   <Hello name="world"></Hello>,
+      //   document.getElementById("container")
+      // );
+
+      // 组件内部在组件首次渲染成功后向后台发送请求
+      // 并通过this.isMounted()方法来检测组件是否被渲染然后通过更改setState方法
+      // 来重新渲染组件
+      // var UserGist = React.createClass({
+      //   getInitialState: function() {
+      //     return {
+      //       username: '',
+      //       lastGisUrl: ''
+      //     };
+      //   },
+      //
+      //   componentDidMount: function() {
+      //     $.get(this.props.source, function(result) {
+      //       var lastGist = result[0];
+      //       if(this.isMounted()) {
+      //         this.setState({
+      //           username: lastGist.description,
+      //           lastGisUrl: lastGist.html_url
+      //         });
+      //       }
+      //     }.bind(this));
+      //   },
+      //
+      //   render: function() {
+      //     return (
+      //       <div>
+      //         {this.state.username}‘s last gist is <a href={this.state.lastGistUrl}>here</a>.
+      //       </div>
+      //     )
+      //   }
+      // });
+      //
+      // ReactDOM.render(
+      //   <UserGist source="https://api.github.com/users/octocat/gists"></UserGist>,
+      //   document.getElementById("container")
+      // );
+
+      var　RepoList = React.createClass({
+        getInitialState: function() {
+          return {
+            loading: true,
+            error: null,
+            data: null
+          };
+        },
+
+        componentDidMount: function() {
+          this.props.promise.then(
+            value => this.setState({loading: false, data: value}),
+            error => this.setState({loading: false, error: error})
+          );
+        },
+
+        render: function() {
+          if(this.state.loading) {
+            return <span>Loading...</span>;
+          }else if(this.state.error !== null) {
+            return <span>Error: {this.state.error.message}</span>
+          }else{
+            var repos = this.state.data.items;
+            var repoList = repos.map(function (repo, index) {
+              return (
+                <li key={index}><a href={repo.html_url}>{repo.name}</a> ({repo.stargazers_count} stars) <br/> {repo.description}</li>
+              );
+            });
+            return (
+              <main>
+                <h1>Most Popular JavaScript Projects in Github</h1>
+                <ol>{repoList}</ol>
+              </main>
+            );
+          }
+        }
+      });
+
+      ReactDOM.render(
+        <RepoList promise={$.getJSON('https://api.github.com/search/repositories?q=javascript&sort=stars')} />,
+        document.getElementById("container")
+      );
+    </script>
+  </body>
+</html>

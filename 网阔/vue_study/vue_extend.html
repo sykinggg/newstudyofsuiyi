@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<div id="moun-point"></div>
+	</body>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script>
+		var file = Vue.extend({
+			template: '<p>{{fn}}{{lN}}aka{{alias}}</p>',
+			data: function() {
+				return {
+					fn: 'fn',
+					lN: 'lN',
+					alias: 'asdasd'
+				}
+			}
+		})
+		new file().$mount('#moun-point');
+	</script>
+</html>
