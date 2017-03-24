@@ -44,3 +44,17 @@ sh install.sh
 交易密码: 399022
 angularjs官方git文档
 https://github.com/angular
+
+
+{
+    "server":"66.112.211.68",
+    "server_port":29017,
+    "local_address": "127.0.0.1",
+    "local_port":1080,
+    "password":"mypassword",
+    "timeout":300,
+    "method":"aes-256-cfb",
+    "fast_open": false,
+    "workers": 1
+}
+

@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script type="text/javascript">
+      console.log(null);
+      var num1 = 0xA;
+      console.log(num1);
+      console.log(0.0000000003);
+      console.log(0.1+0.3);
+      console.log(isNaN(null));
+      console.log(typeof(null));
+      function isNull(numObject) {
+        var thisNum = typeof(numObject);
+        if(thisNum.indexOf('string')>-1) {
+          return 'is string';
+        }else if(thisNum.indexOf('Boolean')>-1) {
+          if(Number(munObject)>0.5) {
+            return 'is Boolean is true'
+          }else{
+            return 'is Boolean is false'
+          }
+        }else if(thisNum.indexOf('number')>-1) {
+          return 'is number'
+        }else if(thisNum.indexOf('undefined')>-1) {
+          return 'is undefined'
+        }
+        // if((thisNum.indexOf('Boolean')<0)&&(thisNum.indexOf('string')<0))  {
+        //   if(Number(numObject) < 0) {
+        //     return 'is null'
+        //   }
+        // }
+      }
+      console.log(isNull(null));
+      console.log(isNull(''));
+      console.log(isNull(undefined));
+    </script>
+  </body>
+</html>
