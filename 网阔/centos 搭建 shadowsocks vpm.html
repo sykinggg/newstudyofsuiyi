@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>centos 搭建 shadowsocks</title>
+    <style>
+      h1 {
+        text-align: center;
+      }
+      pre {
+        width: 550px;
+        margin: 0 auto;
+        text-align: left;
+        border: 1px dashed #c8c8c8;
+        padding: 15px 15px 0px 15px;
+        font-size: 14px;
+        white-space: pre-wrap;
+        background-color: #f9f9f9;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>安装shadowsocks</h1>
+    <pre >
+      #yum install epel-release
+      #yum update
+      #yum install python-setuptools m2crypto supervisor
+      #easy_install pip
+      #pip install shadowsocks
+      注意：此处可能会有平台安全的警告(其实没什么用)
+
+      #编写配置文件#
+      #vi /etc/shadowsocks.json
+        此时按 i 键进入编辑模式，putty黑框的左下角会出现 – INSERT – 字样，
+      然后一次性复制下面的内容（复制之前记得修改8388和yourpassword为你自己
+      的端口号和密码，此端口号不是你的SSH端口号，而是你在手机或电脑上的
+      shadowsocks客户端连接VPS上搭建的服务端的端口号，范围 1 - 65535 ，只
+      要不和现有的端口号如SSH端口冲突都可以，记下你修改的端口号和密码，待会
+      儿在配置手机和电脑的客户端时还要用到），在putty里右键，此时复制的内容
+      应该已经粘贴到了putty里
+
+      ———-以下内容为复制内容———-
+      {
+          "server":"0.0.0.0",
+          "server_port":888,
+          "local_port":1080,
+          "password":"myPassword",
+          "timeout":300,
+          "method":"rc4-md5"
+      }
+      ———-以上内容为复制内容———-
+        备注：加密方式官方默认使用aes-256-cfb，推荐使用rc4-md5，因为 RC4比
+      AES速度快好几倍。
+
+        复制完成后，按 Esc 键退出编辑模式，此时putty黑框左下角的 – INSERT –
+      字样消失，按下 : 键，输入 wq 后回车，此时文件保存完毕并退出了vi编辑器。
+      （“ : ”的输入方法为“Shift+字母L右侧的分号键”）
+
+      继续执行命令
+      #vi /etc/supervisord.conf
+        此时你应该能看到很多英文内容，按 i 键再次进入编辑模式，putty黑框的左
+      下角会出现 – INSERT – 字样，用方向键将光标调整至文件尾部的空行处，然后
+      一次性复制下面的内容，在putty里右键，此时复制的内容应该已经粘贴到了
+      putty里
+
+      但是实际操作可能没有那么多的内容
+      ———-以下内容为复制内容———-
+      [program:shadowsocks]
+      command=ssserver -c /etc/shadowsocks.json
+      autostart=true
+      autorestart=true
+      user=root
+      log_stderr=true
+      logfile=/var/log/shadowsocks.log
+      ———以上内容为复制内容———
+
+        复制完成后，按下回车键给文件尾部留出空行，然后按 Esc 键退出编辑模式，
+      此时putty黑框左下角的 – INSERT – 字样消失，按下 : 键，输入 wq 后回车
+      ，此时文件保存完毕并退出了vi编辑器。
+
+      最后执行命令
+      #reboot
+
+        Shadowsocks支持一个账户在多个终端同时使用，一般人没有配置多账户的必
+      要。
+      {
+          "server":"0.0.0.0",
+          "port_password":{
+              "8388":"password1",
+              "8389":"password2",
+              "8390":"password3",
+              "8391":"password4"
+          },
+          "timeout":300,
+          "method":"aes-256-cfb"
+      }
+
+      但是请注意：如果supervisord这个服务没有配置则需要手动启动服务
+      使用配置文件在后台运行shadowsocks服务
+      ssserver -c /etc/shadowsocks.json -d start
+
+      备注：若无配置文件，在后台可以使用一下命令运行：
+      ssserver -p 443 -k MyPass -m rc4-md5 -d start
+
+      停止服务
+      ssserver -c /etc/shadowsocks.json -d stop
+    </pre>
+  </body>
+</html>
