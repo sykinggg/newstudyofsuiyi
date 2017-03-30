@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>对象与构造函数</title>
+  </head>
+  <body>
+    <h1>原始对象</h1>
+    <h2>原始对象的基础声明</h2>
+    <p>面向对象中最重要的环节是封装</p>
+    <p>JavaScript提供了定义一个原始对象的方法</p>
+    <span>通过构建一个Object实例，我们可以为该实例手动添加任何成员，可以是字符、数字、布尔甚至于一个方法，定义的方式，即可以用实例名.成员名 = 内容，也可以使用实例名["成员名"] = 内容</span>
+    <pre>
+    	worker.isWorking = false;			//通过明确的属性名添加成员
+
+    	var str = "phone";
+    	worker[str] = 132131131311311;		//通过不明确的属性名添加成员（str可变，因此不明确）
+
+    	var phone = worker.phone;			//通过不明确添加的成员，可以进行明确的访问；也可以通过不明确的方式访问明确的成员。
+
+    	var name = worker[str];
+    </pre>
+    <p>JavaScript也提供了更快捷的定义一个原始对象的方法</p>
+    <pre>
+    	var worker = {
+    		name: 'asd',
+    		ahe: '',
+    		doSomeThing: function() {
+    			alert('asdasd');
+    		}
+    	};
+    </pre>
+    <p>可以定义一个对象，将对象上的属性定义后便完成了封装的工作</p>
+	<h2>原始对象——封装</h2>
+	<p>可以通过一个function来统一地构建一个对象的实例</p>
+	<pre>
+		function newWorker(name, age) {
+			return {
+				name: mame,
+				age: age,
+				doSth: function() {
+					// doSth
+				}
+			}
+		}
+	</pre>
+	<h2>原始对象——封装-构造函数</h2>
+	<p>JavaScript中提供了真正的构造函数，它的语法和定义一个function其实是一样的</p>
+	<pre>
+		function worker(name, age) {
+			this.name = name;
+			this.age = age;
+			this.isWorking = false;
+			this.startWork = function() {
+				if(this.isWorking) {
+					return;
+				}
+				this.isWorking = true;
+			}
+			this.doSth = function() {
+				alert(name, age);
+			}
+		}
+
+		//通过关键字new实例化
+		var tom1 = new worker('aa', '22');
+		var tom2 = new worker('aa', '22');
+		console.log(tom1.startWork == tom2.startWork);   //false
+		console.log(tom1.doSth == tom2.doSth);			 //false
+
+		说明：
+	</pre>
+	
+	<script>
+		function worker(name, age) {
+			this.name = name;
+			this.age = age;
+			this.isWorking = false;
+			this.startWork = function() {
+				if(this.isWorking) {
+					return;
+				}
+				this.isWorking = true;
+			}
+			this.doSth = function() {
+				alert(name, age);
+			}
+		}
+
+		//通过关键字new实例化
+		var tom1 = new worker('aa', '22');
+		var tom2 = new worker('aa', '22');
+		console.log(tom1.startWork == tom2.startWork);   //false
+		console.log(tom1.doSth == tom2.doSth);			 //false
+		console.log(tom1 == tom2);						 //false
+	</script>
+  </body>
+</html>
