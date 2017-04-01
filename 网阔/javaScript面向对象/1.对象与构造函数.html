@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>对象与构造函数</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
   </head>
   <body>
     <h1>原始对象</h1>
@@ -68,7 +69,8 @@
 		console.log(tom1.startWork == tom2.startWork);   //false
 		console.log(tom1.doSth == tom2.doSth);			 //false
 
-		说明：
+		说明：tom1 和 tom2 不是指向同一个内存
+			 意味着当有多个实例的时候,内存的开销会非常大
 	</pre>
 	
 	<script>
@@ -93,6 +95,453 @@
 		console.log(tom1.startWork == tom2.startWork);   //false
 		console.log(tom1.doSth == tom2.doSth);			 //false
 		console.log(tom1 == tom2);						 //false
+	</script>
+
+	<h2>原始对象——封装-构造函数-原型继承（内存优化）</h2>
+
+	<p>设计JavaScript面向对象类型的时候，一般遵循以下规则</p>
+	<ul>
+		<li>因为实例不同而不同的内容，用this关键字声明</li>
+		<li>无论实例怎样内容完全相同的成员，定义在prototype上</li>
+	</ul>
+
+	<pre>
+		function worker1(name, age) {
+			this.name = name;
+			this.age = age;
+			this.isWorking = false;
+		}
+		
+		worker.prototype.startWork = function() {
+			if(this.isWorking) {
+				return
+			}
+			this.isWorking = true;
+		}
+
+		var tom11 = new worker1('tom', 22);
+		var tom12 = new worker1('tom', 22);
+
+		console.log("tom11和tom12是否共用一个内存");
+		console.log(tom11.startWork == tom12.stratWork);	//true
+	</pre>
+
+	<script>
+		function worker1(name, age) {
+			this.name = name;
+			this.age = age;
+			this.isWorking = false;
+		}
+		
+		worker.prototype.startWork = function() {
+			if(this.isWorking) {
+				return
+			}
+			this.isWorking = true;
+		}
+
+		var tom11 = new worker1('tom', 22);
+		var tom12 = new worker1('tom', 22);
+
+		console.log("tom11和tom12是否共用一个内存");
+		console.log(tom11.startWork == tom12.stratWork); //true
+	</script>
+
+	<h2>原始对象——封装-构造函数-原型继承（通过原型扩展）</h2>
+
+	<p>js通常可以将成员定义写在外部</p>
+	<p>这种特殊的语法结构允许我们可以扩展和修改已有的类型，比如*String*，*Date*等</p>
+
+	<pre>
+		String.prototype.startWidth = function(str) {
+			return str.indexOf(str) == 0;
+		};
+
+		String.prototype.endWidth = function(str) {
+			return this.indexOf(str) == this.length-1;
+			// 注意使用this
+		}
+
+		String.prototype.width = function(str) {
+			return str.indexOf(str) >= 0;
+		}
+
+		var str = 'abc';
+		console.log('a 在 abc里' + str.startWidth('ab'));	//true
+		console.log('c 在 abc里' + str.endWidth('ab'));		//true
+		console.log('b 在 abc里' + str.width('ab'));		//true
+	</pre>
+
+	<script>
+		String.prototype.startWidth = function(str) {
+			return str.indexOf(str) == 0;
+		};
+
+		String.prototype.endWidth = function(str) {
+			return this.indexOf(str) == this.length-1;
+		}
+
+		String.prototype.width = function(str) {
+			return str.indexOf(str) >= 0;
+		}
+
+		var str = 'abc';
+		console.log('a 在 abc里' + str.startWidth('a')); 	//true
+		console.log('c 在 abc里' + str.endWidth('c'));		//true
+		console.log('b 在 abc里' + str.width('b'));		//true
+	</script>
+
+	<h2>原始对象——封装-构造函数-原型继承（jquery 提供的继承方法）</h2>
+
+	<p>继承其实就是即拥有自己定义的成员，也拥有父类型定义的成员，并且可以重写父类型的成员</p>
+	<p>jQuery提供了对原始对象的简单继承方法：$.extend，它会使用后面的对象与前面的对象的成员加起来，成生新的对象</p>
+	
+	<pre>
+		var obj1 = {
+			name: 'obj1',
+			age: 30
+		};
+		var obj2 = $.extend(obj1, {
+			age: 20,
+			sayHello: function() {
+				console.log(this.name + "   " + this.age + '    hello');
+			}
+		});
+		var obj3 = $.extend(obj2, {
+			name: 'obj3',
+			sayHello: function() {
+				console.log(this.name + "   " + this.age + '    hello');
+			}
+		})
+		obj2.sayHello(); 	//obj3   20    hello
+		obj3.sayHello();	//obj3   20    hello
+		console.log(obj1);  //Object {name: "obj3", age: 20}
+		代码说明：jq中的继承是指所有继承的属性会直接改变父的属性也就是父子公用一个内存
+	</pre>
+	<script>
+		var obj1 = {
+			name: 'obj1',
+			age: 30
+		};
+		var obj2 = $.extend(obj1, {
+			age: 20,
+			sayHello: function() {
+				console.log(this.name + "   " + this.age + '    hello');
+			}
+		});
+		var obj3 = $.extend(obj2, {
+			name: 'obj3',
+			sayHello: function() {
+				console.log(this.name + "   " + this.age + '    hello');
+			}
+		})
+		obj2.sayHello(); 	//obj3   20    hello
+		obj3.sayHello();	//obj3   20    hello
+		console.log(obj1);  //Object {name: "obj3", age: 20}
+	</script>
+
+	<h2>原始对象——封装-构造函数-原型继承（父类型的构造器）</h2>
+
+	<p>对于由function创建的类型，其本身是无法使用$.extend进行继承的</p>
+	<p>就像Java、C#等语言一样，继承时，子类必须在构造函数时调用父类型的构造函数</p>
+	<p>JavaScript实现类继承的第一步便是调用父类型的构造函数</p>
+
+	<pre>
+		function leader(name, age) {
+			worker.apply(this, arguments);
+		}
+
+		上述代码就已经完成了对父类型构造函数的调用
+
+		1.apply这是JavaScript内置的一个方法，只要是声明成为function的对象，都会拥有该方法
+		  将apply理解为反射调用
+		  正常情况下调用一个方法是对象.方法名(参数列表)
+		  使用apply的话，我们就是方法名.apply(对象，参数列表)
+		2.arguments这个关键字只能在function内部使用，表示的是参数列表
+		  在上述示例中arguments中包含的就是name和age
+		3.通过worker.apply(this,arguments)
+		  相当于使用当前实例和当前参数列表执行了一次worker方法
+		  也就意味着将当前实例和name，age进行了一次worker的构造
+	</pre>
+	
+	<pre>
+		function baseClass(a, b) {
+			this.a = a;
+			this.b = b;
+			this.consoleLog = function() {
+				console.log(a + b);
+			};
+		};
+
+		function aClass(a) {
+			baseClass.apply(this, arguments);
+		}
+
+		function bClass(b) {
+			baseClass.apply(this, arguments);
+		}
+
+		var a = new aClass(1);
+		a.b = 'b1';
+		var b = new bClass(2);
+		b.b = 'b2';
+		var c = new baseClass(1, 2);
+		console.log(a);									//aClass {a: 1, b: undefined, consoleLog()}
+		console.log(a.consoleLog()); 					//NaN  undefined
+		console.log(b);									//bClass {a: 2, b: undefined, consoleLog()}
+		console.log(b.consoleLog());					//NaN  undefined
+		console.log(c);									//baseClass {a: 1, b: 2, consoleLog()}
+		console.log(c.consoleLog());					//3    undefined
+		console.log(a.consoleLog == b.consoleLog);		//false
+		console.log(a.consoleLog == c.consoleLog);		//false
+		console.log(b.consoleLog == c.consoleLog);		//false
+		说明: 通过关键字new实例化出的对象中都是相互独立的
+				arguments说的是参数列表其实是参数数组（ 单数组只与位置顺序有关与名称无关）
+	</pre>
+
+	<script>
+		function baseClass(a, b) {
+			this.a = a;
+			this.b = b;
+			this.consoleLog = function() {
+				console.log(a + b);
+			};
+		};
+
+		function aClass(a) {
+			baseClass.apply(this, arguments);
+		}
+
+		function bClass(b) {
+			baseClass.apply(this, arguments);
+		}
+
+		var a = new aClass(1);
+		a.b = 'b1';
+		var b = new bClass(2);
+		b.b = 'b2';
+		var c = new baseClass(1, 2);
+		console.log(a);									//aClass {a: 1, b: undefined, consoleLog()}
+		console.log(a.consoleLog()); 					//NaN  undefined
+		console.log(b);									//bClass {a: 2, b: undefined, consoleLog()}
+		console.log(b.consoleLog());					//NaN  undefined
+		console.log(c);									//baseClass {a: 1, b: 2, consoleLog()}
+		console.log(c.consoleLog());					//3    undefined
+		console.log(a.consoleLog == b.consoleLog);		//false
+		console.log(a.consoleLog == c.consoleLog);		//false
+		console.log(b.consoleLog == c.consoleLog);		//false
+	</script>
+
+	<h2>原始对象——封装-构造函数-原型继承（直接继承成员）</h2>
+
+	<p>问题原因：光调用了父类型的构造函数，但是其原型中的成员依然没有建立在当前类型中</p>
+	<p>解决方法：可以通过直接引用的方法得到父类型中的所有成员</p>
+
+	<pre>
+		leader.prototype = worker.prototype;
+
+		var Green = new leader("Green", 50);
+		Green.startWork();
+
+		function worker(name) {
+			this.name = name;
+		};
+
+		worker.prototype.consoleHello = function() {
+			console.log('hello');
+		};
+
+		function leader(name) {
+			worker.apply(this, arguments);
+		};
+
+		leader.prototype = worker.prototype;
+
+		var jim = new leader('jim');
+
+		var jim1 = new leader('jim1');
+		console.log(jim.consoleHello == jim1.consoleHello); 	//true
+		//说明：这样两个实例公用一个内存
+		jim.consoleHello();
+	</pre>
+
+	<script>
+		function worker(name) {
+			this.name = name;
+		};
+
+		worker.prototype.consoleHello = function() {
+			console.log('hello');
+		};
+
+		function leader(name) {
+			worker.apply(this, arguments);
+		};
+
+		leader.prototype = worker.prototype;
+
+		var jim = new leader('jim');
+
+		var jim1 = new leader('jim1');
+		console.log(jim.consoleHello == jim1.consoleHello); 	//true
+
+		jim.consoleHello();
+	</script>
+
+	<h2>原始对象——封装-构造函数-原型继承（直接继承成员的缺陷）</h2>
+
+	<p>直接继承相当于两个人拿着同样的说明书,当其中任意一方修改了说明书以后,另一方也会按照新的说明书执行.</p>
+	<p>所以直接继承原型不是一个合理的方式，因为直接继承并不是继承，而是直接引用，两者拥有相同的原型，一方的修改都会使另一方发生变化</p>
+	
+	<pre>
+		function worker(name, age){
+			this.name = name;
+			this.age = age;
+		    this.isWorking = false;
+		}
+		worker.prototype.startWork = function(){
+			if(this.isWorking) return;
+		    this.isWorking = true;
+		};
+
+		function leader(name, age){
+			worker.apply(this, arguments);
+		    this.workers = [];
+		}
+		leader.prototype = worker.prototype;
+		leader.prototype.startWork = function(){
+			//重写工人的开始工作方法，工头开工时，下属工人也要开工
+		    if(this.isWorking) return;
+		  	if(!this.workers) return //检测该对象是否有workers属性
+		    var workerLength = this.workers.length;
+		    for(var i = 0; i < workerLength; i++){
+		    	this.workers[i].startWork();
+		    }
+		};
+
+		var tom = new leader("tom",40);
+		var jim = new worker("jim",20);
+		tom.workers.push(jim);
+		tom.startWork();
+
+		var html = "tom和jim两个实例的startWork方法是否共用内存 : " + (tom.startWork == jim.startWork).toString();
+		console.log(html);
+		//tom和jim两个实例的startWork方法是否共用内存 : true
+	</pre>
+
+	<script>
+		function worker(name, age){
+			this.name = name;
+			this.age = age;
+		    this.isWorking = false;
+		}
+		worker.prototype.startWork = function(){
+			if(this.isWorking) return;
+		    this.isWorking = true;
+		};
+
+		function leader(name, age){
+			worker.apply(this, arguments);
+		    this.workers = [];
+		}
+		leader.prototype = worker.prototype;
+		leader.prototype.startWork = function(){
+			//重写工人的开始工作方法，工头开工时，下属工人也要开工
+		    if(this.isWorking) return;
+		  	if(!this.workers) return //检测该对象是否有workers属性
+		    var workerLength = this.workers.length;
+		    for(var i = 0; i < workerLength; i++){
+		    	this.workers[i].startWork();
+		    }
+		};
+
+		var tom = new leader("tom",40);
+		var jim = new worker("jim",20);
+		tom.workers.push(jim);
+		tom.startWork();
+
+		var html = "tom和jim两个实例的startWork方法是否共用内存 : " + (tom.startWork == jim.startWork).toString();
+		console.log(html);
+		//tom和jim两个实例的startWork方法是否共用内存 : true
+	</script>
+
+	<h2>原始对象——封装-构造函数-原型继承（优化的继承方式）</h2>
+
+	<pre>
+		function worker(name, age) {
+			this.name = name;
+			this.age = age;
+			this.isWorking = false;
+		}
+
+		worker.prototype.stratWork = function() {
+			if(this.isWorking) return
+			this.isWorking = true;
+		};
+
+		function leader(name, age) {
+			worker.apply(this, arguments);
+			this.workers = [];
+		}
+
+		leader.prototype = new worker();
+		leader.prototype.startWork = function() {
+			if(this.isWorking) return;
+			console.log(this);
+			var workerLength = this.workers.length;
+			for(var i = 0; i < workerLength; i++) {
+				this.workers[i].startWork();
+			}
+		};
+
+		var tom = new leader('tom', 40);
+		var tom1 = new leader('tom1', 44);
+
+		// tom.workers.push(tom1);
+		tom.startWork();
+
+		var html = "tom和tom1两个实例的startWork方法是否共用内存 : " + (tom.startWork == jim.startWork).toString();
+		console.log(html);
+		//tom和tom1两个实例的startWork方法是否共用内存 : false
+	</pre>
+	
+	<script>
+		function worker(name, age) {
+			this.name = name;
+			this.age = age;
+			this.isWorking = false;
+		}
+
+		worker.prototype.stratWork = function() {
+			if(this.isWorking) return
+			this.isWorking = true;
+		};
+
+		function leader(name, age) {
+			worker.apply(this, arguments);
+			this.workers = [];
+		}
+
+		// 改进点：实例化会新增内存而 = worker.prototype 则代表完全继承即：共用一个内存
+		leader.prototype = new worker();
+		leader.prototype.startWork = function() {
+			if(this.isWorking) return;
+			console.log(this);
+			var workerLength = this.workers.length;
+			for(var i = 0; i < workerLength; i++) {
+				this.workers[i].startWork();
+			}
+		};
+
+		var tom = new leader('tom', 40);
+		var tom1 = new leader('tom1', 44);
+
+		tom.workers.push(tom1);
+		tom.startWork();
+
+		var html = "tom和tom1两个实例的startWork方法是否共用内存 : " + (tom.startWork == jim.startWork).toString();
+		console.log(html);
+		//tom和tom1两个实例的startWork方法是否共用内存 : false
 	</script>
   </body>
 </html>
