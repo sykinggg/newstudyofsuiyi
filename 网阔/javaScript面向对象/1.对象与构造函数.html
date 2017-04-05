@@ -543,5 +543,216 @@
 		console.log(html);
 		//tom和tom1两个实例的startWork方法是否共用内存 : false
 	</script>
+
+
+	<h2>原始对象——封装-构造函数-事件对象</h2>
+	
+	<pre>
+		window.onLoad = function() {
+			var btnOk = document.getElementById('btnOk');
+			if(btnOk) {
+				btnOk.onClick = function() {
+					alert('点击按钮');
+				};
+			}
+		};
+	</pre>
+
+	<h3>事件基本构成</h3>
+	<p>1.发起方</p>
+	<p>发起方是指这个事件由谁发起，比如由一个按钮发起一个单击事件，那么地起方就是按钮</p>
+	<p>2.监听方</p>
+	<p>监听方是指这个事件被发起后，由谁来处理，比如上面的例子中alert("...");所在的方法就是监听方</p>
+
+	<h3>function 作为参数</h3>
+	<p>JavaScript语言中有个特殊的语法，就是可以将一个function作为方法的参数进行传递</p>
+	<p>类似于C和C++中的函数指针，也类似于C#中的委托</p>
+
+	<pre>
+		function(a, b, fn) {
+			if(typeOf(fn) == 'function') {
+				fn(a, b);
+			}
+		};
+	</pre>
+
+	<h3>设计一个事件对象</h3>
+	<p>1.添加监听者</p>
+	<p>2.移除监听者</p>
+	<p>3.清空监听者</p>
+	<p>4.发起事件信号</p>
+
+	<script>
+		function myEvent() {
+			this.listeners = [];	//监听者列表
+		};
+
+		//添加一个监听者
+		myEvent.prototype.addListener = function(fn) {
+			this.listeners.push(fn);
+		};
+
+		//除移一个监听者
+		myEvent.prototype.removeListener = function(fn) {
+			var index = this.listeners.indexOf(fn);
+			this.listeners.splice(index, 1);
+		};
+
+		//清除所有监听者
+		myEvent.prototype.clearListener = function() {
+			this.listeners = [];
+		};
+
+		//发出执行信号，并告之所有监听者
+		myEvent.prototype.raise = function(e) {
+			var l = this.listeners.length;
+			if(l > 0) {
+				for(var i = 0; i < l; i++) {
+					this.listeners[i](e); 	//执行所有监听方法
+				}
+			}else{
+				console.log('并没有监听者');
+			}
+		}
+
+		var me = new myEvent();
+
+		var one = function(e) {
+			console.log("第一个监听者" + e);
+		}
+
+		var two = function(e) {
+			console.log("第二个监听者" + e);
+		}
+
+		console.log('使用函数引用' + (one == one));
+
+		me.addListener(one);
+
+		me.addListener(two);
+
+		me.raise('a');
+		// 第一个监听者a
+		// 第二个监听者a
+
+		me.removeListener(one);
+
+		me.raise('b');
+		// 第二个监听者b
+
+		me.clearListener();
+
+		me.raise('c');
+		// 并没有监听者
+	</script>
+	<pre>
+		function myEvent() {
+			this.listeners = [];	//监听者列表
+		};
+
+		//添加一个监听者
+		myEvent.prototype.addListener = function(fn) {
+			this.listeners.push(fn);
+		};
+
+		//除移一个监听者
+		myEvent.prototype.removeListener = function(fn) {
+			var index = this.listeners.indexOf(fn);
+			this.listeners.splice(index, 1);
+		};
+
+		//清除所有监听者
+		myEvent.prototype.clearListener = function() {
+			this.listeners = [];
+		};
+
+		//发出执行信号，并告之所有监听者
+		myEvent.prototype.raise = function(e) {
+			var l = this.listeners.length;
+			if(l > 0) {
+				for(var i = 0; i < l; i++) {
+					this.listeners[i](e); 	//执行所有监听方法
+				}
+			}else{
+				console.log('并没有监听者');
+			}
+		}
+
+		var me = new myEvent();
+
+		var one = function(e) {
+			console.log("第一个监听者" + e);
+		}
+
+		var two = function(e) {
+			console.log("第二个监听者" + e);
+		}
+
+		console.log('使用函数引用' + (one == one));
+
+		me.addListener(one);
+
+		me.addListener(two);
+
+		me.raise('a');
+		// 第一个监听者a
+		// 第二个监听者a
+
+		me.removeListener(one);
+
+		me.raise('b');
+		// 第二个监听者b
+
+		me.clearListener();
+
+		me.raise('c');
+		// 并没有监听者
+	</pre>
+
+	<h3>事件项目实例化</h3>
+
+	<h4>实例一个场景</h4>
+	<p>1.老板管理员工</p>
+	<p>2.当员工开始工作时发起事件通知老板</p>
+	<p>3.老板可以统计出哪些员工正在工作，哪些员工不在工作</p>
+
+	<script>
+		function myEvent() {
+			this.listeners = [];	//监听者列表
+		};
+
+		//添加一个监听者
+		myEvent.prototype.addListener = function(fn) {
+			this.listeners.push(fn);
+		};
+
+		//除移一个监听者
+		myEvent.prototype.removeListener = function(fn) {
+			var index = this.listeners.indexOf(fn);
+			this.listeners.splice(index, 1);
+		};
+
+		//清除所有监听者
+		myEvent.prototype.clearListener = function() {
+			this.listeners = [];
+		};
+
+		//发出执行信号，并告之所有监听者
+		myEvent.prototype.raise = function(e) {
+			var l = this.listeners.length;
+			if(l > 0) {
+				for(var i = 0; i < l; i++) {
+					this.listeners[i](e); 	//执行所有监听方法
+				}
+			}else{
+				console.log('并没有监听者');
+			}
+		}
+
+		function worker(name) {
+			this.name = name;
+			this.startWorkEvent = new myEvent();
+		}
+	</script>
   </body>
 </html>
