@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>使用RxJs</title>
+		<script src="dist/rx.all.min.js"></script>
+		<style>
+			.ez-led{
+			  font-size : 40px;
+			  background : #70d355;
+			  width: 300px;
+			  height:60px;
+			  line-height : 60px;
+			  text-align : right;
+			  padding : 10px;
+			  letter-spacing:5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="ez-led" id="clock"></div>
+
+		<h2>重构-使用RxJs</h2>
+		<p>RxJS是观测者模式的JavaScript实现库，它隶属于庞大的ReactiveX家族</p>
+
+		<h3>在RxJS中，一个观测者需要实现的接口扩展为三个</h3>
+		<ul>
+			<li>onNext(data) - 可观测对象生成的正常数据，将调用这个接口</li>
+			<li>onError(error) - 可观测对象发生的错误，将调用这个接口</li>
+			<li>onCompleted() - 可观测对象正常结束数据生成流程，将调用这个接口</li>
+		</ul>
+
+		<h4>Rx.Observable.create()</h4>
+		<p>RxJS提供了一个工厂方法Rx.Observable.create()来实例化一个可观测对象(数据提供者)</p>
+		<p>需要传入一个数据发生器</p>
+		<pre>
+			var tickStream = Rx.Observable.create(function(observer) {
+				setInterval(function(observer) {
+					observer.onNext(getTime());
+				}, 1000);
+			});
+		</pre>
+
+		<h4>Rx.Observer.create()</h4>
+		<p>RxJS提供了一个工厂方法Rx.Observer.create()来实例化一个观测者(数据消费者)</p>
+		<p>需要提供三个函数分别处理onNext()调用、onError()调用和onCompleted() 调用</p>
+		<pre>
+			var uiRefresher = Rx.Observer.create(
+				function next(data) {
+					elClock.textContent = data;
+				},
+				function error(err) {},
+				function completed() {}
+			);
+		</pre>
+
+		<h4>subscribe()</h4>
+		<p>调用可观测对象的subscribe()方法来将一个观测者连接到 可观测对象</p>
+		<pre>
+			tickStream.subscribe(uiRefresher);
+		</pre>
+	</body>
+	<script>
+		window.onload = function() {
+
+			var elClock = document.getElementById("clock");
+
+			var getTime =  function(){
+		        var _ = ['00','01','02','03','04','05','06','07','08','09'],  //补零
+		            d = new Date(), h = d.getHours(),m = d.getMinutes(),s = d.getSeconds();
+		    	return [_[h]||h,_[m]||m,_[s]||s].join(":");
+		    };
+
+		    var tickStream = Rx.Observable.create(function(observer) {
+		    	setInterval(function() {
+		    		observer.onNext(getTime());
+		    	}, 1000);
+		    });
+
+		    var uiRefresher = Rx.Observer.create(function(data) {
+		    	elClock.textContent = data;
+		    });
+
+		    tickStream.subscribe(uiRefresher);
+		}
+	</script>
+</html>

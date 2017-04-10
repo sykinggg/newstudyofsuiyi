@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>重构-观测者模式</title>
+		<script src="dist/rx.all.min.js"></script>
+		<style>
+			.ez-led{
+			  font-size : 40px;
+			  background : #70d355;
+			  width: 300px;
+			  height:60px;
+			  line-height : 60px;
+			  text-align : right;
+			  padding : 10px;
+			  letter-spacing:5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="ez-led" id="clock"></div>
+
+		<h1>重构-观察着模式</h1>
+		<p>使用观测者模式/Observer Pattern来重构这个示例</p>
+
+		<h3>在观测者模式中</h3>
+		<ul>
+			<li>1.数据提供者 ： 可观测对象/Observable</li>
+			<li>2.数据消费者 ： 观测者/Observer</li>
+			<li>3.数据 ： 通知/Notification</li>
+		</ul>
+
+		<h3>可观测对象/观测对象</h3>
+		<p>观测者模式正式定义了可观测对象与观测者之间的契约</p>
+		<p>每当可观测对象生成一个新的通知，就调用观测者的预定义接口将 通知发送给观测者</p>
+
+		<ul>
+			<li>
+				<h4>Observer</h4>
+				<p>将数据的消费逻辑封装到一个函数中，延迟到应用 开发时再实现</p>
+				<pre>
+					var Observer = function(consumer) {
+						this._consumer = consumer;
+					};
+				</pre>
+				<p>一个观测者需要实现一个预定义的接口，比如onNotify()</p>
+				<pre>
+					Observer.prototype.noNotify = function(data) {
+						this._consumer.call(this.data);	//调用真正的消费逻辑
+					};
+				</pre>
+			</li>
+			<li>
+				<h4>Observable</h4>
+				<p>一个可观测对象需要生成数据，因此将其数据生成逻辑封装到一个 函数generator中</p>
+				<p>调用这个数据生成器，就可以产生数据</p>
+				<pre>
+					var Observable = function(generator) {
+						this._generator = generator;	//先保存生成器，当观测者连接时再执行
+					};
+				</pre>
+				<p>可观测对象还需要提供一个方法供观测者连接，当连接发生时，为 观测者执行生成器</p>
+				<pre>
+					//参数observer声明一个观测者对象
+					Observable.prototype.subscribe = function(observer) {
+						this._generator.call(this, observer);	//为观测者执行生成器
+					};
+				</pre>
+			</li>
+		</ul>
+		<h3>总结描述</h3>
+		<p>调用生成器时，传入了观测者对象，因为在生成器中，只有 通过调用它的onNotify()方法，才能将生成的数据传递出去</p>
+
+		<h3>时钟实例-代码说明</h3>
+		<h4>1.定义可观测对象</h4>
+		<pre>
+			var generator = function(observer) {
+				setInterval(function() {
+					observer.onNotify(getTime());
+				}, 1000);
+			};
+			var tickStream = new Observable(generator);
+		</pre>
+		<h4>2.定义观测者</h4>
+		<pre>
+			var consumer = function(data) {
+				elClock.textContent = data;
+			};
+			var uiRefresher = new Observer(consumer);
+		</pre>
+		<h4>3.建立连接</h4>
+		<pre>
+			tickStream.subscribe(uiRefresher);
+		</pre>
+		<script>
+			var Observable = function(generator) {
+				this._generator = generator;
+			};
+
+			Observable.prototype.subscribe = function(observer) {
+				this._generator.call(this, observer);
+			};
+
+			var Observer = function(consumer) {
+				this._consumer = consumer;
+			};
+
+			Observer.prototype.noNotify = function(data) {
+				this._consumer.call(this, data);
+			};
+			window.onload = function() {
+				var elClock = document.getElementById('clock');
+				var getTime = function() {
+					var _ = ['01', '02', '03', '04', '05', '06', '07', '08', '09'],
+						d = new Date(), h = d.getHours(), m = d.getMinutes(), s = d.getSeconds();
+					return [_[h]||h,_[m]||m,_[s]||s].join(':');
+				};
+				var tickStream = new Observable(function(observer) {
+					setInterval(function() {
+						observer.noNotify(getTime());
+					}, 1000);
+				});
+				var uiRefresher = new Observer(function(data) {
+					elClock.textContent = data;
+				});
+				tickStream.subscribe(uiRefresher);
+			}
+		</script>
+	</body>
+</html>
