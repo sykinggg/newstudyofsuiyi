@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Rx-错误结束通知</title>
+		<script src="dist/rx.all.min.js"></script>
+		<style>
+			.ez-led{
+				transition: all 1s;
+				font-family : "LED";
+				font-size : 40px;
+				background : #70d355;
+				width: 300px;
+				height:60px;
+				line-height : 60px;
+				text-align : right;
+				padding : 10px;
+				letter-spacing:5px;
+			}
+			.ez-led.completed{
+				color: #666;
+				background: #689e59;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="ez-led" id="clock"></div>
+		<h1>RxJS - 错误/结束通知</h1>
+		<p>RxJS扩展了基本的观测者模式，为观测者增加了两个额外的接口：onError和 onCompleted</p>
+
+
+
+		<h3>onError(error)</h3>
+		<p>在数据发生器中，如果发生了错误，就应当调用onError()方法来通知观测者</p>
+		<p>这将导致一个异常中止，即观测者将不会收到之后的通知</p>
+		<script>
+			var tickStream1 = Rx.Observable.create(function(observer) {
+				observer.onNext('1');
+				observer.onError('some fake error');
+				observer.onNext('2');
+			})
+			// 方法一
+			// tickStream1.subscribe(
+			// 	function(data){ console.log(data);}, 
+			// 	function(err){ console.log(err);},  
+			// 	function(){ console.log("done!")}
+			// );
+			// 方法二
+			var observer1 = Rx.Observer.create(
+				function(data) {
+					console.log(data);
+				},
+				function(err) {
+					console.log(err);
+				},
+				function() {
+					console.log("done");
+				}
+			);
+			tickStream1.subscribe(observer1);
+			// 1
+			// some fake error
+		</script>
+		<pre>
+			var tickStream1 = Rx.Observable.create(function(observer) {
+				observer.onNext('1');
+				observer.onError('some fake error');
+				observer.onNext('2');
+			})
+			// 方法一
+			// tickStream1.subscribe(
+			// 	function(data){ console.log(data);}, 
+			// 	function(err){ console.log(err);},  
+			// 	function(){ console.log("done!")}
+			// );
+			// 方法二
+			var observer1 = Rx.Observer.create(
+				function(data) {
+					console.log(data);
+				},
+				function(err) {
+					console.log(err);
+				},
+				function() {
+					console.log("done");
+				}
+			);
+			tickStream1.subscribe(observer1);
+			// 1
+			// some fake error
+		</pre>
+		<h3>注意：直接给subscribe()方法传入三个函数，而不是一个Observer 对象</h3>
+		<p>RxJS可以处理这种调用方法，它将自动构造一个匿名的Observer对象</p>
+
+
+		<h2>onCompleted()</h2>
+		<p>如果数据发生器正常结束，就应当调用onCompleted()方法来通知观测者</p>
+		<script>
+			Rx.Observable.create(function(observer) {
+				observer.onNext('A');
+				observer.onNext('B');
+				observer.onCompleted();
+			})
+			.subscribe(
+				function(data) {console.log(data)},
+				function(err) {console.log(err)},
+				function() {console.log('completed')}
+			)
+			var tickStream2 = Rx.Observable.create(function(observer) {
+				observer.noNext('A');
+				observer.onNext('B');
+				observer.onCompleted();
+			})
+			var observer2 = Rx.Observer.create(
+				function()
+			)
+		</script>
+	</body>
+	<script>
+		window.onload = function() {
+			var elClock = document.getElementById("clock");
+			var tickStream = Rx.Observable.create(function(observer) {
+				var i = 10;
+				var timer = setInterval(function() {
+					observer.onNext(i--);
+					if(i < 0) {
+						observer.onCompleted();
+						clearInterval(timer);
+					}
+				}, 1000);
+			});
+			var uiRefresher = Rx.Observer.create(function(data) {
+				elClock.textContent = data;
+			}, function(err){}, function() {
+				elClock.classList.add("completed");
+			});
+			tickStream.subscribe(uiRefresher);
+		}
+	</script>
+</html>
