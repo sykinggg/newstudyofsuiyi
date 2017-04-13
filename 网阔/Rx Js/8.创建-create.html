@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>创建-create</title>
+		<script src="dist/rx.all.min.js"></script>
+		<script src="dist/timeline.js"></script>
+		<link rel="stylesheet" href="dist/timeline.css">
+	</head>
+	<body>
+		<pre>
+			window.onload = function() {
+				var Timeline = TimelineDOM;
+				var timelines = [new Timeline('t1'), new Timeline('t2')];
+
+				var source1 = Rx.Observable.create(function(observer) {
+					observer.onNext('1#');
+					observer.onNext('2#');
+					setTimeout(function() {
+						observer.onNext("3#");
+						observer.onCompleted();
+					}, 1500);
+					return function() {
+						console.log('disabled');
+					};
+				});
+
+				var source2 = Rx.Observable.create(function(observer) {
+					for(var i = 65; i < 91; i++) {
+						observer.onNext(String.fromCharCode(i));
+					};
+					observer.onError(new Error('a fake error'));
+				});
+
+				[source1, source2].forEach(function(s, i) {
+					s.subscribe(
+						function(x) {timelines[i].next(x)},
+						function(err) {timelines[i].error(err)},
+						function() {timelines[i].completed()}
+					);
+				});
+			}
+		</pre>
+
+
+		<h1>create</h1>
+		<p>使用create方法从零开始创建一个可观测序列/Observable</p>
+
+
+		<h2>使用说明</h2>
+		<p>create方法的参数是一个封装数据生成逻辑的函数，其参数为观测者/Observer</p>
+
+		<pre>
+			var generator = function(observer) {
+				//数据生成逻辑
+			}
+			Rx.Observable.create(generator);
+		</pre>
+
+		<h3>函数说明:</h3>
+		<p>在函数generator的实现中，通过调用参数对象observer的三个方法:实现数据 的生成、错误的通知和结束声明</p>
+
+		<ul>
+			<li>onNext(data) - 向观测者传送新的数据data</li>
+			<li>onError(err) - 通知观测者有错误发生，并且终止当前序列</li>
+			<li>onCompleted() - 通知观测者当前序列已结束</li>
+		</ul>
+	</body>
+	<script>
+		window.onload = function() {
+			var Timeline = TimelineDOM;
+			var timelines = [new Timeline('t1'), new Timeline('t2')];
+
+			var source1 = Rx.Observable.create(function(observer) {
+				observer.onNext('1#');
+				observer.onNext('2#');
+				setTimeout(function() {
+					observer.onNext("3#");
+					observer.onCompleted();
+				}, 1500);
+				return function() {
+					console.log('disabled');
+				};
+			});
+
+			var source2 = Rx.Observable.create(function(observer) {
+				for(var i = 65; i < 91; i++) {
+					observer.onNext(String.fromCharCode(i));
+				};
+				observer.onError(new Error('a fake error'));
+			});
+
+			[source1, source2].forEach(function(s, i) {
+				s.subscribe(
+					function(x) {timelines[i].next(x)},
+					function(err) {timelines[i].error(err)},
+					function() {timelines[i].completed()}
+				);
+			});
+		}
+	</script>
+</html>

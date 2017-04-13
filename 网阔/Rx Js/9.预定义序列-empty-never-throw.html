@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>预定义序列</title>
+		<script src="dist/rx.all.min.js"></script>
+		<script src="dist/timeline.js"></script>
+		<link rel="stylesheet" href="dist/timeline.css">
+	</head>
+	<body>
+		
+	</body>
+	<script>
+		window.onload = function() {
+			var TL = TimelineCanvas;
+			var timelines = [new TL("empty"), new TL("never"), new TL("throw")];
+
+			var sources = [
+				Rx.Observable.empty(),
+				Rx.Observable.never(),
+				Rx.Observable.throw(new Error('a fake error'))
+			];
+
+			sources.forEach(function(s, i) {
+				console.log(s);
+				console.log(i);
+			})
+		}
+	</script>
+</html>

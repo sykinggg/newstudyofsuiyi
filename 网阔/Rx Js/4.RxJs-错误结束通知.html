@@ -95,6 +95,26 @@
 
 		<h2>onCompleted()</h2>
 		<p>如果数据发生器正常结束，就应当调用onCompleted()方法来通知观测者</p>
+
+		<script>
+			console.log('onCompleted');
+			var tickStream3 = Rx.Observable.create(function(observer) {
+				observer.onNext('a');
+				observer.onNext('b');
+				observer.onCompleted();
+			})
+
+			var observer3 = Rx.Observer.create(
+				function(data) {console.log(data)},
+				function(err) {console.log(err)},
+				function() {console.log('done!')}
+			);
+
+			tickStream3.subscribe(observer3);
+			// a
+			// b
+			// done!
+		</script>
 		<script>
 			Rx.Observable.create(function(observer) {
 				observer.onNext('A');
@@ -112,8 +132,10 @@
 				observer.onCompleted();
 			})
 			var observer2 = Rx.Observer.create(
-				function()
-			)
+				function(data) {console.log(data)},
+				function(err) {console.log(err)},
+				function() {console.log('done')}
+			);
 		</script>
 	</body>
 	<script>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>可视化工具</title>
+		<script src="dist/rx.all.min.js"></script>
+		<script src="dist/timeline.js"></script>
+		<style href="dist/timeline.css"></style>
+		<style>
+			body {
+				width: 1000px;
+				margin: 0 auto;
+			}
+		</style>
+	</head>
+	<body>
+		<pre>
+			// 调用插件
+			var TLC = TimelineCanvas, TLD = TimelineDOM;
+			var timelines = [
+				new TLC("TimelineCanvas"),
+				new TLD("TimelineDOM")
+			];
+			// 数据提供
+			var source = Rx.Observable.create(function(observer) {
+				var i = 10;
+				var timer = setInterval(function() {
+					observer.onNext(i--);
+					if(i < 0) {
+						observer.onCompleted();
+						clearInterval(timer);
+					}
+				}, 1000);
+			});
+			// 绑定到容器的方式
+			var container = Rx.Observer.create(
+				function(data) {
+					timelines[0].next(data);
+					timelines[1].next(data);
+				},
+				function(err) {
+					timelines[0].error(err);
+					timelines[1].error(err);
+				},
+				function() {
+					timelines[0].completed();
+					timelines[1].completed();
+				}
+			);
+			source.subscribe(container);
+		</pre>
+
+
+		<h1>可视化工具</h1>
+		<ul>
+			<li>TimelineCanvas - 基于Canvas实现</li>
+			<li>TimelineDOM - 基于DOM实现</li>
+		</ul>
+
+
+		<h2>实例化</h2>
+		<p>两个类具有相同形式的构造函数，传入一个标识字符串即可</p>
+		<pre>
+			var t1 = new TimelineCanvas('demo1');
+			var t2 = new TimelineCanvas('demo2');
+		</pre>
+
+
+
+		<h2>方法调用</h2>
+		<p>两个类都提供了三个方法，可以在观测者的接口函数内直接调用</p>
+		<pre>
+			Rx.Observable.of(1, 2, 3)
+				.subscribe(
+					function(d) {t1.next(d); t2.next(d)},
+					function(e) {t1.error(e); t2.error(e)},
+					function() {t1.completed(); t2.completed();}
+				);
+		</pre>
+
+
+
+		<h2>区别与应用场景</h2>
+		<ul>
+			<li>
+				<p>在TimelineCanvas中，新的数据从右侧进入，向左侧实时移动</p>
+				<p>在 TimelineDOM中则没有动画效果，仅仅是将新的数据放置在前一个数据 的右侧</p>
+			</li>
+			<li>
+				<p>对于error()调用，TimelineCanvas会立刻停止动画，并以红色背景 标示错误</p>
+				<p>TimelineDOM则在数据末尾添加一个红色的X记号</p>
+			</li>
+			<li>
+				<p>对于completed()调用，TimelineCanvas会立刻停止动画，并以绿色 背景标示结束</p>
+				<p>而TimelineDOM则在数据末尾添加一个绿色的|记号</p>
+			</li>
+		</ul>
+
+
+
+
+		<h2>应用区别</h2>
+		<p>如果一个可观测序列的各数据之间有明显的时间区隔，那么适合使用 TimelineCanvas</p>
+		<p>使用TimelineDOM来表现各数据之间的 先后顺序</p>
+	</body>
+	<script>
+		window.onload = function() {
+			// 调用插件
+			var TLC = TimelineCanvas, TLD = TimelineDOM;
+			var timelines = [
+				new TLC("TimelineCanvas"),
+				new TLD("TimelineDOM")
+			];
+			// 数据提供
+			var source = Rx.Observable.create(function(observer) {
+				var i = 10;
+				var timer = setInterval(function() {
+					observer.onNext(i--);
+					if(i < 0) {
+						observer.onCompleted();
+						clearInterval(timer);
+					}
+				}, 1000);
+			});
+			// 绑定到容器的方式
+			var container = Rx.Observer.create(
+				function(data) {
+					timelines[0].next(data);
+					timelines[1].next(data);
+				},
+				function(err) {
+					timelines[0].error(err);
+					timelines[1].error(err);
+				},
+				function() {
+					timelines[0].completed();
+					timelines[1].completed();
+				}
+			);
+			source.subscribe(container);
+		}
+	</script>
+</html>

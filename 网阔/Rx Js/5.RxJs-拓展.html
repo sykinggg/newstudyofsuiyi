@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>RxJs-拓展</title>
+		<script src="dist/rx.all.min.js"></script>
+		<style>
+			.ez-led{
+				transition: all 1s;
+				font-family : "LED";
+				font-size : 40px;
+				background : #70d355;
+				width: 300px;
+				height:60px;
+				line-height : 60px;
+				text-align : right;
+				padding : 10px;
+				letter-spacing:5px;
+			}
+			.ez-led.completed{
+				color: #666;
+				background: #689e59;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="ez-led" id="clock"></div>
+
+		<h1>RxJS - 扩展</h1>
+		<p>对观测者模式的实现是RxJS的核心</p>
+
+		<h2>拓展描述</h2>
+		<p>ReactiveX全称是：Reactive Extensions 丰富的扩展 才是RxJS的威力所在</p>
+
+		<h2>RxJS将数据分为两种类型</h2>
+		<h3>注意：source域的概念</h3>
+		<ul>
+			<li>普通数据 - 比如数组、字符串、JSON对象之类的</li>
+			<li>可观测对象 - 比如使用Rx.Observable.create()方法获得的对象</li>
+		</ul>
+
+		<h3>Observable对象操作</h3>
+		<p>就像普通数据可以进行加、减、乘、除等运算一样，RxJS提供了相当多的 扩展方法来扩展对Observable对象的操作能力</p>
+
+		<h3>普通数据和Observable数据的相互转换</h3>
+		<p>可以使用from()方法将普通的数据变换到Observable域</p>
+		<p>使用to()方法将Observable还原为普通数据</p>
+
+		<script>
+			var a = Rx.Observable.create([1, 2, 3, 4]);
+			console.log(a);
+			// d {source: undefined, _subscribe: function}
+			var b = a.toArray();
+			console.log(b);
+			// b {source: d, _subscribe: function}
+			var c = a.concat(b);
+			console.log(c);
+			// d {source: undefined, _subscribe: function}
+		</script>
+		<pre>
+			var a = Rx.Observable.create([1, 2, 3, 4]);
+			console.log(a);
+			// d {source: undefined, _subscribe: function}
+			var b = a.toArray();
+			console.log(b);
+			// b {source: d, _subscribe: function}
+			console.log(c);
+			// d {source: undefined, _subscribe: function}
+		</pre>
+
+
+		<h4>将多个可观测对象使用concat()方法拼接起来</h4>
+		<script>
+			var a1 = '1 2 3 ';
+			var b1 = '4 5 6 ';
+			var c1 = '7 8 9';
+			console.log(a1.concat(b1, c1));
+			// 1 2 3 4 5 6 7 8 9
+		</script>
+		<pre>
+			var a1 = '1 2 3 ';
+			var b1 = '4 5 6 ';
+			var c1 = '7 8 9';
+			console.log(a1.concat(b1, c1));
+			// 1 2 3 4 5 6 7 8 9
+		</pre>
+
+
+		<h4>对Observable对象生成的数据使用sum()方法求和  并不行mmp!</h4>
+		<script>
+			// var a3 = Rx.Observable.create([1, 2, 3]);
+			// var b3 = a3.toArray();
+			// console.log(b3.sum());
+		</script>
+
+
+		<h4>对Observable对象生成的每个数据进行映射处理</h4>
+		<script>
+			var a4 = [1, 2, 3];
+			a4.map(function(d, i) {
+				console.log(d*10+i);
+			})
+			// 10
+			// 21
+			// 32
+		</script>
+		<pre>
+			var a4 = [1, 2, 3];
+			a4.map(function(d, i) {
+				console.log(d*10+i);
+			})
+			// 10
+			// 21
+			// 32
+		</pre>
+
+
+
+
+		<h3>总结：这些扩展的方法，RxJS称之为操作符/Operator</h3>
+		<p>一个操作符通常返回的 是另一个新的Observable对象</p>
+		<p>意味着它还处于Observable域，从而 可以将多个操作符链接起来，构成一条对Observable进行处理的流水线</p>
+
+		<script>
+			console.log('Rx.Observable操作符');
+			Rx.Observable.of(1, 2, 3)
+				.map(function(d, i) {console.log(d*10+i)})
+				.concat(Rx.Observable.from([4, 5, 6]))
+				.subscribe(
+					function(data) {console.log(data)},
+					function(err) {console.log(err)},
+					function() {console.log('done！')}
+				)
+			// 10
+			// undefined
+			// 21
+			// undefined
+			// 32
+			// undefined
+			// 4
+			// 5
+			// 6
+			// done!
+		</script>
+	</body>
+	<script>
+		window.onload = function() {
+			var elClock = document.getElementById("clock");
+			Rx.Observable.timer(0, 1000)
+				.map(function(d){ return String.fromCharCode(65 + d % 26);})
+				.subscribe(
+					function(d) {
+						elClock.innerHTML = d;
+					}
+				);
+		}
+	</script>
+</html>
