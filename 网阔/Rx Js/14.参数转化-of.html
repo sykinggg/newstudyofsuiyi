@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>参数转化-of</title>
+		<script src="dist/rx.all.min.js"></script>
+		<script src="dist/timeline.js"></script>
+		<link rel="stylesheet" href="dist/timeline.css">
+	</head>
+	<body>
+		<h1>of</h1>
+		<p>不在同一个数据集中的多个来源的数据，可以使用of()方法直接构造 可观测序列/Observable</p>
+
+		<p>of()方法可以传入任意数量的参数，每个参数对应序列中的一个元素</p>
+		<pre>
+			Rx.Observable.of("A", "X","D","E")//序列： A X D E
+		</pre>
+
+		<h3>注意:</h3>
+		<p>可以认为of()方法是针对多源数据场景的特定from()调用</p>
+		<pre>
+			//与前例等效
+			var data = ["A","X","D","E"]
+			Rx.Observable.from(data)
+		</pre>
+	</body>
+	<script>
+		window.onload = function() {
+			var timeline = new TimelineDOM('demo');
+
+			Rx.Observable.of('Who', 'are', 'you').subscribe(
+					function(x) {timeline.next(x)},
+					function(err) {timeline.error(err)},
+					function() {timeline.completed()}
+			);
+		}
+	</script>
+</html>

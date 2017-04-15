@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>range</title>
+		<script src="dist/rx.all.min.js"></script>
+		<script src="dist/timeline.js"></script>
+		<link rel="stylesheet" href="dist/timeline.css">
+	</head>
+	<body>
+		<h1>range</h1>
+		<p>使用range()方法可以创建一个有限长度的整数序列/Observable</p>
+
+		<h2>语法描述：</h2>
+		<p>range()方法需要两个参数</p>
+		<ul>
+			<li>第一个参数声明序列的起始值</li>
+			<li>第二个参数 声明序列的元素数量</li>
+		</ul>
+
+		<pre>
+			//从30开始生成3个数的序列
+			Rx.Observable.range(30, 4) //输出：30 31 32 33
+		</pre>
+	</body>
+	<script>
+		window.onload = function() {
+			var timeline = new TimelineDOM('demo');
+
+			var source = Rx.Observable.range(10, 6);
+
+			var subscription = source.subscribe(
+				function(x) {timeline.next(x)},
+				function(err) {timeline.error(err)},
+				function() {timeline.completed()}
+			);
+		}
+	</script>
+</html>

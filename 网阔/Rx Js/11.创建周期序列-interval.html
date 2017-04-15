@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>创建周期序列-interval</title>
+		<script src="dist/rx.all.min.js"></script>
+		<script src="dist/timeline.js"></script>
+		<link rel="stylesheet" href="dist/timeline.css">
+	</head>
+	<body>
+		<h1>inrerval</h1>
+		<p>使用interval()方法创建一个无限长度的周期性可观测序列/Observable</p>
+
+		<h2>语法说明:</h2>
+		<p>interval()方法的参数声明了以毫秒/ms为单位的周期，序列的元素值从0 开始，每个周期比前一周期加1</p>
+
+		<pre>
+			Rx.Observable.interval(1000);
+		</pre>
+
+		<h3>注意:第一周期的静默</h3>
+		<p>序列是在每个周期末生成值</p>
+		<p>因此，在第一个值输出之前，有一个 周期静默</p>
+	</body>
+	<script>
+		window.onload = function() {
+			var Timeline = TimelineCanvas;
+			var timeline = new Timeline('interval');
+
+			var source = Rx.Observable.interval(1000);
+
+			var observer = Rx.Observer.create(
+				function(x) {timeline.next(x)},
+				function(err) {timeline.error(err)},
+				function() {timeline.completed()}
+			);
+
+			source.subscribe(observer);
+
+			var subscription = source.subscribe(
+		        function (x) { timeline.next(x);},
+		        function (err) { timeline.error(err);},
+		        function () { timeline.completed();}
+		    );
+
+		}
+	</script>
+</html>

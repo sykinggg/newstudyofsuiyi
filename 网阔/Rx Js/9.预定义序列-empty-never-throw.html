@@ -6,9 +6,48 @@
 		<script src="dist/rx.all.min.js"></script>
 		<script src="dist/timeline.js"></script>
 		<link rel="stylesheet" href="dist/timeline.css">
+		<style>
+			body {
+				width: 1000px;
+				margin: 0 auto;
+			}
+		</style>
 	</head>
 	<body>
-		
+		<h1>empty/never/throw</h1>
+		<h2>empty()方法创建一个没有元素的空序列，并立刻结束</h2>
+
+
+		<p>empty() 方法不需要参数</p>
+		<pre>
+			var source = Rx.Observable.empty();
+			等效于
+			var source = Rx.Observable.create(function(o) {
+				o.onCompleted();
+			})
+		</pre>
+
+
+		<h2>never()方法创建一个没有元素的空序列，并且永远不结束</h2>
+		<p>never() 方法不需要参数</p>
+		<pre>
+			var source = Rx.Observable.never();
+			等效于
+			Rx.Observable.create(function(o) {
+
+			})
+		</pre>
+
+
+		<h2>throw()方法创建一个没有元素的空序列，并且立刻抛出错误</h2>
+		<p>throw() 方法的参数来声明错误对象</p>
+		<pre>
+			var source = Rx.Observable.throw('What are you nongshalei?');
+			等效于
+			Rx.Observable.create(function(o) {
+				o.onError('What are you nongshalei?');
+			})
+		</pre>
 	</body>
 	<script>
 		window.onload = function() {
@@ -22,8 +61,11 @@
 			];
 
 			sources.forEach(function(s, i) {
-				console.log(s);
-				console.log(i);
+				s.subscribe(
+					function(x) {timelines[i].next(x)},
+					function(err) {timelines[i].error(err)},
+					function() {timelines[i].completed()}
+				)
 			})
 		}
 	</script>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>创建延时周期序列</title>
+		<script src="dist/rx.all.min.js"></script>
+		<script src="dist/timeline.js"></script>
+		<link rel="stylesheet" href="dist/timeline.css">
+		<style>
+			body {
+				width: 1000px;
+				margin: 0 auto;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>timer</h1>
+		<p>和interval()不同，timer()可以指定一个额外的参数来调节第一个值 生成之前的静默时长</p>
+
+		<h2>用法说明:</h2>
+		<ul>
+			<li>第一个参数用来静默时长</li>
+			<li>第二个参数用来声明周期</li>
+		</ul>
+		<p>两个参数的单位 都是毫秒/ms</p>
+
+		<pre>
+			//立即输出第一个值
+			Rx.Observable.timer(0, 1000);
+		</pre>
+
+		<h2>非周期性序列</h2>
+		<p>
+			timer()方法的第二个参数是可选的
+		</p>
+
+		<h3>注意:</h3>
+		<p>在忽略第二个参数的情况下，timer()将 仅仅在规定的静默时长后输出一个值，然后结束序列</p>
+		<pre>
+			//1秒后输出0
+			Rx.observable.timer(1000); //
+		</pre>
+	</body>
+	<script>
+		window.onload = function() {
+			var TL = TimelineCanvas;
+			var timelines = [
+					new TL("timer(500, 1000)"),
+					new TL("timer(2300)")
+			]
+
+			var source1 = Rx.Observable.timer(500, 1000);
+			var source2 = Rx.Observable.timer(2300);
+
+			[source1, source2].forEach(function (s, i) {
+				s.subscribe(
+						function(x) {timelines[i].next(x)},
+						function(err) {timelines[i].error(err)},
+						function() {timelines[i].completed()}
+				)
+			})
+		}
+	</script>
+</html>
