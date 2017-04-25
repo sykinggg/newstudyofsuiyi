@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>属性映射-pluck</title>
+		<script src="dist/rx.all.min.js"></script>
+		<script src="dist/timeline.js"></script>
+		<link rel="stylesheet" href="dist/timeline.css">
+	</head>
+	<body>
+		<h1>pluck</h1>
+
+		<p>如果源序列的元素值是JSON对象，那么可以使用pluck()方法选择某个具体属性 值生成新的序列</p>
+
+
+
+
+		<h3>pluck语法描述</h3>
+		<p>pluck()方法使用源序列的元素对象指定属性的值，构造返回新的序列</p>
+
+		<pre>
+			var source = Rx.Observable.of({name: 'A', age: 7},{name: 'B', age: 8},{name: 'C', age: 9});
+			var target = source.pluck("name");      //序列： John Linda
+		</pre>
+
+
+		<p>pluck()方法是特定场景下对map()方法的简化</p>
+
+		<pre>
+			var target = source.map(function(item) {return item["name"]})
+		</pre>
+
+
+
+
+		<h3>真实实例</h3>
+		<pre>
+			window.onload = function() {
+				var TL = TimelineDOM;
+
+				var timelines = [
+						new TL('source'),
+						new TL('pluck')
+				];
+
+				var source = Rx.Observable.fromArray(
+						[
+							{name: 'A', age: 7},
+							{name: 'B', age: 8},
+							{name: 'C', age: 9}
+						]
+				);
+
+				var target = source.pluck('name');
+
+				[source, target].forEach(function(s, i) {
+					s.subscribe(
+							function(x) {timelines[i].next(x)},
+							function(err) {timelines[i].error(err)},
+							function() {timelines[i].completed()}
+					)
+				})
+			}
+		</pre>
+	</body>
+	<script>
+		window.onload = function() {
+			var TL = TimelineDOM;
+
+			var timelines = [
+					new TL('source'),
+					new TL('pluck')
+			];
+
+			var source = Rx.Observable.fromArray(
+					[
+						{name: 'A', age: 7},
+						{name: 'B', age: 8},
+						{name: 'C', age: 9}
+					]
+			);
+
+			var target = source.pluck('name');
+
+			[source, target].forEach(function(s, i) {
+				s.subscribe(
+						function(x) {timelines[i].next(x)},
+						function(err) {timelines[i].error(err)},
+						function() {timelines[i].completed()}
+				)
+			})
+		}
+	</script>
+</html>

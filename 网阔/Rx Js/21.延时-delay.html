@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>延时-delay</title>
+	<script src="dist/rx.all.min.js"></script>
+	<script src="dist/timeline.js"></script>
+	<link rel="stylesheet" href="dist/timeline.css">
+</head>
+<body>
+	<h1>delay</h1>
+	<p>使用delay()方法将序列推迟指定的时间</p>
+
+
+	<h3>delay-语法描述</h3>
+	<p>delay()的参数用来声明延迟的具体时间，以毫秒/ms为单位</p>
+	<pre>
+		var source = Rx.Observable.timer(0, 1000); //序列： 0 1 2 ...
+		var target = source.delay(1000) //序列延迟1秒：0 1 2 ...
+	</pre>
+
+
+	<p>也可以传入一个Date对象，声明序列开始具体时间</p>
+	<pre>
+		var source = Rx.Observable.timer(0, 1000);  //序列： 0 1 2 ...
+		var t = new Date(Date.now + 1000*60);       //1小时之后
+		var target = source.delay(t);               //序列延迟1小时：0 1 2 ...
+	</pre>
+
+
+	<h3>delaySubscription-语法描述</h3>
+	<p>与delay()不同的是，delaySubscription()方法通过延迟观测者 的订阅行为而实现类似的延迟效果</p>
+	<p>delaySubscription()方法的参数可以是一个数字或一个 Date对象</p>
+	<pre>
+		var source = Rx.Observable.timer(0, 1000);      //序列： 0 1 2 ...
+		var target = source.delaySubscription(1000);    //序列延迟1秒：0 1 2 ...
+	</pre>
+
+
+
+	<h3>delayWithSelector</h3>
+	<p>如果需要为序列中的各元素指定不同的延时，可以使用delayWithSelector()方法</p>
+	<h3>注意:</h3>
+	<p>delayWithSelector()方法使用一个延时函数来分别获取每个元素的延时效果</p>
+	<pre>
+		var source = Rx.Observable.timer(0, 1000);
+		var df = function(d) {
+			var delay = {d % 5} * 400;
+			return Rx.Observable.timer(delay);
+		};
+
+		var target = source.delayWithSelector(df);
+	</pre>
+</body>
+<script>
+	window.onload = function () {
+		var TL = TimelineCanvas;
+		var timelines = [
+				new TL('source'),
+				new TL('delay'),
+				new TL('delaySubscription'),
+				new TL('delayWithSelector')
+		];
+
+		var source = Rx.Observable.timer(0, 1000);
+		var target1 = source.delay(2000);
+		var target2 = source.delaySubscription(3500);
+		var df = function(d) {
+			var delay = (d % 5) * 400;
+			return Rx.Observable.timer(delay);
+		};
+
+		var target3 = source.delayWithSelector(df);
+
+		[source, target1, target2, target3].forEach(function(s, i) {
+			s.subscribe(
+					function(x) {timelines[i].next(x)},
+					function(err) {timelines[i].error(err)},
+					function() {timelines[i].completed()}
+			)
+		})
+	}
+</script>
+</html>

@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>map()/toMap()</title>
+		<script src="dist/rx.all.min.js"></script>
+		<script src="dist/timeline.js"></script>
+		<link rel="stylesheet" href="dist/timeline.css">
+	</head>
+	<body>
+		<h1>toMap</h1>
+		<p>使用toMap()方法将序列还原为一个Map对象</p>
+
+
+		<h3>toMap()方法说明</h3>
+		<p>toMap()方法的第一个参数用来声明键选择函数</p>
+		<p>可以为toMap()方法指定第二个参数来声明值选择函数</p>
+		<script>
+			var data = [
+				{id: 123, name: 'John'},
+				{id: 456, name: 'Kate'}
+			];
+			var source = Rx.Observable.from(data);  //序列： {...} {...}
+
+			//toMap()方法的第一个参数用来声明键选择函数
+			var ksf = function(d) {
+				console.log(d);
+				for(var i = 0; i < d.length; i++) {
+					return d[i].id
+				}        //使用id作为键
+			}
+			var target = source.toMap(ksf(this));       //序列：Map{123=>{...},456=>{...}}
+			console.log(target);
+			//经测试这锤子没得用
+			//d {source: d, _subscribe: function}
+			//iterable: Array(2)
+
+
+
+			//可以为toMap()方法指定第二个参数来声明值选择函数
+//			var vsf = function(d) {
+//				return d.name;
+//			}
+//			var target = source.toMap(ksf, vsf);
+//			console.log(target);
+		</script>
+		<pre>
+			var data = [
+				{id: 123, name: 'John'},
+				{id: 456, name: 'Kate'}
+			];
+			var source = Rx.Observable.from(data);
+			var ksf = function(d) {
+				return d.id
+			}
+			var target = source.toMap(ksf);
+			console.log(target);
+			//d {source: d, _subscribe: function}
+			//iterable: Array(2)
+		</pre>
+
+
+
+
+
+		<h3>真实实例</h3>
+		<pre>
+			window.onload = function () {
+				var TL = TimelineCanvas;
+				var timelines = [
+						new TL("source"),
+						new TL('toMap')
+				];
+				var source = Rx.Observable.timer(0, 1000).take(5);
+				var target = source.toMap(
+						function(x) {return 'k-' + x},
+						function(x) {return 'v-' + x}
+				);
+
+				[source, target].forEach(function(s, i) {
+					s.subscribe(
+							function(x) {
+								if(i === 0) {
+									return timelines[i].next(x);
+								}
+								var obj = {};
+								x.forEach(function(k, v) {
+									obj[k] = v
+								});
+								timelines[i].next(JSON.stringify(obj));
+							},
+							function(err) {
+								timelines[i].error(err);
+							},
+							function() {
+								timelines[i].completed();
+							}
+					);
+				});
+			}
+		</pre>
+	</body>
+	<script>
+		window.onload = function () {
+			var TL = TimelineCanvas;
+			var timelines = [
+					new TL("source"),
+					new TL('toMap')
+			];
+			var source = Rx.Observable.timer(0, 1000).take(5);
+			var target = source.toMap(
+					function(x) {return 'k-' + x},
+					function(x) {return 'v-' + x}
+			);
+
+			[source, target].forEach(function(s, i) {
+				s.subscribe(
+						function(x) {
+							if(i === 0) {
+								return timelines[i].next(x);
+							}
+							var obj = {};
+							x.forEach(function(k, v) {
+								obj[k] = v
+							});
+							timelines[i].next(JSON.stringify(obj));
+						},
+						function(err) {
+							timelines[i].error(err);
+						},
+						function() {
+							timelines[i].completed();
+						}
+				);
+			});
+		}
+	</script>
+</html>

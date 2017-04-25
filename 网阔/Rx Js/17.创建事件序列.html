@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>fromEvent/formEventPattern</title>
+		<script src="dist/rx.all.min.js"></script>
+		<script src="dist/timeline.js"></script>
+		<link rel="stylesheet" href="dist/timeline.css">
+	</head>
+	<body>
+		<h1>fromEvent/fromEventPattern</h1>
+
+
+
+
+		<h2>fromEvent()</h2>
+		<p>使用fromEvent()方法，可以将事件流转化为可观测序列/Observable</p>
+		<p>每个事件 对应序列中的一个元素</p>
+
+
+
+
+		<h3>fromEvent()方法描述</h3>
+		<ul>
+			<li>第一个参数用来指定一个事件源对象</li>
+			<li>第二个参数指定需要 监听的事件名称</li>
+		</ul>
+		<pre>
+			var el = document.getElementById('btn');
+			Rx.Observable.fromEvent(el, 'click')
+		</pre>
+
+
+		<h3>注意:第三个可选参数</h3>
+		<p>fromEvent()方法还支持一个可选的映射函数作为第三个参数</p>
+		<p>映射函数负责 转换传入的事件，其返回值将作为序列的元素</p>
+		<pre>
+			var el = document.getElementById('btn');
+			var mf = function(event) {
+				return [event.offsetX, event.offsetY];
+			};
+
+			Rx.Observable.fromEvent(el, 'click', mf(el))
+		</pre>
+
+		<h3>注意；Rxjs fromEvent 支持的事件源</h3>
+		<p>RxJS支持以下类型的事件源：DOM对象、jQuery对象、Zepto对象、Angular对象、 Ember.js对象或者EventEmitter对象</p>
+
+
+
+
+
+		<h2>fromEventPattern</h2>
+		<p>将事件流转化为序列的手段是使用fromEventPattern()方法</p>
+
+
+		<h3>区别于fromEvent方法以及使用特点</h3>
+		<p>需要使用两个函数分别封装监听事件和解除监听事件的逻辑，然后，将这两个函数 作为fromEventPattern()的方法</p>
+		<script>
+			var addListeners = function(handler) {
+				el.addEventListener('click', handler);
+				el.addEventListener('mouseover', handler);
+			}
+
+			var removeListeners = function(handler) {
+				el.removeEventListener('click', handler);
+				el.removeEventListener('mouseover', handler);
+			}
+
+			var source1 = Rx.Observable.fromEventPattern(addListeners, removeListeners);
+
+			source1.subscribe(
+					function(data) {
+						console.log(data);
+					},
+					function(err) {
+						console.log(err);
+					},
+					function() {
+						console.log('completed');
+					}
+			)
+		</script>
+		<pre>
+			var addListeners = function(handler) {
+				el.addEventListener('click', handler);
+				el.addEventListener('mouseover', handler);
+			}
+
+			var removeListeners = function(handler) {
+				el.removeEventListener('click', handler);
+				el.removeEventListener('mouseover', handler);
+			}
+
+			Rx.Observable.fromEventPattern(addListeners, removeListeners);
+		</pre>
+
+		<h3>fromEventPattern的使用环境</h3>
+		<p>fromEventPattern()方法的优点是，可以一次将多个对象的多种事件转化为 一个事件序列</p>
+
+
+		<h3>真实实例</h3>
+		<p>
+			<button id="input">click me</button>
+		</p>
+		<pre>
+			window.onload = function() {
+				var TL = TimelineCanvas;
+				var timelines = [
+						new TL('formEvent'),
+						new TL('formEventPattern')
+				]
+
+				var input = document.getElementById("input");
+				var target1 = Rx.Observable.fromEvent(input, 'click');
+				var target2 = Rx.Observable.fromEventPattern(
+						function(handler) {
+							input.addEventListener('click', handler);
+							input.addEventListener('mouseover', handler);
+							input.addEventListener('mouseout', handler);
+						},
+						function(handler) {
+							input.removeEventListener('click', handler);
+							input.removeEventListener('mouseover', handler);
+							input.removeEventListener('mouseout', handler);
+						}
+				);
+				[target1, target2].forEach(function (s, i) {
+					s.subscribe(
+							function(data) {timelines[i].next(data.type)},
+							function(err) {timelines[i].error(err)},
+							function() {timelines[i].completed()}
+					);
+				});
+			};
+		</pre>
+	</body>
+	<script>
+		window.onload = function() {
+			var TL = TimelineCanvas;
+			var timelines = [
+					new TL('formEvent'),
+					new TL('formEventPattern')
+			]
+
+			var input = document.getElementById("input");
+
+
+			var target1 = Rx.Observable.fromEvent(input, 'click');
+			var target2 = Rx.Observable.fromEventPattern(
+					function(handler) {
+						input.addEventListener('click', handler);
+						input.addEventListener('mouseover', handler);
+						input.addEventListener('mouseout', handler);
+					},
+					function(handler) {
+						input.removeEventListener('click', handler);
+						input.removeEventListener('mouseover', handler);
+						input.removeEventListener('mouseout', handler);
+					}
+			);
+			[target1, target2].forEach(function (s, i) {
+				s.subscribe(
+						function(data) {timelines[i].next(data.type)},
+						function(err) {timelines[i].error(err)},
+						function() {timelines[i].completed()}
+				);
+			});
+		};
+	</script>
+</html>

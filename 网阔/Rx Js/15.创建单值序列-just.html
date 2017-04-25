@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>创建单值序列</title>
+		<script src="dist/rx.all.min.js"></script>
+		<script src="dist/timeline.js"></script>
+		<link rel="stylesheet" href="dist/timeline.css">
+	</head>
+	<body>
+		<h1>just</h1>
+		<p>可以使用just()方法将任何数据转化为一个单值输出的可观测序列/Observable</p>
+
+
+		<h2>just()方法描述</h2>
+		<p>just()方法的参数将被作为序列的唯一元素输出</p>
+		<p>可以传入任意类型的数据</p>
+		<pre>
+			Rx.Observable.just([1, 2, 3]);      //输出：[1,2,3]
+			Rx.Observable.just({x: 1, y: 2});   //输出：{x:1,y:2}
+		</pre>
+
+		<h3>注意：当使用类似于数组的数据结构时</h3>
+		<p>用于数组等数据集时，just()不处理传入的数据</p>
+		<p>整个数组被作为一个值， 一次性完整输出</p>
+		<p>而from()方法将分解数组，逐个输出</p>
+
+
+		<h3>just()方法的一个别名是return()</h3>
+		<pre>
+			Rx.Observable.return("hello") //输出： "hello"
+		</pre>
+	</body>
+	<script>
+		window.onload = function() {
+			var timeline = new TimelineDOM('demo');
+
+			var source = Rx.Observable.just(42);
+
+			var subscription = source.subscribe(
+					function(x) {timeline.next(JSON.stringify(x))},
+					function(err) {timeline.error(err)},
+					function() {timeline.completed()}
+			)
+		}
+	</script>
+</html>

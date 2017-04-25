@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Array-toArray</title>
+	<script src="dist/rx.all.min.js"></script>
+	<script src="dist/timeline.js"></script>
+	<link rel="stylesheet" href="dist/timeline.css">
+</head>
+<body>
+	<h1>toArray</h1>
+	<p>使用toArray()方法将序列还原为数组对象</p>
+
+
+
+	<p>toArray()方法返回的还是一个可观测序列/Observable</p>
+
+	<pre>
+		var source = Rx.Observable.of(1, 2, 3, 4);
+		var target = source.toArray();
+		target.subscribe(function(d) {
+			console.log(d);
+		})
+		//[1, 2, 3, 4]
+	</pre>
+	<script>
+		var source1 = Rx.Observable.of(1, 2, 3, 4);
+		var target1 = source1.toArray();
+		target1.subscribe(function(d) {
+			console.log(d);
+		})
+		//[1, 2, 3, 4]
+	</script>
+
+
+
+	<h3>真实实例</h3>
+	<pre>
+		window.onload = function() {
+			var TL = TimelineCanvas;
+
+			var timelines = [
+					new TL('source'),
+					new TL('toArray')
+			];
+
+			var source = Rx.Observable.timer(0, 1000).take(5);
+
+			var target = source.toArray();
+
+			[source, target].forEach(function(s, i) {
+				s.subscribe(
+						function(x) {timelines[i].next(JSON.stringify(x))},
+						function(err) {timelines[i].error(err)},
+						function() {timelines[i].completed();}
+				)
+			})
+		}
+	</pre>
+</body>
+<script>
+	window.onload = function() {
+		var TL = TimelineCanvas;
+
+		var timelines = [
+				new TL('source'),
+				new TL('toArray')
+		];
+
+		var source = Rx.Observable.timer(0, 1000).take(5);
+
+		var target = source.toArray();
+
+		[source, target].forEach(function(s, i) {
+			s.subscribe(
+					function(x) {timelines[i].next(JSON.stringify(x))},
+					function(err) {timelines[i].error(err)},
+					function() {timelines[i].completed();}
+			)
+		})
+	}
+</script>
+</html>
