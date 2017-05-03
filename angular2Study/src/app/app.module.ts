@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+//基础用户输入
 import { AppComponent }  from './UseInputComponent/app.component';
 import { ClickMeComponent } from './UseInputComponent/app.clickComponent';
 import { keyupComponent_v1 } from './UseInputComponent/app.$event';
@@ -13,14 +14,17 @@ import { keyBlur } from './UseInputComponent/app.key-blur';
 import { inConclusion } from './UseInputComponent/app.conclusion';
 
 
-import { HeroFormComponent } from './angular-from/hero-form.component'
+import { HeroFormComponent } from './angular-from/hero-form.component';
 
+//依赖注入
+import { HeroListComponent } from './dependent-injection/hero-list.component';
+import { HeroesComponent } from './dependent-injection/heroes.component';
 @NgModule({
   declarations: [
       AppComponent, ClickMeComponent, keyupComponent_v1,
       loopBackComponent, keyUp2, keyEnter,
       keyEnter, keyBlur, inConclusion,
-      HeroFormComponent
+      HeroFormComponent, HeroListComponent, HeroesComponent
   ],
   imports: [
     BrowserModule, FormsModule, HttpModule
