@@ -2,45 +2,74 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0469b1b1-8dbd-4241-bfe2-df414aabcbd4" name="默认的" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/src/favicon.ico" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/.editorconfig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/CHANGELOG.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/bs-config.e2e.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/bs-config.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/e2e/app.e2e-spec.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/e2e/tsconfig.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/karma-test-shim.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/karma.conf.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/non-essential-files.osx.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/non-essential-files.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/protractor.config.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.$event.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.clickComponent.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.component.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.conclusion.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.key-blur.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.key-up2.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.key-up3.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.loop-back.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/hero.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/src/app/app.component.spec.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/src/app/app.module.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/src/app/fromComponent/fromComponent1.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/src/app/fromComponent/hero.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/src/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/src/main.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/src/styles.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/src/systemjs-angular-loader.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/src/systemjs.config.extras.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/src/systemjs.config.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/src/tsconfig.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Angular2Quickstart/tslint.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/src/assets/.gitkeep" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/.angular-cli.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/e2e/app.e2e-spec.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/e2e/app.po.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/e2e/tsconfig.e2e.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/karma.conf.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/protractor.conf.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/src/app/angular-from/hero-form.component.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/src/app/angular-from/hero-form.component.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/src/app/angular-from/hero.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/src/app/app.component.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/src/app/app.component.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/src/app/app.component.spec.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/src/app/app.component.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/src/app/app.module.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/src/environments/environment.prod.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/src/environments/environment.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/src/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/src/polyfills.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/src/styles.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/src/test.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/src/tsconfig.app.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/src/tsconfig.spec.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/src/typings.d.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/angular2Study/tsconfig.json" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/.travis.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/CHANGELOG.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/bs-config.e2e.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/bs-config.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/e2e/app.e2e-spec.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/e2e/tsconfig.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/karma-test-shim.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/karma.conf.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/non-essential-files.osx.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/non-essential-files.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/package.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/protractor.config.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.$event.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.clickComponent.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.component.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.conclusion.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.key-blur.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.key-up2.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.key-up3.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.loop-back.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/hero.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/src/app/app.component.spec.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/src/app/app.module.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/src/app/fromComponent/fromComponent1.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/src/app/fromComponent/hero.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/src/app/hero-list.component.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/src/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/src/styles.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/src/systemjs-angular-loader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/src/systemjs.config.extras.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/src/systemjs.config.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Angular2Quickstart/src/tsconfig.json" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Angular2Quickstart/.editorconfig" afterPath="$PROJECT_DIR$/angular2Study/.editorconfig" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Angular2Quickstart/src/favicon.ico" afterPath="$PROJECT_DIR$/angular2Study/src/favicon.ico" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Angular2Quickstart/src/main.ts" afterPath="$PROJECT_DIR$/angular2Study/src/main.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Angular2Quickstart/tslint.json" afterPath="$PROJECT_DIR$/angular2Study/tslint.json" />
     </list>
     <ignored path="newstudyofsuiyi.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -61,45 +90,65 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="app.module.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/app.module.ts">
+        <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.module.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+            <state relative-caret-position="484">
+              <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
               <folding>
-                <element signature="e#0#46#0" expanded="true" />
+                <element signature="e#0#58#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/index.html">
+      <file leaf-file-name="app.component.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="549">
-              <caret line="39" column="10" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
+            <state relative-caret-position="88">
+              <caret line="4" column="36" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="hero.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/fromComponent/hero.ts">
+        <entry file="file://$PROJECT_DIR$/angular2Study/src/app/angular-from/hero.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
+            <state relative-caret-position="176">
+              <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fromComponent1.ts" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/fromComponent/fromComponent1.ts">
+      <file leaf-file-name="hero-form.component.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/angular2Study/src/app/angular-from/hero-form.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+            <state relative-caret-position="330">
+              <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/angular2Study/src/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hero-form.component.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/angular2Study/src/app/angular-from/hero-form.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -119,11 +168,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/网阔/Rx Js/12.创建延时周期序列-timer.html" />
-        <option value="$PROJECT_DIR$/网阔/Rx Js/dist/timeline.css" />
-        <option value="$PROJECT_DIR$/网阔/Rx Js/13.数据集转化-from-pairs.html" />
-        <option value="$PROJECT_DIR$/网阔/Rx Js/14.参数转化-of.html" />
-        <option value="$PROJECT_DIR$/网阔/Rx Js/创建单值序列-just.html" />
         <option value="$PROJECT_DIR$/网阔/Rx Js/16.创建重复值序列-repeat.html" />
         <option value="$PROJECT_DIR$/网阔/Rx Js/17.创建事件序列-fromEvent/formEventPattern.html" />
         <option value="$PROJECT_DIR$/网阔/Es6/1.traceur编译器.html" />
@@ -144,7 +188,6 @@
         <option value="$PROJECT_DIR$/网阔/Rx Js/29.活动序列平坦化映射-flatMapLatest.html" />
         <option value="$PROJECT_DIR$/网阔/Rx Js/30.通知的平坦化映射-flatMapObserver.html" />
         <option value="$PROJECT_DIR$/网阔/jQuery技巧/jquery常见问题.html" />
-        <option value="$PROJECT_DIR$/Angular2Quickstart/src/app/app.component.ts" />
         <option value="$PROJECT_DIR$/Angular2Quickstart/src/app/component/app.component.ts" />
         <option value="$PROJECT_DIR$/Angular2Quickstart/src/app/app.component.spec.ts" />
         <option value="$PROJECT_DIR$/Angular2Quickstart/src/app/clickComponent/app.clickComponent.ts" />
@@ -154,12 +197,28 @@
         <option value="$PROJECT_DIR$/Angular2Quickstart/src/app/key-up3/app.key-up3.ts" />
         <option value="$PROJECT_DIR$/Angular2Quickstart/src/app/key-enter/app.key-up3.ts" />
         <option value="$PROJECT_DIR$/Angular2Quickstart/src/app/key-blur/app.key-blur.ts" />
-        <option value="$PROJECT_DIR$/Angular2Quickstart/src/app/app.module.ts" />
         <option value="$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.conclusion.ts" />
         <option value="$PROJECT_DIR$/Angular2Quickstart/src/styles.css" />
         <option value="$PROJECT_DIR$/Angular2Quickstart/src/index.html" />
         <option value="$PROJECT_DIR$/Angular2Quickstart/src/app/fromComponent/hero.ts" />
         <option value="$PROJECT_DIR$/Angular2Quickstart/src/app/fromComponent/fromComponent1.ts" />
+        <option value="$PROJECT_DIR$/Angular2Quickstart/package.json" />
+        <option value="$PROJECT_DIR$/Angular2Quickstart/src/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/Angular2Quickstart/src/app/app.component.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/displayData/displaying.data.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/displayData/app.ctor.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/src/styles.css" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/UseInputComponent/app.$event.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/UseInputComponent/app.conclusion.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/fromComponent/hero.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/fromComponent/fromComponent1.html" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/fromComponent/fromComponent1.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/angular-from/hero.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/angular-from/hero-form.component.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/app.component.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/src/index.html" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/angular-from/hero-form.component.html" />
       </list>
     </option>
   </component>
@@ -206,6 +265,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -302,7 +363,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Angular2Quickstart" />
+              <option name="myItemId" value="angular2Study" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -316,7 +377,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Angular2Quickstart" />
+              <option name="myItemId" value="angular2Study" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -334,29 +395,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Angular2Quickstart" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="newstudyofsuiyi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="newstudyofsuiyi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Angular2Quickstart" />
+              <option name="myItemId" value="angular2Study" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -367,10 +406,6 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="UseInputComponent" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -382,7 +417,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Angular2Quickstart" />
+              <option name="myItemId" value="angular2Study" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -394,14 +429,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="fromComponent" />
+              <option name="myItemId" value="angular-from" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -500,11 +533,12 @@
       <workItem from="1493283402569" duration="3142000" />
       <workItem from="1493347871454" duration="1446000" />
       <workItem from="1493710846528" duration="8347000" />
+      <workItem from="1493790371761" duration="6373000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43316000" />
+    <option name="totallyTimeSpent" value="50756000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="0" />
@@ -513,20 +547,20 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24969843" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290993" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290993" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -547,143 +581,90 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/网阔/Rx Js/17.创建事件序列.html">
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.clickComponent.js" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.clickComponent.js.map" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/main.ts" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/systemjs.config.extras.js" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/systemjs.config.js" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/systemjs-angular-loader.js" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/tsconfig.json" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/.editorconfig" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/.gitignore" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/.travis.yml" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/karma.conf.js" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/karma-test-shim.js" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/LICENSE" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/non-essential-files.txt" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/protractor.config.js" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/hero.ts" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.clickComponent.ts" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.loop-back.ts" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.$event.ts" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.key-up2.ts" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.key-up3.ts" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.key-blur.ts" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.conclusion.ts" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/styles.css" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/fromComponent/hero.ts" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/fromComponent/fromComponent1.ts" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/e2e/app.e2e-spec.ts" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/package.json" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/index.html" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/app.component.spec.ts" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/app.module.ts" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/app.component.ts" />
+    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/node_modules/protractor/built/index.d.ts" />
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/displayData/displaying.data.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1958">
-          <caret line="89" column="49" selection-start-line="89" selection-start-column="49" selection-end-line="89" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/网阔/Rx Js/18.还原为Array-toArray.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="23" column="22" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/网阔/Rx Js/20.还原为Set-toSet.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/网阔/Rx Js/img/21.延时-delay.html" />
-    <entry file="file://$PROJECT_DIR$/网阔/Rx Js/6.Rx-Marble Diagram-宝石图.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/网阔/Rx Js/21.延时-delay.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1144">
-          <caret line="52" column="10" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/网阔/Rx Js/22.附加时间间隔-timeInterval.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/网阔/Rx Js/23.超时报警-timeout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="946">
-          <caret line="43" column="38" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="38" />
+        <state relative-caret-position="242">
+          <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/网阔/Rx Js/24.附加时间戳-timestamp.html">
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/displayData/app.ctor.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="19" column="37" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
+        <state relative-caret-position="110">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/网阔/Rx Js/25.序列循环-doWhile/while.html" />
-    <entry file="file://$PROJECT_DIR$/网阔/Rx Js/25.序列循环-doWhile-while.html">
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/styles.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1584">
-          <caret line="72" column="27" selection-start-line="72" selection-start-column="27" selection-end-line="72" selection-end-column="27" />
+        <state relative-caret-position="198">
+          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/网阔/Rx Js/19.还原为map-toMap.html">
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/UseInputComponent/app.$event.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="33" column="23" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
+        <state relative-caret-position="594">
+          <caret line="27" column="20" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/网阔/Rx Js/27.属性映射-pluck.html">
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/UseInputComponent/app.conclusion.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="638">
-          <caret line="29" column="70" selection-start-line="29" selection-start-column="70" selection-end-line="29" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/网阔/Rx Js/28.平坦化映射-flatMap.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/网阔/Rx Js/29.活动序列平坦化映射-flatMapLatest.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/网阔/Rx Js/30.通知的平坦化映射-flatMapObserver.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="638">
-          <caret line="29" column="9" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/网阔/jQuery技巧/jquery常见问题.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="82" column="40" selection-start-line="82" selection-start-column="40" selection-end-line="82" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/网阔/Rx Js/26.映射-map.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
+        <state relative-caret-position="352">
+          <caret line="16" column="29" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
           <folding>
-            <element signature="e#0#42#0" expanded="true" />
-            <marker date="1493711728061" expanded="true" signature="227:306" ph="..." />
-            <marker date="1493711728061" expanded="true" signature="264:298" ph="..." />
+            <marker date="1493801903000" expanded="true" signature="139:261" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/hero-list.component.js">
+    <entry file="file://$PROJECT_DIR$/angular2Study/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/environments/environment.prod.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -691,138 +672,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/hero-list.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.clickComponent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.clickComponent.js.map">
-      <provider editor-type-id="sourcemapFileViewerProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/main.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/systemjs.config.extras.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/systemjs.config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/systemjs-angular-loader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/tsconfig.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/.editorconfig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/.travis.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/karma.conf.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/karma-test-shim.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/LICENSE">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/non-essential-files.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/protractor.config.js">
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/environments/environment.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -832,121 +682,87 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/hero.ts">
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/fromComponent/hero.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="7" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/app.component.spec.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="7" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.clickComponent.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="49" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.loop-back.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="2" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.$event.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="34" column="53" selection-start-line="34" selection-start-column="53" selection-end-line="34" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.key-up2.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="54" selection-start-line="15" selection-start-column="54" selection-end-line="15" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.key-up3.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="21" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.key-blur.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="13" column="27" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/UseInputComponent/app.conclusion.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="38" column="43" selection-start-line="38" selection-start-column="43" selection-end-line="38" selection-end-column="43" />
-          <folding>
-            <marker date="1493717252360" expanded="true" signature="139:261" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/styles.css">
+    <entry file="file://$PROJECT_DIR$/angular2Study/node_modules/@angular/http/src/http_module.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/index.html">
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/fromComponent/fromComponent1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="39" column="10" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
+        <state relative-caret-position="286">
+          <caret line="13" column="60" selection-start-line="13" selection-start-column="60" selection-end-line="13" selection-end-column="60" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/fromComponent/hero.ts">
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/fromComponent/fromComponent1.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
+        <state relative-caret-position="330">
+          <caret line="15" column="40" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Angular2Quickstart/src/app/fromComponent/fromComponent1.ts">
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.module.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+        <state relative-caret-position="484">
+          <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="36" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/angular-from/hero.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/angular-from/hero-form.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/angular-from/hero-form.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
