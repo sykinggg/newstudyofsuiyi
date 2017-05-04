@@ -34,5 +34,45 @@
 	<hero-form></hero-form>
 	<h2>依赖注入</h2>
 	<my-heroes></my-heroes>
+	<h2>模版语法</h2>
+	<table>
+		<th>
+			<td>数据方向</td>
+			<td>语法</td>
+			<td>绑定类型</td>
+		</th>
+		<tr>
+			<td>单向 从数据源 到视图目标</td>
+			<td>
+				<p>{{expression}}</p>
+				<p>[target]="expression"</p>
+				<p>bind-target="expression"</p>
+			</td>
+			<td>插值表达式
+				Property
+				Attribute
+				类
+				样式</td>
+		</tr>
+		<tr>
+			<td>单向 从视图目标 到数据源</td>
+			<td>
+				<p>(target)="statement"</p>
+				<p>on-target="statement"</p>
+			</td>
+			<td>事件</td>
+		</tr>
+		<tr>
+			<td>双向</td>
+			<td>
+				<p>[(target)]="expression"</p>
+				<p>bindon-target="expression"</p>
+			</td>
+			<td>双向</td>
+		</tr>
+	</table>
+	<h2>绑定目标</h2>
+	<p>数据绑定的目标是 DOM 中的某些东西</p>
+
 </body>
 </html>

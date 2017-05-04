@@ -1,14 +1,66 @@
-<div class="container">
+<h2>切换两个表单区域</h2>
+<div class="container" [hidden]="submitted">
 	<h1>Hero Form</h1>
-	<form>
+	{{diagnostic}}
+	<!--Angular 创建了一些FormControl，并把它们注册到NgForm指令，
+	再将该指令附加到<form>标签。 注册每个FormControl时，使用name属性值作为键值-->
+	<form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+		<!--Angular会在<form>标签上自动创建并附加一个NgForm指令-->
+		<!--NgForm指令为form增补了一些额外特性-->
+		<!--它会控制那些带有ngModel指令和name属性的元素，监听他们的属性（包括其有效性）-->
+		<!--它还有自己的valid属性，这个属性只有在它包含的每个控件都有效时才是真-->
 		<div class="form-group">
 			<label for="name">Name</label>
-			<input type="text" class="form-control" id="name" required>
+			<input type="text" class="form-control" id="name" required
+				[(ngModel)]="model.name" name="name" #spy #name="ngModel">
+			<!--当控件是有效的 (valid) 或全新的 (pristine) 时，隐藏消息-->
+			<!--“全新的”意味着从它被显示在表单中开始，用户还从未修改过它的值-->
+			<div [hidden]="name.valid || name.pristine"
+				class="alter alter-danger">
+				name is required
+			</div>
+			<!--<input>标签还添加了name属性 (attribute)，并设置为 "name"-->
+			<!--当在表单中使用[(ngModel)]时，必须要定义name属性-->
+			TODO:remove this: {{model.name}}
+			<p>className:{{spy.className}}</p>
 		</div>
 		<div class="form-group">
 			<label for="alterEgo">Alter Ego</label>
-			<input type="text" class="form-control" id="alterEgo">
+			<input type="text" class="form-control" id="alterEgo"
+				[(ngModel)]="model.alterEgo" name="alterEgo">
 		</div>
-		<button type="submit" class="btn btn-success">Submit</button>
+		<div class="form-group">
+			<label for="power">Hero Power</label>
+			<select class="form-control" id="power" required
+					[(ngModel)]="model.power" name="power">
+				<option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+			</select>
+		</div>
+		<button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
+		<button type="button" class="btn btn-default" (click)="newHero(); heroForm.reset()">New Hero</button>
+		<!--产生问题:
+			输入框左侧的必填项竖条是红色的，表示name和power属性是无效的
+			使用浏览器工具审查这个元素就会发现，这个 name 输入框并不是全新的
+			表单记得我们在点击 New Hero 前输入的名字
+			解决方法:
+			必须清除所有标记，在调用newHero()方法后调用表单的reset()方法即可-->
+		<!--官网实例然并卵-->
 	</form>
+</div>
+<div [hidden]="!submitted">
+	<h2>You submitted the following:</h2>
+	<div class="row">
+		<div class="col-xs-3">Name</div>
+		<div class="col-xs-9  pull-left">{{ model.name }}</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3">Alter Ego</div>
+		<div class="col-xs-9 pull-left">{{ model.alterEgo }}</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3">Power</div>
+		<div class="col-xs-9 pull-left">{{ model.power }}</div>
+	</div>
+	<br>
+	<button class="btn btn-primary" (click)="submitted=false">Edit</button>
 </div>
