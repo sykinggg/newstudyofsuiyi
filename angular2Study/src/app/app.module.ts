@@ -13,8 +13,6 @@ import { keyUp2 } from './UseInputComponent/app.key-up2';
 import { keyEnter } from './UseInputComponent/app.key-up3';
 import { keyBlur } from './UseInputComponent/app.key-blur';
 import { inConclusion } from './UseInputComponent/app.conclusion';
-//基础用户输入路由文件
-import { basicUserInputRouter } from './UseInputComponent/basicUserInputRouter';
 
 //表单
 import { HeroFormComponent } from './angular-from/hero-form.component';
@@ -28,13 +26,14 @@ import { HeroesComponent } from './dependent-injection/heroes.component';
 
 import { HeroServer } from './dependent-injection/hero.service';
 
-//路由数组
-const routers: Routes = [
-    //基础用户输入
-    { path: 'basicUserInputRouter', component:  basicUserInputRouter}
-]
+//路由实例
+import { AppComponentRouter } from './angular-router/app.component.router/app.component.router';
+import { DashboardComponent }   from './angular-router/dashboard.component/dashboard.component';
+import { HeroesComponentRouter }      from './angular-router/heroes.component/heroes.component';
+import { HeroDetailComponent }  from './angular-router/hero-detail.component/hero-detail.component';
+import { HeroService } from './angular-router/hero.service';
 
-
+import { AppRoutingModule } from './app.routing.module';
 
 @NgModule({
   //所有组件全部放在这下面包括引用和被应用的
@@ -43,21 +42,22 @@ const routers: Routes = [
       loopBackComponent, keyUp2, keyEnter,
       keyEnter, keyBlur, inConclusion,
       HeroFormComponent, HeroListComponent, HeroesComponent,
-      basicUserInputRouter
+      AppComponentRouter, DashboardComponent, HeroesComponentRouter,
+      HeroDetailComponent
   ],
   //本身带有的装饰器
   imports: [
       BrowserModule, FormsModule, HttpModule,
-      RouterModule.forRoot(routers)
+      AppRoutingModule
   ],
   //一方面，NgModule 中的服务是被注册到根注入器。这意味着在 NgModule 中注册的服务可以被整个应用访问
   //在应用组件中注册的提供商只在该组件及其子组件中可用
   providers: [
-      HeroServer
+      HeroServer, HeroService
   ],
   //可以在页面上渲染的根组件
   bootstrap: [
-      HeroFormComponent
+      HeroFormComponent, AppComponentRouter
   ]
 })
 export class AppModule { }
