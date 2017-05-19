@@ -13,5 +13,5 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.router.css'],
 })
 export class AppComponentRouter {
-    title = 'Tour of Heroes';
+    title = '学习angular连接';
 }
