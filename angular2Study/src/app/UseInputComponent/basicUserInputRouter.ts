@@ -3,13 +3,10 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'basicUserInputRouter',
     template: `
-        <h1>{{title}}</h1>
-        <nav>
-            <a routerLink="/userInput" routerLinkActive="active">用户输入</a>
-        </nav>
+        <h2>用户输入</h2>
+        <h3>my-app</h3>
         <router-outlet></router-outlet>
-    `,
-    styleUrls: ['./app.component.router.css']
+    `
 })
 export class basicUserInputRouter {
 

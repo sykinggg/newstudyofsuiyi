@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+//基础路由
+import { study_basic } from './app.study_basic';
+
 //基础用户输入
 import { AppComponent }  from './UseInputComponent/app.component';
 import { ClickMeComponent } from './UseInputComponent/app.clickComponent';
@@ -25,7 +28,9 @@ import { HeroesComponent } from './dependent-injection/heroes.component';
 
 import { HeroServer } from './dependent-injection/hero.service';
 
-//路由实例
+
+import { basicUserInputRouter } from './UseInputComponent/basicUserInputRouter';
+//路由基础实例
 import { AppComponentRouter } from './angular-router/app.component.router/app.component.router';
 import { DashboardComponent }   from './angular-router/dashboard.component/dashboard.component';
 import { HeroesComponentRouter }      from './angular-router/heroes.component/heroes.component';
@@ -37,12 +42,12 @@ import { AppRoutingModule } from './app.routing.module';
 @NgModule({
   //所有组件全部放在这下面包括引用和被应用的
   declarations: [
-      AppComponent, ClickMeComponent, keyupComponent_v1,
+      study_basic, AppComponent, ClickMeComponent, keyupComponent_v1,
       loopBackComponent, keyUp2, keyEnter,
       keyEnter, keyBlur, inConclusion,
       HeroFormComponent, HeroListComponent, HeroesComponent,
       AppComponentRouter, DashboardComponent, HeroesComponentRouter,
-      HeroDetailComponent
+      HeroDetailComponent, basicUserInputRouter, keyupComponent_v1
   ],
   //本身带有的装饰器
   imports: [
@@ -55,8 +60,8 @@ import { AppRoutingModule } from './app.routing.module';
       HeroServer, HeroService
   ],
   //可以在页面上渲染的根组件
-  bootstrap: [
-      HeroFormComponent, AppComponentRouter
+    bootstrap: [
+        study_basic, HeroFormComponent, AppComponentRouter
   ]
 })
 export class AppModule { }
