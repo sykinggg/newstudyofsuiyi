@@ -2,6 +2,7 @@ import { Component, OnInit } from  '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+import { User } from '../model/user-model';
 import { UserRegisterService } from './user-register.service';
 import { fadeIn } from '../../animations/fade-in'
 

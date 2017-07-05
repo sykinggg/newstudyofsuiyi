@@ -1,5 +1,10 @@
 export class User {
     id: number;
     userName: string;
-    nic
+    nickName: string;
+    password: string;
+    remeberMe:boolean;
+    email: string;
+    confirmPassword: string;
+    vcode:string;
 }

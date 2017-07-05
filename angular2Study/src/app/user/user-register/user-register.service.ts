@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Headers, Request, RequestOptions, Response, RequestMethod, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
-import {} from "./"
+import { User } from '../model/user-model';
 
 @Injectable()
 export class UserRegisterService {
-    public userRegisterUrl = "mock-data/user-register-mock.json";
+    public userRegisterURL = "mock-data/user-register-mock.json";
     public testEmailURL = "";
-    public subject: Subject<User> = new Subject<user>();
+    public subject: Subject<User> = new Subject<User>();
 
     constructor(public http:Http) {
-
     }
 
     public get currentUser():Observable<User>{
