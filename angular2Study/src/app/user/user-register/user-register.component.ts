@@ -139,15 +139,15 @@ export class UserRegisterComponent implements OnInit {
         if (this.userForm.valid) {
             this.userInfo = this.userForm.value;
             this.userRegisterService.register(this.userInfo)
-                .subscribe(
-                    data => {
-                        this.router.navigateByUrl("home");
-                    },
-                    error => {
-                        this.formErrors.formError = error.message;
-                        console.error(error);
-                    }
-                );
+                // .subscribe(
+                //     data => {
+                //         this.router.navigateByUrl("home");
+                //     },
+                //     error => {
+                //         this.formErrors.formError = error.message;
+                //         console.error(error);
+                //     }
+                // );
         } else {
             this.formErrors.formError = "存在不合法的输入项，请检查。";
         }
@@ -157,13 +157,13 @@ export class UserRegisterComponent implements OnInit {
     testEmail() {
         let email = this.userForm.get("email").value;
         this.userRegisterService.testEmail(email)
-            .subscribe(
-                data => {
-                    console.log(data);
-                },
-                error => {
-                    console.error(error);
-                }
-            )
+            // .subscribe(
+            //     data => {
+            //         console.log(data);
+            //     },
+            //     error => {
+            //         console.error(error);
+            //     }
+            // )
     }
 }
