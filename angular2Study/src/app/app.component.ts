@@ -80,4 +80,75 @@ export class AppComponent {
 	 * 类型推论
 	 */
 	let myFavoriteNumber = 'seven';
-    myFavoriteNumber
+    // myFavoriteNumber = 7;
+    //Type '7' is not assignable to type 'string'.
+    // console.log(myFavoriteNumber);
+    // index.ts(2,1): error TS2322: Type 'number' is not assignable to type 'string'.
+    /*
+    * 注意: 在TypeScript 2.1 之前，如果定义的时候没有赋值，不管之后有没有赋值，都会被推断成 any 类型而完全不被类型检查
+    * */
+    //TypeScript 2.1 中，编译器会考虑对 myFavoriteNumber 的最后一次赋值来检查类型
+
+
+    /*
+    * 联合类型
+    * 联合类型（Union Types）表示取值可以为多种类型中的一种
+    * */
+
+    let myFavoriteNumber1: string | number;
+    myFavoriteNumber1 = 'seven';
+    myFavoriteNumber1 = 7;
+    // myFavoriteNumber1 = true;
+    //Type 'boolean' is not assignable to type 'number'.
+
+    /*
+    * 联合类型使用 | 分隔每个类型
+    * */
+    //这里的 string | number 的含义是，允许 myFavoriteNumber 的类型是 string 或者 number，但是不能是其他类型
+
+
+    /*
+    * 访问联合类型的属性或方法
+    * */
+    //只能访问此联合类型的所有类型里共有的属性或方法
+
+    // function getLength(something: string | number): number {
+        // return something.length;
+        //Property 'length' does not exist on type 'string | number'.
+    // }
+
+    //访问 string 和 number 的共有属性是没问题的
+
+    function getString(something: string | number): string {
+        //Identifier expected.
+        return something.toString();
+    }
+
+    let myFavoriteNumber2: string | number;
+    myFavoriteNumber2 = 'seven';
+    console.log(myFavoriteNumber2);
+    // console.log(myFavoriteNumber2.length);
+    myFavoriteNumber2 = 7;
+    console.log(myFavoriteNumber2);
+    // console.log(myFavoriteNumber2.length);
+    //Property 'length' does not exist on type 'number'.
+
+
+    /*
+    * 对象的类型——接口
+    * 在 TypeScript 中，使用接口（Interfaces）来定义对象的类型
+    * */
+
+    interface Person {
+        name: string;
+        age: number
+    }
+
+    let person1: Person = {
+        name: 'person',
+        age: 23
+    }
+
+    console.log(person1);
+    // 大小写也不能相同
+    //{name: "person", age: 23}
