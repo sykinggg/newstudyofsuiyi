@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0900b38a-35c2-40ff-9627-91218dc94c3c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/angular2Study/src/app/user/model/user-model.ts" afterPath="$PROJECT_DIR$/angular2Study/src/app/user/model/user-model.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.component.html" afterPath="$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.component.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.component.scss" afterPath="$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.component.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.component.ts" afterPath="$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.service.ts" afterPath="$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/angular2Study/src/app/app.component.ts" afterPath="$PROJECT_DIR$/angular2Study/src/app/app.component.ts" />
     </list>
     <ignored path="newstudyofsuiyi.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,7 +29,7 @@
       <file leaf-file-name="user-register.component.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2755">
+            <state relative-caret-position="144">
               <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
@@ -42,30 +38,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fade-in.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/angular2Study/src/app/animations/fade-in.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="8" column="38" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user-routes.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-routes.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="user-main.component.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-main/user-main.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
+            <state relative-caret-position="384">
               <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
@@ -75,11 +51,31 @@
       <file leaf-file-name="user-main.component.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-main/user-main.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
+            <state relative-caret-position="408">
               <caret line="18" column="43" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.module.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.module.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.component.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="717">
+              <caret line="404" column="15" selection-start-line="404" selection-start-column="15" selection-end-line="404" selection-end-column="15" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -97,7 +93,7 @@
       <file leaf-file-name="user-register.component.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="762">
+            <state relative-caret-position="1920">
               <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
               <folding />
             </state>
@@ -107,17 +103,17 @@
       <file leaf-file-name="user-register.component.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.component.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
+            <state relative-caret-position="24">
               <caret line="1" column="1" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user-register.service.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="user-register.service.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
+            <state relative-caret-position="288">
               <caret line="17" column="43" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="43" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
@@ -129,7 +125,7 @@
       <file leaf-file-name="user-model.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/model/user-model.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
+            <state relative-caret-position="168">
               <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
               <folding />
             </state>
@@ -159,7 +155,6 @@
         <option value="$PROJECT_DIR$/angular2Study/src/app/app.routing.module.ts" />
         <option value="$PROJECT_DIR$/angular2Study/src/app/UseInputComponent/basicUserInputRoutes.ts" />
         <option value="$PROJECT_DIR$/angular2Study/src/app/UseInputComponent/basicUserInputRouter.ts" />
-        <option value="$PROJECT_DIR$/angular2Study/src/app/app.component.ts" />
         <option value="$PROJECT_DIR$/angular2Study/src/app/app.module.ts" />
         <option value="$PROJECT_DIR$/angular2Study/.angular-cli.json" />
         <option value="$PROJECT_DIR$/angular2Study/src/index.html" />
@@ -175,6 +170,7 @@
         <option value="$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.component.ts" />
         <option value="$PROJECT_DIR$/angular2Study/src/app/user/model/user-model.ts" />
         <option value="$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.service.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/app.component.ts" />
       </list>
     </option>
   </component>
@@ -216,6 +212,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -358,73 +355,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="user" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="user-register" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="newstudyofsuiyi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="newstudyofsuiyi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular2Study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="user" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="user-main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="newstudyofsuiyi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="newstudyofsuiyi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular2Study" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="animations" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -436,7 +372,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="C:/orange-firm-frontend" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
   </component>
@@ -513,17 +449,35 @@
       <workItem from="1496227967418" duration="1523000" />
       <workItem from="1496278228156" duration="7009000" />
       <workItem from="1496710232767" duration="1440000" />
+      <workItem from="1503052149045" duration="668000" />
+      <workItem from="1503278186377" duration="979000" />
+      <workItem from="1503298930421" duration="573000" />
+      <workItem from="1503314060014" duration="625000" />
+      <workItem from="1503363478684" duration="2273000" />
+      <workItem from="1503449898343" duration="1233000" />
+      <workItem from="1503489856451" duration="598000" />
+      <workItem from="1503493356435" duration="577000" />
+      <workItem from="1503537423085" duration="1228000" />
+      <workItem from="1503545703858" duration="606000" />
+      <workItem from="1503560141326" duration="596000" />
+      <workItem from="1503570119123" duration="4075000" />
+      <workItem from="1503579182491" duration="599000" />
+      <workItem from="1503581493207" duration="593000" />
+      <workItem from="1503623081919" duration="599000" />
+      <workItem from="1503648925872" duration="3989000" />
+      <workItem from="1503888638632" duration="596000" />
+      <workItem from="1503901189841" duration="596000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29392000" />
+    <option name="totallyTimeSpent" value="50395000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="1" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24969843" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24969843" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -682,20 +636,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="7" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.routes.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -707,7 +647,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
           <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -715,7 +654,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -723,7 +661,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="8" column="38" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -731,13 +668,63 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1920">
+          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="1" column="1" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/node_modules/@angular/core/src/metadata/lifecycle_hooks.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="63" column="4" selection-start-line="63" selection-start-column="4" selection-end-line="63" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/model/user-model.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="17" column="43" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-main/user-main.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
+        <state relative-caret-position="384">
           <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
         </state>
@@ -753,7 +740,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-main/user-main.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
+        <state relative-caret-position="408">
           <caret line="18" column="43" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
@@ -761,55 +748,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.component.html">
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.module.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="762">
-          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+        <state relative-caret-position="168">
+          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.component.scss">
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="1" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
+        <state relative-caret-position="717">
+          <caret line="404" column="15" selection-start-line="404" selection-start-column="15" selection-end-line="404" selection-end-column="15" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/angular2Study/node_modules/@angular/core/src/metadata/lifecycle_hooks.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="63" column="4" selection-start-line="63" selection-start-column="4" selection-end-line="63" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2755">
-          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/model/user-model.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" column="43" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
