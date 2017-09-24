@@ -1,0 +1,822 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0900b38a-35c2-40ff-9627-91218dc94c3c" name="Default" comment="" />
+    <ignored path="newstudyofsuiyi.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="newstudyofsuiyi" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="app.component.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="5" column="37" lean-forward="false" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.component.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.component.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.component.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="24">
+              <caret line="34" column="15" lean-forward="false" selection-start-line="34" selection-start-column="15" selection-end-line="34" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.routes.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.routes.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.component.spec.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.component.spec.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+              <folding>
+                <element signature="e#0#55#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.module.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.module.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="7" column="37" lean-forward="true" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="WARN_ABOUT_CRLF" value="false" />
+    <option name="WARN_ABOUT_DETACHED_HEAD" value="false" />
+    <option name="FORCE_PUSH_ALLOWED" value="false" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/angular2Study/src/app/app.router.module.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/UseInputComponent/basicRouter.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/angular-router/app.component.router/app.component.router.ts" />
+        <option value="$PROJECT_DIR$/深入理解javascript原型和闭包/1.一切都是对象.html" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/app.study_basic.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/app.routing.module.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/UseInputComponent/basicUserInputRoutes.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/UseInputComponent/basicUserInputRouter.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/src/index.html" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/app.component.scss" />
+        <option value="$PROJECT_DIR$/angular2Study/src/mock-data/user-register-mock.json" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/animations/fade-in.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/user/user-routes.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/user/user-main/user-main.component.html" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/user/user-main/user-main.component.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.component.html" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.component.scss" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.component.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/user/model/user-model.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.service.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/.angular-cli.json" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/app.component.ts" />
+        <option value="$PROJECT_DIR$/nodeStudy/node1.js" />
+        <option value="$PROJECT_DIR$/angular2Study/src/app/app.component.html" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/angular2Study/node_modules" />
+    <handled-path value="$PROJECT_DIR$/nodeStudy/node_modules" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="newstudyofsuiyi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="newstudyofsuiyi" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="newstudyofsuiyi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="newstudyofsuiyi" type="462c0819:PsiDirectoryNode" />
+              <item name="angular2NiceFish" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="newstudyofsuiyi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="newstudyofsuiyi" type="462c0819:PsiDirectoryNode" />
+              <item name="angular2Study" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="newstudyofsuiyi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="newstudyofsuiyi" type="462c0819:PsiDirectoryNode" />
+              <item name="angular2Study" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="newstudyofsuiyi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="newstudyofsuiyi" type="462c0819:PsiDirectoryNode" />
+              <item name="angular2Study" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="newstudyofsuiyi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="newstudyofsuiyi" type="462c0819:PsiDirectoryNode" />
+              <item name="nodejs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="newstudyofsuiyi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="newstudyofsuiyi" type="462c0819:PsiDirectoryNode" />
+              <item name="nodeJs4.0" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="newstudyofsuiyi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="newstudyofsuiyi" type="462c0819:PsiDirectoryNode" />
+              <item name="nodeJs4.0" type="462c0819:PsiDirectoryNode" />
+              <item name="1.块级作用域" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="options.lastSelected" value="configurable.group.appearance" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
+    <property name="editor.config.accepted" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter />
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+    </configuration>
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
+    <configuration default="true" type="DartTestRunConfigurationType" factoryName="Dart Test">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" value="" />
+      <option name="executablePath" />
+      <option name="filePath" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <envs />
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0900b38a-35c2-40ff-9627-91218dc94c3c" name="Default" comment="" />
+      <created>1495154645977</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1495154645977</updated>
+      <workItem from="1495154649046" duration="2647000" />
+      <workItem from="1495777426007" duration="1971000" />
+      <workItem from="1495845631023" duration="3276000" />
+      <workItem from="1496192007069" duration="11496000" />
+      <workItem from="1496227157962" duration="30000" />
+      <workItem from="1496227967418" duration="1523000" />
+      <workItem from="1496278228156" duration="7009000" />
+      <workItem from="1496710232767" duration="1440000" />
+      <workItem from="1503052149045" duration="668000" />
+      <workItem from="1503278186377" duration="979000" />
+      <workItem from="1503298930421" duration="573000" />
+      <workItem from="1503314060014" duration="625000" />
+      <workItem from="1503363478684" duration="2273000" />
+      <workItem from="1503449898343" duration="1233000" />
+      <workItem from="1503489856451" duration="598000" />
+      <workItem from="1503493356435" duration="577000" />
+      <workItem from="1503537423085" duration="1228000" />
+      <workItem from="1503545703858" duration="606000" />
+      <workItem from="1503560141326" duration="596000" />
+      <workItem from="1503570119123" duration="4075000" />
+      <workItem from="1503579182491" duration="599000" />
+      <workItem from="1503581493207" duration="593000" />
+      <workItem from="1503623081919" duration="599000" />
+      <workItem from="1503648925872" duration="3989000" />
+      <workItem from="1503888638632" duration="596000" />
+      <workItem from="1503901189841" duration="596000" />
+      <workItem from="1505105012172" duration="1571000" />
+      <workItem from="1505121746270" duration="1035000" />
+      <workItem from="1505122864308" duration="1463000" />
+      <workItem from="1505803614757" duration="1238000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="55702000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296355" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TypeScript Compiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_karma@1.4.1@karma/config.tpl.js" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/ng/index.js" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/ng/index.d.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/ng/index.js.map" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/enum/index.js" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/enum/index.d.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/enum/index.js.map" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/pipe/index.js" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/pipe/index.d.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/pipe/index.js.map" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/class/index.js" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/class/index.d.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/class/index.js.map" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/guard/index.js" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/guard/index.d.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/guard/index.js.map" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/module/index.js" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/module/index.d.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/module/index.js.map" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/service/index.js" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/service/index.d.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/service/index.js.map" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/component/index.js" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/component/index.d.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/component/index.js.map" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/directive/index.js" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/directive/index.d.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/directive/index.js.map" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/interface/index.js" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/interface/index.d.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_@angular_cli@1.0.1@@angular/cli/blueprints/interface/index.js.map" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_reflect-metadata@0.1.10@reflect-metadata/Reflect.js" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_reflect-metadata@0.1.10@reflect-metadata/Reflect.d.ts" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_reflect-metadata@0.1.10@reflect-metadata/Reflect.js.map" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_reflect-metadata@0.1.10@reflect-metadata/test/reflect-definemetadata.js" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_reflect-metadata@0.1.10@reflect-metadata/test/reflect-definemetadata.js.map" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_reflect-metadata@0.1.10@reflect-metadata/test/reflect-getmetadatakeys.js" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_reflect-metadata@0.1.10@reflect-metadata/test/reflect-getmetadatakeys.js.map" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_reflect-metadata@0.1.10@reflect-metadata/test/reflect-metadata.js" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_reflect-metadata@0.1.10@reflect-metadata/test/reflect-metadata.js.map" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_reflect-metadata@0.1.10@reflect-metadata/test/reflect-getmetadata.js" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_reflect-metadata@0.1.10@reflect-metadata/test/reflect-getmetadata.js.map" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_reflect-metadata@0.1.10@reflect-metadata/test/reflect-getownmetadata.js" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_reflect-metadata@0.1.10@reflect-metadata/test/reflect-getownmetadata.js.map" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_reflect-metadata@0.1.10@reflect-metadata/test/reflect-getownmetadatakeys.js" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_reflect-metadata@0.1.10@reflect-metadata/test/reflect-getownmetadatakeys.js.map" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_reflect-metadata@0.1.10@reflect-metadata/test/reflect-hasownmetadata.js" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_reflect-metadata@0.1.10@reflect-metadata/test/reflect-hasownmetadata.js.map" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_reflect-metadata@0.1.10@reflect-metadata/test/reflect-decorate.js" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_reflect-metadata@0.1.10@reflect-metadata/test/reflect-decorate.js.map" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_reflect-metadata@0.1.10@reflect-metadata/test/reflect-deletemetadata.js" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_reflect-metadata@0.1.10@reflect-metadata/test/reflect-deletemetadata.js.map" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_reflect-metadata@0.1.10@reflect-metadata/test/reflect-hasmetadata.js" />
+        <option value="$PROJECT_DIR$/angular2Study/node_modules/_reflect-metadata@0.1.10@reflect-metadata/test/reflect-hasmetadata.js.map" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/model/user-model.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="7" column="28" lean-forward="false" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="12" column="24" lean-forward="false" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-main/user-main.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-main/user-main.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="18" column="43" lean-forward="false" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="7" column="16" lean-forward="false" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-main/user-main.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="1" column="1" lean-forward="false" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="17" column="43" lean-forward="false" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/model/user-model.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="7" column="28" lean-forward="false" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="9" column="21" lean-forward="false" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="15" column="26" lean-forward="false" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="16" column="9" lean-forward="false" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/karma.conf.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/tslint.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/tsconfig.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/typings.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/mock-data/user-register-mock.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="5" column="1" lean-forward="false" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/animations/fade-in.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="8" column="38" lean-forward="false" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-routes.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="1" column="1" lean-forward="false" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="12" column="24" lean-forward="false" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/model/user-model.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="7" column="28" lean-forward="false" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-main/user-main.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-main/user-main.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="18" column="43" lean-forward="false" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2NiceFish/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2NiceFish/.angular-cli.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="21" column="25" lean-forward="false" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-main/user-main.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/user/user-register/user-register.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="17" column="43" lean-forward="false" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/.angular-cli.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="24" column="18" lean-forward="false" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="9" column="67" lean-forward="false" selection-start-line="9" selection-start-column="67" selection-end-line="9" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodejs框架-express/1.基础知识/1.认识Express.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodejs框架-express/1.基础知识/2.创建应用.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodejs框架-express/1.基础知识/3.get请求.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="27" column="47" lean-forward="false" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodejs框架-express/1.基础知识/4.中间件.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodejs框架-express/1.基础知识/6.use基本用法1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodejs框架-express/1.基础知识/5.all方法.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodeStudy/node1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="533">
+          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding>
+            <marker date="1505804628174" expanded="true" signature="120:240" ph="{...}" />
+            <marker date="1505804628174" expanded="true" signature="150:200" ph="{&quot;Content-Type&quot;: &quot;text/plain&quot;...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.component.spec.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="7" column="37" lean-forward="true" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="34" column="15" lean-forward="false" selection-start-line="34" selection-start-column="15" selection-end-line="34" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.routes.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="5" column="37" lean-forward="false" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/angular2Study/src/app/app.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
