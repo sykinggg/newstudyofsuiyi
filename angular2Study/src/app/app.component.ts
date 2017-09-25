@@ -403,3 +403,50 @@ export class AppComponent {
     // }
     //重复定义了多次函数 reverse，前几次都是函数定义
     //最后一次是函数实现
+
+    /*
+    * 类型断言
+    * 可以用来绕过编译器的类型推断
+    * */
+
+    //function getLength(something: string | number): number {
+    //    return something.length;
+    //}
+
+    //    D:/newstudyofsuiyi/angular2Study/src/app/app.component.ts (413,26): Property 'length' does not exist on type 'string | number'.
+    //Property 'length' does not exist on type 'number'.
+
+    function getLength(spmething: string | number): number {
+        if((<string>something).length) {
+            return (<string>something).length;
+        } else {
+            return something.toString().length;
+        }
+    }
+    console.log('————类型断言————');
+    console.log(getLength(121));
+    //1
+    console.log(getLength('121'));
+    //1
+
+    /*
+    * 声明文件
+    * 当使用第三方库的时候，需要引用声明文件
+    * */
+
+    //$('.foo');
+    //newstudyofsuiyi/angular2Study/src/app/app.component.ts (437,5): Cannot find name '$'.
+
+    // 需要使用 declare 关键字来定义它的类型，帮助 TypeScript 判断我们传入的参数类型
+    //declare var $: (string) => any;
+    //$('.foo');
+    //Uncaught ReferenceError: $ is not defined
+
+
+    //declare var jQuery: (string) => any;
+    //jQuery('.foo');
+
+    /*
+    * 类型别名
+    * 类型别名用来给一个类型起个新名字类型别名用来给一个类型起个新名字类型别名用来给一个类型起个新名字
+    * */
