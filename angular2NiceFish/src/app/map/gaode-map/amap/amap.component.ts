@@ -10,7 +10,13 @@ export class AmapComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
-        // let map = new AMap.Map('gaodemap-container');
+        console.log(AMap);
+        let map = new AMap.Map('gaodemap-container', {
+            resizeEnable: true,
+            zoom:11,
+            center: [116.397428, 39.90923]
+        });
+
         // map.plugin('AMap.Geolocation', () => {
         //     let geolocation = new AMap.Geolocation({
         //         enableHighAccuracy: true,//是否使用高精度定位，默认:true
