@@ -1,6 +1,21 @@
-<p>
-  home works!
-</p>
-<a routerLink="map">map</a>
-<a routerLink="ui">ui</a>
+<div class="container-fluid">
+    <div class="row">
+        <div class="left-nav col-1 text-center pad-l-0 pad-r-0 relative">
+            <p class="pad-t-1em pad-b-1em b-g-c-343a40 mar-b-0">
+                <a class="f-c-fff" routerLink="map">map</a>
+            </p>
+            <p class="pad-t-1em pad-b-1em b-g-c-343a40 mar-b-0">
+                <a class="f-c-fff" routerLink="ui">ui</a>
+            </p>
+            <p class="pad-t-1em pad-b-1em b-g-c-343a40 mar-b-0">
+                <a class="f-c-fff" routerLink="directive">directive-学习</a>
+            </p>
+        </div>
+        <div class="col pad-l-0 pad-r-0"></div>
+    </div>
+</div>
 <router-outlet></router-outlet>
+<h2>angular2 自定义指令</h2>
+<h3 appMyFirstDirective [inputBGC]="'red'">hello appMyFirstDirective</h3>
+<h3 *appCustomStructureInstruction="false">hello appCustomStructureInstruction</h3>
+<h2>angular2 内置指令</h2>

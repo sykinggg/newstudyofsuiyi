@@ -13,7 +13,9 @@ import { AboutComponent } from './about/about.component';
 import { appRoutes } from './app.routes';
 import { MapComponent } from './map/map.component';
 import { UiComponent } from './ui/ui.component';
-import { MyFirstDirectiveDirective } from './my-first-directive.directive';
+import { MyFirstDirectiveDirective } from './directive/my-first-directive/my-first-directive.directive';
+import { CustomStructureInstructionDirective } from './directive/custom-structure/custom-structure-instruction.directive';
+import { DirectiveExplainComponent } from './directive-explain/directive-explain.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { MyFirstDirectiveDirective } from './my-first-directive.directive';
     AboutComponent,
     MapComponent,
     UiComponent,
-    MyFirstDirectiveDirective
+    MyFirstDirectiveDirective,
+    CustomStructureInstructionDirective,
+    DirectiveExplainComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { MapComponent } from '../map/map.component';
 import { UiComponent } from '../ui/ui.component';
+import { DirectiveExplainComponent } from '../directive-explain/directive-explain.component';
 
 export const homeRoutes = [
     {
@@ -20,6 +21,10 @@ export const homeRoutes = [
             {
                 path: 'ui',
                 component: UiComponent
+            },
+            {
+                path: 'directive',
+                component: DirectiveExplainComponent
             }
         ]
     }

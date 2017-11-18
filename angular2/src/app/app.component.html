@@ -1,14 +1,25 @@
 <header>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <a class="navbar-brand" routerLink="home">首页</a>
-    <div class="collapse navbar-collapse">
+    <a class="pad-l-2em navbar-brand" routerLink="home">首页</a>
+    <div class="pad-l-5em collapse navbar-collapse">
       <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-              <a class="f-c-fff pad-l-5em pad-r-5em" routerLink="home/map">home</a>
+          <li class="nav-item dropdown">
+              <a class="f-c-fff pad-l-05em pad-r-05em" routerLink="home">home</a>
           </li>
-          <li class="nav-item">
-              <a class="f-c-fff pad-l-5em pad-r-5em" routerLink="about">about</a>
+          <li class="nav-item dropdown">
+              <a class="f-c-fff pad-l-05em pad-r-05em" routerLink="about">about</a>
           </li>
+          <!-- <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item">Action</a>
+              <a class="dropdown-item">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item">Something else here</a>
+            </div>
+          </li> -->
       </ul>
     </div>
   </nav>
@@ -17,6 +28,6 @@
   <router-outlet></router-outlet>
 </main>
 <!-- 底部区域 -->
-<footer class="text-muted">
+<footer class="pad-t-1em pad-b-1em text-muted b-g-c-111">
   <div class="container">Powered by angular2</div>
 </footer>
