@@ -2,13 +2,16 @@
     <div class="row">
         <div class="left-nav col-1 text-center pad-l-0 pad-r-0 relative">
             <p class="pad-t-1em pad-b-1em b-g-c-343a40 mar-b-0">
-                <a class="f-c-fff" routerLink="map">map</a>
+                <a [ngClass]="{true: 'f-c-999', false: 'f-c-fff'}[acxtiveRouterName.indexOf('map') > 0]"
+                   routerLink="map">map</a>
             </p>
             <p class="pad-t-1em pad-b-1em b-g-c-343a40 mar-b-0">
-                <a class="f-c-fff" routerLink="ui">ui</a>
+                <a [ngClass]="{true: 'f-c-999', false: 'f-c-fff'}[acxtiveRouterName.indexOf('ui') > 0]"
+                   routerLink="ui">ui</a>
             </p>
             <p class="pad-t-1em pad-b-1em b-g-c-343a40 mar-b-0">
-                <a class="f-c-fff" routerLink="directive">directive-学习</a>
+                <a [ngClass]="{true: 'f-c-999', false: 'f-c-fff'}[acxtiveRouterName.indexOf('directive') > 0]"
+                   routerLink="directive">directive-学习</a>
             </p>
         </div>
         <div class="col pad-l-0 pad-r-0"></div>
