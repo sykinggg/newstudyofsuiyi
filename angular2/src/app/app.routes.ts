@@ -1,0 +1,32 @@
+import { RouterModule, Routes } from '@angular/router';
+
+// import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
+import { homeRoutes } from './home/home.routes';
+import { UiStudyComponent } from './ui-study/ui-study.component';
+import { MapStudyComponent } from './map-study/map-study.component';
+
+export const appRoutes:Routes = [
+    // {
+    //     path: '',
+    //     redirectTo: 'about',
+    //     pathMatch: 'full'
+    // },
+    {
+        path: 'home',
+        // component: HomeComponent
+        children: homeRoutes
+    },
+    {
+        path: 'about',
+        component: AboutComponent
+    },
+    {
+        path: 'mapStudy',
+        component: MapStudyComponent
+    },
+    {
+        path: 'uiStudy',
+        component: UiStudyComponent
+    }
+]
