@@ -10,6 +10,13 @@
                  <!--home-->
               <!--</a>-->
           <!--</li>-->
+          <li class="nav-item dropdown" [ngClass]="{'b-g-c-fff': acxtiveRouterName.indexOf('study') > 0}">
+            <a class="pad-l-05em pad-r-05em"
+               [ngClass]="{true: 'f-c-999', false: 'f-c-fff'}[acxtiveRouterName.indexOf('study') > 0]"
+               routerLink="study">
+              study
+            </a>
+          </li>
           <li class="nav-item dropdown" [ngClass]="{'b-g-c-fff': acxtiveRouterName.indexOf('about') > 0}">
               <a class="pad-l-05em pad-r-05em"
                  [ngClass]="{true: 'f-c-999', false: 'f-c-fff'}[acxtiveRouterName.indexOf('about') > 0]"

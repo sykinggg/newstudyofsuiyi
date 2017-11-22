@@ -21,6 +21,8 @@ import { CustomStructureInstructionDirective } from './directive/custom-structur
 import { DirectiveExplainComponent } from './directive-explain/directive-explain.component';
 import { MapStudyComponent } from './map-study/map-study.component';
 import { UiStudyComponent } from './ui-study/ui-study.component';
+import { StudyComponent } from './study/study.component';
+import { RouterComponent } from './study/router/router.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { UiStudyComponent } from './ui-study/ui-study.component';
     CustomStructureInstructionDirective,
     DirectiveExplainComponent,
     MapStudyComponent,
-    UiStudyComponent
+    UiStudyComponent,
+    StudyComponent,
+    RouterComponent
   ],
   imports: [
     BrowserModule,
