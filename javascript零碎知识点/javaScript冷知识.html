@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JavaScript 冷知识</title>
+</head>
+<body>
+    <h1>浏览器的可编辑</h1>
+    <p>HTML5中新加的contenteditable属性</p>
+    
+    <p>document.body.contentEditable='true';</p>
+
+    <h1>利用a标签自动解析URL</h1>
+
+    <pre>
+        function parseURL(url) {
+            var a =  document.createElement('a');
+            a.href = url;
+            return {
+                source: url,
+                protocol: a.protocol.replace(':',''),
+                host: a.hostname,
+                port: a.port,
+                query: a.search,
+                params: (function(){
+                    var ret = {},
+                        seg = a.search.replace(/^\?/,'').split('&'),
+                        len = seg.length, i = 0, s;
+                    for (;i<len;i++) {
+                        if (!seg[i]) { continue; }
+                        s = seg[i].split('=');
+                        ret[s[0]] = s[1];
+                    }
+                    return ret;
+                })(),
+                file: (a.pathname.match(/\/([^\/?#]+)$/i) || [,''])[1],
+                hash: a.hash.replace('#',''),
+                path: a.pathname.replace(/^([^\/])/,'/$1'),
+                relative: (a.href.match(/tps?:\/\/[^\/]+(.+)/) || [,''])[1],
+                segments: a.pathname.replace(/^\//,'').split('/')
+            };
+        }
+    </pre>
+
+
+    <h1>页面拥有ID的元素会创建全局变量</h1>
+
+
+    <h1>加载CDN文件时，可以省掉HTTP标识</h1>
+
+    <h1>CSS中也可以做简单运算</h1>
+    <pre>
+        .container{
+            background-position: calc(100% - 50px) calc(100% - 20px);
+        }
+    </pre>
+
+    <h1>生成随机字符串</h1>
+    <pre>
+        function generateRandomAlphaNum(len) {
+            var rdmString = "";
+            for (; rdmString.length < len; rdmString += Math.random().toString(36).substr(2));
+            return rdmString.substr(0, len);
+        }
+    </pre>
+
+    <h1>JavaScript中整型的依靠位运算符</h1>
+    <p>!!将一个值方便快速转化为布尔值 !!window===true</p>
+
+    <h1>禁止别人以iframe加载你的页面</h1>
+    <pre>
+        if (window.location != window.parent.location) window.parent.location = window.location;
+    </pre>
+</body>
+</html>>
