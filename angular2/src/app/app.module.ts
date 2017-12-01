@@ -23,6 +23,7 @@ import { MapStudyComponent } from './map-study/map-study.component';
 import { UiStudyComponent } from './ui-study/ui-study.component';
 import { StudyComponent } from './study/study.component';
 import { RouterComponent } from './study/router/router.component';
+import { DependencyInjectionComponent } from './study/dependency-injection/dependency-injection.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { RouterComponent } from './study/router/router.component';
     MapStudyComponent,
     UiStudyComponent,
     StudyComponent,
-    RouterComponent
+    RouterComponent,
+    DependencyInjectionComponent
   ],
   imports: [
     BrowserModule,
