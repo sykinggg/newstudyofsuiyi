@@ -24,6 +24,7 @@ import { UiStudyComponent } from './ui-study/ui-study.component';
 import { StudyComponent } from './study/study.component';
 import { RouterComponent } from './study/router/router.component';
 import { DependencyInjectionComponent } from './study/dependency-injection/dependency-injection.component';
+import { TemplateDataBindingComponent } from './study/template-data-binding/template-data-binding.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { DependencyInjectionComponent } from './study/dependency-injection/depen
     UiStudyComponent,
     StudyComponent,
     RouterComponent,
-    DependencyInjectionComponent
+    DependencyInjectionComponent,
+    TemplateDataBindingComponent
   ],
   imports: [
     BrowserModule,

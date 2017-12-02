@@ -1,10 +1,19 @@
 <div class="container">
     <ul class="nav nav-tabs mar-t-20">
         <li class="nav-item cursor-pointer">
-            <a routerLinkActive="active" [routerLink]="['/study/router']" class="nav-link">router</a>
+            <a routerLinkActive="active" [routerLink]="['/study/router']" class="nav-link">
+                路由
+            </a>
         </li>
         <li class="nav-item cursor-pointer">
-            <a routerLinkActive="active" [routerLink]="['/study/dependencyInject']" class="nav-link">dependencyInject</a>
+            <a routerLinkActive="active" [routerLink]="['/study/dependencyInject']" class="nav-link">
+                依赖注入
+            </a>
+        </li>
+        <li class="nav-item cursor-pointer">
+            <a routerLinkActive="active" [routerLink]="['/study/templateDataBind']" class="nav-link">
+                模版|数据
+            </a>
         </li>
     </ul>
     <router-outlet></router-outlet>

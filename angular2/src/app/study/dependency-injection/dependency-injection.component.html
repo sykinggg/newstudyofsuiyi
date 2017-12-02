@@ -48,25 +48,25 @@
 
 	<dd>@Component providers</dd>
 	<pre>
-		import { Component } from '@angular/core';
-		import { HeroService } from './hero.service';
+		import &#123; Component &#125; from '@angular/core';
+		import &#123; HeroService &#125; from './hero.service';
 
-		@Component({
+		@Component(&#123;
 		selector: 'app-heroes',
 		providers: [ HeroService ],
 		template: `
 			<h2>Heroes</h2>
-			<app-hero-list></app-hero-list>
+			&#60;app-hero-list&#62;&#60;/app-hero-list&#62;
 		`
-		})
-		export class HeroesComponent { }
+		&#125;)
+		export class HeroesComponent &#123; &#125;
 	</pre>
 
 	<dd>@NgModule providers</dd>
 	<pre>
 		providers: [
 			UserService,
-			{ provide: APP_CONFIG, useValue: HERO_DI_CONFIG }
+			&#123; provide: APP_CONFIG, useValue: HERO_DI_CONFIG &#125;
 		],
 	</pre>
 
@@ -105,6 +105,10 @@
 		组件的注入器是其父组件的注入器的子组件，并且是其父组件的注入器的后代，等等一直回到应用程序的根注入器。
 	</dd>
 
+	<h4>When the service needs a service</h4>
+	<dt>解决方法</dt>
+	<dd>@Injectable()</dd>
+
 	<h4>@Injectable()</h4>
 	<dt>描述</dt>
 	<dd>@Injectable（）装饰器标识可能需要注入依赖的服务类ye</dd>
@@ -128,6 +132,155 @@
 	<dd>实际上是使用具有两个属性的提供者对象字面值的提供者注册的简写表达式</dd>
 	<pre>
 		providers: [Logger]
-		[{ provide: Logger, useClass: Logger }]
+		[&#123; provide: Logger, useClass: Logger &#125;]
 	</pre>
+	<dt>替代提供者</dt>
+	<dd>
+		[&#123; provide: Logger, useClass: BetterLogger &#125;]
+	</dd>
+
+	<h4>Aliased(别名) class providers</h4>
+	<dt>
+		[&#123; provide: OldLogger, useClass: NewLogger&#125;]
+	</dt>
+	<dd>并不是别名而会实例化俩个class, 分别是NewLogger以及作为OldLogger名称的NewLogger</dd>
+
+	<dt>
+		[&#123; provide: OldLogger, useExisting: NewLogger&#125;]
+	</dt>
+	<dd>仅以别名的方式实例化一个NewLogger作为OldLogger的providers</dd>
+
+	<h4>Value providers</h4>
+	<dt>
+		[&#123; provide: Logger, useValue: silentLogger &#125;]
+	</dt>
+	<dd>
+		初始化注入器的值（我猜的）
+	</dd>
+
+	<h4>Factory providers</h4>
+	<dt>描述</dt>
+	<dd>
+		需要动态地创建依赖的值
+		也许信息在浏览器会话过程中反复改变
+	</dd>
+	<dd>
+		假设注射服务没有独立访问这些信息的来源
+	</dd>
+	<dd>
+		处理服务与服务之间依赖的干涉和影响
+	</dd>
+
+	<pre>
+		let heroServiceFactory = (logger: Logger, userService: UserService) => &#123;
+			return new HeroService(logger, userService.user.isAuthorized);
+		&#125;
+		export let heroServiceProvider =
+		&#123; 	provide: HeroService,
+		  	useFactory: heroServiceFactory,
+		  	deps: [Logger, UserService]
+		&#125;;
+	</pre>
+	<dt>描述</dt>
+	<dd>useFactory字段告诉Angular提供者是一个工厂函数，其实现是heroServiceFactory</dd>
+	<dd>deps属性是提供者令牌的数组。</dd>
+	<dd>
+		Logger和UserService类用作其自己的类提供程序的标记。
+		将相应的服务注入匹配的工厂功能参数
+	</dd>
+
+	<h4>Dependency injection tokens</h4>
+	<dt>描述</dt>
+	<dd>
+		当您使用注入器注册提供者时，您将该提供者与依赖注入令牌相关联。
+	</dd>
+	<dd>注入器维护一个内部的令牌提供者映射，当它被要求依赖的时候它会引用它</dd>
+	<dd>令牌是地图的关键</dd>
+
+	<dt>heroService: HeroService;</dt>
+	<dd>通过提供HeroService类型作为令牌直接从注入器获得HeroService</dd>
+
+	<dt>constructor(heroService: HeroService)</dt>
+	<dd>使用HeroService类类型定义构造函数参数时，Angular知道注入与该HeroService类令牌关联的服务</dd>
+
+	<h4>Non-class dependencies</h4>
+	<dt>描述</dt>
+	<dd>有时要注入的是一个字符串，函数或对象</dd>
+	<pre>
+		export const HERO_DI_CONFIG: AppConfig = &#123;
+			apiEndpoint: 'api.heroes.com',
+			title: 'Dependency Injection'
+		&#125;;
+	</pre>
+	<dd>TypeScript接口不是有效的令牌</dd>
+	<dt>
+		[&#123; provide: AppConfig, useValue: HERO_DI_CONFIG &#125;]
+	</dt>
+	<dd>不能使用接口作为提供者令牌</dd>
+	<dt>
+		constructor(private config: AppConfig)&#123; &#125;
+	</dt>
+	<dd>不能使用接口作为参数类型注入</dd>
+	<dd>习惯于强类型语言中的依赖注入，其中接口是首选的依赖关系查找键</dd>
+	<dd>
+		JavaScript没有接口。
+		TypeScript接口从生成的JavaScript中消失
+	</dd>
+
+	<h4>Injection Token</h4>
+	<dt>描述</dt>
+	<dd>为非类依赖关系选择提供者标记的一个解决方案是定义和使用一个InjectionToken</dd>
+	<dt>实例</dt>
+	<pre>
+		import &#123; InjectionToken &#125; from '@angular/core';
+
+		export const APP_CONFIG = new InjectionToken&#60;AppConfig&#62;('app.config');
+	</pre>
+	<dt>描述</dt>
+	<dd>
+		类型参数（可选）将依赖类型传递给开发人员和工具
+	</dd>
+	<dd>
+		使用InjectionToken对象注册依赖项提供程序
+	</dd>
+	<dt>使用非class的依赖注入</dt>
+	<pre>
+		providers: [&#123; provide: APP_CONFIG, useValue: HERO_DI_CONFIG &#125;]
+	</pre>
+	<dd>可以通过@Inject装饰器将配置对象注入到任何需要它的构造器中</dd>
+	<pre>
+		constructor(@Inject(APP_CONFIG) config: AppConfig) &#123;
+			this.title = config.title;
+		&#125;
+	</pre>
+	<dt>描述</dt>
+	<dd>尽管AppConfig接口在依赖注入中没有任何作用，但它支持在类中输入配置对象</dd>
+	<dd>可以在像AppModule这样的ngModule中提供并注入配置对象</dd>
+	<pre>
+		providers: [
+			UserService,
+			&#123; provide: APP_CONFIG, useValue: HERO_DI_CONFIG &#125;
+		]
+	</pre>
+
+	<h4>Optional(可选) dependencies</h4>
+	<dt>描述</dt>
+	<dd>可以通过使用@Optional（）注释构造函数参数来告诉Angular依赖关系是可选的</dd>
+	<pre>
+		import &#123; Optional &#125; from '@angular/core';
+
+		constructor(@Optional() private logger: Logger) &#123;
+			if (this.logger) &#123;
+			  this.logger.log(some_message);
+			&#125;
+		&#125;
+	</pre>
+	<dd>当使用@Optional（）时，代码必须为空值准备</dd>
+
+	<h3>总结</h3>
+	<h4>Appendix: Working with injectors directly</h4>
+	<p>官网的这个例子要经常看</p>
+	<a href="https://angular.io/guide/dependency-injection#injectable">
+		angular 依赖注入的层级例子
+	</a>
 </div>
