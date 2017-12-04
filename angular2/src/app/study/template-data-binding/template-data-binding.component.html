@@ -1,3 +1,316 @@
-<p>
-  template-data-binding works!
-</p>
+<div class="container-fluid">
+    <h2>Template Syntax</h2>
+
+    <h3>HTML in templates</h3>
+
+    <dt>描述</dt>
+    <dd>HTML是Angular模板的语言</dd>
+    
+    <dt>注意</dt>
+    <!-- <dd>&#60;‘script’&#62;元素是一个值得注意的例外</dd> -->
+
+    <!-- <h4>‘Interpolation’ &#40; &#123;&#123;...&#125;&#125; &#41;</h4> -->
+    <dt>描述</dt>
+    <!-- <pre>
+      &#60;p>My current hero is &#123;&#123;currentHero.name&#125;&#125;&#60;/p>
+      <h3>
+        &#123;&#123;title&#125;&#125;
+        <img src="&#123;&#123;heroImageUrl&#125;&#125;" style="height:30px">
+      </h3>
+    </pre> -->
+    <dd>
+      可以使用插值将计算的字符串编织到HTML元素标记之间和属性赋值之间的文本中
+    </dd>
+    <dt>实现原理</dt>
+    <dd>大括号之间的文本通常是组件属性的名称</dd>
+    <dd>Angular使用相应组件属性的字符串值替换该名称</dd>
+    <dd>
+      大括号之间的文本是Angular首先评估并转换为字符串的模板表达式
+    </dd>
+    <pre>
+      <!-- The sum of 1 + 1 is not &#123;&#123;1 + 1 + 'getVal'&#40;&#41;&#125;&#125; -->
+    </pre>
+    <dd>
+        Angular评估双花括号中的所有表达式，将表达式结果转换为字符串，
+      并将它们与相邻的文字字符串进行链接
+    </dd>
+    <dd>
+        最后，将这个复合插值结果赋值给一个元素或指令属性
+    </dd>
+    <dd>
+        插值是Angular转换成属性绑定的特殊语法
+    </dd>
+
+    <h4>Template expressions&#40;表达式&#41;</h4>
+    <dt>禁止一些有其他作用的运算符在绑值表达式中</dt>
+    <dd>assignments &#40;=, +=, -=, ...&#41;</dd>
+    <dd>new</dd>
+    <dd>chaining expressions with &#40;链接表达式&#41;：or</dd>
+    <dd>增量和减量运算符（++ 和 --）</dd>
+    <dd>no support for the bitwise operators&#40;不支持按位运算符&#41; | and &</dd>
+    <dd>new template expression operators&#40;新的模板表达式运算符等&#41;, such as |. ?. and !.</dd>
+
+    <dt>上下文的概念</dt>
+    <pre>
+      <div *ngFor="let hero of heroes">&#123;&#123;hero.name&#125;&#125;</div>
+      <input #heroInput> &#123;&#123;heroInput.value&#125;&#125;
+    </pre>
+    <dt>描述</dt>
+    <dd>
+        表达式中术语的上下文是模板变量，指令的上下文对象（如果有的话）和组件的成员的混合
+    </dd>
+    <dd>
+        如果引用属于多个这些名称空间的名称，则模板变量名称优先，
+        后跟指令上下文中的名称，最后是组件的成员名称
+    </dd>
+    <dd>
+      <!-- &#123;&#123;hero.name&#125;&#125;中的hero是指模板输入变量，而不是组件的属性 -->
+    </dd>
+
+    <h4>Expression guidelines &#40;表达准则&#41;</h4>
+
+    <dt>No visible side effects</dt>
+    <dd>模板表达式不应该改变目标属性的值以外的任何应用程序状态</dd>
+    <dd>这个规则对Angular的“单向数据流”策略是必不可少的</dd>
+
+    <dt>Quick execution&#40;快速执行&#41;</dt>
+    <dd>Angular在每个更改检测周期后执行模板表达式</dd>
+    <dd>更改检测周期由许多异步活动（如promise解析，http结果，计时器事件，按键和鼠标移动）触发</dd>
+    <dd>表达式应该很快完成，否则用户体验可能会拖慢，特别是在较慢的设备上</dd>
+    <dt>解决方法</dt>
+    <dd>当他们的计算成本很高时，考虑缓存值</dd>
+
+    <dt>Simplicity</dt>
+    <dd>虽然可以编写相当复杂的模板表达式，但是应该避免使用它们</dd>
+    <dd>属性名称或方法调用应该是标准。偶尔的布尔否定（！）是可以的</dd>
+    <dd>否则，将应用程序和业务逻辑限制在组件本身，在那里更容易开发和测试</dd>
+
+    <h3>Template statements</h3>
+    <dt>事件绑定</dt>
+    <pre>
+      &#60;button &#40;click&#41;="deleteHero&#40;&#41;">Delete hero&#60;/button>
+    </pre>
+    <dd>模板上下文名称优先于组件上下文名称</dd>
+
+    <h3>Binding syntax: An overview</h3>
+    <dt>描述</dt>
+    <dd>数据绑定是一种协调用户看到的应用程序数据值的机制</dd>
+    <dd>
+        虽然可以将值从HTML推入并拉出，
+        但如果将这些杂事转换为绑定框架，则应用程序更易于编写，读取和维护
+    </dd>
+    <dd>
+        只需声明绑定源和目标HTML元素之间的绑定，然后让框架完成工作。
+        Angular提供了多种数据绑定
+    </dd>
+    <dd>
+        绑定类型可以按照数据流的方向分为三类：\
+        从源到视图，
+        从视图到源，
+        以及双向顺序：视图到源到视图
+    </dd>
+    <table class="table table-hover table-bordered">
+        <tr>
+          <td>Data direction&#40;方向&#41;</td>
+          <td>Syntax&#40;句法&#41;</td>
+          <td>Type</td>
+        </tr>
+        <tr>
+          <td>
+              <p>One-way</p>
+              <p>from data source to view target</p>
+          </td>
+          <td>
+              <pre>
+                  &#123;&#123;expression&#125;&#125;
+                  &#91;target&#93;="expression"
+                  bind-target="expression"
+              </pre>
+          </td>
+          <td>
+            <p>Interpolation&#40;插值&#41;</p>
+            <p>Property</p>
+            <p>Attribute</p>
+            <p>Class</p>
+            <p>style</p>
+          </td>
+        </tr>
+        <tr>
+            <td>
+                <p>One-way</p>
+                <p>from view target to data source</p>
+            </td>
+            <td>
+                <pre>
+                    &#40;target&#41;="statement"
+                    on-target="statement"
+                </pre>
+            </td>
+            <td>
+                Event
+            </td>
+            
+        </tr>
+        <tr>
+            <td>Two-way</td>
+            <td>
+                <pre>
+                    &#91;&#40;target&#41;&#93;="expression"
+                    bindon-target="expression"
+                </pre>
+            </td>
+            <td>
+                Two-way
+            </td>
+        </tr>
+    </table>
+    <dt>注意：html属性和dom属性</dt>
+
+    <h3>HTML attribute vs. DOM property</h3>
+    <dt>描述</dt>
+    <dd>
+        属性由HTML定义。
+        属性由DOM（文档对象模型）定义
+    </dd>
+    <ul>
+        <li>
+            一些HTML属性映射到属性1：1。
+            id是一个例子
+        </li>
+        <li>
+            一些HTML属性没有相应的属性。
+            colspan就是一个例子
+        </li>
+        <li>
+            一些DOM属性没有相应的属性。
+            textContent就是一个例子
+        </li>
+        <li>许多HTML属性似乎映射到属性</li>
+    </ul>
+
+    <dt>html 与 dom 的渲染关系</dt>
+    <dd>html属性初始化DOM属性，然后完成</dd>
+    <dd>页面展示的dom属性是根据页面更改而更改但不会更改到html属性</dd>
+    <dd>但是如果绑定的是html的属性时则会根据html属性的变化对dom产生影响</dd>
+
+    <h4>Binding targets</h4>
+    <table class="table table-hover table-bordered">
+        <tr>
+            <td>type</td>
+            <td>target&#40;目标&#41;</td>
+            <td>Examples</td>
+        </tr>
+        <tr>
+            <td>Property</td>
+            <td>
+                <p>Element property</p>
+                <p>Component property</p>
+                <p>Directive property</p>
+            </td>
+            <td>
+                <pre>
+                    <&#60;img &#91;src&#93;="heroImageUrl">
+                    &#60;app-hero-detail &#91;hero&#93;="currentHero">&#60;/app-hero-detail>
+                    &#60;div &#91;ngClass&#93;="&#123;'special': isSpecial&#125;">&#60;/div>
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <td>Event</td>
+            <td>
+                <p>Element event</p>
+                <p>Component event</p>
+                <p>Directive event</p>
+            </td>
+            <td>
+                <pre>
+                    <&#60;button &#40;click&#41;="onSave&#40;&#41;">Save<&#60;/button>
+                    <&#60;app-hero-detail &#40;deleteRequest&#41;="deleteHero&#40;&#41;"><&#60;/app-hero-detail>
+                    <&#60;div &#40;myClick&#41;="clicked=$event" clickable>click me<&#60;/div>
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Two-way
+            </td>
+            <td>
+                Event and property
+            </td>
+            <td>
+                <pre>
+                    &#60;input &#91;&#40;ngModel&#41;&#93;="name">
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <td>Attribute</td>
+            <td>Attribute</td>
+            <td>
+                <pre>
+                    &#60;button &#91;attr.aria-label&#93;="help">help&#60;/button>
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <td>Class</td>
+            <td>class property</td>
+            <td>
+                <pre>
+                    &#60;div &#91;class.special&#93;="isSpecial">Special&#60;/div>
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <td>Style</td>
+            <td>style property</td>
+            <td>
+                <pre>
+                    &#60;button &#91;style.color&#93;="isSpecial ? 'red' : 'green'"&#62;
+                </pre>
+            </td>
+        </tr>
+    </table>
+
+    <h4>Property&#40;属性&#41; binding</h4>
+    <pre>
+        `
+        &#60;img &#91;src&#93;="heroImageUrl">
+        &#60;img bind-src="heroImageUrl">
+        &#60;button &#91;disabled&#93;="isUnchanged">Cancel is disabled&#60;/button>
+        &#60;div &#91;ngClass&#93;="classes">&#91;ngClass&#93; binding to the classes property&#60;/div>
+        &#60;app-hero-detail &#91;hero&#93;="currentHero">&#60;/app-hero-detail>
+        `
+    </pre>
+
+    <dt>Return the proper&#40;正确&#41; type</dt>
+    <dd>模板表达式应计算为目标属性所期望的值的类型</dd>
+
+    <dt>One-time string initialization&#40;初始化&#41;</dt>
+    <dt>满足以下所有条件时，应该省略括号</dt>
+    <dd>目标属性接受一个字符串值</dd>
+    <dd>该字符串是一个固定的值</dd>
+    <dd>这个初始值永远不会改变</dd>
+
+    <h4>Property binding or interpolation</h4>
+    <dt>描述</dt>
+    <dd>在许多情况下插值是一种方便的替代属性绑定的方法</dd>
+    <dd>将元素属性设置为非字符串数据值时，必须使用属性绑定</dd>
+    <pre>
+        <p>&#60;img src="&#123;&#123;heroImageUrl&#125;&#125;"> is the <i>interpolated</i> image.</p>
+        <p>&#60;img &#91;src&#93;="heroImageUrl"> is the <i>property bound</i> image.</p>
+
+        <p>&#60;span>"&#123;&#123;title&#125;&#125;" is the <i>interpolated</i> title.&#60;/span></p>
+        <p>"&#60;span &#91;innerHTML&#93;="title">&#60;/span>" is the <i>property bound</i> title.</p>
+    </pre>
+
+    <h4>Content security &#40;angular 安全机制&#41;</h4>
+    <pre>
+        evilTitle = 'Template &#60;script>alert&#40;"evil never sleeps"&#41;&#60;/script>Syntax';
+        &#60;p>&#60;span>"&#123;&#123;evilTitle&#125;&#125;" is the &#60;i>interpolated&#60;/i> evil title.&#60;/span>&#60;/p>
+        &#60;p>"&#60;span &#91;innerHTML&#93;="evilTitle">&#60;/span>" is the &#60;i>property bound&#60;/i> evil title.&#60;/p>
+    </pre>
+
+    <h4>Attribute, class, and style bindings</h4>
+    <dt>Attribute binding</dt>
+</div>
