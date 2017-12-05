@@ -2,6 +2,7 @@ import { RouterComponent } from './router/router.component';
 import { StudyComponent } from "./study.component";
 import { DependencyInjectionComponent } from './dependency-injection/dependency-injection.component';
 import { TemplateDataBindingComponent } from './template-data-binding/template-data-binding.component';
+import { LifecycleHooksComponent } from './lifecycle-hooks/lifecycle-hooks.component';
 
 export const studyRoutes = [
     {
@@ -24,6 +25,10 @@ export const studyRoutes = [
             {
                 path: 'templateDataBind',
                 component: TemplateDataBindingComponent
+            },
+            {
+                path: 'LifecycleHooks',
+                component: LifecycleHooksComponent
             }
         ]
     }
