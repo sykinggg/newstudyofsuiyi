@@ -26,6 +26,7 @@ import { RouterComponent } from './study/router/router.component';
 import { DependencyInjectionComponent } from './study/dependency-injection/dependency-injection.component';
 import { TemplateDataBindingComponent } from './study/template-data-binding/template-data-binding.component';
 import { LifecycleHooksComponent } from './study/lifecycle-hooks/lifecycle-hooks.component';
+import { ComponentInteractionComponent } from './study/component-interaction/component-interaction.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { LifecycleHooksComponent } from './study/lifecycle-hooks/lifecycle-hooks
     RouterComponent,
     DependencyInjectionComponent,
     TemplateDataBindingComponent,
-    LifecycleHooksComponent
+    LifecycleHooksComponent,
+    ComponentInteractionComponent
   ],
   imports: [
     BrowserModule,

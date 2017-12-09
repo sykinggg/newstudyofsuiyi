@@ -3,6 +3,7 @@ import { StudyComponent } from "./study.component";
 import { DependencyInjectionComponent } from './dependency-injection/dependency-injection.component';
 import { TemplateDataBindingComponent } from './template-data-binding/template-data-binding.component';
 import { LifecycleHooksComponent } from './lifecycle-hooks/lifecycle-hooks.component';
+import { ComponentInteractionComponent } from './component-interaction/component-interaction.component';
 
 export const studyRoutes = [
     {
@@ -29,6 +30,10 @@ export const studyRoutes = [
             {
                 path: 'LifecycleHooks',
                 component: LifecycleHooksComponent
+            },
+            {
+                path: 'ComponentInteraction',
+                component: ComponentInteractionComponent
             }
         ]
     }
