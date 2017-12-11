@@ -27,6 +27,8 @@ import { DependencyInjectionComponent } from './study/dependency-injection/depen
 import { TemplateDataBindingComponent } from './study/template-data-binding/template-data-binding.component';
 import { LifecycleHooksComponent } from './study/lifecycle-hooks/lifecycle-hooks.component';
 import { ComponentInteractionComponent } from './study/component-interaction/component-interaction.component';
+import { ComponentStylesComponent } from './study/component-styles/component-styles.component';
+import { DynamicComponentLoaderComponent } from './study/dynamic-component-loader/dynamic-component-loader.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { ComponentInteractionComponent } from './study/component-interaction/com
     DependencyInjectionComponent,
     TemplateDataBindingComponent,
     LifecycleHooksComponent,
-    ComponentInteractionComponent
+    ComponentInteractionComponent,
+    ComponentStylesComponent,
+    DynamicComponentLoaderComponent
   ],
   imports: [
     BrowserModule,

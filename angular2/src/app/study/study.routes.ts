@@ -4,6 +4,8 @@ import { DependencyInjectionComponent } from './dependency-injection/dependency-
 import { TemplateDataBindingComponent } from './template-data-binding/template-data-binding.component';
 import { LifecycleHooksComponent } from './lifecycle-hooks/lifecycle-hooks.component';
 import { ComponentInteractionComponent } from './component-interaction/component-interaction.component';
+import { ComponentStylesComponent } from './component-styles/component-styles.component';
+import { DynamicComponentLoaderComponent } from './dynamic-component-loader/dynamic-component-loader.component';
 
 export const studyRoutes = [
     {
@@ -34,6 +36,14 @@ export const studyRoutes = [
             {
                 path: 'ComponentInteraction',
                 component: ComponentInteractionComponent
+            },
+            {
+                path: 'ComponentStyles',
+                component: ComponentStylesComponent
+            },
+            {
+                path: 'DynamicComponentLoader',
+                component: DynamicComponentLoaderComponent
             }
         ]
     }
