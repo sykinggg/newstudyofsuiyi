@@ -6,6 +6,7 @@ import { LifecycleHooksComponent } from './lifecycle-hooks/lifecycle-hooks.compo
 import { ComponentInteractionComponent } from './component-interaction/component-interaction.component';
 import { ComponentStylesComponent } from './component-styles/component-styles.component';
 import { DynamicComponentLoaderComponent } from './dynamic-component-loader/dynamic-component-loader.component';
+import { AttributeDirectivesComponent } from './attribute-directives/attribute-directives.component';
 
 export const studyRoutes = [
     {
@@ -44,6 +45,10 @@ export const studyRoutes = [
             {
                 path: 'DynamicComponentLoader',
                 component: DynamicComponentLoaderComponent
+            },
+            {
+                path: 'AttributeDirectives',
+                component: AttributeDirectivesComponent
             }
         ]
     }

@@ -29,6 +29,7 @@ import { LifecycleHooksComponent } from './study/lifecycle-hooks/lifecycle-hooks
 import { ComponentInteractionComponent } from './study/component-interaction/component-interaction.component';
 import { ComponentStylesComponent } from './study/component-styles/component-styles.component';
 import { DynamicComponentLoaderComponent } from './study/dynamic-component-loader/dynamic-component-loader.component';
+import { AttributeDirectivesComponent } from './study/attribute-directives/attribute-directives.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { DynamicComponentLoaderComponent } from './study/dynamic-component-loade
     LifecycleHooksComponent,
     ComponentInteractionComponent,
     ComponentStylesComponent,
-    DynamicComponentLoaderComponent
+    DynamicComponentLoaderComponent,
+    AttributeDirectivesComponent
   ],
   imports: [
     BrowserModule,

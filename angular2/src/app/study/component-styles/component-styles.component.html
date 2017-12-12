@@ -1,5 +1,5 @@
 <div class="container-fluid">
-	<h1>container-fluid</h1>
+	<h1 class="text-center">container-fluid</h1>
 	<dt>描述</dt>
 	<dd>Angular可以将组件样式与组件捆绑在一起，从而实现比常规样式表更多的模块化设计</dd>
 	<a href="https://angular.io/generated/live-examples/component-styles/eplnkr.html"
@@ -41,35 +41,35 @@
 	<dd>注意：而不是定位组件模板中的元素</dd>
 	
 	<pre>
-		:host &#123;
+		&#58;host &#123;
 			display: block;
 			border: 1px solid black;
 		}
 	</pre>
 	<dt>描述</dt>
-	<dd>:host选择器是定位主机元素的唯一方法。</dd>
+	<dd>&#58;host选择器是定位主机元素的唯一方法。</dd>
 	<dd>不能使用其他选择器从组件内部访问主机元素，因为它不是组件自己的模板的一部分</dd>
 	<dd>主机元素位于父组件的模板中</dd>
 	<dd>使用函数形式通过在host之后包含括号中的其他选择器来有条件地应用主机样式</dd>
 	<pre>
-		:host(.active) &#123;
+		&#58;host(.active) &#123;
 			border-width: 3px;
 		}
 	</pre>
 
-	<h5>:host-context</h5>
+	<h5>&#58; host-context</h5>
 	<dt>实例</dt>
-	<dd>可以将一个CSS主题类应用于文档<body>元素，并且想要根据该元素更改组件的外观</dd>
+	<dd>可以将一个CSS主题类应用于文档&#60;body>元素，并且想要根据该元素更改组件的外观</dd>
 	<dt>描述</dt>
-	<dd>：host-context（）伪类选择器，它的作用就像host（）的函数形式</dd>
-	<dd>：host-context（）选择器在组件主机元素的任何祖先中查找CSS类，直到文档根</dd>
+	<dd>&#58; host-context（）伪类选择器，它的作用就像host（）的函数形式</dd>
+	<dd>&#58; host-context（）选择器在组件主机元素的任何祖先中查找CSS类，直到文档根</dd>
 	<pre>
-		:host-context(.theme-light) h2 &#123;
+		&#58;host-context(.theme-light) h2 &#123;
 			background-color: #eef;
 		}
 	</pre>
 
-	<h5>(deprecated) /deep/, #62;#62;#62;, and ::ng-deep(已弃用)</h5>
+	<h5>(deprecated) /deep/, #62;#62;#62;, and &#58;&#58;ng-deep(已弃用)</h5>
 	<dt>描述</dt>
 	<dd>组件样式通常仅适用于组件自己的模板中的HTM</dd>
 	<dd>使用/ deep / shadow-piercing后代组合子将一个样式向下强制到子组件树中的所有子组件视图</dd>
@@ -80,8 +80,8 @@
 		}
 	</pre>
 	<dt>描述</dt>
-	<dd>将所有<h3>元素作为目标，从主元素向下到这个组件到它的所有子元素</dd>
-	<dd>仅在模拟视图封装时使用/deep/, #62;#62;#62; 和 ::ng-deep</dd>
+	<dd>将所有&#60;h3>元素作为目标，从主元素向下到这个组件到它的所有子元素</dd>
+	<dd>仅在模拟视图封装时使用/deep/, #62;#62;#62; 和 &#58;&#58;ng-deep</dd>
 
 	<h5>Loading component styles(加载组件样式)</h5>
 	<dt>描述</dt>

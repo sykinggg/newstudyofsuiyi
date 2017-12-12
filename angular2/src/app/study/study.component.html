@@ -1,52 +1,11 @@
 <div class="container">
     <ul class="nav nav-tabs mar-t-20">
-        <li class="nav-item cursor-pointer">
+        <li *ngFor="let item of routerLinkArr; let i = index" 
+            class="nav-item cursor-pointer">
             <a routerLinkActive="active" 
-                [routerLink]="['/study/router']" 
+                [routerLink]="[item.router]" 
                 class="nav-link">
-                路由配置
-            </a>
-        </li>
-        <li class="nav-item cursor-pointer">
-            <a routerLinkActive="active" 
-                [routerLink]="['/study/dependencyInject']" 
-                class="nav-link">
-                依赖注入
-            </a>
-        </li>
-        <li class="nav-item cursor-pointer">
-            <a routerLinkActive="active" 
-                [routerLink]="['/study/templateDataBind']" 
-                class="nav-link">
-                模版|数据
-            </a>
-        </li>
-        <li class="nav-item cursor-pointer">
-            <a routerLinkActive="active" 
-                [routerLink]="['/study/LifecycleHooks']" 
-                class="nav-link">
-                生命周期
-            </a>
-        </li>
-        <li class="nav-item cursor-pointer">
-            <a routerLinkActive="active" 
-                [routerLink]="['/study/ComponentInteraction']" 
-                class="nav-link">
-                组件通讯
-            </a>
-        </li>
-        <li class="nav-item cursor-pointer">
-            <a routerLinkActive="active" 
-                [routerLink]="['/study/ComponentStyles']" 
-                class="nav-link">
-                组件样式
-            </a>
-        </li>
-        <li class="nav-item cursor-pointer">
-            <a routerLinkActive="active" 
-                [routerLink]="['/study/DynamicComponentLoader']" 
-                class="nav-link">
-                动态加载
+                {{item.name}}
             </a>
         </li>
     </ul>

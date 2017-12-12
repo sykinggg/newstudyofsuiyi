@@ -7,6 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudyComponent implements OnInit {
 
+  routerLinkArr:Array<any> = [
+      {router: '/study/router', name: '路由配置'},
+      {router: '/study/dependencyInject', name: '依赖注入'},
+      {router: '/study/templateDataBind', name: '模版|数据'},
+      {router: '/study/LifecycleHooks', name: '生命周期'},
+      {router: '/study/ComponentInteraction', name: '组件通讯'},
+      {router: '/study/ComponentStyles', name: '组件样式'},
+      {router: '/study/DynamicComponentLoader', name: '动态加载'},
+      {router: '/study/AttributeDirectives', name: '属性组件'}
+  ]
+
   constructor() { }
 
   ngOnInit() {
