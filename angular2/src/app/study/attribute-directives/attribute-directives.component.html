@@ -118,3 +118,38 @@
 </pre>
 
 <h3>Pass values into the directive with an @Input data binding</h3>
+<dt>实现</dt>
+<dd>将输入添加到从中导入的符号列表</dd>
+<pre>
+	import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+
+	Add a highlightColor property to the directive class like this
+
+	@Input() highlightColor: string;
+</pre>
+
+<h4>Binding to an @Input property</h4>
+<dt>描述</dt>
+<dd>注意@Input装饰器。它将元数据添加到使指令的highlightColor属性可用于绑定的类</dd>
+<dd>被称为输入属性，因为数据从绑定表达式流入指令</dd>
+<dd>没有这个输入元数据，Angular拒绝绑定</dd>
+<pre>
+	<p appHighlight highlightColor="yellow">Highlighted in yellow</p>
+	<p appHighlight [highlightColor]="'orange'">Highlighted in orange</p>
+
+	export class AppComponent {
+		color = 'yellow';
+	}
+</pre>
+<dd>用一个属性绑定来控制高亮颜色</dd>
+<pre>
+	<p appHighlight [highlightColor]="color">Highlighted with parent component's color</p>
+
+	<p [appHighlight]="color">Highlight me!</p>
+
+	@Input() appHighlight: string;
+</pre>
+<dd>[appHighlight]属性绑定都将突出显示指令应用于<p>元素，并使用属性绑定来设置指令的突出显示颜色</dd>
+
+<h4>Bind to an @Input alias</h4>
+<dd>可以根据需要命名指令属性，并将其别名用于绑定目的</dd>
