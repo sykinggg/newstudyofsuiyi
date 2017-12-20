@@ -15,7 +15,8 @@ export class StudyComponent implements OnInit {
       {router: '/study/ComponentInteraction', name: '组件通讯'},
       {router: '/study/ComponentStyles', name: '组件样式'},
       {router: '/study/DynamicComponentLoader', name: '动态加载'},
-      {router: '/study/AttributeDirectives', name: '属性组件'}
+      {router: '/study/AttributeDirectives', name: '属性组件'},
+      {router: '/study/SructuralDectives', name: '结构指令'}
   ]
 
   constructor() { }

@@ -30,6 +30,7 @@ import { ComponentInteractionComponent } from './study/component-interaction/com
 import { ComponentStylesComponent } from './study/component-styles/component-styles.component';
 import { DynamicComponentLoaderComponent } from './study/dynamic-component-loader/dynamic-component-loader.component';
 import { AttributeDirectivesComponent } from './study/attribute-directives/attribute-directives.component';
+import { SructuralDectivesComponent } from './study/sructural-dectives/sructural-dectives.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { AttributeDirectivesComponent } from './study/attribute-directives/attri
     ComponentInteractionComponent,
     ComponentStylesComponent,
     DynamicComponentLoaderComponent,
-    AttributeDirectivesComponent
+    AttributeDirectivesComponent,
+    SructuralDectivesComponent
   ],
   imports: [
     BrowserModule,

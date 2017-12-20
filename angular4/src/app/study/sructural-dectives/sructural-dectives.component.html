@@ -1,0 +1,17 @@
+<h1>Structural Directives</h1>
+<dt>描述</dt>
+<dd>结构指令来操作DOM</dd>
+<a href="{{onLineHref}}" target="{{targetType}}">在线实例</a>
+<span>|</span>
+<a href="{{downloadHref}}" target="{{targetType}}">实例下载</a>
+
+<h2>What are structural directives?</h2>
+<dt>描述</dt>
+<dd>结构指令负责HTML布局</dd>
+<dd>通常通过添加，删除或操纵元素来塑造或重塑DOM的结构</dd>
+<dd>与其他指令一样，您将结构指令应用于主机元素</dd>
+<dd>然后这个指令做任何它应该做的主机元素及其后代</dd>
+<dd>结构指令很容易识别。在此示例中，星号（*）在指令属性名称前面</dd>
+<pre>
+    &#60;div *ngIf="hero" class="name">&#123;&#123;hero.name&#125; &#125;&#60;/div>
+</pre>
