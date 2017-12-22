@@ -15,3 +15,78 @@
 <pre>
     &#60;div *ngIf="hero" class="name">&#123;&#123;hero.name&#125; &#125;&#60;/div>
 </pre>
+<dt>描述</dt>
+<dd>只是* ngIf设置为一个字符串</dd>
+<dd>星号（*）是一种便利的表示法，字符串是一种微型语法，而不是通常的模板表达式</dd>
+<dd>Angular把这个表示法解释成一个围绕主元素及其后代的标记的&#60;ng-template></dd>
+<pre>
+    &#60;div *ngIf="hero" class="name">&#123; &#123;hero.name&#125;&#125;&#60;/div>
+    
+    &#60;ul>
+        &#60;li *ngFor="let hero of heroes">&#123; &#123;hero.name&#125;&#125;&#60;/li>
+    &#60;/ul>
+    
+    &#60;div [ngSwitch]="hero?.emotion">
+        &#60;app-happy-hero    *ngSwitchCase="'happy'"    [hero]="hero">&#60;/app-happy-hero>
+        &#60;app-sad-hero      *ngSwitchCase="'sad'"      [hero]="hero">&#60;/app-sad-hero>
+        &#60;app-confused-hero *ngSwitchCase="'app-confused'" [hero]="hero">&#60;/app-confused-hero>
+        &#60;app-unknown-hero  *ngSwitchDefault           [hero]="hero">&#60;/app-unknown-hero>
+    &#60;/div>
+</pre>
+<dt>描述</dt>
+<dd>NgIf指的是指令类;</dd>
+<dd>ngIf引用指令的属性名称</dd>
+
+<dt>组件|属性指令</dt>
+<dd>组件以本地HTML元素的方式管理HTML区域</dd>
+<dd>从技术上讲，这是一个模板指令。属性指令改变元素，组件或其他指令的外观或行为</dd>
+<dd>内置的NgStyle指令可以同时改变多个元素样式</dd>
+<dd>可以将许多属性指令应用于一个主机元素</dd>
+<dd>只能将一个结构指令应用于主机元素</dd>
+
+<h3>NgIf case study</h3>
+<dt>描述</dt>
+<dd>需要一个布尔表达式，并使DOM的整个块出现或消失</dd>
+<pre>
+    &#60;p *ngIf="true">
+        Expression is true and ngIf is true.
+        This paragraph is in the DOM.
+    &#60;/p>
+    &#60;p *ngIf="false">
+        Expression is false and ngIf is false.
+        This paragraph is not in the DOM.
+    &#60;/p>
+</pre>
+<dt>描述</dt>
+<dd>ngIf指令不会隐藏CSS的元素。它从DOM中物理地添加和删除它们</dd>
+<pre>
+    &#60;p [style.display]="'block'">
+        Expression sets display to "block".
+        This paragraph is visible.
+    &#60;/p>
+    &#60;p [style.display]="'none'">
+        Expression sets display to "none".
+        This paragraph is hidden but still in the DOM.
+    &#60;/p>
+</pre>
+<dt>描述</dt>
+<dd>组件及其所有后代组件都占用了资源</dd>
+<dd>ng-show的优点就是再次显示元素是快速的</dd>
+<dd>组件的以前的状态被保存并准备显示</dd>
+<dd>该组件不会重新初始化</dd>
+<dd>NgIf这样的结构指令来恢复未使用的资源</dd>
+
+
+<h3>The asterisk (*) prefix</h3>
+<pre>
+    &#60;div *ngIf="hero" class="name">&#123; &#123;hero.name&#125;&#125;&#60;/div>
+
+    Angular把* ngIf属性翻译成一个围绕主机元素的&#60;ng-template>元素
+
+    &#60;ng-template [ngIf]="hero">
+        &#60;div class="name">&#123; &#123;hero.name&#125;&#125;&#60;/div>
+    &#60;/ng-template>
+</pre>
+<dt>描述</dt>
+<dd>* ngIf指令移动到&#60;ng-template>元素，在那里它成为一个属性绑定，[ngIf]</dd>
+<dd>其余的&#60;div>，包括它的类属性，移动到&#60;ng-template>元素中</dd>
