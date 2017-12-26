@@ -8,6 +8,7 @@ import { ComponentStylesComponent } from './component-styles/component-styles.co
 import { DynamicComponentLoaderComponent } from './dynamic-component-loader/dynamic-component-loader.component';
 import { AttributeDirectivesComponent } from './attribute-directives/attribute-directives.component';
 import { SructuralDectivesComponent } from './sructural-dectives/sructural-dectives.component';
+import { PipesComponent } from './pipes/pipes.component';
 
 export const studyRoutes = [
     {
@@ -54,6 +55,10 @@ export const studyRoutes = [
             {
                 path: 'SructuralDectives',
                 component: SructuralDectivesComponent
+            },
+            {
+                path: 'PipesComponent',
+                component: PipesComponent
             }
         ]
     }
