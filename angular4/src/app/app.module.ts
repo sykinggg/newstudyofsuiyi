@@ -32,6 +32,8 @@ import { DynamicComponentLoaderComponent } from './study/dynamic-component-loade
 import { AttributeDirectivesComponent } from './study/attribute-directives/attribute-directives.component';
 import { SructuralDectivesComponent } from './study/sructural-dectives/sructural-dectives.component';
 import { PipesComponent } from './study/pipes/pipes.component';
+import { JsAlgorithmComponent } from './js-algorithm/js-algorithm.component';
+import { AlgorithmComponent } from './js-algorithm/algorithm/algorithm.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import { PipesComponent } from './study/pipes/pipes.component';
     DynamicComponentLoaderComponent,
     AttributeDirectivesComponent,
     SructuralDectivesComponent,
-    PipesComponent
+    PipesComponent,
+    JsAlgorithmComponent,
+    AlgorithmComponent
   ],
   imports: [
     BrowserModule,

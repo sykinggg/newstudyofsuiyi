@@ -20,6 +20,14 @@ export class AppComponent {
     title = 'app works!';
     acxtiveRouterName: string = '';
 
+    routerLinkArr:Array<any> = [
+        {routerName: '框架study', routerLink: 'study'},
+        {routerName: 'about', routerLink: 'about'},
+        {routerName: 'mapStudy', routerLink: 'mapStudy'},
+        {routerName: 'uiStudy', routerLink: 'uiStudy'},
+        {routerName: 'js算法', routerLink: 'JsAlgorithm'}
+    ]
+
     constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private routerName: RouterNameService,

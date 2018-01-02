@@ -6,8 +6,9 @@ import { homeRoutes } from './home/home.routes';
 import { studyRoutes } from './study/study.routes';
 import { UiStudyComponent } from './ui-study/ui-study.component';
 import { MapStudyComponent } from './map-study/map-study.component';
+import { jsAlgorithmRoutes } from './js-algorithm/js-algorithm.routes';
 
-export const appRoutes:Routes = [
+export const appRoutes: Routes = [
     {
         path: '',
         redirectTo: 'about',
@@ -33,5 +34,9 @@ export const appRoutes:Routes = [
     {
         path: 'uiStudy',
         component: UiStudyComponent
+    },
+    {
+        path: 'JsAlgorithm',
+        children: jsAlgorithmRoutes
     }
 ]
