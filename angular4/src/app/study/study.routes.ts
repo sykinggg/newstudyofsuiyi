@@ -9,6 +9,7 @@ import { DynamicComponentLoaderComponent } from './dynamic-component-loader/dyna
 import { AttributeDirectivesComponent } from './attribute-directives/attribute-directives.component';
 import { SructuralDectivesComponent } from './sructural-dectives/sructural-dectives.component';
 import { PipesComponent } from './pipes/pipes.component';
+import { AnimationsComponent } from './animations/animations.component';
 
 export const studyRoutes = [
     {
@@ -59,6 +60,10 @@ export const studyRoutes = [
             {
                 path: 'PipesComponent',
                 component: PipesComponent
+            },
+            {
+                path: 'AnimationsComponent',
+                component: AnimationsComponent
             }
         ]
     }

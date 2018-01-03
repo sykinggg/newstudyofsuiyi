@@ -1,4 +1,4 @@
-<h1 class="text-center">管道</h1>
+<h1 class="text-center">Pipes</h1>
 <dt>描述</dt>
 <dd>每个应用程序都是以一个简单的任务开始的：获取数据，转换它们，并将它们展示给用户</dd>
 <dd>获取数据可以像创建一个局部变量一样简单，或者像通过websocket传输数据一样复杂</dd>
@@ -13,7 +13,7 @@
 
 <h2>Using pipes</h2>
 <dt>描述</dt>
-<dd>管道将数据作为输入并将其转换为所需的输出</dd>
+<dd>过滤器将数据作为输入并将其转换为所需的输出</dd>
 
 <pre>
     src/app/hero-birthday1.component.ts
@@ -35,8 +35,8 @@
     &#60;p>The hero's birthday is &#123; &#123; birthday &#166; date &#125; &#125; &#60;/p>
 </pre>
 <dt>描述</dt>
-<dd>在插值表达式中，通过管道运算符（&#166;）将组件的生日值传递给右侧的日期管道函数。</dd>
-<dd>所有管道都是这样工作的</dd>
+<dd>在插值表达式中，通过过滤器运算符（&#166;）将组件的生日值传递给右侧的日期过滤器函数。</dd>
+<dd>所有过滤器都是这样工作的</dd>
 
 <h2>Built-in pipes</h2>
 <dt>描述</dt>
@@ -44,9 +44,9 @@
 
 <h2>Parameterizing a pipe(参数化)</h2>
 <dt>描述</dt>
-<dd>管道可以接受任意数量的可选参数来微调其输出</dd>
-<dd>要将参数添加到管道，请使用冒号（：）跟随管道名称，然后使用参数值（如currency：'eur'）</dd>
-<dd>如果管道接受多个参数，请使用冒号分隔这些值（如slice：1：5）修改生日模板给日期管道一个格式参数</dd>
+<dd>过滤器可以接受任意数量的可选参数来微调其输出</dd>
+<dd>要将参数添加到过滤器，请使用冒号（：）跟随过滤器名称，然后使用参数值（如currency：'eur'）</dd>
+<dd>如果过滤器接受多个参数，请使用冒号分隔这些值（如slice：1：5）修改生日模板给日期过滤器一个格式参数</dd>
 <pre>
     src/app/app.component.html
 
@@ -80,7 +80,7 @@
 </pre>
 
 <h2>Chaining pipes(链接)</h2>
-<dt>可以将管道链接在一起进行有用的组合</dt>
+<dt>可以将过滤器链接在一起进行有用的组合</dt>
 <pre>
     The chained hero's birthday is
     &#123; &#123; birthday &#166; date &#166; uppercase &#125; &#125;
@@ -90,7 +90,7 @@
 </pre>
 
 <h2>Custom pipes</h2>
-<dt>可以编写自己的自定义管道</dt>
+<dt>可以编写自己的自定义过滤器</dt>
 <pre>
     import &#123; Pipe, PipeTransform &#125; from '@angular/core';
     /*
@@ -112,15 +112,15 @@
 </pre>
 <dt>关键点</dt>
 <ul>
-    <li>管道是用管道元数据装饰的类</li>
+    <li>过滤器是用过滤器元数据装饰的类</li>
     <li>pipe类实现了pipetransform接口的transform方法，该方法接受一个输入值，后跟可选参数，并返回转换后的值</li>
-    <li>对于传递给管道的每个参数，将有一个额外的变量方法参数。你的管道有一个这样的参数：name。</li>
-    <li>告诉angular这是一个管道，你应用@Pipe装饰器，从核心angular库导入。</li>
-    <li>@Pipe修饰器允许你定义在模板表达式中使用的管道名称</li>
+    <li>对于传递给过滤器的每个参数，将有一个额外的变量方法参数。你的过滤器有一个这样的参数：name。</li>
+    <li>告诉angular这是一个过滤器，你应用@Pipe装饰器，从核心angular库导入。</li>
+    <li>@Pipe修饰器允许你定义在模板表达式中使用的过滤器名称</li>
 </ul>
 
 <h4>The PipeTransform interface</h4>
-<dd>变换方法对于管道是必不可少的。pipetransform接口定义了该方法</dd>
+<dd>变换方法对于过滤器是必不可少的。pipetransform接口定义了该方法</dd>
 
 <pre>
     import &#123; Component &#125; from '@angular/core';
@@ -137,14 +137,14 @@
 <img src="https://angular.io/generated/images/guide/pipes/power-boost-calculator-anim.gif" alt="">
 <dt>注意:</dt>
 <ul>
-    <li>可以像使用内置管道一样使用自定义管道</li>
-    <li>必须将管道包含在appmodule的声明数组中</li>
+    <li>可以像使用内置过滤器一样使用自定义过滤器</li>
+    <li>必须将过滤器包含在appmodule的声明数组中</li>
 </ul>
-<dd>必须注册自定义管道。如果不这样做，angular报告一个错误。angular cli的发生器自动注册管道</dd>
+<dd>必须注册自定义过滤器。如果不这样做，angular报告一个错误。angular cli的发生器自动注册过滤器</dd>
 
 <h2>Power Boost Calculator</h2>
 <dt>描述</dt>
-<dd>更新模板来测试自定义管道没有多大的意义</dd>
+<dd>更新模板来测试自定义过滤器没有多大的意义</dd>
 
 <pre>
     import &#123; Component &#125; from '@angular/core';
@@ -241,14 +241,14 @@
 <dd>你添加数据到数据阵列。对数组的引用没有改变。这是相同的数组。这是所有的angular度关心。</dd>
 <dd>从它的angular度看，相同的阵列，没有改变，没有显示更新。</dd>
 <dd>解决这个问题，创建一个新的数据附加并分配给数据阵列。</dd>
-<dd>这次angular度检测到数组引用已经改变。它会执行管道，并使用包含新改变数据的新阵列更新显示。</dd>
-<dd>如果你改变数组，不调用管道，显示不更新;</dd>
-<dd>如果替换数组，管道将执行并更新显示</dd>
+<dd>这次angular度检测到数组引用已经改变。它会执行过滤器，并使用包含新改变数据的新阵列更新显示。</dd>
+<dd>如果你改变数组，不调用过滤器，显示不更新;</dd>
+<dd>如果替换数组，过滤器将执行并更新显示</dd>
 <img src="https://angular.io/generated/images/guide/pipes/flying-heroes-anim.gif">
 
 <h2>Pure and impure pipes</h2>
 <dt>描述</dt>
-<dd>通过将其设置为false来使管道不纯。</dd>
+<dd>通过将其设置为false来使过滤器不纯。</dd>
 <pre>
     @Pipe(&#123;
         name: 'flyingHeroesImpure',
@@ -258,23 +258,23 @@
 
 <h4>Pure pipes</h4>
 <dt>描述</dt>
-<dd>angular只有在检测到输入值的纯粹变化时才会执行纯管道</dd>
+<dd>angular只有在检测到输入值的纯粹变化时才会执行纯过滤器</dd>
 <dd>
     一个纯粹的改变是改变原始输入值 （字符串，数字，布尔，符号） 或改变的对象引用（日期，数组，函数，对象）
 </dd>
 <dd>
-    angular忽略（复合）对象内的更改。 如果您更改输入月份，添加到输入数组或更新输入对象属性，它将不会调用纯管道。
+    angular忽略（复合）对象内的更改。 如果您更改输入月份，添加到输入数组或更新输入对象属性，它将不会调用纯过滤器。
 </dd>
 <dd>这可能看起来很严格，但速度也很快</dd>
-<dd>对象引用检查的速度比深入检查差异要快得多，因此angular可以快速确定是否可以跳过管道执行和视图更新。</dd>
+<dd>对象引用检查的速度比深入检查差异要快得多，因此angular可以快速确定是否可以跳过过滤器执行和视图更新。</dd>
 <dd>
-    出于这个原因，当你能够接受变化检测策略的时候，一个纯粹的管道是最好的。 当你不能，你可以使用不纯的管道。
+    出于这个原因，当你能够接受变化检测策略的时候，一个纯粹的过滤器是最好的。 当你不能，你可以使用不纯的过滤器。
 </dd>
 
 <h4>Impure pipes</h4>
 <dt>描述</dt>
-<dd>angular在每个元件更换检测周期执行不纯管道</dd>
-<dd>经常调用不纯的管道，就像每次按键或鼠标移动一样</dd>
+<dd>angular在每个元件更换检测周期执行不纯过滤器</dd>
+<dd>经常调用不纯的过滤器，就像每次按键或鼠标移动一样</dd>
 
 <pre>
     FlyingHeroesImpurePipe
@@ -299,14 +299,14 @@
     &#125;
 </pre>
 <dt>描述</dt>
-<dd>对于不纯的管道来说这是一个很好的选择，因为这个转换函数是快速的</dd>
+<dd>对于不纯的过滤器来说这是一个很好的选择，因为这个转换函数是快速的</dd>
 
 <h4>The impure AsyncPipe</h4>
 <dt>描述</dt>
-<dd>angular异步管道是不纯管道的一个有趣的例子</dd>
+<dd>angular异步过滤器是不纯过滤器的一个有趣的例子</dd>
 <dd>asyncpipe接受promise或observable作为输入并自动订阅输入，最终返回发出的值。</dd>
 <dd>
-    asyncpipe也是有状态的。 管道维护一个订阅输入的observable，并在它们到达时继续从这个observable传递值。
+    asyncpipe也是有状态的。 过滤器维护一个订阅输入的observable，并在它们到达时继续从这个observable传递值。
 </dd>
 <pre>
     import &#123; Component &#125; from '@angular/core';
@@ -342,15 +342,15 @@
     &#125;
 </pre>
 <dt>描述</dt>
-<dd>异步管道将组件代码中的样板文件保存起来</dd>
+<dd>异步过滤器将组件代码中的样板文件保存起来</dd>
 <dd>
     该组件不必订阅异步数据源，提取已解析的值并将其公开以进行绑定， 并且必须在其销毁时取消订阅（内存泄漏的有效来源）。
 </dd>
 
-<h4>An impure caching pipe(一个不纯的缓存管道)</h4>
+<h4>An impure caching pipe(一个不纯的缓存过滤器)</h4>
 <dt>描述</dt>
-<dd>一个不纯的管道，一个做http请求的管道。</dd>
-<dd>在下面的代码中，管道只会在请求url更改时调用服务器，并缓存服务器响应。</dd>
+<dd>一个不纯的过滤器，一个做http请求的过滤器。</dd>
+<dd>在下面的代码中，过滤器只会在请求url更改时调用服务器，并缓存服务器响应。</dd>
 <dd>该代码使用angular http客户端来检索数据</dd>
 <pre>
     import &#123; Pipe, PipeTransform &#125; from '@angular/core';
@@ -401,14 +401,38 @@
     export class HeroListComponent &#123; &#125;
 </pre>
 <img src="https://angular.io/generated/images/guide/pipes/hero-list.png">
-<dt>管道的数据请求上的断点显示以下内容</dt>
+<dt>过滤器的数据请求上的断点显示以下内容</dt>
 <ul>
-    <li>每个绑定都有自己的管道实例</li>
-    <li>每个管道实例缓存自己的url和数据</li>
-    <li>每个管道实例只调用一次服务器</li>
+    <li>每个绑定都有自己的过滤器实例</li>
+    <li>每个过滤器实例缓存自己的url和数据</li>
+    <li>每个过滤器实例只调用一次服务器</li>
 </ul>
 
 <h4>JsonPipe</h4>
 <dt>描述</dt>
 <dd>通过链接到内置的jsonpipe以json格式显示相同的英雄数据</dd>
 <dd>jsonpipe提供了一种简单的方法来诊断一个神秘失败的数据绑定或检查未来绑定的对象。</dd>
+
+<h4>Pure pipes and pure functions</h4>
+<dt>描述</dt>
+<dd>纯净的过滤器使用纯粹的功能</dd>
+<dd>纯函数处理输入和返回值，没有可检测的副作用</dd>
+<dd>给定相同的输入，他们应该总是返回相同的输出</dd>
+<dd>内置的日期管是纯粹的功能实现的纯过滤器</dd>
+
+<dd>过滤器是封装和共享常见的显示值转换的好方法</dd>
+<dd>像样式一样使用它们，将它们放到模板表达式中，以丰富视图的吸引力和可用性</dd>
+
+<h4>Appendix: No FilterPipe or OrderByPipe</h4>
+<dt>描述</dt>
+<dd>angular不提供用于过滤或排序列表的过滤器</dd>
+<dd>熟悉angularjs的开发者知道这些是过滤器和orderby</dd>
+<dd>filter和orderby都需要引用对象属性的参数</dd>
+<dd>angular调用几乎在每个变化检测周期都不纯</dd>
+<dd>过滤和特别是分类是昂贵的操作</dd>
+<dd>过滤器和orderby经常被滥用在angularjs应用程序，导致抱怨angular本身是缓慢的</dd>
+<pre>
+    &#60;div *ngFor="let hero of heroes | orderBy:'name,planet'">&#60;/div>
+</pre>
+<dt>描述</dt>
+<dd>通过文本字符串来识别排序字段，期望过滤器通过索引（例如hero ['name']）引用属性值</dd>

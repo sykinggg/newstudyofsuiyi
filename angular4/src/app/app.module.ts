@@ -34,6 +34,7 @@ import { SructuralDectivesComponent } from './study/sructural-dectives/sructural
 import { PipesComponent } from './study/pipes/pipes.component';
 import { JsAlgorithmComponent } from './js-algorithm/js-algorithm.component';
 import { AlgorithmComponent } from './js-algorithm/algorithm/algorithm.component';
+import { AnimationsComponent } from './study/animations/animations.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { AlgorithmComponent } from './js-algorithm/algorithm/algorithm.component
     SructuralDectivesComponent,
     PipesComponent,
     JsAlgorithmComponent,
-    AlgorithmComponent
+    AlgorithmComponent,
+    AnimationsComponent
   ],
   imports: [
     BrowserModule,
