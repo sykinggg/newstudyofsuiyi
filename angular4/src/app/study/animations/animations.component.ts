@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class AnimationsComponent implements OnInit {
     onLineHref = 'https://angular.io/generated/live-examples/animations/eplnkr.html';
     downloadHref = 'https://angular.io/generated/zips/animations/animations.zip';
+    listAnimation = 'https://www.w3.org/TR/css3-transitions/#animatable-properties';
+    cssChange = 'https://www.w3.org/TR/css3-transitions';
     targetType = '_blank'
     constructor() { }
 
