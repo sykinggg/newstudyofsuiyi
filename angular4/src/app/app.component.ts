@@ -25,7 +25,8 @@ export class AppComponent {
         {routerName: 'about', routerLink: 'about'},
         {routerName: 'mapStudy', routerLink: 'mapStudy'},
         {routerName: 'uiStudy', routerLink: 'uiStudy'},
-        {routerName: 'js算法', routerLink: 'JsAlgorithm'}
+        {routerName: 'js算法', routerLink: 'JsAlgorithm'},
+        {routerName: 'js设计模式', routerLink: 'JsDPRoutes'}
     ]
 
     constructor(private router: Router,

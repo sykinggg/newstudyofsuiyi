@@ -18,7 +18,8 @@ export class StudyComponent implements OnInit {
         { router: '/study/AttributeDirectives', name: '属性组件' },
         { router: '/study/SructuralDectives', name: '结构指令' },
         { router: '/study/PipesComponent', name: '管道' },
-        { router: '/study/AnimationsComponent', name: '动画' }
+        { router: '/study/AnimationsComponent', name: '动画' },
+        { router: '/study/FormComponent', name: '表单' }
     ]
 
     constructor() { }

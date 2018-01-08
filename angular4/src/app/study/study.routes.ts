@@ -10,6 +10,8 @@ import { AttributeDirectivesComponent } from './attribute-directives/attribute-d
 import { SructuralDectivesComponent } from './sructural-dectives/sructural-dectives.component';
 import { PipesComponent } from './pipes/pipes.component';
 import { AnimationsComponent } from './animations/animations.component';
+import { FormComponent } from './form/form.component';
+
 
 export const studyRoutes = [
     {
@@ -64,6 +66,10 @@ export const studyRoutes = [
             {
                 path: 'AnimationsComponent',
                 component: AnimationsComponent
+            },
+            {
+                path: 'FormComponent',
+                component: FormComponent
             }
         ]
     }

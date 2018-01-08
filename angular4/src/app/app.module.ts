@@ -35,6 +35,9 @@ import { PipesComponent } from './study/pipes/pipes.component';
 import { JsAlgorithmComponent } from './js-algorithm/js-algorithm.component';
 import { AlgorithmComponent } from './js-algorithm/algorithm/algorithm.component';
 import { AnimationsComponent } from './study/animations/animations.component';
+import { FormComponent } from './study/form/form.component';
+import { JsDesignPatternComponent } from './js-design-pattern/js-design-pattern.component';
+import { OpjectOrientedComponent } from './js-design-pattern/opject-oriented/opject-oriented.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +64,10 @@ import { AnimationsComponent } from './study/animations/animations.component';
     PipesComponent,
     JsAlgorithmComponent,
     AlgorithmComponent,
-    AnimationsComponent
+    AnimationsComponent,
+    FormComponent,
+    JsDesignPatternComponent,
+    OpjectOrientedComponent
   ],
   imports: [
     BrowserModule,
