@@ -1,18 +1,25 @@
-import {Component, OnInit, Output} from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 
 import { Router, NavigationEnd } from '@angular/router';
 
 import { LocalStorage } from '../common/local.storage';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
     private acxtiveRouterName: string = '';
-    constructor(private router:Router,
-                private ls:LocalStorage) {
+    routerLinkArr: Array<any> = [
+        { routerLink: 'map', routerName: 'map' },
+        { routerLink: 'ui', routerName: 'ui' },
+        { routerLink: 'directive', routerName: 'directive-学习' },
+        { routerLink: 'JsDPRoutes', routerName: 'js设计模式' },
+        {routerLink: 'LessMixins', routerName: 'lessMixins'}
+    ]
+    constructor(private router: Router,
+        private ls: LocalStorage) {
         // this.acxtiveRouterName = this.ls.get('routerName');
     }
 

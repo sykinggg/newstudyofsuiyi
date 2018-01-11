@@ -10,7 +10,7 @@ export class JsDesignPatternComponent implements OnInit {
     constructor() { }
 
     routerLinkArr: Array<any> = [
-        { router: '/JsDPRoutes/OpjectOriented', name: '面向对象' }
+        { router: '/home/JsDPRoutes/OpjectOriented', name: '面向对象' }
     ]
 
     ngOnInit() {

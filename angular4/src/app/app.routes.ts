@@ -7,7 +7,7 @@ import { studyRoutes } from './study/study.routes';
 import { UiStudyComponent } from './ui-study/ui-study.component';
 import { MapStudyComponent } from './map-study/map-study.component';
 import { jsAlgorithmRoutes } from './js-algorithm/js-algorithm.routes';
-import { JsDesignPatternRoutes } from './js-design-pattern/js-design-pattern.routes';
+
 
 export const appRoutes: Routes = [
     {
@@ -39,9 +39,5 @@ export const appRoutes: Routes = [
     {
         path: 'JsAlgorithm',
         children: jsAlgorithmRoutes
-    },
-    {
-        path: 'JsDPRoutes',
-        children: JsDesignPatternRoutes
     }
 ]

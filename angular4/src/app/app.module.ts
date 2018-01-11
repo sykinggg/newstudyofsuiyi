@@ -17,6 +17,7 @@ import { appRoutes } from './app.routes';
 import { MapComponent } from './map/map.component';
 import { UiComponent } from './ui/ui.component';
 import { MyFirstDirectiveDirective } from './directive/my-first-directive/my-first-directive.directive';
+import { MySecDirectiveDirective } from './directive/my-sec-directive/my-sec-directive.directive';
 import { CustomStructureInstructionDirective } from './directive/custom-structure/custom-structure-instruction.directive';
 import { DirectiveExplainComponent } from './directive-explain/directive-explain.component';
 import { MapStudyComponent } from './map-study/map-study.component';
@@ -38,48 +39,51 @@ import { AnimationsComponent } from './study/animations/animations.component';
 import { FormComponent } from './study/form/form.component';
 import { JsDesignPatternComponent } from './js-design-pattern/js-design-pattern.component';
 import { OpjectOrientedComponent } from './js-design-pattern/opject-oriented/opject-oriented.component';
+import { LessMixinsComponent } from './home/less-mixins/less-mixins.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    AboutComponent,
-    MapComponent,
-    UiComponent,
-    MyFirstDirectiveDirective,
-    CustomStructureInstructionDirective,
-    DirectiveExplainComponent,
-    MapStudyComponent,
-    UiStudyComponent,
-    StudyComponent,
-    RouterComponent,
-    DependencyInjectionComponent,
-    TemplateDataBindingComponent,
-    LifecycleHooksComponent,
-    ComponentInteractionComponent,
-    ComponentStylesComponent,
-    DynamicComponentLoaderComponent,
-    AttributeDirectivesComponent,
-    SructuralDectivesComponent,
-    PipesComponent,
-    JsAlgorithmComponent,
-    AlgorithmComponent,
-    AnimationsComponent,
-    FormComponent,
-    JsDesignPatternComponent,
-    OpjectOrientedComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    HttpModule,
-    BsDropdownModule,
-    RouterModule.forRoot(appRoutes)
-  ],
-  providers: [
-    LocalStorage
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        AboutComponent,
+        MapComponent,
+        UiComponent,
+        MyFirstDirectiveDirective,
+        CustomStructureInstructionDirective,
+        DirectiveExplainComponent,
+        MapStudyComponent,
+        UiStudyComponent,
+        StudyComponent,
+        RouterComponent,
+        DependencyInjectionComponent,
+        TemplateDataBindingComponent,
+        LifecycleHooksComponent,
+        ComponentInteractionComponent,
+        ComponentStylesComponent,
+        DynamicComponentLoaderComponent,
+        AttributeDirectivesComponent,
+        SructuralDectivesComponent,
+        PipesComponent,
+        JsAlgorithmComponent,
+        AlgorithmComponent,
+        AnimationsComponent,
+        FormComponent,
+        JsDesignPatternComponent,
+        OpjectOrientedComponent,
+        LessMixinsComponent,
+        MySecDirectiveDirective
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        HttpModule,
+        BsDropdownModule,
+        RouterModule.forRoot(appRoutes)
+    ],
+    providers: [
+        LocalStorage
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

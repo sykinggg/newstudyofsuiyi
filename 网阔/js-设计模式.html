@@ -1,0 +1,455 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <script type="text/javascript">
+        var checkObject = {
+            checkName: function () { },
+            a: 'a'
+        }
+        // console.log(checkObject);
+        // // 无法实例化
+        // var checkObject1 = new checkObject();
+        // console.log(checkObject1);
+
+
+        var checkObject = function() {}
+        checkObject.checkName = function () { }
+        checkObject.a = 'a'
+        // console.log(checkObject);
+        // // 无法实例化
+        // var checkObject1 = new checkObject();
+        // console.log(checkObject1);
+
+
+        var checkObject = function() {
+            this.checkName = function () { }
+            this.a = 'a'
+        }
+        // console.log(checkObject);
+        // // 可以实例化 但，不存在原型继承也就是不是单例模式
+        // var checkObject2 = new checkObject();
+        // checkObject2.a = 2;
+        // console.log(checkObject2);
+        // var checkObject1 = new checkObject();
+        // checkObject2.a = 1;
+        // console.log(checkObject1);
+        // console.log(checkObject2);
+
+
+        var checkObject = function() {};
+        // 可能是这种写法不得行
+        // checkObject.prototype = {
+        //     checkName: function() {
+        //     console.log('checkName');
+        // },
+        //     a: 'a'
+        // }
+        // 另一种写法
+        checkObject.prototype.checkName = function() {
+            console.log('checkName');
+        };
+        checkObject.prototype.a = 'a';
+        // 结果是一样的，干
+        // 原型属于原型继承也就是不会在当前对象中
+        // 如果实例化该对象则会产生原型链相关也就是js在执行当前方法或属性时会按原型链中继续寻找
+        // 但是跟对象并没有产生原型链相关所以如果js在执行当前方法或属性时不会按原型链中寻找直接跪了
+        // console.log(checkObject);
+        // // ƒ () {}
+        // console.log(checkObject.a);
+        // // undefined
+        // console.log(checkObject.prototype);
+        // // {a: "a", checkName: ƒ, constructor: ƒ}
+        // console.log(checkObject.checkName());
+        // // checkObject.checkName is not a function
+        // var checkObject2 = new checkObject();
+        // checkObject2.a = 2;
+        // console.log(checkObject2);
+        // // checkObject {a: 2}
+        // var checkObject1 = new checkObject();
+        // checkObject2.a = 1;
+        // console.log(checkObject1);
+        // // checkObject {}
+        // console.log(checkObject2);
+        // // checkObject {a: 1}
+        // console.log(checkObject1.a);
+        // // a
+        // console.log(checkObject1.checkName());
+        // // checkName
+        // // undefined
+        // console.log(checkObject2.a);
+        // // 1
+        // console.log(checkObject2.checkName());
+        // // checkName
+        // // undefined
+
+        
+
+        var checkObject = {
+            checkName: function() {
+                console.log('checkName');
+                return this;
+            },
+            checkEmil: function() {
+                console.log('checkEmil');
+                return this;
+            }
+        }
+        // 根据对象中的函数每次执行完成后返回对象本身
+        // checkObject.checkName().checkEmil();
+        // // checkName
+        // // checkEmil
+        // console.log(checkObject.checkName().checkEmil());
+        // // checkName
+        // // checkEmil
+        // // {checkName: ƒ, checkEmil: ƒ}
+
+
+
+        var checkObject = function() {}
+        checkObject.prototype = {
+            checkName: function() {
+                console.log('checkName');
+                return this;
+            },
+            checkEmil: function() {
+                console.log('checkEmil');
+                return this;
+            },
+            a: 'a'
+        }
+        // 基本原理和上面一样
+        // var checkObject1 = new checkObject;
+        // var checkObject2 = new checkObject();
+        // console.log(checkObject);
+        // // ƒ () {}
+        // console.log(checkObject.prototype);
+        // // {a: "a", checkName: ƒ, checkEmil: ƒ}
+        // console.log(checkObject1);
+        // // checkObject {}
+        // console.log(checkObject1.prototype);
+        // // undefined
+        // console.log(checkObject2);
+        // // checkObject {}
+        // console.log(checkObject2.prototype);
+        // // undefined
+        // checkObject1.checkName().checkEmil().a;
+        // // checkName
+        // // checkEmil
+        // console.log(checkObject1.checkName().checkEmil().a);
+        // // checkName
+        // // checkEmil
+        // // a
+        // checkObject2.checkName().checkEmil().a;
+        // // checkName
+        // // checkEmil
+        // console.log(checkObject2.checkName().checkEmil().a);
+        // // checkName
+        // // checkEmil
+        // // a
+
+
+
+        Function.prototype.addMethod = function(name, fn) {
+            this[name] = fn;
+            // return this;
+            // 其实在公共方法中写成这样是不行的
+        }
+        // 在跟元素上增加原型方法
+        var checkObject = function(){};
+        var checkObject = new Function();
+        var checkObject1 = new Function();
+
+        checkObject.addMethod('checkName', function(){
+            console.log('checkName');
+        })
+        // 原型方法可以被覆盖
+        checkObject.addMethod('checkName', function(){
+            console.log('checkName1');
+            return this;
+        })
+        checkObject.addMethod('checkEmil', function() {
+            console.log('checkEmil');
+            return this;
+        })
+
+        // console.log(checkObject1);
+        // // ƒ anonymous() {
+        // // }
+        // console.log(checkObject1.prototype);
+        // // {constructor: ƒ}
+        // console.log(checkObject1.checkEmil);
+        // // undefined
+        // console.log(checkObject1.checkEmil());
+        // // Uncaught TypeError: checkObject1.checkEmil is not a function
+        // console.log(checkObject);
+        // // ƒ anonymous() {
+        // // }
+        // console.log(checkObject.prototype);
+        // // {constructor: ƒ}
+        // checkObject.checkName();
+        // // checkName
+        // checkObject.checkEmil();
+        // // checkEmil
+        // checkObject.checkName().checkEmil();
+        // // 在公共方法里的return this
+        // // checkName1
+        // // Uncaught TypeError: Cannot read property 'checkEmil' of undefined
+        // // 在自定义函数中的方法里的return this
+        // // checkName1
+        // // checkEmil
+        // console.log(checkObject.checkName().checkEmil());
+        // // 在公共方法里的return this
+        // // checkName1
+        // // Uncaught TypeError: Cannot read property 'checkEmil' of undefined
+        // // 在自定义函数中的方法里的return this
+        // // checkName1
+        // // checkEmil
+        // // ƒ anonymous() {
+        // // }
+        // console.log(checkObject.checkName().checkEmil().prototype);
+        // // {constructor: ƒ}
+
+
+        // 构造器
+        var book = function(id, name, price) {
+            // 私有属性
+            var num = 1;
+            // 私有方法
+            function checkId() {console.log('checkId')};
+            // 特权方法
+            this.getName = function(){console.log('getName')};
+            this.setName = function(name){console.log(name)};
+            this.setPrice = function(price){console.log(price)};
+            // 公有属性
+            this.id = id;
+            // 公有方法
+            this.copy = function(){console.log('copy')};
+            // 构造器
+            this.setName(name);
+            this.setPrice(price);
+        }
+        // console.log(book);
+        // // ƒ (id, name, price){
+        // //     ...
+        // // }
+        // console.log(book.prototype);
+        // // {constructor: ƒ}
+        // var book1 = new book('id', 'name', 'price');
+        // // name
+        // // price
+        // console.log(book1);
+        // // book {
+        // //     copy: f()
+        // //     getName: f()
+        // //     id: id
+        // //     setName: f()
+        // //     setPrice: f()
+        // // }
+        // console.log(book1.setName('aaa'));
+        // // aaa
+        // // undefined
+        // console.log(book1.prototype);
+        // // undefined
+        // console.log(book1.checkId());
+        // // Uncaught TypeError: book1.checkId is not a function
+        // var book2 = book('id', 'name', 'price');
+        // // name
+        // // price
+        // console.log(book2);
+        // // undefined
+        // console.log(window);
+        // // 如果不加关键字new则会在根作用域中实例化到上面的构造函数
+        // console.log(book.checkId);
+        // // undefined
+        // console.log(book.num);
+        // // undefined
+
+        
+        // 闭包
+        var book = (function() {
+            // 静态自有变量
+            var bookNum = 0;
+            // 静态自有方法
+            function checkbox(name, id, price) {
+                console.log(name)
+                // 特权方法
+                this.getName = function(){console.log('getName')};
+                this.setName = function(name){console.log(name)};
+                this.setPrice = function(price){console.log(price)};
+                // 公有属性
+                this.id = id;
+                // 公有方法
+                this.copy = function(){console.log('copy')};
+                // 构造器
+                this.setName(name);
+                this.setPrice(price);
+            };
+            checkbox.prototype = {
+                // 静态公有属性
+                isJsBook: false,
+                display: function(){}
+            };
+            return checkbox;
+        })()
+        // 闭包有权访问另外一个函数内部的方法以及属性相当于函数作用域的映射
+        // console.log(book);
+        // // ƒ checkbox(name) {}
+        // console.log(book.prototype);
+        // // {isJsBook: false, display: ƒ}
+        // console.log(book.checkbox());
+        // // Uncaught TypeError: book.checkbox is not a function
+
+        // var book1 = new book('name', 'id', 'price');
+        // name
+        // name
+        // price
+
+        // console.log(book1);
+        // // checkbox {id: "id", getName: ƒ, setName: ƒ, setPrice: ƒ, copy: ƒ}
+        // console.log(book1.prototype);
+        // // undefined
+        // console.log(book1.checkbox());
+        // // Uncaught TypeError: book1.checkbox is not a function
+
+
+
+        // 创建对象的安全模式
+        var book = function(title, time, type) {
+            this.title = title;
+            this.time = time;
+            this.type = type;
+        }
+
+        // console.log(book);
+        // // ƒ (title, time, type)
+        // console.log(book.prototype);
+        // // {constructor: ƒ}
+
+        // var book1 = book('title1', 'time1', 'type1');
+        // console.log(book1);
+        // // undefined
+        // console.log(book1.prototype);
+        // // Uncaught TypeError: Cannot read property 'prototype' of undefined
+        // console.log(window.title);
+        // // title1
+        // console.log(window.time);
+        // // time1
+        // console.log(window.type);
+        // // type1
+
+        // var book2 = new book('title2', 'time2', 'type2');
+        // console.log(book2);
+        // // book {title: "title2", time: "time2", type: "type2"}
+        // console.log(book2.prototype);
+        // // undefined
+        // console.log(window.title);
+        // // title1
+        // console.log(window.time);
+        // // time1
+        // console.log(window.type);
+        // // type1
+
+        var Book = function(title, time, type) {
+            if(this instanceof Book) {
+                this.title = title;
+                this.time = time;
+                this.type = type;
+            }else{
+                return new Book(title, time, type);
+            }
+        }
+
+        // console.log(Book);
+        // // ƒ (title, time, type)
+        // console.log(Book.prototype);
+        // // {constructor: ƒ}
+        // var book3 = Book('title3', 'time3', 'type3');
+        // console.log(book3);
+        // // Book {title: "title3", time: "time3", type: "type3"}
+        // console.log(book3.prototype);
+        // // undefined
+        // var book4 = new Book('title4', 'time4', 'type4');
+        // console.log(book4);
+        // // Book {title: "title4", time: "time4", type: "type4"}
+        // console.log(book4.prototype);
+        // // undefined
+
+
+
+        function superClass() {
+            this.superValue = true;
+        }
+        superClass.prototype.getSuperValue = function() {
+            return this.superValue;
+        }
+        function subClass() {
+            this.subValue = false;
+        }
+
+        subClass.prototype = new superClass();
+
+        subClass.prototype.getSubValue = function() {
+            return this.subValue;
+        }
+
+        // console.log(superClass);
+        // // ƒ superClass()
+        // console.log(superClass.prototype);
+        // // {getSuperValue: ƒ, constructor: ƒ}
+        // console.log(subClass);
+        // // ƒ subClass()
+        // console.log(subClass.prototype);
+        // // superClass {superValue: true, getSubValue: ƒ}
+        // var instance = new subClass();
+        // console.log(instance);
+        // // subClass {subValue: false}
+        // console.log(instance.prototype);
+        // // undefined
+        // console.log(instance.getSuperValue());
+        // // true
+        // console.log(instance.getSubValue());
+        // // false
+        // console.log(subClass instanceof superClass);
+        // // false
+        // console.log(subClass.prototype instanceof superClass);
+        // // true
+
+
+
+        function superClass() {
+            this.book = ['javaScript', 'html', 'css'];
+        }
+        function subClass() {}
+        subClass.prototype = new superClass();
+        var in1 = new subClass();
+        var in2 = new subClass();
+        // console.log(in1.book);
+        // // (3) ["javaScript", "html", "css"]
+        // in2.book.push('sss');
+        // console.log(in1.book);
+        // // (4) ["javaScript", "html", "css", "sss"]
+
+
+
+        // 构造函数继承
+        function superClass(id) {
+            this.books = ['a', 'b', 'c'];
+            this.id = id;
+        }
+        superClass.prototype.showBook = function() {
+            console.log(this.books);
+        }
+        function subClass(id) {
+            superClass.call(this, id);
+        }
+
+        
+    </script>
+</body>
+
+</html>

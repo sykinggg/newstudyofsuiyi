@@ -2,19 +2,10 @@
     <div class="row">
         <div class="left-nav col-1 text-center pad-l-0 pad-r-0 relative">
             <p class="pad-t-1em pad-b-1em b-g-c-343a40 mar-b-0 f-c-999 cursor-pointer"
+                *ngFor="let item of routerLinkArr; let i = index"
                 routerLinkActive="active"
-                routerLink="map">
-                <a>map</a>
-            </p>
-            <p class="pad-t-1em pad-b-1em b-g-c-343a40 mar-b-0 f-c-999 cursor-pointer"
-                routerLinkActive="active"
-                routerLink="ui">
-                <a>ui</a>
-            </p>
-            <p class="pad-t-1em pad-b-1em b-g-c-343a40 mar-b-0 f-c-999 cursor-pointer"
-                routerLinkActive="active"
-                routerLink="directive">
-                <a>directive-学习</a>
+                [routerLink]="item.routerLink">
+                <a>{{item.routerName}}</a>
             </p>
         </div>
         <div class="col-1"></div>
@@ -22,7 +13,4 @@
     </div>
 </div>
 
-<!-- <h2>angular2 自定义指令</h2>
-<h3 appMyFirstDirective [inputBGC]="'red'">hello appMyFirstDirective</h3>
-<h3 *appCustomStructureInstruction="false">hello appCustomStructureInstruction</h3>
-<h2>angular2 内置指令</h2> -->
+<!-- <h2>angular2 内置指令</h2> -->
