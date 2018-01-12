@@ -16,7 +16,8 @@ export class HomeComponent implements OnInit {
         { routerLink: 'ui', routerName: 'ui' },
         { routerLink: 'directive', routerName: 'directive-学习' },
         { routerLink: 'JsDPRoutes', routerName: 'js设计模式' },
-        {routerLink: 'LessMixins', routerName: 'lessMixins'}
+        { routerLink: 'LessMixins', routerName: 'lessMixins' },
+        { routerLink: 'componentInstance', routerName: '组件实例' }
     ]
     constructor(private router: Router,
         private ls: LocalStorage) {

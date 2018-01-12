@@ -5,6 +5,7 @@ import { UiComponent } from '../ui/ui.component';
 import { DirectiveExplainComponent } from '../directive-explain/directive-explain.component';
 import { JsDesignPatternRoutes } from '../js-design-pattern/js-design-pattern.routes';
 import { LessMixinsComponent } from './less-mixins/less-mixins.component';
+import { componentInstanceRoutes } from '../component-instance/component-instance.routes';
 export const homeRoutes = [
     {
         path: '',
@@ -34,6 +35,10 @@ export const homeRoutes = [
             {
                 path: 'LessMixins',
                 component: LessMixinsComponent
+            },
+            {
+                path: 'componentInstance',
+                children: componentInstanceRoutes
             }
         ]
     }

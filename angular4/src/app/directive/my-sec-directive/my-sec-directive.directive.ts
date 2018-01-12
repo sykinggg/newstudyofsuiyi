@@ -5,12 +5,14 @@ import { Directive, Input, ElementRef, Renderer, HostListener, HostBinding } fro
 })
 export class MySecDirectiveDirective {
     @Input() greet: string;
+
+    constructor(private elementRef: ElementRef, private renderer: Renderer) { 
+        console.log(this);
+    }
+
     @HostBinding() get innerText() {
         // console.log(this);
         return this.greet;
-    }
-    constructor(private elementRef: ElementRef, private renderer: Renderer) { 
-        console.log(this);
     }
 
 }

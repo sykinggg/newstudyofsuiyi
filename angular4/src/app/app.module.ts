@@ -40,6 +40,12 @@ import { FormComponent } from './study/form/form.component';
 import { JsDesignPatternComponent } from './js-design-pattern/js-design-pattern.component';
 import { OpjectOrientedComponent } from './js-design-pattern/opject-oriented/opject-oriented.component';
 import { LessMixinsComponent } from './home/less-mixins/less-mixins.component';
+import { ComponentInstanceComponent } from './component-instance/component-instance.component';
+import { BaseComponentComponent } from './component-instance/base-component/base-component.component';
+import { DateListComponent } from './component-library/date-list/date-list.component';
+import { NumberResetDirective } from './directive/number-reset/number-reset.directive';
+import { NumPipePipe } from './component-library/num-pipe/num-pipe.pipe';
+
 
 @NgModule({
     declarations: [
@@ -71,7 +77,12 @@ import { LessMixinsComponent } from './home/less-mixins/less-mixins.component';
         JsDesignPatternComponent,
         OpjectOrientedComponent,
         LessMixinsComponent,
-        MySecDirectiveDirective
+        MySecDirectiveDirective,
+        ComponentInstanceComponent,
+        BaseComponentComponent,
+        DateListComponent,
+        NumberResetDirective,
+        NumPipePipe
     ],
     imports: [
         BrowserModule,
