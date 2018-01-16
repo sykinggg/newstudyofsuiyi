@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class ComponentInstanceComponent implements OnInit {
 
     routerLinkArr: Array<any> = [
-        { router: 'base', name: '基础组建实例' }
+        { router: 'base', name: '基础组建实例' },
+        {router: 'calendar', name: '日历'}
     ]
 
     constructor() { }

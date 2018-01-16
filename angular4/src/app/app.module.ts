@@ -1,11 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { CalendarModule } from 'angular-calendar';
+import { AlertModule } from 'ngx-bootstrap';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+// 总结，ng-bootstrap 以需要引入ngbModule，任何组件，如分页，tab,datapicker......都可以使用了,
+// 但是ngx-bootstrap必须使用哪个组件就引入哪个组件
+
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -45,7 +51,8 @@ import { BaseComponentComponent } from './component-instance/base-component/base
 import { DateListComponent } from './component-library/date-list/date-list.component';
 import { NumberResetDirective } from './directive/number-reset/number-reset.directive';
 import { NumPipePipe } from './component-library/num-pipe/num-pipe.pipe';
-
+import { CalendarComponent } from './component-instance/calendar/calendar.component';
+import { DateTimePickerComponent } from './component-library/date-time-picker/date-time-picker.component';
 
 @NgModule({
     declarations: [
@@ -82,15 +89,23 @@ import { NumPipePipe } from './component-library/num-pipe/num-pipe.pipe';
         BaseComponentComponent,
         DateListComponent,
         NumberResetDirective,
-        NumPipePipe
+        NumPipePipe,
+        CalendarComponent,
+        // DateTimePickerComponent
     ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
         FormsModule,
         HttpModule,
-        BsDropdownModule,
-        RouterModule.forRoot(appRoutes)
+        CommonModule,
+        AlertModule.forRoot(),
+        NgbModalModule.forRoot(),
+        RouterModule.forRoot(appRoutes),
+        CalendarModule.forRoot()
+    ],
+    exports: [
+        CalendarComponent
     ],
     providers: [
         LocalStorage
