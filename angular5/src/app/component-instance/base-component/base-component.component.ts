@@ -1,22 +1,8 @@
 // ChangeDetectionStrategy, ViewChild, TemplateRef calendar组件模块
 import {
     Component,
-    OnInit,
-    ChangeDetectionStrategy,
-    ViewChild,
-    TemplateRef
+    OnInit
 } from '@angular/core';
-// calendar日历组件方法
-// import {
-//     startOfDay,
-//     endOfDay,
-//     subDays,
-//     addDays,
-//     endOfMonth,
-//     isSameDay,
-//     isSameMonth,
-//     addHours
-// } from 'date-fns';
 import { Subject } from 'rxjs/Subject';
 // import {}from'@ng-bootstrap/ng-bootstrap';
 import { MapComponent } from '../../map/map.component';
@@ -40,6 +26,10 @@ export class BaseComponentComponent implements OnInit {
 
     setChange: Function = function (event, type) {
         this[type] = event;
+    }
+
+    setCaar: Function = function(event) {
+        console.log(event);
     }
 
     constructor() { }

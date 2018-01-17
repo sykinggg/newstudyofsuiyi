@@ -53,6 +53,8 @@ import { NumberResetDirective } from './directive/number-reset/number-reset.dire
 import { NumPipePipe } from './component-library/num-pipe/num-pipe.pipe';
 import { CalendarComponent } from './component-instance/calendar/calendar.component';
 import { DateTimePickerComponent } from './component-library/date-time-picker/date-time-picker.component';
+import { CharLenDetectionDirective } from './directive/char-len-detection/char-len-detection.directive';
+
 
 @NgModule({
     declarations: [
@@ -88,6 +90,7 @@ import { DateTimePickerComponent } from './component-library/date-time-picker/da
         ComponentInstanceComponent,
         BaseComponentComponent,
         DateListComponent,
+        CharLenDetectionDirective,
         NumberResetDirective,
         NumPipePipe,
         CalendarComponent,
