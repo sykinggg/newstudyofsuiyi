@@ -1,0 +1,27 @@
+<div id="gaodemap" class="map border mar-t-20"></div>
+<!-- <div class="button-row mar-t-20">
+    <button mat-raised-button (click)="setToolBar()">加载工具条</button>
+    <button mat-raised-button (click)="setScale()">加载比例尺</button>
+    <button mat-raised-button (click)="setMapType()">加载地图实景（含路况）</button>
+    <button mat-raised-button (click)="setOverView()">加载鹰眼</button>
+</div> -->
+<mat-card class="mar-t-10">
+    <mat-card-content>
+        <h2 class="example-h2">地图方法</h2>
+        <section class="example-section">
+            <button mat-raised-button (click)="setCity()">重定位</button>
+            <!-- <mat-checkbox class="example-margin" [(ngModel)]="mapModel.setCity" (click)="toggleSetCity()">重定位</mat-checkbox> -->
+            <mat-checkbox class="example-margin" [(ngModel)]="mapModel.toolBar" (click)="toggleShow('toolBar')">加载工具条</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="mapModel.scale" (click)="toggleShow('scale')">加载比例尺</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="mapModel.mapType" (click)="toggleShow('mapType')">加载地图实景（含路况）</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="mapModel.overView" (click)="toggleShow('overView')">加载鹰眼</mat-checkbox>
+        </section>
+        <h2 class="mar-t-10">搜索</h2>
+        <div class="example-container">
+            <mat-form-field>
+                <input matInput placeholder="请输入搜索地址">
+            </mat-form-field>
+            <button mat-raised-button >搜索</button>
+        </div>
+    </mat-card-content>
+</mat-card>

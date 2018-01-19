@@ -9,7 +9,7 @@ describe('RouterNameService', () => {
     });
   });
 
-  it('should ...', inject([RouterNameService], (service: RouterNameService) => {
+  it('should be created', inject([RouterNameService], (service: RouterNameService) => {
     expect(service).toBeTruthy();
   }));
 });

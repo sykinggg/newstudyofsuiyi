@@ -1,35 +1,29 @@
 <header>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-dark" [hidden]="true">
         <a class="pad-l-2em navbar-brand" routerLink="home">首页</a>
         <div class="pad-l-5em collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
-                <!--<li class="nav-item dropdown" [ngClass]="{'b-g-c-fff': acxtiveRouterName.indexOf('home') > 0}">-->
-                <!--<a class="pad-l-05em pad-r-05em"-->
-                <!--[ngClass]="{true: 'f-c-999', false: 'f-c-fff'}[acxtiveRouterName.indexOf('home') > 0]"-->
-                <!--routerLink="home">-->
-                <!--home-->
-                <!--</a>-->
-                <!--</li>-->
                 <li *ngFor="let item of routerLinkArr; let i = index" class="nav-item dropdown" [ngClass]="{'b-g-c-fff': acxtiveRouterName.indexOf(item.routerLink) > 0}">
                     <a class="pad-l-05em pad-r-05em" [ngClass]="{true: 'f-c-999', false: 'f-c-fff'}[acxtiveRouterName.indexOf(item.routerLink) > 0]"
                         [routerLink]="[item.routerLink]">
                         {{item.routerName}}
                     </a>
                 </li>
-                <!-- <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item">Action</a>
-              <a class="dropdown-item">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item">Something else here</a>
-            </div>
-          </li> -->
             </ul>
         </div>
     </nav>
+    <mat-toolbar class="navbar flex-left">
+        <span routerLink="home">首页</span>
+        <!-- <mat-tab-group class="mar-l-10">
+            <mat-tab *ngFor="let item of routerLinkArr; let i = index" label="{{item.routerName}}" routerLinkActive="active" [routerLink]="[item.routerLink]"></mat-tab>
+        </mat-tab-group> -->
+        <!-- <div class="button-row mar-l-10">
+            <button *ngFor="let item of routerLinkArr; let i = index" routerLinkActive="active" [routerLink]="[item.routerLink]">{{item.routerName}}</button>
+        </div> -->
+        <mat-chip-list class="mar-l-10">
+            <mat-chip *ngFor="let item of routerLinkArr; let i = index" routerLinkActive="active" [routerLink]="[item.routerLink]">{{item.routerName}}</mat-chip>
+        </mat-chip-list>
+    </mat-toolbar>
 </header>
 <main role="main" class="main">
     <router-outlet></router-outlet>
@@ -38,3 +32,4 @@
 <footer class="pad-t-1em pad-b-1em text-muted b-g-c-111">
     <div class="">Powered by angular2</div>
 </footer>
+<!-- <mat-checkbox>Check me!</mat-checkbox> -->
