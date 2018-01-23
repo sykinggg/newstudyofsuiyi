@@ -1,5 +1,6 @@
 import { MapComponent } from './map.component';
 import { MapBaseComponent } from './map-base/map-base.component';
+import { MapSearchComponent } from './map-search/map-search.component';
 
 export const mapRoutes = [
     {
@@ -14,6 +15,10 @@ export const mapRoutes = [
             {
                 path: 'base',
                 component: MapBaseComponent
+            },
+            {
+                path: 'search',
+                component: MapSearchComponent
             }
         ]
     }

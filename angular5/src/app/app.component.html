@@ -21,7 +21,7 @@
             <button *ngFor="let item of routerLinkArr; let i = index" routerLinkActive="active" [routerLink]="[item.routerLink]">{{item.routerName}}</button>
         </div> -->
         <mat-chip-list class="mar-l-10">
-            <mat-chip *ngFor="let item of routerLinkArr; let i = index" routerLinkActive="active" [routerLink]="[item.routerLink]">{{item.routerName}}</mat-chip>
+            <mat-chip *ngFor="let item of routerLinkArr; let i = index" routerLinkActive="active" [routerLink]="item.routerLink">{{item.routerName}}</mat-chip>
         </mat-chip-list>
     </mat-toolbar>
 </header>

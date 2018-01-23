@@ -24,7 +24,11 @@ import { LocalStorage } from './common/local.storage';
 // 其它组件
 import { AboutComponent } from './about/about.component';
 import { MapComponent } from './map/map.component';
-import { MapBaseComponent } from './map/map-base/map-base.component'
+import { MapBaseComponent } from './map/map-base/map-base.component';
+import { BasePipe } from './pipe/base/base.pipe';
+import { MapInformationPipe } from './pipe/map-information/map-information.pipe';
+import { MapSearchComponent } from './map/map-search/map-search.component';
+
 
 
 @NgModule({
@@ -33,7 +37,10 @@ import { MapBaseComponent } from './map/map-base/map-base.component'
         AppComponent,
         // 应用组件
         MapComponent,
+        BasePipe,
+        MapInformationPipe,
         MapBaseComponent,
+        MapSearchComponent,
         AboutComponent
     ],
     imports: [

@@ -5,30 +5,67 @@
     <button mat-raised-button (click)="setMapType()">加载地图实景（含路况）</button>
     <button mat-raised-button (click)="setOverView()">加载鹰眼</button>
 </div> -->
+<mat-card class="example-map-information">
+    <!-- <mat-card-header>{{mapInformation | mapInformation}}</mat-card-header> -->
+    <mat-card-title>province：{{mapInformation.province}}</mat-card-title>
+    <mat-card-title>city：{{mapInformation.city}}</mat-card-title>
+    <mat-card-title>district：{{mapInformation.district}}</mat-card-title>
+    <mat-card-title>地图缩放级别：{{zoomNum}}</mat-card-title>
+</mat-card>
 <mat-card class="mar-t-10">
     <mat-card-content>
         <h2 class="example-h2">地图方法</h2>
         <section class="example-section">
-            <button mat-raised-button (click)="setCity()">重定位</button>
+            <!-- <button mat-raised-button (click)="setCity()">重定位</button> -->
             <!-- <mat-checkbox class="example-margin" [(ngModel)]="mapModel.setCity" (click)="toggleSetCity()">重定位</mat-checkbox> -->
-            <mat-checkbox class="example-margin" [(ngModel)]="mapModel.toolBar" (click)="toggleShow('toolBar')">加载工具条</mat-checkbox>
-            <mat-checkbox class="example-margin" [(ngModel)]="mapModel.scale" (click)="toggleShow('scale')">加载比例尺</mat-checkbox>
-            <mat-checkbox class="example-margin" [(ngModel)]="mapModel.mapType" (click)="toggleShow('mapType')">加载地图实景（含路况）</mat-checkbox>
-            <mat-checkbox class="example-margin" [(ngModel)]="mapModel.overView" (click)="toggleShow('overView')">加载鹰眼</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="mapModel.toolBar" (change)="toggleShow('toolBar')">加载工具条</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="mapModel.scale" (change)="toggleShow('scale')">加载比例尺</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="mapModel.mapType" (change)="toggleShow('mapType')">加载地图实景（含路况）</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="mapModel.overView" (change)="toggleShow('overView')">加载鹰眼</mat-checkbox>
         </section>
-        <h2 class="mar-t-10">搜索</h2>
-        <div class="example-container">
-            <mat-form-field>
-                <input matInput placeholder="请输入搜索地址">
-            </mat-form-field>
-            <button mat-raised-button >搜索</button>
+        <section class="example-section">
+            <mat-checkbox class="example-margin" [(ngModel)]="mapModel.toggleDrag" (click)="toggle('dragEnable')">允许拖拽地图</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="mapModel.toggleKeyboard" (click)="toggle('keyboardEnable')">允许键盘平移</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="mapModel.toggleDoubleClickZoom" (click)="toggle('doubleClickZoom')">允许双击放大地图</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="mapModel.toggleIsHotspot" (click)="toggle('isHotspot')">允许叠加地图热点</mat-checkbox>
+        </section>
+        <h2>地图限制展示</h2>
+        <div class="button-row">
+            <button mat-raised-button (click)="setLimitBounds()">限制区域为当前视野</button>
+            <button mat-raised-button color="primary" (click)="getLimitBounds()">获取限制区域坐标</button>
+            <button mat-raised-button color="accent" (click)="clearLimitBounds()">清除区域限制</button>
         </div>
     </mat-card-content>
 </mat-card>
-http://blog.csdn.net/NemoWey/article/details/77844517
-https://material.angular.io/components/button/examples
-https://angular.cn/guide/user-input
-https://www.npmjs.com/package/ngx-bootstrap
-https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes
-https://gate.io/
-http://eslint.cn/docs/user-guide/configuring
+<mat-card class="mar-t-10">
+    <mat-card-content>
+        <h2 class="mar-t-10">搜索-并且标注</h2>
+        <div class="example-container">
+            <mat-form-field>
+                <input matInput placeholder="请输入搜索地址" id="tipinput">
+            </mat-form-field>
+            <!-- <button mat-raised-button >搜索</button> -->
+        </div>
+        <h2 class="mar-t-10">根据城市名称设置中心点</h2>
+        <div class="example-container">
+            <mat-form-field>
+                <input matInput placeholder="根据城市名称设置中心点" [(ngModel)]="locationCity">
+            </mat-form-field>
+            <button mat-raised-button (click)="setCity()">定位</button>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<mat-card class="mar-t-10">
+    <mat-card-content>
+        <h2 class="mar-t-10">编辑折线、多边形、圆</h2>
+        <section class="example-section">
+            <!-- <button mat-raised-button (click)="setCity()">重定位</button> -->
+            <!-- <mat-checkbox class="example-margin" [(ngModel)]="mapModel.setCity" (click)="toggleSetCity()">重定位</mat-checkbox> -->
+            <mat-checkbox class="example-margin" [(ngModel)]="mapModel.toolBar" (change)="toggleShow('toolBar')">加载工具条</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="mapModel.scale" (change)="toggleShow('scale')">加载比例尺</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="mapModel.mapType" (change)="toggleShow('mapType')">加载地图实景（含路况）</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="mapModel.overView" (change)="toggleShow('overView')">加载鹰眼</mat-checkbox>
+        </section>
+    </mat-card-content>
+</mat-card>
