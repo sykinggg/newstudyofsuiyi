@@ -15,6 +15,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatRadioModule } from '@angular/material/radio';
 // 路由
 import { appRoutes } from './app.routes';
 // 根组件
@@ -28,6 +29,7 @@ import { MapBaseComponent } from './map/map-base/map-base.component';
 import { BasePipe } from './pipe/base/base.pipe';
 import { MapInformationPipe } from './pipe/map-information/map-information.pipe';
 import { MapSearchComponent } from './map/map-search/map-search.component';
+import { MapDirectiveDirective } from './directive/map-directive/map-directive.directive';
 
 
 
@@ -41,6 +43,7 @@ import { MapSearchComponent } from './map/map-search/map-search.component';
         MapInformationPipe,
         MapBaseComponent,
         MapSearchComponent,
+        MapDirectiveDirective,
         AboutComponent
     ],
     imports: [
@@ -60,6 +63,7 @@ import { MapSearchComponent } from './map/map-search/map-search.component';
         MatCardModule,
         MatFormFieldModule,
         MatInputModule,
+        MatRadioModule,
         // 路由
         RouterModule.forRoot(appRoutes)
     ],

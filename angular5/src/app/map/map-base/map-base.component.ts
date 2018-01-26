@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { MapServiceService } from '../../service/map-service/map-service.service';
+import { BaseService } from '../../service/base/base.service';
+import { Observable } from "rxjs";
+import 'rxjs/Rx';
 declare var AMap: any;
 
 @Component({
     selector: 'app-map-base',
     templateUrl: './map-base.component.html',
     styleUrls: ['./map-base.component.scss'],
-    providers: [MapServiceService]
+    providers: [MapServiceService, BaseService]
 })
 export class MapBaseComponent implements OnInit {
 
@@ -18,7 +21,12 @@ export class MapBaseComponent implements OnInit {
         toolBar: {},
         scale: {},
         mapType: {},
-        overView: {}
+        overView: {},
+        line: {},
+        gon: {},
+        circle: {},
+        rangingTool: {},
+        mouseTool: []
     }
     // 地图加载控件是否显示标识
     mapModel: Object = {
@@ -29,10 +37,136 @@ export class MapBaseComponent implements OnInit {
         toggleDrag: true,
         toggleKeyboard: true,
         toggleDoubleClickZoom: true,
-        toggleIsHotspot: true
+        toggleIsHotspot: true,
+        line: false,
+        gon: false,
+        circle: false,
+        rangingTool: '',
+        mouseTool: true
     }
+
     // 根据城市名称设置中心点
     locationCity: String = '';
+
+    // 可获取数据的对象
+    availableMapObject: Array<String> = ['line', 'gon', 'circle']
+    // 可获取数据的对象获取的数据
+    availableMapData: any;
+    // 获取数据
+    getMapData: Function = (type: String) => {
+        this.availableMapData = {};
+        this.availableMapObject.forEach(item => {
+            if (typeof item == 'string' && typeof type == 'string') {
+                if (item !== 'circle' && typeof this.mapLoad[item].object[type] == 'function') {
+                    this.availableMapData[item] = this.mapLoad[item].object[type]();
+                } else if (item == 'circle') {
+                    if (!this.availableMapData.circle) {
+                        this.availableMapData.circle = {};
+                    }
+                    this.availableMapData.circle.center = this.mapLoad.circle.object.getCenter();
+                    this.availableMapData.circle.radius = this.mapLoad.circle.object.getRadius();
+                }
+                // if(this.mapLoad[item]) {
+                //     this.map.setZoomAndCenter(this.zoomNum, [116.368904, 39.913423]);
+                // }
+            }
+        })
+    }
+    mapCallBack: any = {
+        markerCallBack: (e) => {
+
+        },
+        polygonCallBack: (e) => {
+
+        },
+        rectangleCallBack: (e) => {
+
+        },
+        circleCallBack: (e) => {
+
+        }
+    };
+    // this.mapLoad.rangingTool.ruler2.turnOff();
+    // this.mapLoad.rangingTool.ruler1.turnOn();
+    // 鼠标工具
+    // mouseTool: Array<any> = [
+    //     {
+    //         name: 'marker',
+    //         point: [],
+    //         callBack: 'markerCallBack',
+    //         ObjArr: []
+    //     },
+    //     {
+    //         name: 'polygon',
+    //         point: [],
+    //         callBack: 'polygonCallBack',
+    //         objArr: []
+    //     },
+    //     {
+    //         name: 'rectangle',
+    //         point: [],
+    //         callBack: 'rectangleCallBack',
+    //         objArr: []
+    //     },
+    //     {
+    //         name: 'circle',
+    //         point: [],
+    //         callBack: 'circleCallBack',
+    //         objArr: []
+    //     }
+    // ]
+
+    // 距离测量
+    choiceData: Array<Object> = [
+        {
+            name: '一种折线',
+            code: 'line1'
+        },
+        {
+            name: '另一种折线',
+            code: 'line2'
+        },
+        {
+            name: '点',
+            code: 'marker'
+        },
+        {
+            name: '面',
+            code: 'polygon'
+        },
+        {
+            name: '矩形',
+            code: 'rectangle'
+        },
+        {
+            name: '圆',
+            code: 'circle'
+        }
+    ];
+    choiceMapData: String = '';
+    mapMouseToolObj: any;
+    choiceLine: Function = () => {
+        this.mapMouseToolObj.close();
+        if (this.choiceMapData == 'line1') {
+            this.mapLoad.rangingTool.ruler2.turnOff();
+            this.mapLoad.rangingTool.ruler1.turnOn();
+        } else if (this.choiceMapData == 'line2') {
+            this.mapLoad.rangingTool.ruler1.turnOff();
+            this.mapLoad.rangingTool.ruler2.turnOn();
+        } else {
+            this.mapLoad.rangingTool.ruler1.turnOff();
+            this.mapLoad.rangingTool.ruler2.turnOff();
+            if (this.choiceMapData == 'marker') {
+                this.mapMouseToolObj.marker({ offset: new AMap.Pixel(-10, -34) });
+            } else if(this.choiceMapData == 'polygon') {
+                this.mapMouseToolObj.polygon();
+            }else if(this.choiceMapData == 'rectangle') {
+                this.mapMouseToolObj.rectangle();
+            }else if(this.choiceMapData == 'circle') {
+                this.mapMouseToolObj.circle();
+            }
+        }
+    }
 
     // 重新定位
     setCity: Function = () => {
@@ -61,6 +195,16 @@ export class MapBaseComponent implements OnInit {
         } else {
             this.mapLoad[type].show();
         }
+    }
+
+    // 折线、多边形、圆是否可以编辑
+    toggleEdit: Function = function (type: string) {
+        if (!this.mapModel[type]) {
+            this.mapLoad[type].editObject.close();
+        } else {
+            this.mapLoad[type].editObject.open();
+        }
+        debugger;
     }
 
     // 限制区域为当前视野
@@ -94,7 +238,6 @@ export class MapBaseComponent implements OnInit {
     }
     getCity: Function = () => {
         this.map.getCity((data) => {
-            console.log(data);
             this.mapInformation = data;
             // if (data['province'] && typeof data['province'] === 'string') {
             //     document.getElementById('info').innerHTML = '城市：' + (data['city'] || data['province']);
@@ -110,7 +253,10 @@ export class MapBaseComponent implements OnInit {
     getZoom: Function = () => {
         this.zoomNum = this.map.getZoom();
     }
-    constructor(private mapService: MapServiceService) { }
+    testSubscribe: Function = () => {
+        console.log(this.map);
+    }
+    constructor(private mapService: MapServiceService, private baseService: BaseService) { }
 
     polygonSetting: Object = {
         // path: arr,    //设置多边形轮廓的节点数组
@@ -121,6 +267,15 @@ export class MapBaseComponent implements OnInit {
         fillOpacity: 0.35
     }
 
+    polygonCircleSetting: Object = {
+        // path: arr,    //设置多边形轮廓的节点数组
+        radius: 1000,
+        strokeColor: "#0000ff",
+        strokeOpacity: 0.2,
+        strokeWeight: 3,
+        fillColor: "#f5deb3",
+        fillOpacity: 0.35
+    }
     ngOnInit() {
         // 创建地图对象
         this.map = this.mapService.createMap('gaodemap');
@@ -142,8 +297,53 @@ export class MapBaseComponent implements OnInit {
         this.defaultZoomend();
         // 获取地图层级
         this.getZoom();
+        // 折线展示
+        let lineArr = [
+            {
+                lng: 116.368904,
+                lat: 39.913423
+            },
+            {
+                lng: 116.382122,
+                lat: 39.901176
+            }
+        ]
+        this.mapLoad.line = this.mapService.mapPolyShow(this.map, lineArr, this.polygonSetting, 'line');
         // 多边形展示
-        this.mapService.mapPolyShow(this.map, [{lng: '', lat: ''}], this.polygonSetting);
-        this.map.setZoomAndCenter(this.zoomNum, [116.403322, 39.900255]);
+        let gonArr = [
+            {
+                lng: 116.403322,
+                lat: 39.920255
+            },
+            {
+                lng: 116.410703,
+                lat: 39.897555
+            },
+            {
+                lng: 116.402292,
+                lat: 39.892353
+            }
+        ]
+        this.mapLoad.gon = this.mapService.mapPolyShow(this.map, gonArr, this.polygonSetting, 'gon');
+        //  圆展示
+        let circlePoint = {
+            lng: 116.403322,
+            lat: 39.920255
+        }
+        this.mapLoad.circle = this.mapService.mapCircleShow(this.map, circlePoint, this.polygonCircleSetting);
+        // 距离测量
+        let lOptions: Object = {
+            strokeStyle: "solid",
+            strokeColor: "#FF33FF",
+            strokeOpacity: 1,
+            strokeWeight: 2
+        }
+        this.mapLoad.rangingTool = this.mapService.rangingTool(this.map, lOptions);
+        // this.mapLoad.rangingTool.ruler2.turnOff();
+        // this.mapLoad.rangingTool.ruler1.turnOn();
+        // this.mouseTool.forEach(element => {
+        //     this.mapService.mouseTool(this.map, this.mapCallBack[element.callBack], element.name);
+        // });
+        this.mapMouseToolObj = this.mapService.mapMouseTool(this.map);
     }
 }

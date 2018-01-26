@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable } from "rxjs";
+import 'rxjs/Rx'
 declare var AMap: any;
 
 @Injectable()
@@ -141,16 +143,104 @@ export class MapServiceService {
             return s.join("<br>");
         }
     }
-    // 多边形展示
-    mapPolyShow(mapObject: any, pointArr: any, polygonSetting: Object): void {
+    // 折线|多边形——展示|编辑
+    mapPolyShow(mapObject: any, pointArr: any, polygonSetting: any, type: String): Object {
         let arr = new Array();//经纬度坐标数组 
+        let returnData: Object;
+        let polygon: Object;
         pointArr.forEach(element => {
             let data: Object = new AMap.LngLat(element.lng, element.lat);
             arr.push(data);
         });
-        let polygon = new AMap.Polygon(polygonSetting);
-        //地图上添加多边形
-        polygon.setMap(mapObject);
+
+        polygonSetting.map = mapObject;
+        polygonSetting.path = arr;
+        if (type === 'line') {
+            polygon = new AMap.Polyline(polygonSetting);
+        } else if (type === 'gon') {
+            polygon = new AMap.Polygon(polygonSetting);
+        }
+        //地图上添加折线
+        returnData = {
+            editObject: new AMap.PolyEditor(mapObject, polygon),
+            object: polygon
+        }
+        mapObject.setFitView();
+        return returnData;
+    }
+    // 圆——展示|编辑
+    mapCircleShow(mapObject: any, circlePoint: any, polygonSetting: any): Object {
+        let returnData: any, circleObj: any;
+        // 初始化配置
+        polygonSetting.center = [circlePoint.lng, circlePoint.lat];
+        // 实例化圆对象
+        circleObj = new AMap.Circle(polygonSetting);
+        // 地图自适应
+        circleObj.setMap(mapObject);
+        // 设置返回对象
+        returnData = {
+            editObject: new AMap.CircleEditor(mapObject, circleObj),
+            object: circleObj
+        }
+        mapObject.setFitView();
+        return returnData;
+    }
+    // 距离测量
+    rangingTool(mapObject: any, lOptions: Object): Object {
+        let returnObject: any;
+        let ruler1 = new AMap.RangingTool(mapObject);
+        AMap.event.addListener(ruler1, "end", (e) => {
+            ruler1.turnOff();
+        });
+        let sMarker = {
+            icon: new AMap.Icon({
+                size: new AMap.Size(19, 31),//图标大小
+                image: "http://webapi.amap.com/theme/v1.3/markers/n/mark_b1.png"
+            })
+        };
+        let eMarker = {
+            icon: new AMap.Icon({
+                size: new AMap.Size(19, 31),//图标大小
+                image: "http://webapi.amap.com/theme/v1.3/markers/n/mark_b2.png"
+            }),
+            offset: new AMap.Pixel(-9, -31)
+        };
+        let rulerOptions = {
+            startMarkerOptions: sMarker,
+            endMarkerOptions: eMarker,
+            lineOptions: lOptions
+        };
+        let ruler2 = new AMap.RangingTool(mapObject, rulerOptions);
+        returnObject = {
+            ruler1: ruler1,
+            ruler2: ruler2
+        }
+        return returnObject;
+    }
+    mapMouseTool(mapObject): any {
+        let mouseTool = new AMap.MouseTool(mapObject);
+        return mouseTool;
+    }
+    // 鼠标工具
+    mouseTool(mapObject: any, callBack: Function, choiceMapData: String): any {
+        let mouseTool = new AMap.MouseTool(mapObject);
+        if(typeof choiceMapData == 'string') {
+            mouseTool[choiceMapData]();
+        }
+        // mouseTool.marker();
+        //鼠标工具插件添加draw事件监听
+        AMap.event.addListener(mouseTool, "draw", callBack)
+        // mouseTool.measureArea();  //调用鼠标工具的面积量测功能
+        if(typeof mouseTool.turnOff == 'function') {
+            mouseTool.turnOff();
+        }
+    }
+
+    test(): Promise<any> {
+        return new Promise(resolve => {
+            // Simulate server latency with 2 second delay
+            setTimeout(() => resolve([1, 2, 3, 4, 5, 6]), 2000);
+        });
     }
     // 默认获取当前视野的地址信息
     // mapMoveend(mapObject: any): Object {

@@ -380,7 +380,7 @@
         // // undefined
 
 
-
+        // 类式继承
         function superClass() {
             this.superValue = true;
         }
@@ -420,7 +420,7 @@
         // // true
 
 
-
+        // 构造函数式继承
         function superClass() {
             this.book = ['javaScript', 'html', 'css'];
         }
@@ -436,7 +436,7 @@
 
 
 
-        // 构造函数继承
+        // 组合继承
         function superClass(id) {
             this.books = ['a', 'b', 'c'];
             this.id = id;
@@ -444,9 +444,159 @@
         superClass.prototype.showBook = function() {
             console.log(this.books);
         }
-        function subClass(id) {
+        function subClass(id, type) {
             superClass.call(this, id);
+            this.type = type;
         }
+
+        subClass.prototype = new superClass();
+
+        subClass.prototype.getTime = function() {
+            console.log(this);
+        }
+
+
+
+        var instance1 = new subClass('js', 2014);
+        // instance1.books.push('测试');
+        // console.log(instance1);
+        // // subClass {books: Array(4), id: "js", type: 2014}
+        // instance1.getTime();
+        // // subClass {books: Array(4), id: "js", type: 2014}
+        // instance1.showBook();
+        // // ["a", "b", "c", "测试"]
+        // instance1.prototype.showBook();
+        // // Cannot read property 'showBook' of undefined
+        // instance1.__proto__.showBook();
+        // // Cannot read property 'showBook' of undefined
+
+        var instance2 = new subClass('css', 2018);
+        // instance2.books.splice(0, 1);
+        // console.log(instance2);
+        // // subClass {books: Array(2), id: "css", type: 2018}
+        // console.log(instance2.prototype);
+        // // undefined
+        // instance2.getTime();
+        // // subClass {books: Array(2), id: "css", type: 2018}
+        // instance2.showBook();
+        // // (2) ["b", "c"]
+
+
+        // 原型式继承
+        function inheritObject(o) {
+            function F() {}
+            F.prototype = o;
+            return new F();
+        }
+
+        var book = {
+            name: 'js',
+            alibook: [1, 2, 3, 4, 5]
+        };
+
+        var newBook = inheritObject(book);
+        newBook.name = 'asd',
+        newBook.alibook.push('asdasd');
+
+        var otherBook = inheritObject(book);
+        otherBook.name = 'zxc',
+        otherBook.alibook.push('zxczxc');
+
+        // console.log(newBook);
+        // // F {name: "asd"}
+        // console.log(newBook.prototype);
+        // // undefined
+        // console.log(newBook.name);
+        // // asd
+        // console.log(newBook.alibook);
+        // // (7) [1, 2, 3, 4, 5, "asdasd", "zxczxc"]
+        // console.log(newBook instanceof inheritObject);
+        // // false
+        // console.log(newBook instanceof book);
+        // // TypeError: Right-hand side of 'instanceof' is not callable
+
+        // console.log(otherBook);
+        // // F {name: "zxc"}
+        // console.log(otherBook.prototype);
+        // // undefined
+        // console.log(otherBook.name);
+        // // zxc
+        // console.log(otherBook.alibook);
+        // // (7) [1, 2, 3, 4, 5, "asdasd", "zxczxc"]
+        // console.log(otherBook instanceof inheritObject);
+        // // false
+        // console.log(otherBook instanceof book);
+        // // TypeError: Right-hand side of 'instanceof' is not callable
+
+
+        // 寄生式继承
+        var book = {
+            name: 'asd',
+            alibook: [2, 3, 4, 5, 6]
+        };
+
+        function createBook(obj) {
+            var o = new inheritObject(obj);
+            o.getName = function() {
+                console.log(obj.name);
+            }
+            return o
+        }
+
+
+        function inheritPrototype(subClass, superClass) {
+            var p = inheritObject(superClass.prototype);
+            p.constructor = subClass;
+            subClass.prototype = p
+        }
+
+        function superClass(name) {
+            this.name = name;
+            this.colors = [1, 2, 3, 4, 5];
+        }
+
+        superClass.prototype.getName = function() {
+            console.log(this.name);
+        }
+
+        function subClass(name, time) {
+            superClass.call(this, name);
+            this.time = time;
+        }
+
+        inheritPrototype(subClass, superClass);
+
+        subClass.prototype.getTime = function() {
+            console.log(this.time);
+        }
+
+        // var instance1 = new subClass('aa', 1111);
+        // instance1.colors.push(11111);
+        // console.log(instance1);
+        // // subClass {name: "aa", colors: Array(5), time: 1111}
+        // console.log(instance1.prototype);
+        // // undefined
+        // console.log(instance1.colors);
+        // // (5) [1, 2, 3, 4, 5]
+        // instance1.getTime();
+        // // 1111
+        // instance1.getName();
+        // // aa
+
+
+        // var instance2 = new subClass('bb', 2222);
+        // instance2.colors.push(22222);
+        // console.log(instance2);
+        // // subClass {name: "bb", colors: Array(5), time: 2222}
+        // console.log(instance2.prototype);
+        // // undefined
+        // console.log(instance2.colors);
+        // // (5) [1, 2, 3, 4, 5]
+        // instance2.getTime();
+        // // 2222
+        // instance2.getName();
+        // // bb
+        
 
         
     </script>
