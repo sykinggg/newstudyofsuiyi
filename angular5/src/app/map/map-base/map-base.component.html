@@ -5,14 +5,14 @@
     <button mat-raised-button (click)="setMapType()">加载地图实景（含路况）</button>
     <button mat-raised-button (click)="setOverView()">加载鹰眼</button>
 </div> -->
-<mat-card class="example-map-information" [hidden]="true">
+<mat-card class="example-map-information">
     <!-- <mat-card-header>{{mapInformation | mapInformation}}</mat-card-header> -->
     <mat-card-title>province：{{mapInformation.province}}</mat-card-title>
     <mat-card-title>city：{{mapInformation.city}}</mat-card-title>
     <mat-card-title>district：{{mapInformation.district}}</mat-card-title>
     <mat-card-title>地图缩放级别：{{zoomNum}}</mat-card-title>
 </mat-card>
-<mat-card class="mar-t-10" [hidden]="true">
+<mat-card class="mar-t-10">
     <mat-card-content>
         <h2 class="example-h2">地图方法</h2>
         <section class="example-section">
@@ -37,7 +37,7 @@
         </div>
     </mat-card-content>
 </mat-card>
-<mat-card class="mar-t-10" [hidden]="true">
+<mat-card class="mar-t-10">
     <mat-card-content>
         <h2 class="mar-t-10">搜索-并且标注</h2>
         <div class="example-container">
@@ -56,7 +56,7 @@
     </mat-card-content>
 </mat-card>
 
-<mat-card class="mar-t-10" [hidden]="true">
+<mat-card class="mar-t-10">
     <mat-card-content>
         <h2 class="mar-t-10">编辑折线、多边形、圆</h2>
         <section class="example-section">
@@ -83,15 +83,9 @@
                 {{season.name}}
             </mat-radio-button>
         </mat-radio-group>
-        <!-- <h3>面积测量</h3> -->
-        <!-- <div class="button-row">
-            <button mat-raised-button (click)="testSubscribe()">获取节点数组</button>
-        </div> -->
-        <!-- <h3>鼠标绘制点线面</h3> -->
-        <!-- <div class="button-row">
-            <button mat-raised-button (click)="getMapData('getPath')">获取节点数组</button>
-            <button mat-raised-button color="primary" (click)="getMapData('getLength')">获取折线的总长度</button>
-            <button mat-raised-button color="accent" (click)="getMapData('getOptions')">获取线的属性</button>
-        </div> -->
     </mat-card-content>
+    <div class="button-row">
+        <button mat-raised-button (click)="getRangingTool()">鼠标工具</button>
+        <button mat-raised-button (click)="getpath()">获取鼠标工具数据</button>
+    </div>
 </mat-card>

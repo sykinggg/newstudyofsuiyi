@@ -72,49 +72,6 @@ export class MapBaseComponent implements OnInit {
             }
         })
     }
-    mapCallBack: any = {
-        markerCallBack: (e) => {
-
-        },
-        polygonCallBack: (e) => {
-
-        },
-        rectangleCallBack: (e) => {
-
-        },
-        circleCallBack: (e) => {
-
-        }
-    };
-    // this.mapLoad.rangingTool.ruler2.turnOff();
-    // this.mapLoad.rangingTool.ruler1.turnOn();
-    // 鼠标工具
-    // mouseTool: Array<any> = [
-    //     {
-    //         name: 'marker',
-    //         point: [],
-    //         callBack: 'markerCallBack',
-    //         ObjArr: []
-    //     },
-    //     {
-    //         name: 'polygon',
-    //         point: [],
-    //         callBack: 'polygonCallBack',
-    //         objArr: []
-    //     },
-    //     {
-    //         name: 'rectangle',
-    //         point: [],
-    //         callBack: 'rectangleCallBack',
-    //         objArr: []
-    //     },
-    //     {
-    //         name: 'circle',
-    //         point: [],
-    //         callBack: 'circleCallBack',
-    //         objArr: []
-    //     }
-    // ]
 
     // 距离测量
     choiceData: Array<Object> = [
@@ -128,23 +85,33 @@ export class MapBaseComponent implements OnInit {
         },
         {
             name: '点',
-            code: 'marker'
+            code: 'marker',
+            obj: {}
+        },
+        {
+            name: '线',
+            code: 'polyline',
+            obj: {}
         },
         {
             name: '面',
-            code: 'polygon'
+            code: 'polygon',
+            obj: {}
         },
         {
             name: '矩形',
-            code: 'rectangle'
+            code: 'rectangle',
+            obj: {}
         },
         {
             name: '圆',
-            code: 'circle'
+            code: 'circle',
+            obj: {}
         }
     ];
     choiceMapData: String = '';
     mapMouseToolObj: any;
+    mapMouseToolDataObj: any;
     choiceLine: Function = () => {
         this.mapMouseToolObj.close();
         if (this.choiceMapData == 'line1') {
@@ -158,16 +125,33 @@ export class MapBaseComponent implements OnInit {
             this.mapLoad.rangingTool.ruler2.turnOff();
             if (this.choiceMapData == 'marker') {
                 this.mapMouseToolObj.marker({ offset: new AMap.Pixel(-10, -34) });
-            } else if(this.choiceMapData == 'polygon') {
-                this.mapMouseToolObj.polygon();
-            }else if(this.choiceMapData == 'rectangle') {
-                this.mapMouseToolObj.rectangle();
-            }else if(this.choiceMapData == 'circle') {
-                this.mapMouseToolObj.circle();
+            } else {
+                if(typeof this.choiceMapData == 'string') {
+                    this.mapMouseToolObj[this.choiceMapData]();
+                }
             }
+            AMap.event.addListener(this.mapMouseToolObj, 'draw', this.getpath)
         }
     }
-
+    // 鼠标工具获取数据
+    getpath: Function = (e) => {
+        console.log(e.obj.getPath());
+        // console.log(this.mapMouseToolDataObj.getPosition());
+        // if(this.choiceMapData == 'line1') {
+        //     console.log(this.mapLoad.rangingTool);
+        // }e
+        // console.log(this.mapMouseToolObj.getpath());
+    }
+    // rangingTool获取数据
+    getRangingTool: Function = () => {
+        console.log(this.mapLoad.rangingTool.ruler1);
+        // 真的无法获取坐标
+        // console.log(this.mapLoad.rangingTool.ruler1.lineOptions);
+        // console.log(this.mapLoad.rangingTool.ruler1.startMarkerOptions);
+        // console.log(this.mapLoad.rangingTool.ruler1.midMarkerOptions);
+        // console.log(this.mapLoad.rangingTool.ruler1.endMarkerOptions);
+        // console.log(this.mapLoad.rangingTool.ruler1.tmpLineOptions);
+    }
     // 重新定位
     setCity: Function = () => {
         let city = this.locationCity;
