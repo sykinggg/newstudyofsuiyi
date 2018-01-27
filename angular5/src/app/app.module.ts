@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
 import { RouterModule } from '@angular/router';
 
 // ui框架
@@ -30,6 +32,12 @@ import { BasePipe } from './pipe/base/base.pipe';
 import { MapInformationPipe } from './pipe/map-information/map-information.pipe';
 import { MapSearchComponent } from './map/map-search/map-search.component';
 import { MapDirectiveDirective } from './directive/map-directive/map-directive.directive';
+import { HttpComponent } from './http/http.component';
+import { BaseServiceService } from "./service/http-service/base-service/base-service.service";
+import { AllTemplateComponent } from './template/template.component';
+import { TemplateComponent } from './template/template/template.component';
+import { ComponentInteractionComponent } from './template/component-interaction/component-interaction.component';
+import { ComponentInteractionChildComponent } from './template/component-interaction/component-interaction-child/component-interaction-child.component';
 
 
 
@@ -44,6 +52,11 @@ import { MapDirectiveDirective } from './directive/map-directive/map-directive.d
         MapBaseComponent,
         MapSearchComponent,
         MapDirectiveDirective,
+        AllTemplateComponent,
+        TemplateComponent,
+        HttpComponent,
+        ComponentInteractionChildComponent,
+        ComponentInteractionComponent,
         AboutComponent
     ],
     imports: [
@@ -53,6 +66,8 @@ import { MapDirectiveDirective } from './directive/map-directive/map-directive.d
         FormsModule,
         CommonModule,
         HttpModule,
+        // 前端内存服务
+        InMemoryWebApiModule.forRoot(InMemoryDataService),
         // UI框架
         NoopAnimationsModule,
         MatButtonModule,
@@ -65,10 +80,11 @@ import { MapDirectiveDirective } from './directive/map-directive/map-directive.d
         MatInputModule,
         MatRadioModule,
         // 路由
-        RouterModule.forRoot(appRoutes)
+        RouterModule.forRoot(appRoutes),
     ],
     providers: [
-        LocalStorage
+        LocalStorage,
+        BaseServiceService
     ],
     bootstrap: [AppComponent]
 })

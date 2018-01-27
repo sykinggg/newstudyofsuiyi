@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 
-import { RouterNameService } from './service/router-name.service';
+import { RouterNameService } from './service/router-name/router-name.service';
 
 import { LocalStorage } from './common/local.storage';
 
@@ -17,7 +17,9 @@ export class AppComponent {
 
     routerLinkArr: Array<any> = [
         { routerName: 'about', routerLink: 'about' },
-        { routerName: 'map', routerLink: 'map' }
+        { routerName: 'map', routerLink: 'map' },
+        // { routerName: 'http', routerLink: 'http' },
+        { routerName: 'Alltemplate', routerLink: 'Alltemplate' },
     ]
 
     constructor(private router: Router,

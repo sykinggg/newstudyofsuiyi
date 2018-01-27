@@ -33,3 +33,10 @@
 button:focus {
     outline: none !important;
 }
+
+nav a:hover {
+    text-decoration: none;
+}
+.mat-tab-link:focus {
+    background-color: $b-g-c-fff !important;
+}
