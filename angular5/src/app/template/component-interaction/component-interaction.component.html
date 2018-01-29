@@ -1,6 +1,8 @@
 <mat-card class="example-card mar-t-20">
     <mat-card-header>
-        <mat-card-title>通过输入型绑定把数据从父组件传到子组件</mat-card-title>
+        <mat-card-title>
+            <h4>通过输入型绑定把数据从父组件传到子组件</h4>
+        </mat-card-title>
         <mat-card-subtitle>描述</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
@@ -10,8 +12,12 @@
         <app-component-interaction-child *ngFor="let item of arrData1" [name]="item.name" [content]="item.content">
         </app-component-interaction-child>
     </mat-card-content>
+</mat-card>
+<mat-card class="example-card mar-t-20">
     <mat-card-header>
-        <mat-card-title>通过setter截听输入属性值的变化</mat-card-title>
+        <mat-card-title>
+            <h4>通过setter截听输入属性值的变化</h4>
+        </mat-card-title>
         <mat-card-subtitle>描述</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
@@ -22,8 +28,12 @@
         <app-component-interaction-child *ngFor="let item of arrData2" [name]="item.name" [content]="item.content">
         </app-component-interaction-child>
     </mat-card-content>
+</mat-card>
+<mat-card class="example-card mar-t-20">
     <mat-card-header>
-        <mat-card-title>通过ngOnChanges()来截听输入属性值的变化</mat-card-title>
+        <mat-card-title>
+            <h4>通过ngOnChanges()来截听输入属性值的变化</h4>
+        </mat-card-title>
         <mat-card-subtitle>描述</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
@@ -38,8 +48,12 @@
         <app-component-interaction-child [name]="alittleArr.name" [content]="alittleArr.content" [logShow]="logShow">
         </app-component-interaction-child>
     </mat-card-content>
+</mat-card>
+<mat-card class="example-card mar-t-20">
     <mat-card-header>
-        <mat-card-title>父组件监听子组件的事件</mat-card-title>
+        <mat-card-title>
+            <h4>父组件监听子组件的事件</h4>
+        </mat-card-title>
         <mat-card-subtitle>描述</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
@@ -54,8 +68,12 @@
         <p>确认：{{agreed}}</p>
         <p>不确认： {{disagreed}}</p>
     </mat-card-content>
+</mat-card>
+<mat-card class="example-card mar-t-20">
     <mat-card-header>
-        <mat-card-title>父组件与子组件通过本地变量互动</mat-card-title>
+        <mat-card-title>
+            <h4>父组件与子组件通过本地变量互动</h4>
+        </mat-card-title>
         <mat-card-subtitle>描述</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
@@ -75,8 +93,12 @@
         </div>
         <div class="seconds">{{timer.seconds}}</div>
     </mat-card-content>
+</mat-card>
+<mat-card class="example-card mar-t-20">
     <mat-card-header>
-        <mat-card-title>父组件调用@ViewChild()</mat-card-title>
+        <mat-card-title>
+            <h4>父组件调用@ViewChild()</h4>
+        </mat-card-title>
         <mat-card-subtitle>描述</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
@@ -107,8 +129,12 @@
         </div>
         <div class="seconds">{{timer.seconds}}</div>
     </mat-card-content>
+</mat-card>
+<mat-card class="example-card mar-t-20">
     <mat-card-header>
-        <mat-card-title>父组件和子组件通过服务来通讯</mat-card-title>
+        <mat-card-title>
+            <h4>父组件和子组件通过服务来通讯</h4>
+        </mat-card-title>
         <mat-card-subtitle>描述</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>

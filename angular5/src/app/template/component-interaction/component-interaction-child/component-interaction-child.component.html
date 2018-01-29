@@ -12,4 +12,11 @@
         <button mat-raised-button (click)="setVote(true)">true</button>
         <button mat-raised-button (click)="setVote(false)">false</button>
     </button>
+    <p [hidden]="!serviceShow">
+        {{astronaut}}:
+        <strong>{{mission}}</strong>
+        <button (click)="confirm()" [disabled]="!announced || confirmed">
+            Confirm
+        </button>
+    </p>
 </mat-card-content>

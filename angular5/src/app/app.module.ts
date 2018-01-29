@@ -7,8 +7,8 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { RouterModule } from '@angular/router';
 
-// ui框架
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // ui框架
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatInputModule } from '@angular/material';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -18,14 +18,14 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRadioModule } from '@angular/material/radio';
-// 路由
-import { appRoutes } from './app.routes';
-// 根组件
-import { AppComponent } from './app.component';
-// 公共组建
-import { LocalStorage } from './common/local.storage';
-// 其它组件
-import { AboutComponent } from './about/about.component';
+
+import { appRoutes } from './app.routes';// 路由
+
+import { AppComponent } from './app.component'; // 根组件
+
+import { LocalStorage } from './common/local.storage'; // 公共组建
+
+import { AboutComponent } from './about/about.component'; // 其它组件
 import { MapComponent } from './map/map.component';
 import { MapBaseComponent } from './map/map-base/map-base.component';
 import { BasePipe } from './pipe/base/base.pipe';
@@ -38,15 +38,17 @@ import { AllTemplateComponent } from './template/template.component';
 import { TemplateComponent } from './template/template/template.component';
 import { ComponentInteractionComponent } from './template/component-interaction/component-interaction.component';
 import { ComponentInteractionChildComponent } from './template/component-interaction/component-interaction-child/component-interaction-child.component';
+import { AttrDirectiveComponent } from './template/attr-directive/attr-directive.component';
+import { AttrFirstDirectiveDirective } from './directive/attr-first-directive/attr-first-directive.directive';
+import { AttrSecondDirectiveDirective } from './directive/attr-second-directive/attr-second-directive.directive';
+import { AttrThirdDirectiveDirective } from './directive/attr-third-directive/attr-third-directive.directive';
 
 
 
 @NgModule({
     declarations: [
-        // 根组件
-        AppComponent,
-        // 应用组件
-        MapComponent,
+        AppComponent, // 根组件
+        MapComponent, // 应用组件
         BasePipe,
         MapInformationPipe,
         MapBaseComponent,
@@ -56,20 +58,21 @@ import { ComponentInteractionChildComponent } from './template/component-interac
         TemplateComponent,
         HttpComponent,
         ComponentInteractionChildComponent,
+        AttrDirectiveComponent,
         ComponentInteractionComponent,
-        AboutComponent
+        AboutComponent,
+        AttrSecondDirectiveDirective, // 指令
+        AttrFirstDirectiveDirective,
+        AttrThirdDirectiveDirective,
     ],
     imports: [
-        // 基础
-        BrowserModule,
+        BrowserModule, // 基础
         BrowserAnimationsModule,
         FormsModule,
         CommonModule,
         HttpModule,
-        // 前端内存服务
-        InMemoryWebApiModule.forRoot(InMemoryDataService),
-        // UI框架
-        NoopAnimationsModule,
+        InMemoryWebApiModule.forRoot(InMemoryDataService), // 前端内存服务
+        NoopAnimationsModule, // UI框架
         MatButtonModule,
         MatCheckboxModule,
         MatTabsModule,
@@ -79,8 +82,7 @@ import { ComponentInteractionChildComponent } from './template/component-interac
         MatFormFieldModule,
         MatInputModule,
         MatRadioModule,
-        // 路由
-        RouterModule.forRoot(appRoutes),
+        RouterModule.forRoot(appRoutes), // 路由
     ],
     providers: [
         LocalStorage,

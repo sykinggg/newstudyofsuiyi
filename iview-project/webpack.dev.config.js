@@ -19,7 +19,7 @@ module.exports = merge(webpackBaseConfig, {
     },
     plugins: [
         new ExtractTextPlugin({
-            filename: '[name].css',
+            filename: '[name].less',
             allChunks: true
         }),
         new webpack.optimize.CommonsChunkPlugin({

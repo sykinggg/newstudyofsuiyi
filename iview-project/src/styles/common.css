@@ -1,9 +1,4 @@
-.pad-t-70 {
-    padding-top: 70%;
-}
-.mar-b-0 {
-    margin-bottom: 0px;
-}
-.ivu-tabs-bar {
-
+.ivu-menu-item a {
+  color: #fff;
+  display: none;
 }

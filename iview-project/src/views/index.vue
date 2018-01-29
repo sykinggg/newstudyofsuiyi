@@ -32,7 +32,7 @@
                     <img src="../images/logo.png">
                 </h1>
                 <h2>
-                    <p>Welcome to your iView app!</p>
+                    <p>asdasdasdWelcome to your iView app!</p>
                     <Button type="ghost" @click="handleStart">Start iView</Button>
                 </h2>
             </Col>

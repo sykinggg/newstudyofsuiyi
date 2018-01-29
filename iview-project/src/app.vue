@@ -1,34 +1,24 @@
 <style scoped>
-    @import 'styles/common.css';
+    @import 'styles/index.less';
 </style>
 <template>
     <div class="layout">
         <Sider :style="{position: 'fixed', height: '100vh', left: 0, overflow: 'auto'}">
-            <Menu active-name="1-2" theme="dark" width="auto" :open-names="['1']">
-                <Submenu name="1">
-                    <template slot="title">
-                        <Icon type="ios-navigate"></Icon>
-                        Item 1
-                    </template>
-                    <MenuItem name="1-1">Option 1</MenuItem>
-                    <MenuItem name="1-2">Option 2</MenuItem>
-                    <MenuItem name="1-3">Option 3</MenuItem>
-                </Submenu>
-                <!--<Submenu name="2">-->
-                    <!--<template slot="title">-->
-                        <!--<Icon type="ios-keypad"></Icon>-->
-                        <!--Item 2-->
-                    <!--</template>-->
-                    <!--<MenuItem name="2-1">Option 1</MenuItem>-->
-                    <!--<MenuItem name="2-2">Option 2</MenuItem>-->
-                <!--</Submenu>-->
-                <!--<Submenu name="3">-->
-                    <!--<template slot="title">-->
-                        <!--<Icon type="ios-analytics"></Icon>-->
-                        <!--Item 3-->
-                    <!--</template>-->
-                    <!--<MenuItem name="3-1">Option 1</MenuItem>-->
-                    <!--<MenuItem name="3-2">Option 2</MenuItem>-->
+            <Menu active-name="1-2" theme="dark" width="auto" :open-names="['1']" @on-select="openView">
+                <MenuItem v-for="item in routerArr" v-bind:name="item.link"
+                    v-bind:class="{'ivu-menu-item-active ivu-menu-item-selected': thisRoute.path.indexOf(item.link) >= 0}">
+                    <!--<Icon type="ios-navigate"></Icon>-->
+                    <span>{{item.name}}</span>
+                </MenuItem>
+                <!--<Submenu name="1">-->
+                <!--<template slot="title">-->
+                <!--<Icon type="ios-navigate"></Icon>-->
+                <!--Item 1-->
+                <!--</template>-->
+                <!--<MenuItem name="map">-->
+                <!--map-->
+                <!--</MenuItem>-->
+                <!--<MenuItem name="index">index</MenuItem>-->
                 <!--</Submenu>-->
             </Menu>
         </Sider>
@@ -38,9 +28,9 @@
             <Content :style="{padding: '0 16px 16px'}">
                 <!--面包屑-->
                 <Breadcrumb :style="{margin: '16px 0'}">
-                    <BreadcrumbItem>Home</BreadcrumbItem>
-                    <BreadcrumbItem>Components</BreadcrumbItem>
-                    <BreadcrumbItem>Layout</BreadcrumbItem>
+                    <BreadcrumbItem v-for="item in thisBreadcrumbItem">
+                        {{item}}
+                    </BreadcrumbItem>
                 </Breadcrumb>
                 <!--内容区域-->
                 <Card>
@@ -57,32 +47,42 @@
 <script>
 	import VueRouter from 'vue-router';
 
-    export default {
-    	components: {
+	export default {
+		components: {
 			VueRouter
-        },
-        data () {
-            return {
-            	routerLink: [
-                    {
-                    	name: '首页',
-                        link: '/'
-                    },
-                    {
-                    	mame: '地图',
-                        link: '/map'
-                    },
-                ]
+		},
+		data() {
+			return {
+				routerArr: [
+					{
+						name: '首页',
+						link: '/index'
+					},
+					{
+						name: '地图',
+						link: '/map'
+					}
+				],
+                thisRoute: this.$route,
+                thisBreadcrumbItem: []
+			};
+		},
+        watch: {
+			$route(to, form) {
+				this.thisRoute = to;
+				this.thisBreadcrumbItem = this.thisRoute.path.split('/');
             }
         },
-        mounted () {
-            console.log(VueRouter);
-        },
-        beforeDestroy () {
+		mounted() {
+			this.thisBreadcrumbItem = this.thisRoute.path.split('/');
+		},
+		beforeDestroy() {
 
-        },
-        methods: {
-
-        }
-    }
+		},
+		methods: {
+			openView(name) {
+				this.$router.push(name);
+			}
+		}
+	};
 </script>

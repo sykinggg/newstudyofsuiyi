@@ -1,10 +1,14 @@
 <template>
-    <div>404</div>
+    <div>基础</div>
 </template>
 
 <script>
 	export default {
-
+        data() {
+        	return {
+        		
+            }
+        }
 	};
 </script>
 
