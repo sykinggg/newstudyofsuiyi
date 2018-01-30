@@ -42,7 +42,8 @@ import { AttrDirectiveComponent } from './template/attr-directive/attr-directive
 import { AttrFirstDirectiveDirective } from './directive/attr-first-directive/attr-first-directive.directive';
 import { AttrSecondDirectiveDirective } from './directive/attr-second-directive/attr-second-directive.directive';
 import { AttrThirdDirectiveDirective } from './directive/attr-third-directive/attr-third-directive.directive';
-
+import { StrDirectiveComponent } from './template/str-directive/str-directive.component';
+import { StrFirstDirectiveDirective } from './directive/str-first-directive/str-first-directive.directive';
 
 
 @NgModule({
@@ -63,6 +64,8 @@ import { AttrThirdDirectiveDirective } from './directive/attr-third-directive/at
         AboutComponent,
         AttrSecondDirectiveDirective, // 指令
         AttrFirstDirectiveDirective,
+        StrDirectiveComponent,
+        StrFirstDirectiveDirective,
         AttrThirdDirectiveDirective,
     ],
     imports: [

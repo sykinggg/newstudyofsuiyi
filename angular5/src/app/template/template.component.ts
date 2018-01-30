@@ -9,7 +9,8 @@ export class AllTemplateComponent implements OnInit {
     routerLinkArr: Array<Object> = [
         { routerName: 'tempalte', routerLink: 'tempalte' },
         { routerName: 'interaction', routerLink: 'interaction' },
-        { routerName: 'attrDir', routerLink: 'attrDir' }
+        { routerName: 'attrDir', routerLink: 'attrDir' },
+        { routerName: 'strDir', routerLink: 'strDir' },
     ]
 
     constructor() { }

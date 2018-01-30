@@ -71,5 +71,14 @@
         <h5>绑定到@Input属性</h5>
         <p>注意看@Input装饰器。它往类上添加了一些元数据，从而让该指令的highlightColor能用于绑定</p>
         <p>它之所以称为输入属性，是因为数据流是从绑定表达式流向指令内部的</p>
+        <section class="example-section">
+            <label class="example-margin">颜色选择:</label>
+            <mat-radio-group [(ngModel)]="colors">
+                <mat-radio-button class="example-margin" value="lightgreen">Green</mat-radio-button>
+                <mat-radio-button class="example-margin" value="yellow">Yellow</mat-radio-button>
+                <mat-radio-button class="example-margin" value="cyan">Cyan</mat-radio-button>
+            </mat-radio-group>
+        </section>
+        <span appAttrThirdDirective [appHightlight]='colors'> appAttrThirdDirective</span>
     </mat-card-content>
 </mat-card>

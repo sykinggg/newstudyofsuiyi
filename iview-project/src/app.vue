@@ -59,8 +59,8 @@
 						link: '/index'
 					},
 					{
-						name: '地图',
-						link: '/map'
+						name: '基础',
+						link: '/base'
 					}
 				],
                 thisRoute: this.$route,

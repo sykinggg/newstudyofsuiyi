@@ -3,6 +3,7 @@ import { TemplateComponent } from './template/template.component';
 import { AllTemplateComponent } from './template.component';
 import { ComponentInteractionComponent } from './component-interaction/component-interaction.component';
 import { AttrDirectiveComponent } from './attr-directive/attr-directive.component';
+import { StrDirectiveComponent } from './str-directive/str-directive.component';
 export const templateRoutes = [
     {
         path: '',
@@ -24,6 +25,10 @@ export const templateRoutes = [
             {
                 path: 'attrDir',
                 component: AttrDirectiveComponent
+            },
+            {
+                path: 'strDir',
+                component: StrDirectiveComponent
             }
         ]
     }

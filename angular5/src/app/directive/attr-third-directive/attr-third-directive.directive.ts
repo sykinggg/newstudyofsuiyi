@@ -1,10 +1,24 @@
-import { Directive } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
-  selector: '[appAttrThirdDirective]'
+    selector: '[appAttrThirdDirective]'
 })
 export class AttrThirdDirectiveDirective {
 
-  constructor() { }
+    constructor(private el: ElementRef) { }
 
+    @Input('appHightlight')
+    highlightColor: String
+
+    private highlight(color: String) {
+        this.el.nativeElement.style.backgroundColor = color;
+    }
+
+    @HostListener('mouseenter') onmouseenter() {
+        this.highlight(this.highlightColor || 'red');
+    }
+
+    @HostListener('mouseleave') onmouseleave() {
+        this.highlight(null);
+    }
 }
