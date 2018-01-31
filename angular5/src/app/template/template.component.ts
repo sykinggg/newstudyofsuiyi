@@ -11,6 +11,7 @@ export class AllTemplateComponent implements OnInit {
         { routerName: 'interaction', routerLink: 'interaction' },
         { routerName: 'attrDir', routerLink: 'attrDir' },
         { routerName: 'strDir', routerLink: 'strDir' },
+        { routerName: 'pipe', routerLink: 'pipe' },
     ]
 
     constructor() { }

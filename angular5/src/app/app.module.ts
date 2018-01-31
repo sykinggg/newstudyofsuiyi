@@ -44,6 +44,8 @@ import { AttrSecondDirectiveDirective } from './directive/attr-second-directive/
 import { AttrThirdDirectiveDirective } from './directive/attr-third-directive/attr-third-directive.directive';
 import { StrDirectiveComponent } from './template/str-directive/str-directive.component';
 import { StrFirstDirectiveDirective } from './directive/str-first-directive/str-first-directive.directive';
+import { PipeComponent } from './template/pipe/pipe.component';
+import { ExponentialStrengthPipePipe } from './pipe/exponential-strength-pipe/exponential-strength-pipe.pipe';
 
 
 @NgModule({
@@ -66,6 +68,8 @@ import { StrFirstDirectiveDirective } from './directive/str-first-directive/str-
         AttrFirstDirectiveDirective,
         StrDirectiveComponent,
         StrFirstDirectiveDirective,
+        PipeComponent,
+        ExponentialStrengthPipePipe,
         AttrThirdDirectiveDirective,
     ],
     imports: [

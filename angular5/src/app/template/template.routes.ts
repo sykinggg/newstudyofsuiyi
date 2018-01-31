@@ -4,6 +4,7 @@ import { AllTemplateComponent } from './template.component';
 import { ComponentInteractionComponent } from './component-interaction/component-interaction.component';
 import { AttrDirectiveComponent } from './attr-directive/attr-directive.component';
 import { StrDirectiveComponent } from './str-directive/str-directive.component';
+import { PipeComponent } from './pipe/pipe.component';
 export const templateRoutes = [
     {
         path: '',
@@ -29,6 +30,10 @@ export const templateRoutes = [
             {
                 path: 'strDir',
                 component: StrDirectiveComponent
+            },
+            {
+                path: 'pipe',
+                component: PipeComponent
             }
         ]
     }

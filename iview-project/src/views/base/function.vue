@@ -11,7 +11,7 @@
             <button v-on:click="say('bb')">bb</button>
             <button v-on:click="warn('asd', $event)">warn</button>
             <h3>事件修饰符</h3>
-
+            <a href="https://cn.vuejs.org/v2/guide/events.html">有时间再看基本都是api的东西</a>
         </Card>
     </div>
 </template>

@@ -6,6 +6,7 @@ import styleComponent from '../views/base/style'
 import condition from '../views/base/condition'
 import list from '../views/base/list'
 import functionComponent from '../views/base/function'
+import form from '../views/base/form';
 import style from '../views/base/style'
 // const index = () => import('./views/index')
 // const template = () => import('./views/base/template')
@@ -56,6 +57,10 @@ const baseRouters = [
 			{
 				path: '/base/function',
 				component: functionComponent
+			},
+			{
+				path: '/base/form',
+				component: form
 			}
 		]
 	}

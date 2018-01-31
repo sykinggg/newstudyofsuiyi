@@ -40,6 +40,10 @@
                     {
                     	name: '事件处理',
                         link: '/base/function'
+                    },
+                    {
+                    	name: '表单',
+                        link: '/base/form'
                     }
 				],
 				thisRoute: this.$route
