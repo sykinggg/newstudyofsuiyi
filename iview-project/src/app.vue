@@ -61,7 +61,11 @@
 					{
 						name: '基础',
 						link: '/base'
-					}
+					},
+                    {
+                    	name: '过渡&动画',
+                        link: '/trainAnim'
+                    }
 				],
                 thisRoute: this.$route,
                 thisBreadcrumbItem: []

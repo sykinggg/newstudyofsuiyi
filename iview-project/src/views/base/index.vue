@@ -44,6 +44,10 @@
                     {
                     	name: '表单',
                         link: '/base/form'
+                    },
+                    {
+                    	name: '组件',
+                        link: '/base/componentVue'
                     }
 				],
 				thisRoute: this.$route

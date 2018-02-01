@@ -49,11 +49,13 @@
 import baseRouters from './routes/base';
 import mapRoutes from './routes/map';
 import undefinedRoutes from './routes/404';
+import trainAnimRoutes from './routes/trainAnim';
 
 let routerArr = [
 	baseRouters,
 	mapRoutes,
-	undefinedRoutes
+	undefinedRoutes,
+	trainAnimRoutes
 ];
 
 let routers = [];

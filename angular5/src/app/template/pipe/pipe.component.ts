@@ -17,6 +17,8 @@ export class PipeComponent implements OnInit {
         this.toggle = !this.toggle;
     }
 
+    power: number = 5;
+    factor: number = 1;
     constructor() { }
 
     ngOnInit() {

@@ -18,7 +18,7 @@
     "iview": "^2.0.0-rc.8",
     "less": "^2.7.3",
     "less-loader": "^2.2.3",
-    "vue": "^2.2.6",
+    "vue": "^2.3.0",
     "vue-router": "^2.2.1"
   },
   "devDependencies": {

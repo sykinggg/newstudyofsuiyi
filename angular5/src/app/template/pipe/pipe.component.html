@@ -23,5 +23,20 @@
             <li>这个@Pipe装饰器允许我们定义管道的名字，这个名字会被用在模板表达式中</li>
             <li>必须是一个有效的JavaScript标识符</li>
         </ul>
+        <h4>PipeTransform接口</h4>
+        <p>transform方法是管道的基本要素</p>
+        <p>PipeTransform接口中定义了它，并用它指导各种工具和编译器</p>
+        <p>Super power boost:{{2 | exponentialStrengthPipe: 10}}</p>
+        <h4>注意：</h4>
+        <ul>
+            <li>使用自定义管道的方式和内置管道完全相同</li>
+            <li>必须在AppModule的declarations数组中包含这个管道</li>
+        </ul>
+        <div>Normal power: <input type="text" [(ngModel)]="power"></div>
+        <div>Boost factor: <input type="text" [(ngModel)]="factor"></div>
+        <p>Super Hero Power: {{power | exponentialStrengthPipe: factor}}</p>
+        <h4>变更检测</h4>
+        <p>Angular通过变更检测过程来查找绑定值的更改，并在每一次JavaScript事件之后运行：每次按键、鼠标移动、定时器以及服务器的响应</p>
+        <p></p>
     </mat-card-content>
 </mat-card>
