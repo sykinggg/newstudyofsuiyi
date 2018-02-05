@@ -46,6 +46,9 @@ import { StrDirectiveComponent } from './template/str-directive/str-directive.co
 import { StrFirstDirectiveDirective } from './directive/str-first-directive/str-first-directive.directive';
 import { PipeComponent } from './template/pipe/pipe.component';
 import { ExponentialStrengthPipePipe } from './pipe/exponential-strength-pipe/exponential-strength-pipe.pipe';
+import { PipeFirstPipe } from './pipe/pipe-first/pipe-first.pipe';
+import { PipeHttpPipe } from './pipe/pipe-http/pipe-http.pipe';
+import { AnimationsComponent } from './template/animations/animations.component';
 
 
 @NgModule({
@@ -70,7 +73,10 @@ import { ExponentialStrengthPipePipe } from './pipe/exponential-strength-pipe/ex
         StrFirstDirectiveDirective,
         PipeComponent,
         ExponentialStrengthPipePipe,
-        AttrThirdDirectiveDirective,
+        PipeFirstPipe,
+        PipeHttpPipe,
+        AnimationsComponent,
+        AttrThirdDirectiveDirective
     ],
     imports: [
         BrowserModule, // 基础
