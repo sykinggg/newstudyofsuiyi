@@ -1,15 +1,37 @@
 import { Component, OnInit } from '@angular/core';
+import { stateStyle } from '../../animation/state';
+import { flyInOut } from '../../animation/flyInOut';
 
 @Component({
-  selector: 'app-animations',
-  templateUrl: './animations.component.html',
-  styleUrls: ['./animations.component.scss']
+    selector: 'app-animations',
+    templateUrl: './animations.component.html',
+    styleUrls: ['./animations.component.scss'],
+    animations: [stateStyle, flyInOut]
 })
 export class AnimationsComponent implements OnInit {
 
-  constructor() { }
+    private stateContent: any = {
+        name: 'name',
+        state: 'inactive'
+    }
 
-  ngOnInit() {
-  }
+    change() {
+        if (this.stateContent.state == 'inactive') {
+            this.stateContent.state = 'active';
+        } else {
+            this.stateContent.state = 'inactive';
+        }
+    }
+
+    private flyInOutInspect:Boolean = true;
+
+    hide() {
+        this.flyInOutInspect = !this.flyInOutInspect;
+    }
+
+    constructor() { }
+
+    ngOnInit() {
+    }
 
 }
