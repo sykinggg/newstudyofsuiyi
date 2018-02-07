@@ -126,7 +126,7 @@ export class MapBaseComponent implements OnInit {
             if (this.choiceMapData == 'marker') {
                 this.mapMouseToolObj.marker({ offset: new AMap.Pixel(-10, -34) });
             } else {
-                if(typeof this.choiceMapData == 'string') {
+                if (typeof this.choiceMapData == 'string') {
                     this.mapMouseToolObj[this.choiceMapData]();
                 }
             }

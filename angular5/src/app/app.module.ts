@@ -49,6 +49,9 @@ import { ExponentialStrengthPipePipe } from './pipe/exponential-strength-pipe/ex
 import { PipeFirstPipe } from './pipe/pipe-first/pipe-first.pipe';
 import { PipeHttpPipe } from './pipe/pipe-http/pipe-http.pipe';
 import { AnimationsComponent } from './template/animations/animations.component';
+import { UserInputComponent } from './form/user-input/user-input.component';
+import { FormComponent } from './form/form.component';
+import { TemplateFormComponent } from './form/template-form/template-form.component';
 
 
 @NgModule({
@@ -76,6 +79,9 @@ import { AnimationsComponent } from './template/animations/animations.component'
         PipeFirstPipe,
         PipeHttpPipe,
         AnimationsComponent,
+        UserInputComponent,
+        FormComponent,
+        TemplateFormComponent,
         AttrThirdDirectiveDirective
     ],
     imports: [

@@ -3,6 +3,7 @@ import { AboutComponent } from './about/about.component';
 import { mapRoutes } from './map/map.routes';
 import { HttpComponent } from './http/http.component';
 import { templateRoutes } from './template/template.routes';
+import { formRoutes } from './form/form.routes';
 
 export const appRoutes: Routes = [
     {
@@ -25,5 +26,9 @@ export const appRoutes: Routes = [
     {
         path: 'Alltemplate',
         children: templateRoutes
+    },
+    {
+        path: 'form',
+        children: formRoutes
     }
 ]

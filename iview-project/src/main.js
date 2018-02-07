@@ -8,12 +8,14 @@ import 'iview/dist/styles/iview.css';
 
 Vue.use(VueRouter);
 Vue.use(iView);
+Vue.config.productionTip = false;
 
 // 路由配置
 const RouterConfig = {
     mode: 'history',
     routes: Routers
 };
+
 const router = new VueRouter(RouterConfig);
 
 router.beforeEach((to, from, next) => {

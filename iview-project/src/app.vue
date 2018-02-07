@@ -6,7 +6,7 @@
         <Sider :style="{position: 'fixed', height: '100vh', left: 0, overflow: 'auto'}">
             <Menu active-name="1-2" theme="dark" width="auto" :open-names="['1']" @on-select="openView">
                 <MenuItem v-for="item in routerArr" v-bind:name="item.link"
-                    v-bind:class="{'ivu-menu-item-active ivu-menu-item-selected': thisRoute.path.indexOf(item.link) >= 0}">
+                    v-bind:class="{'ivu-menu-item-active ivu-menu-item-selected': pageRouter === item.link}">
                     <!--<Icon type="ios-navigate"></Icon>-->
                     <span>{{item.name}}</span>
                 </MenuItem>
@@ -54,31 +54,34 @@
 		data() {
 			return {
 				routerArr: [
-					{
-						name: '首页',
-						link: '/index'
-					},
-					{
-						name: '基础',
-						link: '/base'
-					},
-                    {
-                    	name: '过渡&动画',
-                        link: '/trainAnim'
-                    }
+            {
+              'name': '首页',
+              'link': '/index'
+            },
+            {
+              'name': '基础',
+              'link': '/base'
+            },
+            {
+              'name': '过渡&动画',
+              'link': '/trainAnim'
+            }
 				],
-                thisRoute: this.$route,
-                thisBreadcrumbItem: []
+        thisRoute: this.$route,
+        thisBreadcrumbItem: [],
+        pageRouter: '/'
 			};
 		},
-        watch: {
+    watch: {
 			$route(to, form) {
 				this.thisRoute = to;
 				this.thisBreadcrumbItem = this.thisRoute.path.split('/');
-            }
-        },
+				this.pageRouter = '/' + this.thisRoute.path.split('/').slice(1, 2);
+      }
+    },
 		mounted() {
 			this.thisBreadcrumbItem = this.thisRoute.path.split('/');
+      this.pageRouter = '/' + this.thisRoute.path.split('/').slice(1, 2);
 		},
 		beforeDestroy() {
 
@@ -90,3 +93,6 @@
 		}
 	};
 </script>
+<style lang="less">
+  @import './styles/index';
+</style>
