@@ -1,6 +1,7 @@
 import { FormComponent } from './form.component';
 import { UserInputComponent } from './user-input/user-input.component';
 import { TemplateFormComponent } from './template-form/template-form.component';
+import { FormValidateComponent } from './form-validate/form-validate.component';
 
 export const formRoutes = [
     {
@@ -19,6 +20,10 @@ export const formRoutes = [
             {
                 path: 'templateForm',
                 component: TemplateFormComponent
+            },
+            {
+                path: 'formValidate',
+                component: FormValidateComponent
             }
         ]
     }

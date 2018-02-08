@@ -52,6 +52,7 @@ import { AnimationsComponent } from './template/animations/animations.component'
 import { UserInputComponent } from './form/user-input/user-input.component';
 import { FormComponent } from './form/form.component';
 import { TemplateFormComponent } from './form/template-form/template-form.component';
+import { FormValidateComponent } from './form/form-validate/form-validate.component';
 
 
 @NgModule({
@@ -82,6 +83,7 @@ import { TemplateFormComponent } from './form/template-form/template-form.compon
         UserInputComponent,
         FormComponent,
         TemplateFormComponent,
+        FormValidateComponent,
         AttrThirdDirectiveDirective
     ],
     imports: [
