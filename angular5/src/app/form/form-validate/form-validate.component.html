@@ -1,3 +1,32 @@
-<p>
-  form-validate works!
-</p>
+<mat-card class="example-card mar-t-20">
+    <mat-card-header>
+        <mat-card-title>
+            <h4>Form Validation</h4>
+        </mat-card-title>
+        <mat-card-subtitle>
+            <ul>
+                <li>原生的HTML表单验证器</li>
+                <li>每当表单控件中的值发生变化时，Angular 就会进行验证</li>
+                <li>生成一个验证错误的列表（对应着INVALID状态）或者null（对应着VALID状态）</li>
+                <li>可以通过把ngModel导出成局部模板变量来查看该控件的状态</li>
+            </ul>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <!-- <input id="name" name="name" class="form-control" required minlength="4" forbiddenName="bob" [(ngModel)]="hero.name" #name="ngModel">
+
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+
+            <div *ngIf="name.errors.required">
+                Name is required.
+            </div>
+            <div *ngIf="name.errors.minlength">
+                Name must be at least 4 characters long.
+            </div>
+            <div *ngIf="name.errors.forbiddenName">
+                Name cannot be Bob.
+            </div>
+
+        </div> -->
+    </mat-card-content>
+</mat-card>

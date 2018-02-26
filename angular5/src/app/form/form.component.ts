@@ -10,7 +10,8 @@ export class FormComponent implements OnInit {
     routerLinkArr: Array<any> = [
         { routerName: 'userInput', routerLink: 'userInput' },
         { routerName: 'templateForm', routerLink: 'templateForm' },
-        { routerName: 'formValidate', routerLink: 'formValidate' }
+        { routerName: 'formValidate', routerLink: 'formValidate' },
+        { routerName: 'formResponse', routerLink: 'formResponse' }
     ]
 
     constructor() { }
