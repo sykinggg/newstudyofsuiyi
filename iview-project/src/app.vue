@@ -65,6 +65,10 @@
             {
               'name': '过渡&动画',
               'link': '/trainAnim'
+            },
+            {
+              'name': '可复用性 & 组合',
+              'link': '/combination'
             }
 				],
         thisRoute: this.$route,

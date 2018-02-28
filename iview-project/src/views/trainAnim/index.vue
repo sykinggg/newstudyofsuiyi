@@ -14,26 +14,30 @@
 <script>
 	export default {
         data() {
-			return {
-				routerArr: [
-					{
-						name: '基础',
-						link: '/trainAnim/base'
-					}
-				],
-				thisRoute: this.$route
-            }
+          return {
+            routerArr: [
+              {
+                name: '基础',
+                link: '/trainAnim/base'
+              },
+              {
+                name: '状态',
+                link: '/trainAnim/state'
+              }
+            ],
+            thisRoute: this.$route
+          }
         },
-		watch: {
-			$route(to, form) {
-				this.thisRoute = to;
-			}
-		},
-		methods: {
-			openView(name) {
-				this.$router.push(name);
-			}
-		}
+        watch: {
+          $route(to, form) {
+            this.thisRoute = to;
+          }
+        },
+        methods: {
+          openView(name) {
+            this.$router.push(name);
+          }
+        }
 	};
 </script>
 

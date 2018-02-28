@@ -247,29 +247,90 @@
             <p slot="title">列表过渡</p>
             <button v-on:click="shuffle2" class="mar-b-20">shuffle</button>
             <transition-group name="list-complete2" tag="div" class="list-complete-item2-box">
-                  <p v-for="(item, index) in shuffleItems2" v-bind:key="item" class="list-complete-item2">
+                  <p v-for="(item, index) in shuffleItems2" v-bind:key="item"
+                     class="list-complete-item2">
                     {{item}}
                   </p>
             </transition-group>
         </Card>
-        <!--<Card class="mar-b-20">-->
-            <!--<p slot="title">列表的交错过渡</p>-->
-            <!--<input v-model="query">-->
-            <!--<transition-group-->
-                <!--name="staggered-fade"-->
-                <!--tag="ul"-->
-                <!--v-bind:css="false"-->
-                <!--v-on:before-enter="beforeEnter"-->
-                <!--v-on:enter="enter"-->
-                <!--v-on:leave="leave">-->
-                <!--<p-->
-                    <!--v-for="(item, index) in computedList"-->
-                    <!--v-bind:key="item.msg"-->
-                    <!--v-bind:data-index="index">-->
-                    <!--{{ item.msg }}-->
-                <!--</p>-->
-            <!--</transition-group>-->
-        <!--</Card>-->
+        <Card class="mar-b-20">
+            <p slot="title">列表的搜索过渡</p>
+            <input v-model="query">
+            <transition-group
+                name="staggered-fade"
+                tag="ul"
+                v-bind:css="false"
+                v-on:before-enter="beforeEnter"
+                v-on:enter="enter"
+                v-on:leave="leave">
+                <li
+                    v-for="(item, index) in computedList"
+                    v-bind:key="item.msg"
+                    v-bind:data-index="index">
+                    {{ item.msg }}
+                </li>
+            </transition-group>
+        </Card>
+        <Card class="mar-b-20">
+            <p slot="title">可复用的过渡</p>
+            <ul>
+                <li>过渡可以通过 Vue 的组件系统实现复用</li>
+                <li>要创建一个可复用过渡组件，你需要做的就是将 transition 或者 transition-group 作为根组件</li>
+                <li>将任何子组件放置在其中就可以了</li>
+            </ul>
+            <pre>
+                Vue.component('my-special-transition', {
+                  functional: true,
+                  render: function (createElement, context) {
+                    var data = {
+                      props: {
+                        name: 'very-special-transition',
+                        mode: 'out-in'
+                      },
+                      on: {
+                        beforeEnter: function (el) {
+                          // ...
+                        },
+                        afterEnter: function (el) {
+                          // ...
+                        }
+                      }
+                    }
+                    return createElement('transition', data, context.children)
+                  }
+                })
+            </pre>
+        </Card>
+        <Card>
+            <p slot="title">动态过渡</p>
+            <ul>
+                <li>在 Vue 中即使是过渡也是数据驱动的</li>
+                <li>动态过渡最基本的例子是通过 name 特性来绑定动态值</li>
+                <li>所有的过渡特性都是动态绑定</li>
+                <li>通过事件的钩子函数方法，可以在获取到相应上下文数据</li>
+            </ul>
+            <span>Fade In:</span>
+            <input type="range" v-model="fadeInDuration" min="0" v-bind:max="maxFadeDuration">
+            <span>Fade Out: </span>
+            <input type="range" v-model="fadeOutDuration" min="0" v-bind:max="maxFadeDuration">
+            <transition
+                v-bind:css="false"
+                v-on:before-enter="rangeBeforeEnter"
+                v-on:enter="rangeEnter"
+                v-on:leave="rangeLeave">
+                <p v-if="rangeShow">hello</p>
+            </transition>
+            <button
+                v-if="stop"
+                v-on:click="stop = false; rangeShow = false">
+              Start animating
+            </button>
+            <button
+                v-else
+                v-on:click="stop = true">
+                Stop it!
+            </button>
+        </Card>
     </div>
 </template>
 
@@ -299,11 +360,17 @@
           { msg: 'Chuck Norris' },
           { msg: 'Jet Li' },
           { msg: 'Kung Fury' }
-        ]
+        ],
+        rangeShow: true,
+        fadeInDuration: 1000,
+        fadeOutDuration: 1000,
+        maxFadeDuration: 1500,
+        stop: true
       }
     },
     mounted () {
-        this.defaultShuffleItem2()
+        this.rangeShow = false;
+        this.defaultShuffleItem2();
     },
     methods: {
       beforeEnter: function (el) {
@@ -352,6 +419,59 @@
           for(var i = 1; i < 100; i++) {
               this.shuffleItems2.push(i);
           }
+      },
+      beforeEnter: function (el) {
+        el.style.opacity = 0
+        el.style.height = 0
+      },
+      enter: function (el, done) {
+        var delay = el.dataset.index * 150
+        setTimeout(function () {
+          Velocity(
+            el,
+            { opacity: 1, height: '1.6em' },
+            { complete: done }
+          )
+        }, delay)
+      },
+      leave: function (el, done) {
+        var delay = el.dataset.index * 150
+        setTimeout(function () {
+          Velocity(
+            el,
+            { opacity: 0, height: 0 },
+            { complete: done }
+          )
+        }, delay)
+      },
+      rangeBeforeEnter: function (el) {
+        el.style.opacity = 0
+      },
+      rangeEnter: function (el, done) {
+        var vm = this
+        Velocity(el,
+          { opacity: 1 },
+          {
+            duration: this.fadeInDuration,
+            complete: function () {
+              done()
+              if (!vm.stop) vm.show = false
+            }
+          }
+        )
+      },
+      rangeLeave: function (el, done) {
+        var vm = this
+        Velocity(el,
+          { opacity: 0 },
+          {
+            duration: this.fadeOutDuration,
+            complete: function () {
+              done()
+              vm.show = true
+            }
+          }
+        )
       }
     },
     computed: {
@@ -440,17 +560,32 @@
     }
 
     .list-complete-item2-box {
-      width: 270px;
+      width: 272px;
       height: auto;
     }
 
     .list-complete-item2 {
-        transition: all 1s;
         display: inline-block;
         width: 30px;
         height: 30px;
         border: 1px solid #e5e5e5;
+        border-right: 0px;
+        border-bottom: 0px;
         text-align: center;
         line-height: 30px;
+    }
+
+    .list-complete-item2-box {
+        border-right: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .list-complete2-move {
+        transition: all 1s;
+        border: 1px solid #e5e5e5;
+    }
+
+    .list-complete2-enter-active {
+        /*border: 1px solid #e5e5e5;*/
     }
 </style>

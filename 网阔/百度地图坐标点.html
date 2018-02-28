@@ -1,0 +1,241 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<style>
+			#container {
+				width: 900px;
+				height: 600px;
+				margin: 0 auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div id='container'></div>
+	</body>
+	<script src="https://api.map.baidu.com/api?v=2.0&ak=BriDmV4VWIBGg9CEDeDlwG0GUIzhmK1N"></script>
+	<script>
+		/*
+			calculation
+			除法——accDiv
+			乘法——accMul
+			加法——accAdd
+			减法——accSubtr
+		*/
+		// 浮点数计算
+		var calculation = {
+			// 除法
+			accDiv: function(arg1,arg2){ 
+				var t1=0,t2=0,r1,r2; 
+				try{t1=arg1.toString().split(".")[1].length}catch(e){} 
+				try{t2=arg2.toString().split(".")[1].length}catch(e){} 
+				with(Math){ 
+					r1=Number(arg1.toString().replace(".","")) 
+					r2=Number(arg2.toString().replace(".","")) 
+					return (r1/r2)*pow(10,t2-t1); 
+				} 
+			},
+			// 乘法
+			accMul: function(arg1,arg2) { 
+				var m=0,s1=arg1.toString(),s2=arg2.toString(); 
+				try{m+=s1.split(".")[1].length}catch(e){} 
+				try{m+=s2.split(".")[1].length}catch(e){} 
+				return Number(s1.replace(".",""))*Number(s2.replace(".",""))/Math.pow(10,m) 
+			},
+			// 加法
+			accAdd: function(arg1,arg2){ 
+				var r1,r2,m; 
+				try{r1=arg1.toString().split(".")[1].length}catch(e){r1=0} 
+				try{r2=arg2.toString().split(".")[1].length}catch(e){r2=0} 
+				m=Math.pow(10,Math.max(r1,r2)) 
+				return (arg1*m+arg2*m)/m 
+			},
+			// 减法
+			accSubtr: function(arg1,arg2){
+				var r1,r2,m,n;
+				try{r1=arg1.toString().split(".")[1].length}catch(e){r1=0}
+				try{r2=arg2.toString().split(".")[1].length}catch(e){r2=0}
+				m=Math.pow(10,Math.max(r1,r2));
+				//动态控制精度长度
+				n=(r1>=r2)?r1:r2;
+				return ((arg1*m-arg2*m)/m).toFixed(n);
+			} 
+		}
+		var points = [
+			{
+				name: '九峰',
+				lat: 28.1619702918418,
+				lng: 114.684613929114
+			},
+			{
+				name: '寨里',
+				lat: 28.168660680393,
+				lng: 114.688467501336
+			},
+			{
+				name: '万坑',
+				lat: 28.1893894369516,
+				lng: 114.689923445293
+			},
+			{
+				name: '徐家渡',
+				lat: 28.2233975802165,
+				lng: 114.705857382181
+			}
+		]
+
+		var pointsArr = [];
+
+		var choicePoint = {
+			lat: 28.1919702918912,
+			lng: 114.684613929513
+		}
+
+		var projectionPoint = {}
+
+		var originalMinimumIdx = 0;
+		var line1 = [],line2 = [],minLine;
+		var lineParameter1 = {
+			key: '',
+			c: '',
+			d: ''
+		}
+
+		var lineParameter2 = {
+			key: '',
+			c: '',
+			d: ''
+		}
+
+		var map = new BMap.Map("container");
+
+		// 获取最小两条线段
+		function getMinimumPoint() {
+			var minNum;
+			for(var i in points) {
+				var point1 = new BMap.Point(points[+i].lng,points[+i].lat);
+				pointsArr.push(point1);
+				// var latDif = Math.abs(points[+i].lat - choicePoint.lat);
+				// var lngDif = Math.abs(points[+i].lng - choicePoint.lng);
+				// var distance = Math.sqrt(latDif*latDif + lngDif*lngDif);
+				var point2 = new BMap.Point(choicePoint.lng,choicePoint.lat);
+				var distance = map.getDistance(point1,point2);
+				if(i == 0) {
+					minNum = distance;
+					originalMinimumIdx = i;
+				}else{
+					if(minNum > distance) {
+						minNum = distance;
+						originalMinimumIdx = i;
+					}
+				}
+
+			}
+			console.log(originalMinimumIdx);
+			if(originalMinimumIdx > 0) {
+				line1.push(points[+originalMinimumIdx-1]);
+				line1.push(points[originalMinimumIdx]);
+			}
+			if(originalMinimumIdx < points.length-1) {
+				line2.push(points[originalMinimumIdx]);
+				line2.push(points[+originalMinimumIdx+1]);
+			}
+
+			getLinearSquare();
+		}
+
+		// 根据两条线段求直线方程
+		// lng => y; lat => x
+		function getLinearSquare() {
+			if(line1.length) {
+				lineParameter1.key = (line1[0].lng-line1[1].lng) / (line1[0].lat-line1[1].lat);
+				lineParameter1.c = -(line1[0].lat + line1[0].lng*lineParameter1.key);
+
+				lineParameter1.d = Math.abs((choicePoint.lat + lineParameter1.key*choicePoint.lng + lineParameter1.c)/Math.sqrt(1 + lineParameter1.key*lineParameter1.key));
+
+				minLine = lineParameter1;
+				minLine.line=line1;
+				console.log('line1');
+			}
+			
+			if(line2.length) {
+				lineParameter2.key = (line2[0].lng-line2[1].lng) / (line2[0].lat-line2[1].lat);
+				lineParameter2.c = -(line2[0].lat + line2[0].lng*lineParameter1.key);
+
+				lineParameter2.d = Math.abs((choicePoint.lat + lineParameter2.key*choicePoint.lng + lineParameter2.c)/Math.sqrt(1 + lineParameter2.key*lineParameter2.key));
+
+				minLine = lineParameter2;
+				minLine.line=line2;
+				console.log('line2');
+			}
+
+			if(line1.length && line2.length) {
+				if(lineParameter1.d > lineParameter2.d) {
+					minLine = lineParameter2;
+					minLine.line=line2;
+					console.log('line2');
+				}else{
+					minLine = lineParameter1;
+					minLine.line=line1;
+					console.log('line1');
+				}
+			}
+
+			getProjection();
+		}
+
+		// 求点到直线的投影
+		function getProjection() {
+			minLine.choiceKey = -(1/minLine.key);
+			minLine.choiceC = -(choicePoint.lat + choicePoint.lng*minLine.choiceKey);
+
+			// 直线l1：a1x+b1y+c1=0 直线l2：a2x+b2y+c2=0 交点坐标为((b1c2-b2c1)/(a1b2-a2b1)，(a2c1-a1c2)/(a1b2-a2b1))
+			// a1 = 1 b1 = key c1 = c
+			// a2 = 1 b2 = choiceKey c2 = choiceC
+			projectionPoint.lat = (minLine.key*minLine.choiceC - minLine.choiceKey*minLine.c)/(minLine.choiceKey - minLine.key);
+			projectionPoint.lng = (minLine.c-minLine.choiceC)/(minLine.choiceKey-minLine.key);
+			lineJudgment();
+		}
+
+		// 线段判断
+		function lineJudgment() {
+			// if(projectionPoint.lng < minLine.line[0].lng) {
+			// 	projectionPoint.lat = minLine.line[0].lat;
+			// 	projectionPoint.lng = minLine.line[0].lng;
+			// }
+			// if(projectionPoint.lng > minLine.line[1].lng) {
+			// 	projectionPoint.lat = minLine.line[1].lat;
+			// 	projectionPoint.lng = minLine.line[1].lng;
+			// }
+			console.log(minLine.line);
+			setMap();
+		}
+
+		// 地图展示
+		function setMap() {
+			var polyline = new BMap.Polyline(pointsArr, {strokeColor:"blue", strokeWeight:2, strokeOpacity:0.5});
+
+			map.addOverlay(polyline);
+			console.log(projectionPoint);
+			var marker = new BMap.Marker(new BMap.Point(choicePoint.lng, choicePoint.lat));
+
+			map.addOverlay(marker);
+
+			var marker1 = new BMap.Marker(new BMap.Point(projectionPoint.lng, projectionPoint.lat));
+
+			map.addOverlay(marker1);
+
+			var marker3 = new BMap.Marker(new BMap.Point(points[originalMinimumIdx].lng, points[originalMinimumIdx].lat));
+
+			map.addOverlay(marker3);
+
+			var view = map.getViewport(eval(pointsArr));
+	        var mapZoom = view.zoom;
+	        var centerPoint = view.center;
+	        map.centerAndZoom(centerPoint,mapZoom);
+	        map.enableScrollWheelZoom();
+		}
+
+		getMinimumPoint();
+	</script>
+</html>

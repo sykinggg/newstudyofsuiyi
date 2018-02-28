@@ -50,12 +50,14 @@ import baseRouters from './routes/base';
 import mapRoutes from './routes/map';
 import undefinedRoutes from './routes/404';
 import trainAnimRoutes from './routes/trainAnim';
+import combinationRoutes from './routes/combination';
 
 let routerArr = [
 	baseRouters,
 	mapRoutes,
 	undefinedRoutes,
-	trainAnimRoutes
+	trainAnimRoutes,
+  combinationRoutes
 ];
 
 let routers = [];
