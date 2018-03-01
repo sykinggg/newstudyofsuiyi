@@ -47,7 +47,10 @@
 <script>
 	import VueRouter from 'vue-router';
 
+	// import mixins6 from 'views/mixins/mixins6';
+
 	export default {
+	  // mixins: [mixins6],
 		components: {
 			VueRouter
 		},
