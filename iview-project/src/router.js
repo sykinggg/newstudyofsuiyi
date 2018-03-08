@@ -51,13 +51,15 @@ import mapRoutes from './routes/map';
 import undefinedRoutes from './routes/404';
 import trainAnimRoutes from './routes/trainAnim';
 import combinationRoutes from './routes/combination';
+import vuexRoutes from './routes/stateManagement';
 
 let routerArr = [
 	baseRouters,
 	mapRoutes,
 	undefinedRoutes,
 	trainAnimRoutes,
-  combinationRoutes
+  combinationRoutes,
+  vuexRoutes
 ];
 
 let routers = [];

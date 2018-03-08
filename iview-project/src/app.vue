@@ -58,20 +58,24 @@
 			return {
 				routerArr: [
             {
-              'name': '首页',
-              'link': '/index'
+              name: '首页',
+              link: '/index'
             },
             {
-              'name': '基础',
-              'link': '/base'
+              name: '基础',
+              link: '/base'
             },
             {
-              'name': '过渡&动画',
-              'link': '/trainAnim'
+              name: '过渡&动画',
+              link: '/trainAnim'
             },
             {
-              'name': '可复用性 & 组合',
-              'link': '/combination'
+              name: '可复用性 & 组合',
+              link: '/combination'
+            },
+            {
+              name: '状态管理',
+              link: '/stateManagement'
             }
 				],
         thisRoute: this.$route,

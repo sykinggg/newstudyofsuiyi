@@ -1,7 +1,10 @@
 export default {
-    focus1: {
-        inserted: function(el) {
-            el.focus();
+    directives: {
+        focus: {
+            inserted: function(el) {
+              console.log(el);
+              el.focus();
+            }
         }
     }
 }
