@@ -210,6 +210,283 @@
                 store.commit('increment', 10)
             </pre>
             <p>在大多数情况下，载荷应该是一个对象，这样可以包含多个字段并且记录的 mutation 会更易读</p>
+            <pre>
+                // ...
+                mutations: {
+                    increment (state, payload) {
+                        state.count += payload.amount
+                    }
+                }
+                store.commit('increment', {
+                    amount: 10
+                })
+            </pre>
+            <h4>对象风格的提交方式</h4>
+            <p>提交 mutation 的另一种方式是直接使用包含 type 属性的对象</p>
+            <pre>
+                store.commit({
+                    type: 'increment',
+                    amount: 10
+                })
+            </pre>
+            <p>当使用对象风格的提交方式，整个对象都作为载荷传给 mutation 函数，因此 handler 保持不变</p>
+            <pre>
+                mutations: {
+                    increment (state, payload) {
+                        state.count += payload.amount
+                    }
+                }
+            </pre>
+            <h4>Mutation 需遵守 Vue 的响应规则</h4>
+            <p>当变更状态时，监视状态的 Vue 组件也会自动更新</p>
+            <ul>
+                <li>最好提前在你的 store 中初始化好所有所需属性</li>
+                <li>
+                    <h5>当需要在对象上添加新属性时</h5>
+                    <ul>
+                        <li>使用 Vue.set(obj, 'newProp', 123)</li>
+                        <li>以新对象替换老对象</li>
+                        <li>
+                            <pre>
+                                // 利用 stage-3 的对象展开运算符
+                                state.obj = { ...state.obj, newProp: 123 }
+                            </pre>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <h4>使用常量替代 Mutation 事件类型</h4>
+            <p>使用常量替代 mutation 事件类型在各种 Flux 实现中是很常见的模式</p>
+            <p>可以使 linter 之类的工具发挥作用，同时把这些常量放在单独的文件中可以让你的代码合作者对整个 app 包含的 mutation 一目了然</p>
+            <pre>
+                // mutation-types.js
+                export const SOME_MUTATION = 'SOME_MUTATION'
+                // store.js
+                import Vuex from 'vuex'
+                import { SOME_MUTATION } from './mutation-types'
+
+                const store = new Vuex.Store({
+                    state: { ... },
+                    mutations: {
+                        // 我们可以使用 ES2015 风格的计算属性命名功能来使用一个常量作为函数名
+                        [SOME_MUTATION] (state) {
+                            // mutate state
+                        }
+                    }
+                })
+            </pre>
+            <h4>Mutation 必须是同步函数</h4>
+            <p>一条重要的原则就是要记住 mutation 必须是同步函数</p>
+            <pre>
+                mutations: {
+                    someMutation (state) {
+                        api.callAsyncMethod(() => {
+                            state.count++
+                        })
+                    }
+                }
+            </pre>
+            <ul>
+                <li>当 mutation 触发的时候，回调函数还没有被调用</li>
+                <li>devtools 不知道什么时候回调函数实际上被调用</li>
+                <li>注意:实质上任何在回调函数中进行的状态的改变都是不可追踪的</li>
+            </ul>
+            <h4>在组件中提交 Mutation</h4>
+            <ul>
+                <li>可以在组件中使用 this.$store.commit('xxx') 提交 mutation</li>
+                <li>使用 mapMutations 辅助函数将组件中的 methods 映射为 store.commit 调用（需要在根节点注入 store）</li>
+            </ul>
+            <pre>
+                import { mapMutations } from 'vuex'
+
+                export default {
+                    // ...
+                    methods: {
+                        ...mapMutations([
+                            'increment', // 将 `this.increment()` 映射为 `this.$store.commit('increment')`
+
+                            // `mapMutations` 也支持载荷：
+                            'incrementBy' // 将 `this.incrementBy(amount)` 映射为 `this.$store.commit('incrementBy', amount)`
+                        ]),
+                        ...mapMutations({
+                            add: 'increment' // 将 `this.add()` 映射为 `this.$store.commit('increment')`
+                        })
+                    }
+                }
+            </pre>
+            <h5>注意:在 Vuex 中，mutation 都是同步事务</h5>
+            <pre>
+                store.commit('increment')
+                // 任何由 "increment" 导致的状态变更都应该在此刻完成。
+            </pre>
+        </Card>
+        <Card class="mar-t-20">
+            <p slot="title">Action</p>
+            <h4>Action 类似于 mutation</h4>
+            <ul>
+                <li>Action 提交的是 mutation，而不是直接变更状态</li>
+                <li>Action 可以包含任意异步操作</li>
+            </ul>
+            <p>注册一个简单的 action</p>
+            <pre>
+                const store = new Vuex.Store({
+                    state: {
+                        count: 0
+                    },
+                    mutations: {
+                        increment (state) {
+                            state.count++
+                        }
+                    },
+                    actions: {
+                        increment (context) {
+                            context.commit('increment')
+                        }
+                    }
+                })
+            </pre>
+            <h4>代码描述</h4>
+            <ul>
+                <li>
+                    <h5>Action 函数接受一个与 store 实例具有相同方法和属性的 context 对象</h5>
+                    <p>可以调用 context.commit 提交一个 mutation</p>
+                    <p>通过 context.state 和 context.getters 来获取 state 和 getters</p>
+                </li>
+            </ul>
+            <pre>
+                actions: {
+                    increment ({ commit }) {
+                        commit('increment')
+                    }
+                }
+            </pre>
+            <h4>分发 Action</h4>
+            <p>Action 通过 store.dispatch 方法触发</p>
+            <pre>
+                store.dispatch('increment')
+            </pre>
+            <p>mutation 必须同步执行;可以在 action 内部执行异步操作</p>
+            <pre>
+                actions: {
+                    incrementAsync ({ commit }) {
+                        setTimeout(() => {
+                            commit('increment')
+                        }, 1000)
+                    }
+                }
+            </pre>
+            <p>Actions 支持同样的载荷方式和对象方式进行分发</p>
+            <pre>
+                // 以载荷形式分发
+                store.dispatch('incrementAsync', {
+                    amount: 10
+                })
+
+                // 以对象形式分发
+                store.dispatch({
+                    type: 'incrementAsync',
+                    amount: 10
+                })
+            </pre>
+            <h4>实例:调用异步 API 和分发多重 mutation</h4>
+            <pre>
+                actions: {
+                    checkout ({ commit, state }, products) {
+                        // 把当前购物车的物品备份起来
+                        const savedCartItems = [...state.cart.added]
+                        // 发出结账请求，然后乐观地清空购物车
+                        commit(types.CHECKOUT_REQUEST)
+                        // 购物 API 接受一个成功回调和一个失败回调
+                        shop.buyProducts(
+                            products,
+                            // 成功操作
+                            () => commit(types.CHECKOUT_SUCCESS),
+                            // 失败操作
+                            () => commit(types.CHECKOUT_FAILURE, savedCartItems)
+                        )
+                    }
+                }
+            </pre>
+            <p>通过提交 mutation 来记录 action 产生的副作用（即状态变更）</p>
+            <h4>在组件中分发 Action</h4>
+            <ul>
+                <li>在组件中使用 this.$store.dispatch('xxx') 分发 action</li>
+                <li>使用 mapActions 辅助函数将组件的 methods 映射为 store.dispatch 调用（需要先在根节点注入 store）</li>
+            </ul>
+            <pre>
+                import { mapActions } from 'vuex'
+
+                export default {
+                    // ...
+                    methods: {
+                        ...mapActions([
+                            'increment', // 将 `this.increment()` 映射为 `this.$store.dispatch('increment')`
+
+                            // `mapActions` 也支持载荷：
+                            'incrementBy' // 将 `this.incrementBy(amount)` 映射为 `this.$store.dispatch('incrementBy', amount)`
+                        ]),
+                        ...mapActions({
+                            add: 'increment' // 将 `this.add()` 映射为 `this.$store.dispatch('increment')`
+                        })
+                    }
+                }
+            </pre>
+            <h4>组合 Action</h4>
+            <ul>
+                <li>store.dispatch 可以处理被触发的 action 的处理函数返回的 Promise</li>
+                <li>store.dispatch 仍旧返回 Promise</li>
+            </ul>
+            <pre>
+                actions: {
+                    actionA ({ commit }) {
+                        return new Promise((resolve, reject) => {
+                            setTimeout(() => {
+                                commit('someMutation')
+                                resolve()
+                            }, 1000)
+                        })
+                    }
+                }
+            </pre>
+            <p>现在可以</p>
+            <pre>
+                store.dispatch('actionA').then(() => {
+                    // ...
+                })
+            </pre>
+            <p>在另外一个 action 中也可以</p>
+            <pre>
+                actions: {
+                    // ...
+                    actionB ({ dispatch, commit }) {
+                        return dispatch('actionA').then(() => {
+                            commit('someOtherMutation')
+                        })
+                    }
+                }
+            </pre>
+            <p>如果利用 async / await，可以如下组合 action：</p>
+            <pre>
+                // 假设 getData() 和 getOtherData() 返回的是 Promise
+
+                actions: {
+                    async actionA ({ commit }) {
+                        commit('gotData', await getData())
+                    },
+                    async actionB ({ dispatch, commit }) {
+                        await dispatch('actionA') // 等待 actionA 完成
+                        commit('gotOtherData', await getOtherData())
+                    }
+                }
+            </pre>
+            <h4>注意: </h4>
+            <ul>
+                <li>一个 store.dispatch 在不同模块中可以触发多个 action 函数</li>
+                <li>在这种情况下，只有当所有触发函数完成后，返回的 Promise 才会执行</li>
+            </ul>
+        </Card>
+        <Card class="mar-t-20">
+            <p slot="title">Module</p>
         </Card>
     </div>
 </template>
