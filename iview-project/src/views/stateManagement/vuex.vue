@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Card>
+        <Card class="mar-t-20">
             <p slot="title">状态管理模式</p>
             <p>{{count}}</p>
             <button @click="increment()">点击</button>

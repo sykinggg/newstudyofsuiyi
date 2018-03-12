@@ -23,7 +23,28 @@
               {
                 name: 'vuex描述',
                 link: '/stateManagement/describe'
-              }
+              },
+              {
+                name: 'state',
+                link: '/stateManagement/state'
+              },
+              {
+                name: 'getter',
+                link: '/stateManagement/getter'
+              },
+              {
+                name: 'mutation',
+                link: '/stateManagement/mutation'
+              },
+              {
+                name: 'action',
+                link: '/stateManagement/action'
+              },
+              {
+                name: 'module',
+                link: '/stateManagement/module'
+              },
+
             ],
             thisRoute: this.$route
           }
