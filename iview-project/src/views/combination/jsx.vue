@@ -540,6 +540,188 @@
                       return createElement('div', this.$slots.default)
                   }
               </pre>
+              <p>从 this.$scopedSlots 中获得能用作函数的作用域插槽，这个函数返回 VNodes</p>
+              <pre>
+                  props: ['message'],
+                  render: function (createElement) {
+                      // `< div>< slot :text="message">< /slot>< /div>`
+                      return createElement('div', [
+                          this.$scopedSlots.default({
+                              text: this.message
+                          })
+                      ])
+                  }
+              </pre>
+              <p>用渲染函数向子组件中传递作用域插槽，可以利用 VNode 数据中的 scopedSlots 域</p>
+              <pre>
+                  render: function (createElement) {
+                      return createElement('div', [
+                          createElement('child', {
+                              // pass `scopedSlots` in the data object
+                              // in the form of { name: props => VNode | Array< VNode> }
+                              scopedSlots: {
+                                  default: function (props) {
+                                      return createElement('span', props.text)
+                                  }
+                              }
+                          })
+                      ])
+                  }
+              </pre>
+              <h4>JSX</h4>
+              <h5>产生问题（很多 render 函数）</h5>
+              <pre>
+                  createElement(
+                      'anchored-heading', {
+                          props: {
+                              level: 1
+                          }
+                      }, [
+                          createElement('span', 'Hello'),
+                          ' world!'
+                      ]
+                  )
+
+                  < anchored-heading :level="1">
+                      < span>Hello< /span> world!
+                  < /anchored-heading>
+              </pre>
+              <p>Babel 插件</p>
+              <pre>
+                  import AnchoredHeading from './AnchoredHeading.vue'
+
+                  new Vue({
+                      el: '#demo',
+                      render: function (h) {
+                          return (
+                              < AnchoredHeading level={1}>
+                                  < span>Hello< /span> world!
+                              < /AnchoredHeading>
+                          )
+                      }
+                  })
+              </pre>
+              <h4>参数描述</h4>
+              <p>将 h 作为 createElement 的别名是 Vue 生态系统中的一个通用惯例</p>
+              <p>如果在作用域中 h 失去作用，在应用中会触发报错</p>
+              <h3>函数式组件</h3>
+              <p>标记组件为 functional，这意味它是无状态 (没有 data)，无实例 (没有 this 上下文)</p>
+              <pre>
+                  // 函数式组件
+                  Vue.component('my-component', {
+                      functional: true,
+                      // 为了弥补缺少的实例
+                      // 提供第二个参数作为上下文
+                      render: function (createElement, context) {
+                          // ...
+                      },
+                      // Props 可选
+                      props: {
+                          // ...
+                      }
+                  })
+              </pre>
+              <h3>组件需要的一切都是通过上下文传递</h3>
+              <ul>
+                  <li>props：提供 props 的对象</li>
+                  <li>children: VNode 子节点的数组</li>
+                  <li>slots: slots 对象</li>
+                  <li>data：传递给组件的 data 对象</li>
+                  <li>parent：对父组件的引用</li>
+                  <li>
+                      <p>listeners: (2.3.0+) 一个包含了组件上所注册的 v-on 侦听器的对象</p>
+                      <p>只是一个指向 data.on 的别名</p>
+                  </li>
+                  <li>injections: (2.3.0+) 如果使用了 inject 选项，则该对象包含了应当被注入的属性</li>
+              </ul>
+              <h4>组件运行描述</h4>
+              <p>在添加 functional: true 之后，锚点标题组件的 render 函数之间简单更新增加 context 参数</p>
+              <p>this.$slots.default 更新为 context.children</p>
+              <p>this.level 更新为 context.props.level</p>
+              <h5>优点</h5>
+              <p>因为函数式组件只是一个函数，所以渲染开销也低很多</p>
+              <h5>缺点</h5>
+              <p>对持久化实例的缺乏也意味着函数式组件不会出现在 Vue devtools 的组件树里</p>
+              <h4>包装组件时</h4>
+              <ul>
+                  <li>程序化地在多个组件中选择一个</li>
+                  <li>在将 children, props, data 传递给子组件之前操作它们</li>
+              </ul>
+              <pre>
+                  //  依赖传入 props 的值的 smart-list 组件
+                  var EmptyList = { /* ... */ }
+                  var TableList = { /* ... */ }
+                  var OrderedList = { /* ... */ }
+                  var UnorderedList = { /* ... */ }
+
+                  Vue.component('smart-list', {
+                      functional: true,
+                      render: function (createElement, context) {
+                          function appropriateListComponent () {
+                              var items = context.props.items
+
+                              if (items.length === 0)           return EmptyList
+                              if (typeof items[0] === 'object') return TableList
+                              if (context.props.isOrdered)      return OrderedList
+
+                              return UnorderedList
+                          }
+
+                          return createElement(
+                              appropriateListComponent(),
+                              context.data,
+                              context.children
+                          )
+                      },
+                      props: {
+                          items: {
+                              type: Array,
+                              required: true
+                          },
+                          isOrdered: Boolean
+                      }
+                  })
+              </pre>
+              <h4>向子元素或子组件传递特性和事件</h4>
+              <pre>
+                  Vue.component('my-functional-button', {
+                      functional: true,
+                      render: function (createElement, context) {
+                          // 完全透明的传入任何特性、事件监听器、子结点等。
+                          return createElement('button', context.data, context.children)
+                      }
+                  })
+              </pre>
+              <h4>代码描述</h4>
+              <p>向 createElement 通过传入 context.data 作为第二个参数</p>
+              <p>把 my-functional-button 上面所有的特性和事件监听器都传递下去了</p>
+              <p>那些事件甚至并不要求 .native 修饰符</p>
+              <h4>如果使用基于模板的函数式组件，那么还需要手动添加特性和监听器</h4>
+              <pre>
+                  < template functional>
+                      < button
+                        class="btn btn-primary"
+                        v-bind="data.attrs"
+                        v-on="listeners">
+                          < slot/>
+                      < /button>
+                  < /template>
+              </pre>
+              <h4>slots() 和 children 对比</h4>
+              <pre>
+                  < my-functional-component>
+                      < p slot="foo">
+                          first
+                      < /p>
+                      < p>second< /p>
+                  < /my-functional-component>
+              </pre>
+              <h5>代码描述</h5>
+              <ul>
+                  <li>children 会给你两个段落标签</li>
+                  <li>slots().foo 会传递第一个具名段落标签</li>
+                  <li>同时拥有 children 和 slots(),可以选择让组件通过 slot() 系统分发或者简单的通过 children 接收，让其他组件去处理</li>
+              </ul>
           </Card>
       </div>
 </template>
