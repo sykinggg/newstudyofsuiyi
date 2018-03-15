@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatInputModule } from '@angular/material';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -54,6 +55,9 @@ import { FormComponent } from './form/form.component';
 import { TemplateFormComponent } from './form/template-form/template-form.component';
 import { FormValidateComponent } from './form/form-validate/form-validate.component';
 import { FormResponseComponent } from './form/form-response/form-response.component';
+import { ForbiddenNameDirective } from './directive/forbidden-name/forbidden-name.directive';
+import { FormResponseDetailComponent } from './form/form-response-detail/form-response-detail.component';
+import { FormResponseListComponent } from './form/form-response-list/form-response-list.component';
 
 
 @NgModule({
@@ -86,12 +90,16 @@ import { FormResponseComponent } from './form/form-response/form-response.compon
         TemplateFormComponent,
         FormValidateComponent,
         FormResponseComponent,
-        AttrThirdDirectiveDirective
+        ForbiddenNameDirective,
+        FormResponseDetailComponent,
+        FormResponseListComponent,
+        AttrThirdDirectiveDirective,
     ],
     imports: [
         BrowserModule, // 基础
         BrowserAnimationsModule,
         FormsModule,
+        ReactiveFormsModule,
         CommonModule,
         HttpModule,
         InMemoryWebApiModule.forRoot(InMemoryDataService), // 前端内存服务
@@ -99,6 +107,7 @@ import { FormResponseComponent } from './form/form-response/form-response.compon
         MatButtonModule,
         MatCheckboxModule,
         MatTabsModule,
+        MatSelectModule,
         MatToolbarModule,
         MatChipsModule,
         MatCardModule,
