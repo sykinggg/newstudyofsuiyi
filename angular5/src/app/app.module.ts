@@ -5,34 +5,24 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
-import { RouterModule } from '@angular/router';
-
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // ui框架
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatInputModule } from '@angular/material';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatSelectModule } from '@angular/material/select';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatRadioModule } from '@angular/material/radio';
 
-import { appRoutes } from './app.routes';// 路由
+import { AppUIModule } from './app.ui.module'; // ui框架
+
+import { AppRoutingModule } from './app.routes.module';// 路由
 
 import { AppComponent } from './app.component'; // 根组件
 
 import { LocalStorage } from './common/local.storage'; // 公共组建
 
-import { AboutComponent } from './about/about.component'; // 其它组件
 import { MapComponent } from './map/map.component';
 import { MapBaseComponent } from './map/map-base/map-base.component';
-import { BasePipe } from './pipe/base/base.pipe';
-import { MapInformationPipe } from './pipe/map-information/map-information.pipe';
 import { MapSearchComponent } from './map/map-search/map-search.component';
+import { MapInformationPipe } from './pipe/map-information/map-information.pipe';
 import { MapDirectiveDirective } from './directive/map-directive/map-directive.directive';
+
+import { BasePipe } from './pipe/base/base.pipe';
 import { HttpComponent } from './http/http.component';
 import { BaseServiceService } from "./service/http-service/base-service/base-service.service";
 import { AllTemplateComponent } from './template/template.component';
@@ -58,26 +48,18 @@ import { FormResponseComponent } from './form/form-response/form-response.compon
 import { ForbiddenNameDirective } from './directive/forbidden-name/forbidden-name.directive';
 import { FormResponseDetailComponent } from './form/form-response-detail/form-response-detail.component';
 import { FormResponseListComponent } from './form/form-response-list/form-response-list.component';
-import { AboutCreateComponent } from './about/about-create/about-create.component';
-import { AboutIndexComponent } from './about/about-index/about-index.component';
 
 
 @NgModule({
     declarations: [
         AppComponent, // 根组件
-        MapComponent, // 应用组件
         BasePipe,
-        MapInformationPipe,
-        MapBaseComponent,
-        MapSearchComponent,
-        MapDirectiveDirective,
         AllTemplateComponent,
         TemplateComponent,
         HttpComponent,
         ComponentInteractionChildComponent,
         AttrDirectiveComponent,
         ComponentInteractionComponent,
-        AboutComponent,
         AttrSecondDirectiveDirective, // 指令
         AttrFirstDirectiveDirective,
         StrDirectiveComponent,
@@ -95,9 +77,12 @@ import { AboutIndexComponent } from './about/about-index/about-index.component';
         ForbiddenNameDirective,
         FormResponseDetailComponent,
         FormResponseListComponent,
-        AboutCreateComponent,
-        AboutIndexComponent,
         AttrThirdDirectiveDirective,
+        MapComponent,
+        MapBaseComponent,
+        MapSearchComponent,
+        MapInformationPipe,
+        MapDirectiveDirective
     ],
     imports: [
         BrowserModule, // 基础
@@ -108,17 +93,8 @@ import { AboutIndexComponent } from './about/about-index/about-index.component';
         HttpModule,
         InMemoryWebApiModule.forRoot(InMemoryDataService), // 前端内存服务
         NoopAnimationsModule, // UI框架
-        MatButtonModule,
-        MatCheckboxModule,
-        MatTabsModule,
-        MatSelectModule,
-        MatToolbarModule,
-        MatChipsModule,
-        MatCardModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatRadioModule,
-        RouterModule.forRoot(appRoutes), // 路由
+        AppUIModule,
+        AppRoutingModule, // 路由
     ],
     providers: [
         LocalStorage,

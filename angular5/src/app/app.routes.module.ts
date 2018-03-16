@@ -1,11 +1,12 @@
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { aboutRoutes } from './about/about.routes';
+
 import { mapRoutes } from './map/map.routes';
 import { HttpComponent } from './http/http.component';
 import { templateRoutes } from './template/template.routes';
 import { formRoutes } from './form/form.routes';
 
-export const appRoutes: Routes = [
+const appRoutes: Routes = [
     {
         path: '',
         redirectTo: 'about',
@@ -13,7 +14,7 @@ export const appRoutes: Routes = [
     },
     {
         path: 'about',
-        children: aboutRoutes
+        loadChildren: './about/about.module#AboutModule'
     },
     {
         path: 'map',
@@ -32,3 +33,10 @@ export const appRoutes: Routes = [
         children: formRoutes
     }
 ]
+
+@NgModule({
+    imports: [RouterModule.forRoot(appRoutes)],
+    exports: [RouterModule]
+})
+
+export class AppRoutingModule {}
