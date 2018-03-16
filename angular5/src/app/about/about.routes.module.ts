@@ -5,7 +5,7 @@ import { AboutComponent } from './about.component';
 import { AboutIndexComponent } from './about-index/about-index.component';
 import { AboutCreateComponent } from './about-create/about-create.component';
 
-export const aboutRoutes = [
+const aboutRoutes = [
     {
         path: '',
         component: AboutComponent,
@@ -27,11 +27,11 @@ export const aboutRoutes = [
     }
 ]
 
-// @NgModule({
-//     imports: [
-//         RouterModule.forChild(aboutRoutes)
-//     ],
-//     exports: [RouterModule]
-// })
+@NgModule({
+    imports: [
+        RouterModule.forChild(aboutRoutes)
+    ],
+    exports: [RouterModule]
+})
 
-// export class AboutRoutesModule {}
+export class AboutRoutesModule {}

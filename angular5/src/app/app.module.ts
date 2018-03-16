@@ -10,9 +10,9 @@ import { AppComponent } from './app.component';
 
 import { LocalStorage } from './common/local.storage';
 
-import { AboutComponent } from './about/about.component';
-import { AboutIndexComponent } from './about/about-index/about-index.component';
-import { AboutCreateComponent } from './about/about-create/about-create.component';
+// import { AboutComponent } from './about/about.component';
+// import { AboutIndexComponent } from './about/about-index/about-index.component';
+// import { AboutCreateComponent } from './about/about-create/about-create.component';
 
 import { MapComponent } from './map/map.component';
 import { MapBaseComponent } from './map/map-base/map-base.component';
@@ -81,9 +81,6 @@ import { FormResponseListComponent } from './form/form-response-list/form-respon
         MapSearchComponent,
         MapInformationPipe,
         MapDirectiveDirective,
-        AboutComponent,
-        AboutIndexComponent,
-        AboutCreateComponent
     ],
     imports: [
         AppBaseModule,
