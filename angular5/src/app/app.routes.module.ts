@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { aboutRoutes } from './about/about.routes.module';
 import { mapRoutes } from './map/map.routes';
 import { HttpComponent } from './http/http.component';
 import { templateRoutes } from './template/template.routes';
@@ -14,7 +15,7 @@ const appRoutes: Routes = [
     },
     {
         path: 'about',
-        loadChildren: './about/about.module#AboutModule'
+        children: aboutRoutes
     },
     {
         path: 'map',

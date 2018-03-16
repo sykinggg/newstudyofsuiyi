@@ -1,20 +1,18 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+//  基础模块
+import { AppBaseModule } from './app.base.module';
+//  ui模块
+import { AppUIModule } from './app.ui.module';
+//  路由模块
+import { AppRoutingModule } from './app.routes.module';
+//  根组件
+import { AppComponent } from './app.component';
 
-import { AppUIModule } from './app.ui.module'; // ui框架
+import { LocalStorage } from './common/local.storage';
 
-import { AppRoutingModule } from './app.routes.module';// 路由
-
-import { AppComponent } from './app.component'; // 根组件
-
-import { LocalStorage } from './common/local.storage'; // 公共组建
+import { AboutComponent } from './about/about.component';
+import { AboutIndexComponent } from './about/about-index/about-index.component';
+import { AboutCreateComponent } from './about/about-create/about-create.component';
 
 import { MapComponent } from './map/map.component';
 import { MapBaseComponent } from './map/map-base/map-base.component';
@@ -82,17 +80,13 @@ import { FormResponseListComponent } from './form/form-response-list/form-respon
         MapBaseComponent,
         MapSearchComponent,
         MapInformationPipe,
-        MapDirectiveDirective
+        MapDirectiveDirective,
+        AboutComponent,
+        AboutIndexComponent,
+        AboutCreateComponent
     ],
     imports: [
-        BrowserModule, // 基础
-        BrowserAnimationsModule,
-        FormsModule,
-        ReactiveFormsModule,
-        CommonModule,
-        HttpModule,
-        InMemoryWebApiModule.forRoot(InMemoryDataService), // 前端内存服务
-        NoopAnimationsModule, // UI框架
+        AppBaseModule,
         AppUIModule,
         AppRoutingModule, // 路由
     ],
