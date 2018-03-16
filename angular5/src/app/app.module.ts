@@ -58,6 +58,8 @@ import { FormResponseComponent } from './form/form-response/form-response.compon
 import { ForbiddenNameDirective } from './directive/forbidden-name/forbidden-name.directive';
 import { FormResponseDetailComponent } from './form/form-response-detail/form-response-detail.component';
 import { FormResponseListComponent } from './form/form-response-list/form-response-list.component';
+import { AboutCreateComponent } from './about/about-create/about-create.component';
+import { AboutIndexComponent } from './about/about-index/about-index.component';
 
 
 @NgModule({
@@ -93,6 +95,8 @@ import { FormResponseListComponent } from './form/form-response-list/form-respon
         ForbiddenNameDirective,
         FormResponseDetailComponent,
         FormResponseListComponent,
+        AboutCreateComponent,
+        AboutIndexComponent,
         AttrThirdDirectiveDirective,
     ],
     imports: [

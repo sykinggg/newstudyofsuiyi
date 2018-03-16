@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
-  constructor() { }
+    routerLinkArr: Array<any> = [
+        { routerName: 'aboutIndex', routerLink: 'aboutIndex' },
+        { routerName: 'aboutCreate', routerLink: 'aboutCreate' }
+    ]
 
-  ngOnInit() {
-  }
+    constructor() { }
+
+    ngOnInit() {
+    }
 
 }

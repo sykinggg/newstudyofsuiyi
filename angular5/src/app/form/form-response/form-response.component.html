@@ -188,5 +188,88 @@
         <h5 class="mar-b-0">注意:</h5>
         <p class="f-c-07d mar-b-0">使用FormGroup.setControl方法，而不是setValue方法来设置前一个FormArray</p>
         <p class="f-c-07d mar-b-0">替换的是控件，而不是控件的值</p>
+        <h5>获取FormArray</h5>
+        <pre>
+            get secretLairs(): FormArray &#123;
+                return this.heroForm.get('secretLairs') as FormArray;
+            };
+        </pre>
+        <h5 class="mar-b-0">使用FormArray</h5>
+        <p class="f-c-07d">使用*ngFor</p>
+        <pre>
+            < div formArrayName="secretLairs" class="well well-lg">
+                < div *ngFor="let address of secretLairs.controls; let i=index" [formGroupName]="i" >
+                  The repeated address template
+                < /div>
+            < /div>
+        </pre>
+        <ul>
+            <li>
+                <p class="mar-b-0">在*ngFor的div之外套上另一个包装div，并且把它的formArrayName指令设为"secretLairs"</p>
+                <p class="f-c-999">这一步为内部的表单控件建立了一个FormArray型的secretLairs作为上下文，以便重复渲染HTML模板</p>
+            </li>
+            <li>
+                <p class="mar-b-0">这些重复条目的数据源是FormArray.controls而不是FormArray本身</p>
+                <p class="f-c-999">每个控件都是一个FormGroup型的地址对象，与以前的模板HTML所期望的格式完全一样</p>
+            </li>
+            <li>
+                <p class="mar-b-0">每个被重复渲染的FormGroup都需要一个独一无二的formGroupName，它必须是FormGroup在这个FormArray中的索引</p>
+                <p class="f-c-999">将复用这个索引，以便为每个地址组合出一个独一无二的标签</p>
+            </li>
+        </ul>
+        <pre>
+            //  获取secretLairs数组，并把新的表示地址的FormGroup添加
+            this.secretLairs.push(this.fb.group(new Address()));
+        </pre>
+        <h6 class="mar-b-0">注意:</h6>
+        <ul>
+            <li class="f-c-07d">type="button"属性</li>
+            <li class="f-c-07d">如果不明确指定类型，按钮的默认类型就是“submit”（提交）</li>
+        </ul>
+        <h5>监视控件的变化</h5>
+        <p class="f-c-07d">监听FormControl中值的变化</p>
+        <pre>
+            //  初始化利用formControl中的valueChange来监听
+            nameChangeLog: string[] = [];
+            logNameChange() &#123;
+                const nameControl = this.heroForm.get('name');
+                nameControl.valueChanges.forEach(
+                    (value: string) => this.nameChangeLog.push(value)
+                );
+            }
+
+            //  在构造函数中调用
+            constructor(private fb: FormBuilder) &#123;
+                this.createForm();
+                this.logNameChange();
+            }
+
+            //  页面调用
+            < div *ngFor="let name of nameChangeLog">&#123; &#123;name} }< /div>
+        </pre>
+        <h5>数据保存&&深拷贝</h5>
+        <pre>
+            //  prepareSaveHero方法
+            prepareSaveHero(): Hero &#123;
+                const formModel = this.heroForm.value;
+              
+                // 利用map方法进行深层拷贝
+                const secretLairsDeepCopy: Address[] = formModel.secretLairs.map(
+                    (address: Address) => Object.assign(&#123;}, address)
+                );
+              
+                // 返回新的对象，包含原始值的组合
+                // 以及更改的表单模型值的深度拷贝
+                const saveHero: Hero = &#123;
+                    id: this.hero.id,
+                    name: formModel.name as string,
+                    // 会因为之前的值得更改而更改
+                    // addresses: formModel.secretLairs
+                    addresses: secretLairsDeepCopy
+                };
+                return saveHero;
+            }
+        </pre>
+        <p class="f-c-07d">prepareSaveHero方法会制作表单模型中的secretLairs对象的复本，因此实际上并没有修改原有对象</p>
     </mat-card-content>
 </mat-card>
