@@ -8,6 +8,10 @@ import Inline from './compoent/inline';
 import PreventRender from './compoent/preventRender';
 import ListKey from './compoent/listKey';
 import Form from './compoent/form';
+import State1 from './compoent/state1_calculator';
+import State2 from './compoent/state2_calculator';
+import State1_2 from './compoent/state1_2';
+import Reusable from './compoent/reusableComponent';
 //  原始dom
 /*<div className="App">P
 	<header className="App-header">
@@ -24,13 +28,17 @@ class App extends Component {
         return (
             <div>
 				<p>hello World</p>
-                <Tick/>
-                <Event/>
-                <LoginControl/>
+                <Tick />
+                <Event />
+                <LoginControl />
                 <Inline unreadMessages={'asdasd'} />
-                <PreventRender/>
-                <ListKey/>
-                <Form/>
+                <PreventRender />
+                <ListKey />
+                <Form />
+				<State1 />
+                <State2 scale="c" />
+                <State1_2 />
+				<Reusable />
             </div>
         );
     }

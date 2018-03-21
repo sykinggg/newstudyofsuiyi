@@ -27,6 +27,9 @@ class formReact extends Component{
 	};
 
 	submitSelect = (e) => {
+		//	取消事件的默认动作
+		//		如果 type 属性是 "submit"
+		//		通过调用该方法，可以阻止提交表单
 		e.preventDefault();
 		console.log(this.state.selectValue);
 	};
