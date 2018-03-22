@@ -12,6 +12,12 @@ import State1 from './compoent/state1_calculator';
 import State2 from './compoent/state2_calculator';
 import State1_2 from './compoent/state1_2';
 import Reusable from './compoent/reusableComponent';
+import ComponCombin from './compoent/componentCombination';
+import Jsx1 from './compoent/thoroughJsx1';
+import RefDom from './compoent/refDom';
+import FormController from './compoent/uncontrollableComponent';
+import RouterConfig1 from './compoent/routerConfig1';
+import RouterConfig2 from './compoent/routerConfig2';
 //  原始dom
 /*<div className="App">P
 	<header className="App-header">
@@ -39,6 +45,10 @@ class App extends Component {
                 <State2 scale="c" />
                 <State1_2 />
 				<Reusable />
+                <ComponCombin />
+                <Jsx1 />
+                <RefDom />
+                <FormController />
             </div>
         );
     }

@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 
-/*
-* 总结
-* 使用class的方式创建React的component
-* 例如
-* classWin extends BaseWin
-* 就是组件classWin继承BaseWin
-* */
+/** 总结
+ * 使用class的方式创建React的component
+ * 例如
+ * classWin extends BaseWin
+ * 就是组件classWin继承BaseWin*/
 class Hello1 extends Component{
 	constructor(props){
 		super(props);
