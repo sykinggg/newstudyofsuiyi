@@ -18,6 +18,11 @@ import RefDom from './compoent/refDom';
 import FormController from './compoent/uncontrollableComponent';
 import RouterConfig1 from './compoent/routerConfig1';
 import RouterConfig2 from './compoent/routerConfig2';
+import RouterConfig3 from './compoent/routerConfig3';
+import Redux1 from './compoent/reduxCreateStore';
+import Redux2 from './compoent/reduxStore';
+import Redux3 from './compoent/reduxCombineReducers';
+import Redux4 from './compoent/reduxApplyMiddleware';
 //  原始dom
 /*<div className="App">P
 	<header className="App-header">
@@ -49,6 +54,11 @@ class App extends Component {
                 <Jsx1 />
                 <RefDom />
                 <FormController />
+                <RouterConfig3 />
+                <Redux1 />
+                <Redux2 />
+                <Redux3 />
+                <Redux4 />
             </div>
         );
     }
