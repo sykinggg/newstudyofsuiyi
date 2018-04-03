@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 
+import { Menu, Icon } from 'antd';
+
 //	地址跳转
 class LinkJump extends React.Component{
 	render(){
@@ -30,7 +32,7 @@ class body extends React.Component{
 	}
 	render(){
 		return(
-			<Router className="header">
+			<Router className="ant-layout-header">
 				<div>
 					<ul className={this.props.config.navClassName}>
 						{this.linkJumpDom}

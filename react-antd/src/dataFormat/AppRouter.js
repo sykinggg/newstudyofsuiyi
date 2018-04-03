@@ -1,7 +1,8 @@
 import home from '../component/home';
 import about from '../component/about';
 import topics from '../component/topics';
-import map from '../component/map/map'
+import map from '../component/map/map';
+import otherComponent from '../component/otherComponent/otherComponent';
 
 const router = [
 	{
@@ -23,6 +24,11 @@ const router = [
 		link: '/map/aMap',
 		link_name: 'map',
 		component: map
+	},
+	{
+		link: '/other/datePick',
+		link_name: 'other',
+		component: otherComponent
 	}
 ];
 
