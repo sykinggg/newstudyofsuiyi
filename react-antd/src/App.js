@@ -6,7 +6,9 @@ import Body from './component/body';
 import Footer from './component/footer';
 import router from './dataFormat/AppRouter';
 
-import { Menu, Breadcrumb, Icon } from 'antd';
+import { Menu, LocaleProvider } from 'antd';
+// 由于 antd 组件的默认文案是英文，所以需要修改为中文
+import zhCN from 'antd/lib/locale-provider/zh_CN';
 const SubMenu = Menu.SubMenu;
 
 //	地址跳转
@@ -44,16 +46,18 @@ class App extends Component {
     render() {
         return (
 			<Router>
-				<div className="ant-layout-aside">
-					<aside className="ant-layout-sider">
-						<div className="ant-layout-logo hide"></div>
-						{this.linkJumpDom}
-					</aside>
-					<div className="ant-layout-main">
-						{this.linkContentDom}
+				<LocaleProvider locale={zhCN}>
+					<div className="ant-layout-aside">
+						<aside className="ant-layout-sider">
+							<div className="ant-layout-logo hide"></div>
+							{this.linkJumpDom}
+						</aside>
+						<div className="ant-layout-main">
+							{this.linkContentDom}
+						</div>
+						<Footer/>
 					</div>
-					<Footer/>
-				</div>
+				</LocaleProvider>
 			</Router>
         );
     }

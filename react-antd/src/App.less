@@ -82,12 +82,48 @@
 
 .ant-layout-aside .ant-layout-main {
   margin-left: 100px;
+  margin-bottom: 50px;
 }
 
 .hide {
   display: none;
 }
 
-.pad-l-0 {
-  padding-left: 0px;
+.spaceMixin(@i) when (@i >= 0) {
+  .mar-r-@{i} {
+    margin-right: @i + 0px;
+  }
+  .mar-l-@{i} {
+    margin-left: @i + 0px;
+  }
+  .mar-t-@{i} {
+    margin-top: @i + 0px;
+  }
+  .mar-b-@{i} {
+    margin-bottom: @i + 0px;
+  }
+
+  .pad-r-@{i} {
+    padding-right: @i + 0px;
+  }
+  .pad-l-@{i} {
+    padding-left: @i + 0px;
+  }
+  .pad-t-@{i} {
+    padding-top: @i + 0px;
+  }
+  .pad-b-@{i} {
+    padding-bottom: @i + 0px;
+  }
+  .spaceMixin(@i - 5)
+}
+
+.spaceMixin(200);
+
+.wp100 {
+  width: 100%;
+}
+
+.padp-1 {
+  padding: 1%;
 }

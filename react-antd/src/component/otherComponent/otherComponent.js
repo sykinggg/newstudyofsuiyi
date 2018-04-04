@@ -9,7 +9,7 @@ class otherComponent extends Component {
 		this.state = {
 			router,
 			navClassName: 'ui pointing secondary menu pad-l-0',
-			bodyClassName: 'ui segment active tab'
+			bodyClassName: 'ui segment active tab padp-1'
 		}
 	}
 	render() {
