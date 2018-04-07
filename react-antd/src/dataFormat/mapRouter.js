@@ -1,6 +1,5 @@
 import aMap from '../component/map/aMap';
 import bMap from '../component/map/bMap';
-import map from '../component/map/map';
 
 const router = [
 	{
