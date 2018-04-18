@@ -16,7 +16,7 @@ export class FormResponseDetailComponent implements OnInit {
         'Flight',
         'X-ray vision',
         'strength'
-    ]
+    ];
 
     @Input() hero: Hero;
     
@@ -27,12 +27,19 @@ export class FormResponseDetailComponent implements OnInit {
     constructor(
         private fb: FormBuilder,
         private heroService: HeroServiceService
-    ) { 
+    ) {
         this.createForm();
         this.logNameChange();
     }
 
     ngOnInit() {}
+    
+    ngOnChanges() {
+        this.heroForm.reset({
+            name: this.hero.name
+        });
+        this.setAddresses(this.hero.addresses);
+    }
 
     createForm() {
         this.heroForm = this.fb.group({
@@ -42,17 +49,10 @@ export class FormResponseDetailComponent implements OnInit {
             sidekick: ''
         });
     }
-
-    ngOnChanges() {
-        this.heroForm.reset({
-            name: this.hero.name
-        });
-        this.setAddresses(this.hero.addresses);
-    }
     
     get secretLairs(): FormArray {
         return this.heroForm.get('secretLairs') as FormArray;
-    };
+    }
     
     setAddresses(addresses: Address[]) {
         const addressFGs = addresses.map(address => this.fb.group(address));

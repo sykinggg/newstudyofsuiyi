@@ -9,6 +9,8 @@ import { AppRoutingModule } from './app.routes.module';
 import { AppComponent } from './app.component';
 
 import { LocalStorage } from './common/local.storage';
+//  UI组件
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 // import { AboutComponent } from './about/about.component';
 // import { AboutIndexComponent } from './about/about-index/about-index.component';
@@ -80,12 +82,13 @@ import { FormResponseListComponent } from './form/form-response-list/form-respon
         MapBaseComponent,
         MapSearchComponent,
         MapInformationPipe,
-        MapDirectiveDirective,
+      MapDirectiveDirective
     ],
     imports: [
         AppBaseModule,
         AppUIModule,
         AppRoutingModule, // 路由
+        NgZorroAntdModule.forRoot() // UI组件引用
     ],
     providers: [
         LocalStorage,

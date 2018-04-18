@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppUIModule } from '../app.ui.module';
+import { AboutUIModule } from './about.ui.module';
 
 import { AboutRoutesModule } from './about.routes.module';
 
@@ -13,7 +13,7 @@ import { AboutCreateComponent } from './about-create/about-create.component';
     imports: [
         CommonModule,
         AboutRoutesModule,
-        AppUIModule
+        AboutUIModule
     ],
     declarations: [
         AboutComponent,

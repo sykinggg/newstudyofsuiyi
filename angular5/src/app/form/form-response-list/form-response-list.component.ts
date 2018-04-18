@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable }        from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/finally';
 
 import { Hero } from '../../data/data-name';
@@ -22,11 +22,11 @@ export class FormResponseListComponent implements OnInit {
     ngOnInit() { this.getHeroes(); }
   
     getHeroes() {
-      this.isLoading = true;
-      this.heroes = this.heroService.getHeroes()
-                        // Todo: error handling
-                        .finally(() => this.isLoading = false);
-      this.selectedHero = undefined;
+        this.isLoading = true;
+        this.heroes = this.heroService.getHeroes()
+        // Todo: error handling
+        .finally(() => this.isLoading = false);
+        this.selectedHero = undefined;
     }
   
     select(hero: Hero) { this.selectedHero = hero; }

@@ -4,11 +4,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpComponent } from './http/http.component';
 import { templateRoutes } from './template/template.routes';
 import { formRoutes } from './form/form.routes';
+import { mapRoutes } from './map/map.routes';
 
 const appRoutes: Routes = [
     {
         path: '',
-        redirectTo: 'about',
+        redirectTo: 'map',
         pathMatch: 'full'
     },
     {
@@ -17,7 +18,7 @@ const appRoutes: Routes = [
     },
     {
         path: 'map',
-        loadChildren: './map/map.module#MapModule'
+        children: mapRoutes,
     },
     {
         path: 'http',

@@ -9,26 +9,18 @@ import { formData } from './data';
 export class TemplateFormComponent implements OnInit {
 
     powers = ['Really Smart', 'Super Flexible',
-        'Super Hot', 'Weather Changer']
+        'Super Hot', 'Weather Changer'];
 
     model = new formData(18, 'Dr IQ', this.powers[0], 'Chuck Overstreet');
 
     submitted = false;
 
     onSubmit() { this.submitted = true; }
-
-    // TODO: Remove this when we're done
     get diagnostic() { return JSON.stringify(this.model); }
 
     clear() {
         this.model = new formData(18, '', '');
     }
-
-    
-    
-
-
-
     constructor() { }
 
     ngOnInit() {
