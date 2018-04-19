@@ -40,3 +40,35 @@ nav a:hover {
 .mat-tab-link:focus {
     background-color: $b-g-c-fff !important;
 }
+
+$w: 200;
+$px: 0px;
+
+@while ($w >= 0) {
+    .m-l-#{$w} {
+        margin-left: $w + $px;
+    }
+    .m-r-#{$w} {
+        margin-right: $w + $px;
+    }
+    .m-t-#{$w} {
+        margin-top: $w + $px;
+    }
+    .m-b-#{$w} {
+        margin-bottom: $w + $px;
+    }
+
+    .p-l-#{$w} {
+        padding-left: $w + $px;
+    }
+    .p-r-#{$w} {
+        padding-right: $w + $px;
+    }
+    .p-t-#{$w} {
+        padding-top: $w + $px;
+    }
+    .p-b-#{$w} {
+        padding-bottom: $w + $px;
+    }
+    $w: $w - 5;
+}

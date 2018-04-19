@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HttpComponent } from './http/http.component';
 import { templateRoutes } from './template/template.routes';
-import { formRoutes } from './form/form.routes';
-import { mapRoutes } from './map/map.routes';
+import {TemplateModule} from "./template/template.module";
+import {ObservableModule} from "./observable/observable.module";
 
 const appRoutes: Routes = [
     {
@@ -18,7 +18,7 @@ const appRoutes: Routes = [
     },
     {
         path: 'map',
-        children: mapRoutes,
+        loadChildren: './map/map.module#MapModule',
     },
     {
         path: 'http',
@@ -26,13 +26,17 @@ const appRoutes: Routes = [
     },
     {
         path: 'Alltemplate',
-        children: templateRoutes
+        loadChildren: './template/template.module#TemplateModule'
     },
     {
         path: 'form',
-        children: formRoutes
+        loadChildren: './form/form.module#FormModule'
+    },
+    {
+        path: 'observable',
+        loadChildren: './observable/observable.module#ObservableModule'
     }
-]
+];
 
 @NgModule({
     imports: [RouterModule.forRoot(appRoutes)],

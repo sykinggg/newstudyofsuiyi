@@ -11,8 +11,9 @@ export class FormComponent implements OnInit {
         { routerName: 'userInput', routerLink: 'userInput' },
         { routerName: 'templateForm', routerLink: 'templateForm' },
         { routerName: 'formValidate', routerLink: 'formValidate' },
-        { routerName: 'formResponse', routerLink: 'formResponse' }
-    ]
+        { routerName: 'formResponse', routerLink: 'formResponse' },
+        { routerName: 'dynamicForm', routerLink: 'dynamicForm' }
+    ];
 
     constructor() { }
 

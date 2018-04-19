@@ -1,3 +1,5 @@
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
 import { TemplateComponent } from './template/template.component';
 import { AllTemplateComponent } from './template.component';
@@ -7,7 +9,7 @@ import { StrDirectiveComponent } from './str-directive/str-directive.component';
 import { PipeComponent } from './pipe/pipe.component';
 import { AnimationsComponent } from './animations/animations.component';
 
-export const templateRoutes = [
+const templateRoutes = [
     {
         path: '',
         component: AllTemplateComponent,
@@ -44,3 +46,14 @@ export const templateRoutes = [
         ]
     }
 ]
+
+@NgModule({
+    imports: [
+        RouterModule.forChild(templateRoutes)
+    ],
+    exports: [
+        RouterModule
+    ]
+})
+
+export class TemplateRoutesModule {}

@@ -20,7 +20,8 @@ export class AppComponent {
         { routerName: 'map', routerLink: 'map' },
         // { routerName: 'http', routerLink: 'http' },
         { routerName: 'Alltemplate', routerLink: 'Alltemplate' },
-        { routerName: 'form', routerLink: 'form' }
+        { routerName: 'form', routerLink: 'form' },
+        { routerName: 'observable', routerLink: 'observable' }
     ]
 
     constructor(private router: Router,
