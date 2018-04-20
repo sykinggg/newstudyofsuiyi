@@ -67,5 +67,23 @@
         <h6 class="m-t-5">订阅</h6>
         <p class="f-c-999">只有订阅 Observable 的实例时，才会开始发布值</p>
         <p class="f-c-999">订阅时要先调用该实例的 subscribe() 方法，并把一个观察者对象传给它，用来接收通知</p>
+        
+        <h6>Using Observables</h6>
+        
+        <h6>demo1</h6>
+        <p>{{sourceData1}}</p>
+        <button (click)="subscribe1()">subscribe1</button>
+        
+        <h6>demo2</h6>
+        <p>{{sourceData2}}</p>
+        <button (click)="subscribe2()">subscribe2</button>
+        
+        <h6>demo3</h6>
+        <button (click)="subscribe3()">subscribe3</button>
+        
+        <h6>demo4</h6>
+        <input matInput placeholder="输输看" value="aaa" id="demo4">
+        <p>{{demo4Data}}</p>
+        <button (click)="subscribe4()">subscribe4</button>
     </nz-table>
 </nz-card>
