@@ -64,26 +64,104 @@
                 </td>
             </tr>
         </tbody>
-        <h6 class="m-t-5">订阅</h6>
-        <p class="f-c-999">只有订阅 Observable 的实例时，才会开始发布值</p>
-        <p class="f-c-999">订阅时要先调用该实例的 subscribe() 方法，并把一个观察者对象传给它，用来接收通知</p>
-        
-        <h6>Using Observables</h6>
-        
-        <h6>demo1</h6>
-        <p>{{sourceData1}}</p>
-        <button (click)="subscribe1()">subscribe1</button>
-        
-        <h6>demo2</h6>
-        <p>{{sourceData2}}</p>
-        <button (click)="subscribe2()">subscribe2</button>
-        
-        <h6>demo3</h6>
-        <button (click)="subscribe3()">subscribe3</button>
-        
-        <h6>demo4</h6>
-        <input matInput placeholder="输输看" value="aaa" id="demo4">
-        <p>{{demo4Data}}</p>
-        <button (click)="subscribe4()">subscribe4</button>
     </nz-table>
+    <h6 class="m-t-5">订阅</h6>
+    <p class="f-c-999">只有订阅 Observable 的实例时，才会开始发布值</p>
+    <p class="f-c-999">订阅时要先调用该实例的 subscribe() 方法，并把一个观察者对象传给它，用来接收通知</p>
+    
+    <h6>Using Observables</h6>
+    
+    <h6>demo1(Observable.of)</h6>
+    <p>{{sourceData1}}</p>
+    <button nz-button nzType="default" (click)="subscribe1()">subscribe1</button>
+    
+    <h6>demo2(new Observable)</h6>
+    <p>{{sourceData2}}</p>
+    <button nz-button nzType="default" (click)="subscribe2()">subscribe2</button>
+    
+    <h6>demo3(纯响应式编程)</h6>
+    <button nz-button nzType="default" (click)="subscribe3()">subscribe3</button>
+    
+    <h6>demo4(传统事件绑定)</h6>
+    <input nz-input class="width-25p" placeholder="输输看" value="aaa" id="demo4">
+    <p>{{demo4Data}}</p>
+    <button nz-button nzType="default" (click)="subscribe4()">subscribe4</button>
+    
+    <h6>demo5(常见操作-pluck)</h6>
+    <input nz-input class="width-25p" placeholder="输呀"  type="text" id="demo5">
+    <p>{{demo5Data}}</p>
+    <button nz-button nzType="default" (click)="subscribe5()">subscribe5</button>
+    
+    <h6>demo6(combineLatest)</h6>
+    <p class="f-c-999">
+        combineLatest 结合所有输入 Observable 参数的值. 顺序订阅每个 Observable，
+        每当任一输入 Observable 发出，收集每个输入 Observable 的最新值组成一个数组
+    </p>
+    <ul>
+        <li>
+            给操作符 传入 n 个 Observable，返回的 Observable 总是会发出一个长度为 n 的数组，对应输入 Observable 的顺序
+        </li>
+        <li>
+            静态版本的 combineLatest 接受一个 Observables 数组或者每个 Observable 可以直接作为参数
+        </li>
+        <li>
+            当源1的数据流发射时，源2没有数据，这时候结果流也不会有数据产生
+        </li>
+        <li>
+            当源2发射第一个数据（图中A）后，combineLatest操作符做的处理是，
+            把A和源1的最近产生的数据（图中2）组合在一起，形成结果流的第一个数据（图中2A）
+        </li>
+        <li>
+            当源2产生第二个数据（图中B）时，源1这时没有新的数据产生，
+            那么还是用源1中最新的数据（图中2）和源2中最新的数据（图中B）组合
+        </li>
+    </ul>
+    <h5>注意：</h5>
+    <p class="f-c-999">combineLatest 操作符其实是在组合2个源数据流中选择最新的2个数据进行配对，
+        如果其中一个源之前没有任何数据产生，那么结果流也不会产生数据</p>
+    <img class="max-width-50p"
+         src="https://img.ctolib.com/uploadImg/20170326/20170326093645_506.png">
+    <input class="m-t-10 block max-width-50p" nz-input placeholder="请输入" type="text" id="demo6Input">
+    <p>{{demo6Data}}</p>
+    <button nz-button nzType="default" id="demo6Button">subscribe6</button>
+    
+    <h6>demo7(combineLatest使用)</h6>
+    <p>{{demo7Data}}</p>
+    <mat-form-field class="example-full-width">
+        <input matInput class="width-25p" type="text" id="demo7Weight" placeholder="weight">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput class="width-25p" type="text" id="demo7Height" placeholder="height">
+    </mat-form-field>
+    <!--<button nz-button nzType="default" (click)="subscribe7()">subscribe7</button>-->
+    
+    <h6>demo8(zip)</h6>
+    <p class="f-c-999">
+        zip 和 combineLatest 非常像，但重要的区别点在于 zip 严格的需要多个源数据流中的每一个的相同顺序的元素配对
+    </p>
+    <ul>
+        <li>
+            zip 要求源1的第一个数据和源2的第一个数据组成一对，产生结果流的第一个数据
+        </li>
+        <li>
+            源1的第二个数据和源2的第二个数据组成一对，产生结果流的第二个数据
+        </li>
+        <li>
+            combineLatest 不需要等待另一个源数据流产生数据，只要有一个产生，结果流就会产生
+        </li>
+    </ul>
+    <img class="max-width-50p"
+         src="https://img.ctolib.com/uploadImg/20170326/20170326093646_718.png" >
+    <h5>注意：</h5>
+    <p class="f-c-999">从效果角度上讲，这个操作符有减缓发射速度的作用，因为它会等待合并序列中最慢的那个</p>
+    <button nz-button nzType="default" (click)="subscribe8()">subscribe8</button>
+    
+    <h6>demo 9 创建类操作符</h6>
+    <button nz-button nzType="default" (click)="subscribe9()">subscribe9</button>
+    
+    <h6>demo 10 defer操作符</h6>
+    <p class="f-c-999">defer 是直到有订阅者之后才创建Observable</p>
+    <img class="max-width-50p"
+         src="https://img.ctolib.com/uploadImg/20170326/20170326093648_397.png">
+    <button nz-button nzType="default" (click)="subscribe10()">subscribe10</button>
 </nz-card>

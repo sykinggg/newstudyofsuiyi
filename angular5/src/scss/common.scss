@@ -41,6 +41,10 @@ nav a:hover {
     background-color: $b-g-c-fff !important;
 }
 
+.block {
+    display: block;
+}
+
 $w: 200;
 $px: 0px;
 
@@ -69,6 +73,9 @@ $px: 0px;
     }
     .p-b-#{$w} {
         padding-bottom: $w + $px;
+    }
+    .w-#{$w} {
+        width: $w + $px;
     }
     $w: $w - 5;
 }
